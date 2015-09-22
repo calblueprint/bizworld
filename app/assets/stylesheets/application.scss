@@ -10,7 +10,18 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  *= require toastr
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+html {
+  background: #f0f0f0;
+  height: 100%;
+}
+
+body {
+  background: transparent !important;
+  height: 100%;
+}
