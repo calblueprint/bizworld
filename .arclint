@@ -1,0 +1,12 @@
+{
+  "linters": {
+    "ruby": {
+      "type": "rubocop",
+      "include": "/\\.(rb|rake)$/"
+    },
+    "jsx": {
+      "type": "eslint",
+      "include": "/\\.(js|jsx)$/"
+    }
+  }
+}

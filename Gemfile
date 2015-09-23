@@ -23,6 +23,7 @@ gem 'toastr-rails'
 group :development, :test do
   gem 'byebug'
   gem 'thin'
+  gem 'rubocop'
 end
 
 group :development do
