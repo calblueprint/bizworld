@@ -2,7 +2,9 @@
   "linters": {
     "ruby": {
       "type": "rubocop",
-      "include": "/\\.(rb|rake)$/"
+      "include": "/\\.(rb|rake)$/",
+      "exclude": "@(^db/schema\\.rb)@",
+      "rubocop.config": ".rubocop.yml"
     },
     "jsx": {
       "type": "eslint",
