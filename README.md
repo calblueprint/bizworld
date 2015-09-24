@@ -1,4 +1,4 @@
-BizWorld
+BizWorld[![Code Climate](https://codeclimate.com/github/calblueprint/bizworld/badges/gpa.svg)](https://codeclimate.com/github/calblueprint/bizworld)
 ================
 
 This application allows partners to help BizWorld educators manage their classes and administer their student assessments!
