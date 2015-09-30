@@ -5,12 +5,21 @@ def make_partners
   end
 end
 
+def make_classrooms
+  1.upto(2) do |n|
+    classroom = Classroom.create(term: "term#{n}", module: "module#{n}")
+    classroom.save
+  end
+end
+
 def make_students
   1.upto(5) do |n|
     student = Student.create(pre_score: n, post_score: 42, first_name: "John", last_name: "Doe")
+    student.classroom = Classroom.find(n % 2 + 1)
     student.save
   end
 end
 
 make_partners
+make_classrooms
 make_students
