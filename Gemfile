@@ -14,6 +14,7 @@ gem 'devise'
 gem 'jbuilder', '~> 2.0'
 gem 'figaro'
 gem 'gon'
+gem 'pg'
 gem 'slim'
 gem "slim-rails"
 gem 'react-rails', '~> 1.3.0'
