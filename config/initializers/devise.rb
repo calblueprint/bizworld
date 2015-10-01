@@ -1,3 +1,18 @@
+# Monkey patch to remove memoization from Devise mapping lookup.
+# We need to be able to switch between different mappings at runtime
+# in order to authenticate different types of users.
+module Devise
+  module Strategies
+    class Base
+      def mapping
+        mapping = Devise.mappings[scope]
+        fail "Could not find mapping for #{scope}" unless mapping
+        mapping
+      end
+    end
+  end
+end
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|

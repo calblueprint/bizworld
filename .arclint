@@ -3,7 +3,7 @@
     "ruby": {
       "type": "rubocop",
       "include": "/\\.(rb|rake)$/",
-      "exclude": "@(^db/schema\\.rb)@",
+      "exclude": "(^db/)",
       "rubocop.config": ".rubocop.yml"
     },
     "jsx": {

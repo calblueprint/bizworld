@@ -22,19 +22,8 @@ class PartnersController < ApplicationController
   end
 
   # POST /partners
-  # POST /partners.json
   def create
     @partner = Partner.new(partner_params)
-
-    respond_to do |format|
-      if @partner.save
-        format.html { redirect_to @partner, notice: 'Partner was successfully created.' }
-        format.json { render :show, status: :created, location: @partner }
-      else
-        format.html { render :new }
-        format.json { render json: @partner.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /partners/1
