@@ -1,5 +1,5 @@
 class TeachersController < ApplicationController
-  # TODO(nnarayen): update stubbed method
+  # TODO(nnarayen 10/1): update stubbed method
   def index
     @partners = Partner.all
   end

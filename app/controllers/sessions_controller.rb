@@ -24,11 +24,7 @@ class SessionsController < Devise::SessionsController
   end
 
   def after_sign_in_path_for(resource)
-    if resource.is_a?(Teacher)
-      return teachers_path
-    elsif resource.is_a?(Admin)
-      return admins_path
-    end
+    resource.is_a?(Teacher) ? teachers_path : admins_path
   end
 
   def destroy

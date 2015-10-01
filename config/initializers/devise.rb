@@ -1,6 +1,8 @@
 # Monkey patch to remove memoization from Devise mapping lookup.
 # We need to be able to switch between different mappings at runtime
 # in order to authenticate different types of users.
+#
+# Source: https://gist.github.com/jeremyw/5319386
 module Devise
   module Strategies
     class Base
