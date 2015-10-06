@@ -7,9 +7,11 @@ module Devise
   module Strategies
     class Base
       def mapping
+        # @mapping ||= begin
         mapping = Devise.mappings[scope]
         fail "Could not find mapping for #{scope}" unless mapping
         mapping
+        # end
       end
     end
   end
@@ -23,13 +25,13 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'abd484a9b833d668e1ab140156d2a649afd0d274be5771b380dc448b81bc72237443a3e7dba2c501ed0f779521acdae76f0c4247b994ff28a79222c5556204c9'
+  config.secret_key = ENV['DEVISE_SECRET_KEY']
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'please-change-me@calblueprint.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

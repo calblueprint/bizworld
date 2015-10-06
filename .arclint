@@ -9,6 +9,10 @@
     "jsx": {
       "type": "eslint",
       "include": "/\\.(js|jsx)$/"
+    },
+    "csslint": {
+      "type": "csslint",
+      "include" : "(\\.css$)"
     }
   }
 }

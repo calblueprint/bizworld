@@ -20,11 +20,18 @@ gem "slim-rails"
 gem 'react-rails', '~> 1.3.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'toastr-rails'
+gem 'thin'
 
 group :development, :test do
   gem 'byebug'
-  gem 'thin'
   gem 'rubocop'
+  gem 'binding_of_caller'
+  gem 'better_errors'
+  gem 'annotate'
+  gem 'quiet_assets'
+  gem 'awesome_print'
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
 
 group :development do
