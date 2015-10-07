@@ -1,15 +1,14 @@
-var React = require('react');
-
 /**
  * @prop partners - the list of partners
  */
-var PartnerList = React.createClass({
-    getInitialState: function() {
-        return {
-            partners: this.props.partners,
-        };
-    },
-    render: function() {
+class PartnerList extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { partners: this.props.partners };
+    }
+
+    render() {
         var partners = this.state.partners.map(function(partner) {
             return (
                 <Partner partner  = {partner}
@@ -35,18 +34,22 @@ var PartnerList = React.createClass({
             </div>
         );
     }
-});
+}
+
+PartnerList.propTypes = { partners: React.PropTypes.array.isRequired };
+PartnerList.defaultProps = { partners: [] };
 
 /**
  * @prop partner - the info about this partner
  */
-var Partner = React.createClass({
-    getInitialState: function() {
-        return {
-            partner: this.props.partner,
-        };
-    },
-    render: function() {
+class Partner extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { partner: this.props.partner }
+    }
+
+    render() {
         return (
             <tr>
                 <td>
@@ -61,6 +64,7 @@ var Partner = React.createClass({
             </tr>
         );
     }
-});
+}
 
-module.exports = PartnerList;
+Partner.propTypes = { partner: React.PropTypes.object.isRequired };
+Partner.defaultProps = { partner: {} };

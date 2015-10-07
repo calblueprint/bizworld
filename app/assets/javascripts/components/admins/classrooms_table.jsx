@@ -1,18 +1,18 @@
-var React = require('react');
-
 /**
  * @prop classrooms - the list of classes
  */
-var ClassroomsTable = React.createClass({
-    getInitialState: function() {
-        return {
-            classrooms: [],
-        };
-    },
-    componentDidMount: function() {
+class ClassroomsTable extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { classrooms: [] };
+    }
+
+    componentDidMount() {
         this._fetchClassrooms();
-    },
-    _fetchClassrooms: function() {
+    }
+
+    _fetchClassrooms() {
         $.getJSON("/admins/classrooms")
             .done(function(data) {
                 this.setState({ classrooms: data });
@@ -20,8 +20,9 @@ var ClassroomsTable = React.createClass({
             .fail(function (xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
             }.bind(this));
-    },
-    render: function() {
+    }
+
+    render() {
         var classrooms = this.state.classrooms.map(function(classroom) {
             return (
                 <Classroom classroom  = {classroom}
@@ -47,18 +48,22 @@ var ClassroomsTable = React.createClass({
             </div>
         );
     }
-});
+}
+
+ClassroomsTable.propTypes = { classrooms: React.PropTypes.array.isRequired };
+ClassroomsTable.defaultProps = { classrooms: [] };
 
 /**
  * @prop classroom - the info about this classroom
  */
-var Classroom = React.createClass({
-    getInitialState: function() {
-        return {
-            classroom: this.props.classroom,
-        };
-    },
-    render: function() {
+class Classroom extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { classroom: this.props.classroom };
+    }
+
+    render() {
         return (
             <tr>
                 <td>
@@ -73,6 +78,7 @@ var Classroom = React.createClass({
             </tr>
         );
     }
-});
+}
 
-module.exports = ClassroomsTable;
+Classroom.propTypes = { classroom: React.PropTypes.object.isRequired };
+Classroom.defaultProps = { classroom: {} };

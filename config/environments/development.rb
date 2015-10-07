@@ -39,6 +39,10 @@ Rails.application.configure do
   # Default Devise Mailer
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  # React setup
+  config.react.variant = :development
+  config.react.addons = true
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

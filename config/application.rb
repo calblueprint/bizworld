@@ -23,9 +23,6 @@ module Bizworld
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    # Browserify + Reactify
-    config.browserify_rails.commandline_options = "--transform reactify --extension=\".jsx\""
-
     # Enable React addons
     config.react.addons = true
 
