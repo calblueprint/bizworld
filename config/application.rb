@@ -28,5 +28,8 @@ module Bizworld
 
     # Enable React addons
     config.react.addons = true
+
+    # Load all serializers recursively (in subfolders) - screw namespacing
+    config.autoload_paths += Dir[Rails.root.join("app", "serializers", "{**}")]
   end
 end

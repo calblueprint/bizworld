@@ -6,8 +6,20 @@ var React = require('react');
 var ClassroomsTable = React.createClass({
     getInitialState: function() {
         return {
-            classrooms: this.props.classrooms,
+            classrooms: [],
         };
+    },
+    componentDidMount: function() {
+        this._fetchClassrooms();
+    },
+    _fetchClassrooms: function() {
+        $.getJSON("/admins/classrooms")
+            .done(function(data) {
+                this.setState({ classrooms: data });
+            }.bind(this))
+            .fail(function (xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this));
     },
     render: function() {
         var classrooms = this.state.classrooms.map(function(classroom) {
@@ -23,8 +35,8 @@ var ClassroomsTable = React.createClass({
                         <thead>
                             <tr>
                                 <th>Term</th>
-                                <th>Module</th>
                                 <th>Teacher</th>
+                                <th># Students</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,13 +65,10 @@ var Classroom = React.createClass({
                     { this.state.classroom["term"] }
                 </td>
                 <td>
-                    { this.state.classroom["module"]}
+                    { this.state.classroom["teacher"]["email"] }
                 </td>
                 <td>
-                    {
-                        /*TODO: Access the actual teacher entity, instead of just the ID.*/ 
-                        this.state.classroom["teacher_id"] 
-                    }
+                    { this.state.classroom["students"].length }
                 </td>
             </tr>
         );

@@ -1,7 +1,7 @@
-h1 Hello "Insert Name Here"
-=p @admin.email
+h1 Hello Admin
+= p @admin.email
 
-h2 Classes
-= react_component "ClassroomsTable", { \
-    classrooms: @classrooms,           \
-  }
+h2 All Classes
+/ TODO(nnarayen 10/7): remove gon example
+= include_gon(init: true, watch: true)
+= react_component "ClassroomsTable"
