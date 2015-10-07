@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   resources :partners
   resources :teachers
-  resources :admins
+  resources :admins do
+    collection do
+      get 'classrooms'
+    end
+  end
 
   root to: "partners#index"
 end

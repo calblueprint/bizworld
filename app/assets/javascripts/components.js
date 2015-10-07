@@ -7,3 +7,4 @@ ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 /* Test Partners Page */
 PartnerList = require('./components/partners.jsx');
+ClassroomsTable = require('./components/admins/classrooms_table.jsx');

@@ -1,6 +1,8 @@
 class AdminsController < ApplicationController
-  # TODO(nnarayen 10/1): update stubbed method
-  def index
-    @partners = Partner.all
+  before_filter :authenticate_admin!
+
+  def classrooms
+    @admin = current_admin
+    @classrooms = Classroom.all
   end
 end
