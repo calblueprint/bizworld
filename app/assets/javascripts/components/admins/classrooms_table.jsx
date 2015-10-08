@@ -14,12 +14,12 @@ class ClassroomsTable extends React.Component {
 
     _fetchClassrooms() {
         $.getJSON("/admins/classrooms")
-            .done(function(data) {
+            .done((data) => {
                 this.setState({ classrooms: data });
-            }.bind(this))
-            .fail(function (xhr, status, err) {
+            })
+            .fail((xhr, status, err) => {
                 console.error(this.props.url, status, err.toString());
-            }.bind(this));
+            });
     }
 
     render() {
@@ -67,13 +67,13 @@ class Classroom extends React.Component {
         return (
             <tr>
                 <td>
-                    { this.state.classroom["term"] }
+                    { this.state.classroom.term }
                 </td>
                 <td>
-                    { this.state.classroom["teacher"]["email"] }
+                    { this.state.classroom.teacher.email }
                 </td>
                 <td>
-                    { this.state.classroom["students"].length }
+                    { this.state.classroom.students.length }
                 </td>
             </tr>
         );
