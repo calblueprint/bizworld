@@ -12,10 +12,19 @@ def make_teachers
   end
 end
 
+def make_programs
+  programs = ["BizWorld", "BizMovie", "BizWiz"]
+  programs.each do |name|
+    program = Program.create(name: name, pre: "http://yahoo.com", post: "http://google.com")
+    program.save
+  end
+end
+
 def make_classrooms
-  1.upto(2) do |n|
-    classroom = Classroom.create(term: "term#{n}", module: "module#{n}")
-    classroom.teacher = Teacher.find(n)
+  1.upto(10) do |n|
+    classroom = Classroom.create(term: "term#{n}")
+    classroom.teacher = Teacher.find(n % 5 + 1)
+    classroom.program = Program.find(n % 3 + 1)
     classroom.save
   end
 end
@@ -35,8 +44,10 @@ def make_admins
   end
 end
 
+
 make_partners
 make_teachers
+make_programs
 make_classrooms
 make_students
 make_admins
