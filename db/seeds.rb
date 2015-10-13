@@ -22,7 +22,7 @@ end
 
 def make_classrooms
   1.upto(10) do |n|
-    classroom = Classroom.create(term: "term#{n}")
+    classroom = Classroom.create(term: "term#{n}", name: "Classroom#{n}")
     classroom.teacher = Teacher.find(n % 5 + 1)
     classroom.program = Program.find(n % 3 + 1)
     classroom.save

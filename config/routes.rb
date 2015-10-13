@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       get 'classrooms'
     end
   end
+  resources :classrooms
 
   root to: "pages#home"
 end

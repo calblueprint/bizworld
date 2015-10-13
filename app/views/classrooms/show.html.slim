@@ -1,0 +1,7 @@
+h1 Hello Classroom
+= p @classroom.teacher.email
+
+h2 All Students
+= react_component "StudentsTable", { \
+    classroom_id: @classroom.id,     \
+}
