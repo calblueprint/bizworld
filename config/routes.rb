@@ -16,5 +16,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: "partners#index"
+  root to: "pages#home"
 end
