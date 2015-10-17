@@ -1,21 +1,19 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: { sessions: 'sessions' }
-  devise_for :teachers, controllers: { sessions: 'sessions' }
+  devise_for :admins, skip: [:sessions, :registrations, :passwords]
+  devise_for :teachers, skip: [:sessions, :registrations, :passwords]
 
   devise_scope :teacher do
-    get 'teachers/sign_in' => 'sessions#new', :as => :new_session
-    post 'teachers/sign_in' => 'sessions#create', :as => :create_session
-    get 'teachers/sign_out' => 'sessions#destroy', :as => :destroy_session
+    root to: 'sessions#new'
+    post '/sign_in' => 'sessions#create', :as => :create_session
+    get '/sign_out' => 'sessions#destroy', :as => :destroy_session
   end
 
-  resources :partners
   resources :teachers
+  resources :classrooms
+
   resources :admins do
     collection do
       get 'classrooms'
     end
   end
-  resources :classrooms
-
-  root to: "pages#home"
 end

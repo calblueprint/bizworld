@@ -18,15 +18,15 @@ class ClassroomsTable extends React.Component {
                 this.setState({ classrooms: data });
             })
             .fail((xhr, status, err) => {
-                console.error(this.props.url, status, err.toString());
+                console.error(xhr, status, err.toString());
             });
     }
 
     render() {
-        var classrooms = this.state.classrooms.map(function(classroom) {
+        const classrooms = this.state.classrooms.map(function(classroom) {
             return (
                 <Classroom classroom  = {classroom}
-                           key        = {classroom["id"]} />
+                           key        = {classroom.id} />
             );
         });
         return (

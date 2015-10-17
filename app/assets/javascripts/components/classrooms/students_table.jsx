@@ -26,10 +26,10 @@ class StudentsTable extends React.Component {
     }
 
     render() {
-        var students = this.state.students.map(function(student) {
+        const students = this.state.students.map(function(student) {
             return (
                 <Student student  = {student}
-                           key    = {student["id"]} />
+                         key      = {student.id} />
             );
         });
         return (

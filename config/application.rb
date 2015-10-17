@@ -28,5 +28,13 @@ module Bizworld
 
     # Load all serializers recursively (in subfolders) - screw namespacing
     config.autoload_paths += Dir[Rails.root.join("app", "serializers", "{**}")]
+
+    # Load custom Devise Failer
+    config.autoload_paths << Rails.root.join('lib')
+
+    # Enable experimental features for Babel
+    config.react.jsx_transform_options = {
+      stage: 0
+    }
   end
 end

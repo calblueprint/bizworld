@@ -1,6 +1,3 @@
 class TeachersController < ApplicationController
-  # TODO(nnarayen 10/1): update stubbed method
-  def index
-    @partners = Partner.all
-  end
+  before_action :authenticate_user!
 end

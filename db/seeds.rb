@@ -1,10 +1,3 @@
-def make_partners
-  1.upto(5) do |n|
-    partner = Partner.create(email: "user#{n}@gmail.com", first_name: "Nikhil", last_name: "Narayen")
-    partner.save
-  end
-end
-
 def make_teachers
   1.upto(5) do |n|
     teacher = Teacher.create(email: "teacher#{n}@bizworld.org", password: "password", password_confirmation: "password")
@@ -44,8 +37,6 @@ def make_admins
   end
 end
 
-
-make_partners
 make_teachers
 make_programs
 make_classrooms
