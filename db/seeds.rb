@@ -14,8 +14,14 @@ def make_programs
 end
 
 def make_classrooms
+  six_months_ago = Date.yesterday.advance(months: -6)
   1.upto(10) do |n|
-    classroom = Classroom.create(term: "term#{n}", name: "Classroom#{n}")
+    classroom = Classroom.create(
+      term: "term#{n}",
+      name: "Classroom#{n}",
+      start_date: six_months_ago.advance(months: n),
+      end_date: six_months_ago.advance(months: n+2)
+    )
     classroom.teacher = Teacher.find(n % 5 + 1)
     classroom.program = Program.find(n % 3 + 1)
     classroom.save

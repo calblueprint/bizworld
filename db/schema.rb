@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014073641) do
+ActiveRecord::Schema.define(version: 20151020000211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,9 +41,13 @@ ActiveRecord::Schema.define(version: 20151014073641) do
     t.integer  "teacher_id"
     t.integer  "program_id"
     t.string   "name"
+    t.date     "start_date"
+    t.date     "end_date"
   end
 
+  add_index "classrooms", ["end_date"], name: "index_classrooms_on_end_date", using: :btree
   add_index "classrooms", ["program_id"], name: "index_classrooms_on_program_id", using: :btree
+  add_index "classrooms", ["start_date"], name: "index_classrooms_on_start_date", using: :btree
   add_index "classrooms", ["teacher_id"], name: "index_classrooms_on_teacher_id", using: :btree
 
   create_table "programs", force: :cascade do |t|

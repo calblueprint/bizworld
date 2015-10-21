@@ -31,13 +31,15 @@ class ClassroomsTable extends React.Component {
         });
         return (
             <div className="row">
-                <div className="col-md-8">
+                <div className="col-md-8 col-md-offset-2">
                     <table className="table">
                         <thead>
                             <tr>
                                 <th>Term</th>
                                 <th>Teacher</th>
                                 <th># Students</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,6 +76,12 @@ class Classroom extends React.Component {
                 </td>
                 <td>
                     { this.state.classroom.students.length }
+                </td>
+                <td>
+                    { this.state.classroom.start_date }
+                </td>
+                <td>
+                    { this.state.classroom.end_date }
                 </td>
             </tr>
         );

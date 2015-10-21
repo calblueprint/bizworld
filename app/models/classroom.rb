@@ -14,4 +14,12 @@ class Classroom < ActiveRecord::Base
   belongs_to :program
   has_many :students
   belongs_to :teacher
+
+  def self.active(is_active)
+    if is_active
+      where("end_date >= ? AND start_date <= ?", Date.current, Date.current)
+    else
+      where("end_date < ? OR start_date > ?", Date.current, Date.current)
+    end
+  end
 end

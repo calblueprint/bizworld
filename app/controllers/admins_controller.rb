@@ -3,9 +3,10 @@ class AdminsController < ApplicationController
 
   def classrooms
     @admin = current_admin
+    @classrooms = Classroom.active(true)
     respond_to do |format|
       format.html
-      format.json { render json: Classroom.all, each_serializer: ClassroomSerializer, root: false }
+      format.json { render json: @classrooms, each_serializer: ClassroomSerializer, root: false }
     end
   end
 
