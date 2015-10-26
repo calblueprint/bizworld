@@ -23,4 +23,5 @@ class Teacher < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :classrooms
+  validates :last_name, :first_name, :school, presence: true
 end

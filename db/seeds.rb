@@ -1,6 +1,17 @@
 def make_teachers
   1.upto(5) do |n|
-    teacher = Teacher.create(email: "teacher#{n}@bizworld.org", password: "password", password_confirmation: "password")
+    teacher = Teacher.create(
+      email: "teacher#{n}@bizworld.org",
+      password: "password", 
+      password_confirmation: "password",
+      first_name: "James",
+      last_name: "Smith",
+      phone_number: "555-555-5555",
+      school: "UC Berkeley",
+      city: "Berkeley",
+      state: "CA",
+      grades: ["6", "7", "8", "other"]
+    )
     teacher.save
   end
 end
