@@ -1,0 +1,15 @@
+toastr.options = {
+  "closeButton"     : true,
+  "debug"           : false,
+  "progressBar"     : false,
+  "positionClass"   : "toast-bottom-right",
+  "onclick"         : null,
+  "showDuration"    : "900",
+  "hideDuration"    : "1000",
+  "timeOut"         : "2000",
+  "extendedTimeOut" : "2000",
+  "showEasing"      : "swing",
+  "hideEasing"      : "linear",
+  "showMethod"      : "fadeIn",
+  "hideMethod"      : "fadeOut",
+};

@@ -23,7 +23,7 @@ class ClassroomsTable extends React.Component {
     }
 
     render() {
-        const classrooms = this.state.classrooms.map(function(classroom) {
+        const classrooms = this.state.classrooms.map((classroom) => {
             return (
                 <Classroom classroom  = {classroom}
                            key        = {classroom.id} />
