@@ -1,0 +1,58 @@
+// background color
+$gray-background             : #F7F7F7;
+
+// $gray-dark is the main text color for light backgrounds
+$gray-dark                   : #4F4F4F;
+$gray-dark-84                : rgba($gray-dark, 0.84);
+$gray-dark-72                : rgba($gray-dark, 0.72);
+$gray-dark-60                : rgba($gray-dark, 0.60);
+$gray-dark-48                : rgba($gray-dark, 0.48);
+$gray-dark-36                : rgba($gray-dark, 0.36);
+$gray-dark-24                : rgba($gray-dark, 0.24);
+$gray-dark-12                : rgba($gray-dark, 0.84);
+
+// $gray-light is used for borders
+$gray-light                  : #E1E1E1;
+
+// these colors are subject to change
+$red                    : #F02B4B;
+$red-84                 : rgba($red, 0.84);
+$red-60                 : rgba($red, 0.60);
+$red-36                 : rgba($red, 0.36);
+$red-24                 : rgba($red, 0.24);
+$red-06                 : rgba($red, 0.06);
+
+$blue                   : #009DDB;
+$blue-84                : rgba($blue, 0.84);
+$blue-60                : rgba($blue, 0.60);
+$blue-36                : rgba($blue, 0.36);
+$blue-24                : rgba($blue, 0.24);
+$blue-06                : rgba($blue, 0.06);
+
+$green                  : #4DB453;
+$green-84               : rgba($green, 0.84);
+$green-60               : rgba($green, 0.60);
+$green-36               : rgba($green, 0.36);
+$green-24               : rgba($green, 0.24);
+$green-06               : rgba($green, 0.06);
+
+$teal                   : #009688;
+$teal-60                : rgba($teal, 0.60);
+$teal-36                : rgba($teal, 0.36);
+$teal-24                : rgba($teal, 0.24);
+$teal-06                : rgba($teal, 0.60);
+
+// font size
+$f-size-title           : 36px;
+$f-size-xxl             : 26px;
+$f-size-xl              : 20px;
+$f-size-lg              : 18px;
+$f-size-md              : 16px;
+$f-size-sm              : 14px;
+$f-size-xs              : 12px;
+$f-size-xxs             : 11px;
+
+// transition times
+$faster                 : 100ms;
+$fast                   : 200ms;
+$medium                 : 300ms;

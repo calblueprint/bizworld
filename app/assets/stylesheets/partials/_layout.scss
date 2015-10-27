@@ -1,0 +1,56 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,700,500,600);
+@import "variables";
+@import "mixins";
+
+// reused styles and layouts go here
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: $gray-background;
+}
+
+.input-container {
+  margin: 15px auto;
+
+  label {
+    font-weight: 400;
+    text-align: left;
+  }
+
+  input {
+    border: 1px solid $gray-light;
+    border-radius: 3px;
+    padding: 10px;
+    font-size: $f-size-sm;
+    width: 100%;
+
+    &:focus {
+      border: 1px solid $gray-dark-48;
+      outline: none;
+    }
+  }
+
+  // TODO(liang 10/27): relocate submit-btn styling
+  .submit-btn {
+    background: $blue-84;
+    color: white;
+    font-weight: 700;
+    margin: 20px auto;
+    padding: 10px;
+    transition: $faster;
+    width: 100%;
+    @include appearance(none);
+
+    &:hover {
+      background: $blue;
+    }
+  }
+}

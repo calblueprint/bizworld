@@ -12,20 +12,9 @@
  *
  *= require_self
  *= require toastr
+ *= require_partials
  *= require_tree .
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import 'teachers';
-
-html {
-  background: #f0f0f0;
-  height: 100%;
-}
-
-body {
-  background: transparent !important;
-  height: 100%;
-}
-

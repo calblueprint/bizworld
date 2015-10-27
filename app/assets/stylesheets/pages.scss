@@ -2,22 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "partials/variables";
+
 .login-container {
   background: white;
-  border: 1px solid #D9D9D9;
-  max-width: 700px;
-  margin: 50px auto 0;
-  padding: 20px;
-  text-align: center;
-
-  .input-container {
-    max-width: 300px;
-    margin: 0 auto;
-    & > input {
-      margin: 10px auto;
-      padding: 5px;
-      width: 100%;
-    }
-  }
+  border: 1px solid $gray-light;
+  border-radius: 2px;
+  max-width: 500px;
+  margin: 80px auto 0;
+  padding: 35px 100px;
 }
 
+.login-title {
+  font-size: $f-size-xxl;
+  font-weight: 600;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.login-links-container {
+  text-align: center;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    background: transparent;
+    border: none;
+    padding: 35px;
+  }
+}
