@@ -17,6 +17,7 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'teachers';
 
 html {
   background: #f0f0f0;
@@ -27,3 +28,4 @@ body {
   background: transparent !important;
   height: 100%;
 }
+

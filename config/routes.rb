@@ -7,8 +7,12 @@ Rails.application.routes.draw do
     get '/sign_out' => 'sessions#destroy', :as => :destroy_session
   end
 
-  resources :teachers
-  resources :classrooms
+  resources :partners
+  resources :teachers do
+    member do
+      get 'classrooms'
+    end
+  end
 
   resources :admins do
     collection do

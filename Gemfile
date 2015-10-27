@@ -17,6 +17,7 @@ gem 'pg'
 gem 'slim'
 gem 'slim-rails'
 gem 'react-rails', '~> 1.3.0'
+gem 'rspec-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'toastr-rails'
 gem 'thin'

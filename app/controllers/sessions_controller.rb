@@ -29,7 +29,7 @@ class SessionsController < Devise::SessionsController
   end
 
   def after_sign_in_path_for(resource)
-    resource.is_a?(Teacher) ? teachers_path : classrooms_admins_path
+    resource.is_a?(Teacher) ? teacher_path(resource) : classrooms_admins_path
   end
 
   def destroy
