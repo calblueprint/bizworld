@@ -8,6 +8,9 @@
 #  updated_at :datetime         not null
 #  teacher_id :integer
 #  program_id :integer
+#  name       :string
+#  start_date :date
+#  end_date   :date
 #
 
 class Classroom < ActiveRecord::Base

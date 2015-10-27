@@ -1,7 +1,5 @@
-.login-container
+.authentication-container
   h1.login-title Bizworld Educator Portal
-  = react_component "LoginPage"
-  .login-links-container
-    a href="#" Create an account
-    br
-    a href="#" Forgot your password?
+  = react_component "AuthSwitcher", { \
+      view: 0,                        \
+  }

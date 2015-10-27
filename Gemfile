@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 ruby '2.2.3'
 
 gem 'active_model_serializers'
+gem 'bootstrap-select-rails'
+gem 'countries'
 gem 'rails', '4.2.4'
 gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
@@ -17,7 +19,6 @@ gem 'pg'
 gem 'slim'
 gem 'slim-rails'
 gem 'react-rails', '~> 1.3.0'
-gem 'rspec-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'toastr-rails'
 gem 'thin'
@@ -32,6 +33,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'pry-rails'
   gem 'pry-byebug'
+  gem 'rspec-rails'
 end
 
 group :development do
