@@ -4,12 +4,14 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string
-#  pre        :string
-#  post       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  pre_id     :integer
+#  post_id    :integer
 #
 
 class Program < ActiveRecord::Base
   has_many :classrooms
+  belongs_to :pre, class_name: 'Form'
+  belongs_to :post, class_name: 'Form'
 end

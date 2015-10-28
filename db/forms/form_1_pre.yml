@@ -1,0 +1,40 @@
+--- !'map':HashWithIndifferentAccess
+
+questions:
+  -
+    title:
+      'How can a company know it made a profit?'
+    options:
+      - 'It sold all its products'
+      - 'It earned the most revenue during sales'
+      - 'It earned more money in revenue than it spent on expenses'
+      - "It didn't sell too many shares of stock to the venture capitalists"
+      - 'All of the Above'
+    answer:
+      'It earned more money in revenue than it spent on expenses'
+    category:
+      1
+  -
+    title:
+      'If you take out a loan from the bank, you must:'
+    options:
+      - 'Repay the balance of the loan and interest.'
+      - 'Just repay the balance of the loan.'
+      - 'Just pay interest on the loan.'
+      - 'Give the bank shares of stock.'
+    answer:
+      'Repay the balance of the loan and interest.'
+    category:
+      1
+  -
+    title:
+      'Your company made 10 of the same bracelet. Your total expenses, including bracelet materials, were $80. To make a profit how much should each bracelet cost?'
+    options:
+      - '$6'
+      - '$7'
+      - '$8'
+      - '$9'
+    answer:
+      '$9'
+    category:
+      1

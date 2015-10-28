@@ -2,7 +2,7 @@ def make_teachers
   1.upto(5) do |n|
     teacher = Teacher.create(
       email: "teacher#{n}@bizworld.org",
-      password: "password", 
+      password: "password",
       password_confirmation: "password",
       first_name: "James",
       last_name: "Smith",
@@ -19,7 +19,7 @@ end
 def make_programs
   programs = ["BizWorld", "BizMovie", "BizWiz"]
   programs.each do |name|
-    program = Program.create(name: name, pre: "http://yahoo.com", post: "http://google.com")
+    program = Program.create(name: name)
     program.save
   end
 end
@@ -54,8 +54,18 @@ def make_admins
   end
 end
 
+def make_forms
+  [1, 2, 3].each do |p_id|
+    ["pre", "post"].each do |category|
+      Rake::Task["form:generate_form"].invoke(p_id, category)
+      Rake::Task["form:generate_form"].reenable
+    end
+  end
+end
+
 make_teachers
 make_programs
 make_classrooms
 make_students
 make_admins
+make_forms

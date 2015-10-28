@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025183645) do
+ActiveRecord::Schema.define(version: 20151028031915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20151025183645) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "teacher_id"
-    t.integer  "program_id"
     t.string   "name"
+    t.integer  "program_id"
     t.date     "start_date"
     t.date     "end_date"
   end
@@ -50,13 +50,41 @@ ActiveRecord::Schema.define(version: 20151025183645) do
   add_index "classrooms", ["start_date"], name: "index_classrooms_on_start_date", using: :btree
   add_index "classrooms", ["teacher_id"], name: "index_classrooms_on_teacher_id", using: :btree
 
-  create_table "programs", force: :cascade do |t|
-    t.string   "name"
-    t.string   "pre"
-    t.string   "post"
+  create_table "forms", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "programs", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "pre_id"
+    t.integer  "post_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer  "form_id"
+    t.integer  "category"
+    t.string   "options",    default: [],              array: true
+    t.string   "answer"
+    t.string   "title"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "questions", ["form_id"], name: "index_questions_on_form_id", using: :btree
+
+  create_table "responses", force: :cascade do |t|
+    t.integer  "question_id"
+    t.integer  "student_id"
+    t.string   "answer"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "responses", ["question_id"], name: "index_responses_on_question_id", using: :btree
+  add_index "responses", ["student_id"], name: "index_responses_on_student_id", using: :btree
 
   create_table "students", force: :cascade do |t|
     t.string   "first_name"
