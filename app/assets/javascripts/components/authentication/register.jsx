@@ -18,21 +18,22 @@ class RegistrationModal extends React.Component {
     }
 
     _attemptRegistration = (e) => {
-        $.ajax({
-            url: "/sign_up",
-            type: "POST",
-            dataType: "json",
-            data: { teacher : this.state },
-            success: (msg) => {
+        // Necessary because bootstrap-select does not fire onChange events
+        const extraFields = {
+            state: $(".state-select").val(),
+            grades: $(".grade-select").val()
+        }
+
+        $.post("/sign_up", { teacher: $.extend({}, this.state, extraFields )})
+            .done((msg) => {
                 toastr.success(msg.message);
                 window.location.replace(msg.to);
-            },
-            error: (xhr, status, error) => {
+            })
+            .fail((xhr, status, error) => {
                 JSON.parse(xhr.responseText).errors.forEach((error) => {
                     toastr.error(error);
                 });
-            }
-        });
+            });
     }
 
     render() {
@@ -114,7 +115,10 @@ class RegistrationModal extends React.Component {
     }
 }
 
-RegistrationModal.propTypes = { };
+RegistrationModal.propTypes = {
+    viewType : React.PropTypes.number.isRequired,
+    update   : React.PropTypes.func.isRequired
+};
 
 class StatePicker extends React.Component {
 
@@ -159,7 +163,7 @@ class StatePicker extends React.Component {
 
         return (
             <select name="state" className="selectpicker state-select"
-                data-live-search="true" onChange={this._handleChange} >
+                data-live-search="true">
                 {stateOptions}
             </select>
         );
@@ -172,7 +176,8 @@ class GradesPicker extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { grades: ["3rd", "4th", "5th", "6th", "7th", "8th", "other"] };
+        this.state = { grades: ["3rd", "4th", "5th", "6th", "7th", "8th",
+            "other"] };
     }
 
     render() {
@@ -183,8 +188,8 @@ class GradesPicker extends React.Component {
         });
 
         return (
-            <select name="grades" className="selectpicker grade-select "
-                multiple title="Select a grade" onChange={this._handleChange} >
+            <select name="grades" className="selectpicker grade-select"
+                multiple title="Select a grade">
                 {grades}
             </select>
         )

@@ -40,16 +40,25 @@ def make_classrooms
 end
 
 def make_students
-  1.upto(5) do |n|
-    student = Student.create(pre_score: n, post_score: 42, first_name: "John", last_name: "Doe")
-    student.classroom = Classroom.find(n % 2 + 1)
+  1.upto(30) do |n|
+    student = Student.create(
+      pre_score: 0.0,
+      post_score: 0.0,
+      first_name: FFaker::Name.first_name,
+      last_name: FFaker::Name.last_name
+    )
+    student.classroom = Classroom.find((n / 3.0).ceil)
     student.save
   end
 end
 
 def make_admins
   1.upto(5) do |n|
-    admin = Admin.create(email: "admin#{n}@bizworld.org", password: "password", password_confirmation: "password")
+    admin = Admin.create(
+      email: "admin#{n}@bizworld.org",
+      password: "password",
+      password_confirmation: "password"
+    )
     admin.save
   end
 end

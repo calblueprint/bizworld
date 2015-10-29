@@ -8,7 +8,7 @@ class PagesController < ApplicationController
     if current_admin
       redirect_to classrooms_admins_path
     elsif current_teacher
-      redirect_to teachers_path
+      redirect_to current_teacher
     end
   end
 

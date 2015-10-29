@@ -1,18 +1,15 @@
 /**
- * @prop classrooms - the list of classrooms for a teacher
- * teacher - the teacher associated with :id
+ * @prop teacher_id - the id of the teacher
  */
 class TeacherModal extends React.Component {
+
     constructor(props) {
         super(props);
-        this.state = {
-            classrooms: [],
-            teacher_id: this.props.teacher_id,
-        };
+        this.state = { classrooms: [], };
     }
 
     componentDidMount() {
-        this._fetchClassrooms(this.state.teacher_id);
+        this._fetchClassrooms(this.props.teacher_id);
     }
 
     _fetchClassrooms(id) {

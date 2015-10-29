@@ -1,5 +1,5 @@
 class ClassroomsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, if: proc { request.format.html? }
 
   def show
     @classroom = Classroom.find(params[:id])

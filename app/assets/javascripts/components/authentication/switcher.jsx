@@ -25,4 +25,4 @@ class AuthSwitcher extends React.Component {
     }
 }
 
-AuthSwitcher.propTypes = { };
+AuthSwitcher.propTypes = { view: React.PropTypes.number.isRequired };

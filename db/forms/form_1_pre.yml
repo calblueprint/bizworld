@@ -38,3 +38,13 @@ questions:
       '$9'
     category:
       1
+  -
+    title:
+      'I make an effort to get along with my teammates.'
+    category:
+      3
+  -
+    title:
+      'Tell me about yourself in 3 words'
+    category:
+      2

@@ -18,19 +18,14 @@ class LoginModal extends React.Component {
     }
 
     _attemptLogin = (e) => {
-        $.ajax({
-            url: "/sign_in",
-            type: "POST",
-            dataType: "json",
-            data: { teacher : this.state },
-            success: (msg) => {
+        $.post("/sign_in", { teacher : this.state })
+            .done((msg) => {
                 toastr.success(msg.message);
                 window.location.replace(msg.to);
-            },
-            error: (xhr, status, error) => {
+            })
+            .fail((xhr, status, error) => {
                 toastr.error(JSON.parse(xhr.responseText).message);
-            }
-        });
+            });
     }
 
     _handleKeydown = (e) => {
@@ -73,4 +68,8 @@ class LoginModal extends React.Component {
     }
 }
 
-LoginModal.propTypes = { };
+LoginModal.propTypes = {
+    viewType : React.PropTypes.number.isRequired,
+    update   : React.PropTypes.func.isRequired
+};
+LoginModal.defaultProps = { viewType: 1, update: () => {} };

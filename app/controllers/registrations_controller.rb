@@ -33,7 +33,7 @@ class RegistrationsController < Devise::RegistrationsController
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit(:email, :password, :password_confirmation, :first_name,
-               :last_name, :phone_number, :school, :city, :state, :grades)
+               :last_name, :phone_number, :school, :city, :state, grades: [])
     end
   end
 end

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   end
 
   resources :partners
+  resources :forms, only: [:show]
+
   resources :teachers do
     member do
       get 'classrooms'
@@ -18,6 +20,14 @@ Rails.application.routes.draw do
   resources :admins do
     collection do
       get 'classrooms'
+    end
+  end
+
+  resources :classrooms do
+    resources :forms do
+      collection do
+        get ':category', to: 'forms#display'
+      end
     end
   end
 
