@@ -3,42 +3,92 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "partials/variables";
+@import "partials/mixins";
 
 .authentication-container {
   background: white;
   border: 1px solid $gray-light;
   border-radius: 2px;
   max-width: 500px;
-  margin: 80px auto 0;
+  margin: 80px auto;
   padding: 35px 100px;
 }
 
 .login-title {
-  font-size: $f-size-xxl;
-  font-weight: 600;
-  margin-bottom: 30px;
-  text-align: center;
+
+  .back {
+    color: $gray-dark-60;
+    cursor: pointer;
+    font-size: $f-size-xxl;
+    padding: 2px 8px 5px 8px;
+    position: absolute;
+    &:hover {
+      color: $gray-dark;
+    }
+  }
+
+  h1 {
+    font-size: $f-size-xxl;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+  }
 }
 
 .login-links-container {
   text-align: center;
   width: 100%;
+
+  a {
+    cursor: pointer;
+  }
+}
+
+.city-state-picker {
+  @include clearAfter;
+
+  .city {
+    float: left;
+    padding-right: 20px;
+    width: 65%;
+  }
+
+  .state {
+    float: left;
+    width: 35%;
+  }
+}
+
+.state-select, .grade-select {
+  max-width: 100%;
+  width: 100%;
+
+  button {
+    border: 1px solid $gray-light;
+    border-radius: 3px;
+    box-shadow: none;
+    font-size: $f-size-sm;
+    height: auto;
+    outline: none;
+    padding: 10px;
+
+    &:hover {
+      background-color: initial;
+      border-color: $gray-light;
+    }
+
+    &:focus {
+      background-color: initial;
+      border-color: initial;
+    }
+  }
 }
 
 @media (max-width: 480px) {
-  .login-container {
+  .authentication-container {
     background: transparent;
     border: none;
+    margin-top: 20px;
     padding: 35px;
-  }
-}
-
-.form-row {
-  .selectpicker {
-    margin: 5px auto;
-  }
-
-  .state-select {
-    max-width: 70px;
   }
 }

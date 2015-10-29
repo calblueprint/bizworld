@@ -21,6 +21,7 @@ gem 'thin', '~> 1.6.4'
 gem 'toastr-rails', '~> 1.0.3'
 gem 'turbolinks', '~> 2.5.3'
 gem 'uglifier', '>= 1.3.0'
+gem 'font-awesome-sass', '~> 4.4.0'
 
 group :development, :test do
   gem 'annotate'

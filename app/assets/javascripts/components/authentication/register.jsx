@@ -38,95 +38,68 @@ class RegistrationModal extends React.Component {
     render() {
         return (
             <div>
+                <div className="login-title">
+                    <span className="fa fa-angle-left back"
+                        onClick={this._updateView}></span>
+                    <h1>New Account</h1>
+                </div>
                 <form>
-                    <div className="row form-row">
-                        <div className="col-md-3">
-                            <label htmlFor="first_name">First Name:</label>
-                        </div>
-                        <div className="col-md-9 input-container">
-                            <input onChange={this._handleChange} name="first_name"
-                                type="text" placeholder="John" autoFocus />
-                        </div>
+                    <div className="input-container">
+                        <label htmlFor="first_name">First Name:</label>
+                        <input onChange={this._handleChange} name="first_name"
+                            type="text" placeholder="John" autoFocus />
                     </div>
-                    <div className="row form-row">
-                        <div className="col-md-3">
-                            <label htmlFor="last_name">Last Name:</label>
-                        </div>
-                        <div className="col-md-9 input-container">
-                            <input name="last_name" type="text" placeholder="Doe"
-                                onChange={this._handleChange} /> </div>
+                    <div className="input-container">
+                        <label htmlFor="last_name">Last Name:</label>
+                        <input name="last_name" type="text" placeholder="Doe"
+                            onChange={this._handleChange} />
                     </div>
-                    <div className="row form-row">
-                        <div className="col-md-3">
-                            <label htmlFor="email">Email:</label>
-                        </div>
-                        <div className="col-md-9 input-container">
-                            <input name="email" type="text"
-                                placeholder="johndoe@gmail.com"
-                                onChange={this._handleChange} />
-                        </div>
+                    <div className="input-container">
+                        <label htmlFor="email">Email:</label>
+                        <input name="email" type="text"
+                            placeholder="johndoe@gmail.com"
+                            onChange={this._handleChange} />
                     </div>
-                    <div className="row form-row">
-                        <div className="col-md-3">
-                            <label htmlFor="password">Password:</label>
-                        </div>
-                        <div className="col-md-9 input-container">
-                            <input name="password" type="password"
-                                onChange={this._handleChange} />
-                        </div>
+                    <div className="input-container">
+                        <label htmlFor="password">Password:</label>
+                        <input name="password" type="password"
+                            onChange={this._handleChange} />
                     </div>
-                    <div className="row form-row">
-                        <div className="col-md-3">
-                            <label htmlFor="password_confirmation">Confirm
-                                Password:</label>
-                        </div>
-                        <div className="col-md-9 input-container">
-                            <input name="password_confirmation" type="password"
-                                onChange={this._handleChange} />
-                        </div>
+                    <div className="input-container">
+                        <label htmlFor="password_confirmation">Confirm
+                            Password:</label>
+                        <input name="password_confirmation" type="password"
+                            onChange={this._handleChange} />
                     </div>
-                    <div className="row form-row">
-                        <div className="col-md-3">
-                            <label htmlFor="phone">Phone:</label>
-                        </div>
-                        <div className="col-md-9 input-container">
-                            <input name="phone" type="text" placeholder="(123)
-                                456 - 7890" onChange={this._handleChange} />
-                        </div>
+                    <div className="input-container">
+                        <label htmlFor="phone">Phone:</label>
+                        <input name="phone" type="text" placeholder="(123)
+                            456 - 7890" onChange={this._handleChange} />
                     </div>
-                    <div className="row form-row">
-                        <div className="col-md-3">
-                            <label htmlFor="school">School:</label>
-                        </div>
-                        <div className="col-md-9 input-container">
-                            <input name="school" type="text"
-                                placeholder="Example Middle School"
-                                onChange={this._handleChange} />
-                        </div>
+                    <div className="input-container">
+                        <label htmlFor="school">School:</label>
+                        <input name="school" type="text"
+                            placeholder="Example Middle School"
+                            onChange={this._handleChange} />
                     </div>
-                    <div className="row form-row">
-                        <div className="col-md-3">
-                            <label htmlFor="City">City:</label>
-                        </div>
-                        <div className="col-md-6 input-container">
+
+                    <div className="input-container city-state-picker">
+                        <div className="item city">
+                            <label htmlFor="city">City:</label>
                             <input name="city" type="text" placeholder="San
                                 Francisco" onChange={this._handleChange} />
                         </div>
-                        <div className="col-md-1">
+                        <div className="item state">
                             <label htmlFor="state">State:</label>
-                        </div>
-                        <div className="col-md-2 input-container">
                             <StatePicker />
                         </div>
                     </div>
-                    <div className="row form-row">
-                        <div className="col-md-3">
-                            <label htmlFor="phone">Grade:</label>
-                        </div>
-                        <div className="col-md-3 input-container">
-                            <GradesPicker />
-                        </div>
+
+                    <div className="input-container">
+                        <label htmlFor="phone">Grade:</label>
+                        <GradesPicker />
                     </div>
+
                     <div className="row form-row input-container">
                         <input name="submit" type="button" value="Create Account"
                             className="submit-btn"

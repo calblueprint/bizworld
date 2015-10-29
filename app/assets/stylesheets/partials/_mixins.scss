@@ -29,6 +29,7 @@
     clear: both;
     content: "";
     height: 0;
-    visibility: none;
+    visibility: hidden;
+    display: block;
   }
 }

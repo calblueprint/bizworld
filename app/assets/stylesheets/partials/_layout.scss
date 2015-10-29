@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,700,500,600);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,300);
 @import "variables";
 @import "mixins";
 
@@ -9,19 +9,22 @@
 }
 
 html, body {
-  font-family: Roboto, Arial, sans-serif;
+  font-family: Lato, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 body {
   background: $gray-background;
+  color: $gray-dark;
 }
 
 .input-container {
-  margin: 15px auto;
+  margin: 20px auto;
+  @include appearance(none);
 
   label {
-    font-weight: 400;
+    display: block;
+    font-weight: 600;
     text-align: left;
   }
 
@@ -33,7 +36,7 @@ body {
     width: 100%;
 
     &:focus {
-      border: 1px solid $gray-dark-48;
+      border: 1px solid $gray-dark-60;
       outline: none;
     }
   }

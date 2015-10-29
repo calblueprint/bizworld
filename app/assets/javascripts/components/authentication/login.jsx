@@ -42,6 +42,9 @@ class LoginModal extends React.Component {
     render() {
         return (
             <div>
+                <div className="login-title">
+                    <h1>Bizworld Educator Portal</h1>
+                </div>
                 <form>
                     <fieldset className="input-container">
                         <label>Email</label>
