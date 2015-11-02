@@ -1,19 +1,22 @@
 /**
- * @prop classrooms - the list of classes
+ * @prop status - The initial status to filter classrooms by. One of 'active', 'inactive', or ''
  */
 class ClassroomsTable extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { classrooms: [] };
+        this.state = {
+            classrooms: [],
+            filters: { status : this.props.status }
+        };
     }
 
     componentDidMount() {
         this._fetchClassrooms();
     }
 
-    _fetchClassrooms() {
-        $.getJSON("/admins/classrooms")
+    _fetchClassrooms(params) {
+        $.getJSON("/admins/classrooms", this.state.filters)
             .done((data) => {
                 this.setState({ classrooms: data });
             })
@@ -22,16 +25,30 @@ class ClassroomsTable extends React.Component {
             });
     }
 
+    _handleFilterSubmit = (e) => {
+        this._fetchClassrooms();
+    }
+
+    _handleFilterChange = (e) => {
+        // Updates state of filters in a manner that avoids overriding other fields.
+        const newState = React.addons.update(this.state.filters, {
+            [$(e.target).attr("name")]: { $set: $(e.target).val() }
+        });
+        this.setState({ filters: newState });
+    }
+
     render() {
         const classrooms = this.state.classrooms.map((classroom) => {
             return (
-                <Classroom classroom  = {classroom}
-                           key        = {classroom.id} />
+                <ClassroomsTableRow classroom  = {classroom}
+                                    key        = {classroom.id} />
             );
         });
         return (
             <div className="row">
                 <div className="col-md-8 col-md-offset-2">
+                    <ClassroomsProgramFilter onFilterChange={this._handleFilterChange}
+                        onFilterSubmit={this._handleFilterSubmit} />
                     <table className="table">
                         <thead>
                             <tr>
@@ -52,13 +69,40 @@ class ClassroomsTable extends React.Component {
     }
 }
 
-ClassroomsTable.propTypes = { classrooms: React.PropTypes.array.isRequired };
-ClassroomsTable.defaultProps = { classrooms: [] };
+ClassroomsTable.propTypes = {};
+
+/**
+ * @prop onFilterChange - function that is called onChange for inputs, updates state
+ * @prop onFilterSubmit - function that is called when the filters are submitted for search
+ */
+class ClassroomsProgramFilter extends React.Component {
+    render() {
+        return (
+            <form className="filterForm">
+                <select name="status" onChange={this.props.onFilterChange}>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                    <option value="">All</option>
+                </select>
+                <input name="submit" type="button" value="Submit" onClick={this.props.onFilterSubmit}/>
+            </form>
+        );
+    }
+}
+
+ClassroomsProgramFilter.propTypes = {
+    onFilterSubmit: React.PropTypes.func.isRequired,
+    onFilterChange: React.PropTypes.func.isRequired
+};
+ClassroomsProgramFilter.defaultProps = {
+    onFilterSubmit: () => {},
+    onFilterChange: () => {}
+};
 
 /**
  * @prop classroom - the info about this classroom
  */
-class Classroom extends React.Component {
+class ClassroomsTableRow extends React.Component {
 
     constructor(props) {
         super(props);
@@ -88,5 +132,4 @@ class Classroom extends React.Component {
     }
 }
 
-Classroom.propTypes = { classroom: React.PropTypes.object.isRequired };
-Classroom.defaultProps = { classroom: {} };
+ClassroomsTableRow.propTypes = { classroom: React.PropTypes.object.isRequired };

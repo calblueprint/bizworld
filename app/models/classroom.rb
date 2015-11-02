@@ -18,11 +18,17 @@ class Classroom < ActiveRecord::Base
   has_many :students
   belongs_to :teacher
 
-  def self.active(is_active)
-    if is_active
-      where("end_date >= ? AND start_date <= ?", Date.current, Date.current)
-    else
-      where("end_date < ? OR start_date > ?", Date.current, Date.current)
-    end
+  def self.get_date_range(options)
+    Hash.new(Date.current).merge!(options || {})
+  end
+
+  def self.active(options = {})
+    active_dates = get_date_range(options)
+    where("end_date >= ? AND start_date <= ?", active_dates[:start], active_dates[:end])
+  end
+
+  def self.inactive(options = {})
+    inactive_dates = get_date_range(options)
+    where("end_date < ? OR start_date > ?", inactive_dates[:start], inactive_dates[:end])
   end
 end
