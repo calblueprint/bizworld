@@ -15,4 +15,6 @@
 class Question < ActiveRecord::Base
   belongs_to :form
   has_many :responses
+
+  scope :gradeable, -> { where.not(answer: nil) }
 end

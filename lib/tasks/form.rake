@@ -5,7 +5,7 @@ namespace :form do
     form_config = HashWithIndifferentAccess.new(
       YAML.load(File.read(File.expand_path("../../../db/forms/form_1_pre.yml", __FILE__))))
 
-    form = Form.create
+    form = Form.create(category: args[:type])
     program = Program.find(args[:program])
     program.send(:"#{args[:type]}=", form)
     program.save

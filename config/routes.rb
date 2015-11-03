@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   end
 
   resources :partners
-  resources :forms, only: [:show]
+  resources :forms, only: [:show] do
+    post 'submit'
+  end
 
   resources :teachers do
     member do

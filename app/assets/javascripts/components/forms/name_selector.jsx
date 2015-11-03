@@ -10,7 +10,7 @@ class NameSelector extends React.Component {
 
     componentDidMount() {
         this._fetchStudents(this.props.id);
-        $('.selectpicker').selectpicker({ dropupAuto: false });
+        $('.student').selectpicker({ dropupAuto: false });
     }
 
     _fetchStudents(id) {
@@ -24,7 +24,7 @@ class NameSelector extends React.Component {
     }
 
     componentDidUpdate() {
-        $('.selectpicker').selectpicker('refresh');
+        $('.student').selectpicker('refresh');
     }
 
     render() {
@@ -37,7 +37,8 @@ class NameSelector extends React.Component {
         });
 
         return (
-            <select name="student" className="selectpicker" data-live-search="true">
+            <select name="student" className="selectpicker student"
+                data-live-search="true">
                 {studentNames}
             </select>
         );

@@ -77,7 +77,6 @@ FormQuestions.propTypes = {
     onChange : React.PropTypes.func.isRequired,
     id       : React.PropTypes.number.isRequired
 };
-FormQuestions.defaultProps = { onChange: () => {}, id: 0 };
 
 /**
  * @prop onChange - callback function when form inputs change
@@ -116,7 +115,6 @@ MCQuestion.propTypes = {
     options  : React.PropTypes.array.isRequired,
     title    : React.PropTypes.string.isRequired
 };
-MCQuestion.defaultProps = { onChange: () => {}, options: [], title: "" };
 
 /**
  * @prop onChange - callback function when form inputs change
@@ -144,4 +142,3 @@ InputQuestion.propTypes = {
     onChange : React.PropTypes.func.isRequired,
     title    : React.PropTypes.string.isRequired
 };
-InputQuestion.defaultProps = { onChange: () => {}, title: "" };

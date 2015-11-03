@@ -14,5 +14,6 @@
 
 class Student < ActiveRecord::Base
   belongs_to :classroom
-  has_many :responses
+  has_many :pre_responses, class_name: 'Response'
+  has_many :post_responses, class_name: 'Response'
 end
