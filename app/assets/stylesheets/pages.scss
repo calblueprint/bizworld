@@ -4,11 +4,10 @@
 
 @import "partials/variables";
 @import "partials/mixins";
+@import "partials/layout";
 
 .authentication-container {
-  background: white;
-  border: 1px solid $gray-light;
-  border-radius: 2px;
+  @extend .content-container;
   max-width: 500px;
   margin: 80px auto;
   padding: 35px 100px;
@@ -33,6 +32,10 @@
     margin-bottom: 30px;
     text-align: center;
   }
+}
+
+.login-button, .register-button {
+  width: 100%;
 }
 
 .login-links-container {
@@ -62,26 +65,6 @@
 .state-select, .grade-select {
   max-width: 100%;
   width: 100%;
-
-  button {
-    border: 1px solid $gray-light;
-    border-radius: 3px;
-    box-shadow: none;
-    font-size: $f-size-sm;
-    height: auto;
-    outline: none;
-    padding: 10px;
-
-    &:hover {
-      background-color: initial;
-      border-color: $gray-light;
-    }
-
-    &:focus {
-      background-color: initial;
-      border-color: initial;
-    }
-  }
 }
 
 @media (max-width: 480px) {

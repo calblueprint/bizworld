@@ -31,19 +31,20 @@ class FormQuestions extends React.Component {
             });
     }
 
-    _mapQuestions = (question) => {
+    _mapQuestions = (question, index) => {
+        const title = `${index + 1}. ${question.title}`;
         if (question.category == QuestionType.MC) {
             return (
                 <MCQuestion onChange = {this.props.onChange}
                             options  = {question.options}
-                            title    = {question.title}
+                            title    = {title}
                             id       = {question.id}
                             key      = {question.id} />
             );
         } else if (question.category == QuestionType.INPUT) {
             return (
                 <InputQuestion onChange = {this.props.onChange}
-                               title    = {question.title}
+                               title    = {title}
                                id       = {question.id}
                                key      = {question.id} />
 
@@ -56,7 +57,7 @@ class FormQuestions extends React.Component {
             return (
                 <MCQuestion onChange = {this.props.onChange}
                             options  = {likertOptions}
-                            title    = {question.title}
+                            title    = {title}
                             id       = {question.id}
                             key      = {question.id} />
             );
@@ -66,7 +67,7 @@ class FormQuestions extends React.Component {
     render() {
         const questions = this.state.questions.map(this._mapQuestions);
         return (
-            <div className="form-questions">
+            <div className="form-questions-container">
                 {questions}
             </div>
         );
@@ -92,20 +93,21 @@ class MCQuestion extends React.Component {
 
     render() {
         const radioOptions = this.props.options.map((option) => {
+            var uniqueId = this.props.id + option;
             return (
                 <div className="radio-option" key={option}>
-                    <input type="radio" name={this.props.id} value={option}
+                    <input id={uniqueId} type="radio" name={this.props.id} value={option}
                         onClick={this.props.onChange} />
-                    {option}
+                    <label className="radio-label" htmlFor={uniqueId}>{option}</label>
                 </div>
             )
         });
 
         return (
-            <div className="mc-question">
-                <label htmlFor={this.props.id}>{this.props.title}</label>
+            <fieldset className="question mc-question">
+                <label className="question-title" htmlFor={this.props.id}>{this.props.title}</label>
                 {radioOptions}
-            </div>
+            </fieldset>
         );
     }
 }
@@ -129,11 +131,11 @@ class InputQuestion extends React.Component {
 
     render() {
         return (
-            <div className="input-question">
-                <label htmlFor={this.props.id}>{this.props.title}</label>
+            <fieldset className="question input-question input-container">
+                <label className="question-title" htmlFor={this.props.id}>{this.props.title}</label>
                 <input name={this.props.id} type="text"
                     onChange={this.props.onChange} />
-            </div>
+            </fieldset>
         );
     }
 }

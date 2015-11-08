@@ -45,6 +45,11 @@ questions:
       3
   -
     title:
+      'I am the coolest kid in the class.'
+    category:
+      3
+  -
+    title:
       'Tell me about yourself in 3 words'
     category:
       2

@@ -29,12 +29,12 @@ class FormView extends React.Component {
 
     render() {
         return (
-            <div className="form-view">
+            <div className="form-view-container">
                 <NameSelector  id = {this.props.classroom_id} />
                 <FormQuestions onChange = {this._handleChange}
                                id       = {this.props.form_id} />
                 <input name="submit" type="button" value="Submit Responses"
-                    className="submit-btn" onClick={this._submitAnswers} />
+                    className="submit-button" onClick={this._submitAnswers} />
             </div>
         );
     }

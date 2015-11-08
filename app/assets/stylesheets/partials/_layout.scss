@@ -18,6 +18,14 @@ body {
   color: $gray-dark;
 }
 
+.content-container {
+  background: white;
+  border: 1px solid $gray-light;
+  border-radius: 2px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
 .input-container {
   margin: 20px auto;
   @include appearance(none);
@@ -40,20 +48,97 @@ body {
       outline: none;
     }
   }
+}
 
-  // TODO(liang 10/27): relocate submit-btn styling
-  .submit-btn {
-    background: $blue-84;
-    color: white;
-    font-weight: 700;
-    margin: 20px auto;
+.button {
+  background: $gray-light;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  box-shadow: 0px 1px 0px $gray-dark,
+              0px 2px 0px $gray-dark;
+  color: black;
+  font-weight: 700;
+  margin: 20px auto;
+  outline: none;
+  padding: 10px 20px;
+  transition: $faster;
+  @include appearance(none);
+
+  &:hover {
+    box-shadow: none;
+    @include transform(translateY(2px));
+  }
+}
+
+.submit-button {
+  @extend .button;
+  background: $blue-84;
+  box-shadow: 0px 1px 0px $blue-dark,
+              0px 2px 0px $blue-dark;
+  color: white;
+
+  &:focus {
+    background: $blue;
+  }
+}
+
+
+
+
+
+// overriding bootstrap styles
+.bootstrap-select {
+  button {
+    border: 1px solid $gray-light;
+    border-radius: 3px;
+    box-shadow: none;
+    font-size: $f-size-sm;
+    height: auto;
+    outline: none;
     padding: 10px;
-    transition: $faster;
-    width: 100%;
-    @include appearance(none);
+
+    .caret {
+      opacity: 0.5;
+    }
 
     &:hover {
-      background: $blue;
+      background-color: initial;
+      border-color: $gray-light;
+    }
+
+    &:focus {
+      background-color: initial;
+      border-color: initial;
     }
   }
+
+  .btn:focus {
+    background: white;
+    box-shadow: none;
+    outline: none !important;
+  }
+
+  &.open {
+    button, button:focus, button:hover {
+      background: white !important;
+      box-shadow: none;
+      outline: none;
+    }
+    .dropdown-toggle {
+      box-shadow: none;
+    }
+  }
+}
+
+.dropdown-menu.open {
+  border-radius: 2px;
+  box-shadow: none;
+
+  .bs-searchbox {
+    margin-bottom: 5px;
+  }
+}
+
+.form-control:focus {
+  box-shadow: none;
 }

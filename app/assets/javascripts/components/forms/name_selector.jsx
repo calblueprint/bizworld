@@ -37,10 +37,13 @@ class NameSelector extends React.Component {
         });
 
         return (
-            <select name="student" className="selectpicker student"
-                data-live-search="true">
-                {studentNames}
-            </select>
+            <div className="input-container">
+                <label className="question-title" htmlFor="name-dropdown">Name:</label>
+                <select id="name-dropdown" name="student" className="selectpicker student"
+                    data-live-search="true">
+                    {studentNames}
+                </select>
+            </div>
         );
     }
 }

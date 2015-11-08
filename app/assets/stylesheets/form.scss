@@ -1,3 +1,126 @@
 // Place all the styles related to the form controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "partials/variables";
+@import "partials/mixins";
+@import "partials/layout";
+$color-list: $blue $green $red-84;
+$icon-list: "\f0b1" "\f008" "\f201";
+
+.form-container {
+  @extend .content-container;
+  max-width: 700px;
+  padding: 0;
+}
+
+.title-container {
+  background: $blue;
+  color: white;
+  height: 100%;
+  overflow: auto;
+  padding: 50px 45px;
+  @include clearAfter;
+
+  .program-name {
+    font-size: $f-size-xl;
+
+    h1 {
+      display: inline-block;
+      font-size: $f-size-xl;
+      margin: 0;
+      margin-left: 5px;
+    }
+  }
+
+  .form-title {
+    display: inline-block;
+    font-size: 36px;
+    font-weight: 600;
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  @each $icon in $icon-list {
+    $i: index($icon-list, $icon);
+
+    .icon-#{$i}:before {
+      content: nth($icon-list, $i);
+    }
+  }
+
+  @each $color in $color-list {
+    $i: index($color-list, $color);
+
+    &.tint-#{$i} {
+      background: nth($color-list, $i);
+    }
+  }
+}
+
+.classroom-info-container {
+  background: $gray-light;
+  padding: 10px 45px 15px;
+  @include clearAfter;
+
+  .info {
+    float: left;
+    width: 50%;
+
+    &:first-of-type {
+      padding-right: 30px;
+    }
+  }
+
+  h1, h2 {
+    margin: 10px 0;
+  }
+
+  .title {
+    color: $gray-dark-48;
+    font-size: $f-size-md;
+    font-weight: 700;
+
+    .fa {
+      margin-right: 8px;
+    }
+  }
+
+  .content {
+    font-size: $f-size-xl;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @each $color in $color-list {
+    $i: index($color-list, $color);
+
+    &.tint-#{$i} {
+      background: rgba(nth($color-list, $i), 0.12);
+    }
+  }
+}
+
+.form-view-container {
+  padding: 20px 45px 40px;
+}
+
+.form-questions-container {
+  .question {
+    margin: 40px auto;
+
+    .radio-label {
+      font-size: $f-size-md;
+      font-weight: normal;
+      margin-bottom: 0px;
+      margin-left: 10px;
+      padding: 5px 0;
+    }
+  }
+}
+
+.question-title {
+  font-size: $f-size-md;
+}

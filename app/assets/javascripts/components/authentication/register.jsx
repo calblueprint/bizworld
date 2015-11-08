@@ -101,11 +101,9 @@ class RegistrationModal extends React.Component {
                         <GradesPicker />
                     </div>
 
-                    <div className="row form-row input-container">
-                        <input name="submit" type="button" value="Create Account"
-                            className="submit-btn"
-                            onClick={this._attemptRegistration} />
-                    </div>
+                    <input name="submit" type="button" value="Create Account"
+                        className="submit-button register-button"
+                        onClick={this._attemptRegistration} />
                 </form>
                 <div className="login-links-container">
                     <a onClick={this._updateView}>Already have an account?</a>

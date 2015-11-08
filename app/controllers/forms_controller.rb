@@ -2,6 +2,8 @@ class FormsController < ApplicationController
   def display
     @category = params[:category]
     @classroom = Classroom.find(params[:classroom_id])
+    @teacher = Teacher.find(@classroom.teacher_id)
+    @program = Program.find(@classroom.program_id)
     @form = @classroom.program.send(@category)
   end
 

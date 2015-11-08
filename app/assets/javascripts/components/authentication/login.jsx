@@ -53,10 +53,8 @@ class LoginModal extends React.Component {
                             onKeyDown={this._handleKeydown}
                             onChange={this._handleChange} />
                     </fieldset>
-                    <fieldset className="input-container">
-                        <input name="submit" type="button" value="Login"
-                            className="submit-btn" onClick={this._attemptLogin} />
-                    </fieldset>
+                    <input name="submit" type="button" value="Login"
+                        className="submit-button login-button" onClick={this._attemptLogin} />
                 </form>
                 <div className="login-links-container">
                     <a onClick={this._updateView}>Create an account</a><br />

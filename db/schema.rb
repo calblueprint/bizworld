@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20151103090010) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "teacher_id"
-    t.string   "name"
     t.integer  "program_id"
+    t.string   "name"
     t.date     "start_date"
     t.date     "end_date"
   end

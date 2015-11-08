@@ -1,5 +1,22 @@
-h1 #{@category} assessment test
-= react_component "FormView", { \
-  classroom_id: @classroom.id,  \
-  form_id:      @form.id        \
-}
+.form-container
+  .title-container class=("tint-#{@classroom.program_id}")
+    .program-name
+      span.program-icon.fa class=("icon-#{@classroom.program_id}")
+      h1 #{@program.name}
+    h1.form-title #{@category.capitalize}-Assessment Test
+  .classroom-info-container class=("tint-#{@classroom.program_id}")
+    .info
+      h1.title
+        span.fa.fa-user
+        | Teacher
+      h2.content #{@teacher.first_name} #{@teacher.last_name}
+    .info
+      h1.title
+        span.fa.fa-building-o
+        | School
+      h2.content #{@teacher.school}
+
+  = react_component "FormView", { \
+    classroom_id: @classroom.id,  \
+    form_id:      @form.id        \
+  }
