@@ -1,0 +1,24 @@
+div class="medium-container"
+  h1 Hello #{@teacher.first_name}!
+
+  div class="spacer-small"
+
+  h3 All Programs
+
+  div class="spacer-small"
+
+  h3 Active Classes
+  div class="spacer-small"
+  = react_component "TeacherModal", { \
+          teacher_id: @teacher.id,    \
+          type: 'active',             \
+    }
+
+  div class="spacer"
+
+  h3 Inactive Classes
+  div class="spacer-small"
+  = react_component "TeacherModal", { \
+          teacher_id: @teacher.id,    \
+          type: 'inactive',           \
+    }

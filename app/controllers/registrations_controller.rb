@@ -17,7 +17,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    resource.is_a?(Teacher) ? teacher_path(resource) : classrooms_admins_path
+    resource.is_a?(Teacher) ? classrooms_teacher_path(resource) : classrooms_admins_path
   end
 
   def render_json_message(message, status, to, errors)

@@ -6,7 +6,9 @@ class TeachersController < ApplicationController
     @teacher = Teacher.find(params[:id])
     respond_to do |format|
       format.html
-      format.json { render json: @teacher.classrooms, each_serializer: ClassroomSerializer, root: false }
+      format.json do
+        render json: @teacher.classrooms.send(params[:type]), each_serializer: ClassroomSerializer, root: false
+      end
     end
   end
 

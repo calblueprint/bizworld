@@ -1,19 +1,22 @@
+
 /**
- * @prop teacher_id - the id of the teacher
+ * @prop classrooms - the list of classrooms for a teacher
+ *       teacher_id - the :id associated with the teacher
  */
 class TeacherModal extends React.Component {
-
     constructor(props) {
         super(props);
-        this.state = { classrooms: [], };
+        this.state = {
+            classrooms: [],
+        };
     }
 
     componentDidMount() {
-        this._fetchClassrooms(this.props.teacher_id);
+        this._fetchClassrooms( this.props.teacher_id, { type : this.props.type } );
     }
 
-    _fetchClassrooms(id) {
-        $.getJSON(`/teachers/${id}/classrooms`)
+    _fetchClassrooms(id, params) {
+        $.getJSON(`/teachers/${id}/classrooms`, params)
             .done((data) => {
                 this.setState({ classrooms: data });
             })
@@ -25,28 +28,29 @@ class TeacherModal extends React.Component {
     render() {
         const classrooms = this.state.classrooms.map(function(classroom) {
             return (
-                <Classroom classroom = {classroom}
-                                 key = {classroom["id"]} />
+                <ClassroomContainer classroom = {classroom}
+                                          key = {classroom["id"]} />
             );
         });
 
+        var createCourse = null;
+        if (this.props.type == 'active') {
+            createCourse = (
+                <div className="col-md-4">
+                    <div className="add-course">
+                        <div className="row">
+                            Create a <br></br> new course
+                        </div>
+                    </div>
+                </div>
+            );
+        }
 
         return (
-            <div className="row">
-                <div className="col-md-8">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Term</th>
-                                <th>Start</th>
-                                <th>End</th>
-                                <th># Students</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            { classrooms }
-                        </tbody>
-                    </table>
+            <div className="medium-container">
+                <div className="row">
+                    { classrooms }
+                    { createCourse }
                 </div>
             </div>
         );
@@ -54,38 +58,41 @@ class TeacherModal extends React.Component {
 }
 
 TeacherModal.propTypes = { classrooms: React.PropTypes.array.isRequired };
-TeacherModal.defaultProps = { classrooms: [] };
 
 
 /**
  * @prop classroom - the info about this classroom
  */
-class Classroom extends React.Component {
+class ClassroomContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { classroom: this.props.classroom };
+    }
+
+    _clickClassroom = (e) => {
+        window.location.replace(`/classrooms/${this.props.classroom.id}`);
     }
 
     render() {
+        const classroomClass = `classroom-card ${this.props.type}-classroom`
+
         return (
-            <tr>
-                <td>
-                    { this.state.classroom.term }
-                </td>
-                <td>
-                    { this.state.classroom.start_date }
-                </td>
-                <td>
-                    { this.state.classroom.end_date }
-                </td>
-                <td>
-                    { this.state.classroom.students.length }
-                </td>
-            </tr>
+            <div className="col-md-4">
+                <div className={classroomClass} onClick={this._clickClassroom} >
+                    <div className="row">
+                        <div className="classroom-name col-md-6">
+                            { this.props.classroom.name }<br></br>
+
+                            { this.props.classroom.program.name }<br></br>
+                        </div>
+                        <div className="classroom-count col-md-6">
+                            { this.props.classroom.students.length } Students<br></br>
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
 
 
-Classroom.PropTypes = { classroom: React.PropTypes.object.isRequired };
-Classroom.defaultProps = { classroom: {} };
+ClassroomConatiner.PropTypes = { classroom: React.PropTypes.object.isRequired };
