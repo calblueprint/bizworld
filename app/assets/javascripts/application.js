@@ -3,6 +3,8 @@
 //= require bootstrap-select
 //= require bootstrap/alert
 //= require bootstrap/dropdown
+//= require moment
+//= require daterangepicker
 //= require turbolinks
 //= require react
 //= require react_ujs

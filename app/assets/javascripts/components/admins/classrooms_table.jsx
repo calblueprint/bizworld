@@ -7,7 +7,10 @@ class ClassroomsTable extends React.Component {
         super(props);
         this.state = {
             classrooms: [],
-            filters: { status : this.props.status }
+            filters: {
+                status : this.props.status,
+                range : { }
+            }
         };
     }
 
@@ -15,7 +18,7 @@ class ClassroomsTable extends React.Component {
         this._fetchClassrooms();
     }
 
-    _fetchClassrooms(params) {
+    _fetchClassrooms = () => {
         $.getJSON("/admins/classrooms", this.state.filters)
             .done((data) => {
                 this.setState({ classrooms: data });
@@ -25,8 +28,14 @@ class ClassroomsTable extends React.Component {
             });
     }
 
-    _handleFilterSubmit = (e) => {
-        this._fetchClassrooms();
+    _handleDateRangeChange = (startDate, endDate) => {
+        const newState = React.addons.update(this.state.filters, {
+            range: {
+                start: { $set: startDate },
+                end:   { $set: endDate }
+            }
+        });
+        this.setState({ filters: newState });
     }
 
     _handleFilterChange = (e) => {
@@ -44,11 +53,16 @@ class ClassroomsTable extends React.Component {
                                     key        = {classroom.id} />
             );
         });
+
         return (
             <div className="row">
                 <div className="col-md-8 col-md-offset-2">
-                    <ClassroomsProgramFilter onFilterChange={this._handleFilterChange}
-                        onFilterSubmit={this._handleFilterSubmit} />
+                    <form className="filterForm">
+                        <ClassroomsStatusFilter onFilterChange={this._handleFilterChange}
+                                                onDateRangeChange={this._handleDateRangeChange} />
+                        <br />
+                        <input name="submit" type="button" value="Submit" onClick={this._fetchClassrooms}/>
+                    </form>
                     <table className="table">
                         <thead>
                             <tr>
@@ -70,34 +84,6 @@ class ClassroomsTable extends React.Component {
 }
 
 ClassroomsTable.propTypes = {};
-
-/**
- * @prop onFilterChange - function that is called onChange for inputs, updates state
- * @prop onFilterSubmit - function that is called when the filters are submitted for search
- */
-class ClassroomsProgramFilter extends React.Component {
-    render() {
-        return (
-            <form className="filterForm">
-                <select name="status" onChange={this.props.onFilterChange}>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                    <option value="">All</option>
-                </select>
-                <input name="submit" type="button" value="Submit" onClick={this.props.onFilterSubmit}/>
-            </form>
-        );
-    }
-}
-
-ClassroomsProgramFilter.propTypes = {
-    onFilterSubmit: React.PropTypes.func.isRequired,
-    onFilterChange: React.PropTypes.func.isRequired
-};
-ClassroomsProgramFilter.defaultProps = {
-    onFilterSubmit: () => {},
-    onFilterChange: () => {}
-};
 
 /**
  * @prop classroom - the info about this classroom

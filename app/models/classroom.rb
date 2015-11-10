@@ -14,21 +14,16 @@
 #
 
 class Classroom < ActiveRecord::Base
-  belongs_to :program
   has_many :students
+  belongs_to :program
   belongs_to :teacher
 
-  def self.get_date_range(options)
-    Hash.new(Date.current).merge!(options || {})
-  end
-
   def self.active(options = {})
-    active_dates = get_date_range(options)
-    where("end_date >= ? AND start_date <= ?", active_dates[:start], active_dates[:end])
+    where("end_date >= ? AND start_date <= ?", Date.current, Date.current)
   end
 
-  def self.inactive(options = {})
-    inactive_dates = get_date_range(options)
-    where("end_date < ? OR start_date > ?", inactive_dates[:start], inactive_dates[:end])
+  def self.date_range(options)
+    range = HashWithIndifferentAccess.new(Date.current).merge!(options || {})
+    where("end_date <= ? AND start_date >= ?", range[:end].to_date, range[:start].to_date)
   end
 end
