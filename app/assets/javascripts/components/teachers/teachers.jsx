@@ -95,4 +95,4 @@ class ClassroomContainer extends React.Component {
 }
 
 
-ClassroomConatiner.PropTypes = { classroom: React.PropTypes.object.isRequired };
+ClassroomContainer.PropTypes = { classroom: React.PropTypes.object.isRequired };
