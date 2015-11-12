@@ -2,14 +2,12 @@
  * @prop teacher_id - id of teacher to show
  * @prop editable   - true if fields are editable
  */
-class TeacherAccountInfo extends React.Component {
+class TeacherAccountInfo extends DefaultForm {
 
     constructor(props) {
         super(props);
         this.state = {
-            teacher: {
-                grades: []
-            },
+            teacher: { grades: [] },
             editable: this.props.editable
         };
     }
@@ -28,34 +26,40 @@ class TeacherAccountInfo extends React.Component {
             });
     }
 
-    _changeInput = (e) => {
-        this.setState({ [$(e.target).attr("name")] : $(e.target).val() });
-    }
-
     _changeButton = (e) => {
         this.setState({ [$(e.target).attr("name")] : $(e.target).attr("data-edit") == "true" });
     }
 
-    _showField = (label, data) => {
-        return(
-            <EditableInput label         = { label }
-                           data          = { data }
-                           editable      = { this.state.editable }
-                           onChangeInput = { this._changeInput } />
+    _showInput = (label, data) => {
+        return (
+            <EditableInput label        = { label }
+                           data         = { data }
+                           editable     = { this.state.editable }
+                           handleChange = { this._handleChange} />
+        );
+    }
+
+    _showSelect = (label, data, multiple) => {
+        return (
+            <EditableSelect label    = { label }
+                            data     = { data }
+                            multiple = { multiple }
+                            editable = { this.state.editable } />
         );
     }
 
     render() {
+        const gradesList = this.state.teacher.grades.join(', ');
         return (
             <div>
-                { this._showField("First Name", this.state.teacher.first_name) }
-                { this._showField("Last Name", this.state.teacher.last_name) }
-                { this._showField("Email", this.state.teacher.email) }
-                { this._showField("Phone", this.state.teacher.phone_number) }
-                { this._showField("School", this.state.teacher.school) }
-                { this._showField("City", this.state.teacher.city) }
-                <div>State: { this.state.teacher.state }</div>
-                <div>Grade: { this.state.teacher.grades.join(', ') }</div>
+                { this._showInput("First Name", this.state.teacher.first_name) }
+                { this._showInput("Last Name", this.state.teacher.last_name) }
+                { this._showInput("Email", this.state.teacher.email) }
+                { this._showInput("Phone", this.state.teacher.phone_number) }
+                { this._showInput("School", this.state.teacher.school) }
+                { this._showInput("City", this.state.teacher.city) }
+                { this._showSelect("State", this.state.teacher.state, false) }
+                { this._showSelect("Grades", gradesList, true) }
                 <form>
                     <fieldset className="input-container">
                         <input name="editable" type="button" value="Edit"

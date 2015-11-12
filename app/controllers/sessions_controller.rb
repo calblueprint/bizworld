@@ -39,7 +39,7 @@ class SessionsController < Devise::SessionsController
 
   def failure
     warden.custom_failure!
-    render json: { message: "Inavlid email and password combination" }, status: :unauthorized
+    render json: { errors: ["Inavlid email and password combination"] }, status: :unauthorized
   end
 
   protected

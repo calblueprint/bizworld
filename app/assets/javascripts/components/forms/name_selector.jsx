@@ -10,7 +10,7 @@ class NameSelector extends React.Component {
 
     componentDidMount() {
         this._fetchStudents(this.props.id);
-        $('.student').selectpicker({ dropupAuto: false });
+        $(this.refs.select.getDOMNode()).selectpicker({ dropupAuto: false });
     }
 
     _fetchStudents(id) {
@@ -24,7 +24,7 @@ class NameSelector extends React.Component {
     }
 
     componentDidUpdate() {
-        $('.student').selectpicker('refresh');
+        $(this.refs.select.getDOMNode()).selectpicker('refresh');
     }
 
     render() {
@@ -39,8 +39,8 @@ class NameSelector extends React.Component {
         return (
             <div className="input-container">
                 <label className="question-title" htmlFor="name-dropdown">Name:</label>
-                <select id="name-dropdown" name="student" className="selectpicker student"
-                    data-live-search="true">
+                <select id="name-dropdown" name="student" ref="select"
+                    className="selectpicker" data-live-search="true">
                     {studentNames}
                 </select>
             </div>

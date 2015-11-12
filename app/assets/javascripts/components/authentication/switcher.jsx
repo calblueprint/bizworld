@@ -8,7 +8,7 @@ class AuthSwitcher extends React.Component {
         this.state = { view: this.props.view };
     }
 
-    changeView = (newView) => {
+    _changeView = (newView) => {
         this.setState({ view: newView });
     }
 
@@ -16,10 +16,10 @@ class AuthSwitcher extends React.Component {
         var authView;
         if (this.state.view == 0) {
             authView = <LoginModal viewType = {1}
-                                   update   = {this.changeView} />
+                                   update   = {this._changeView} />
         } else {
             authView = <RegistrationModal viewType = {0}
-                                          update   = {this.changeView} />
+                                          update   = {this._changeView} />
         }
         return authView;
     }

@@ -2,30 +2,14 @@
  * @prop viewType - type of view to toggle
  *       update   - function to update modal views
  */
-class LoginModal extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = { };
-    }
+class LoginModal extends DefaultForm {
 
     _updateView = (e) => {
         this.props.update(this.props.viewType);
     }
 
-    _handleChange = (e) => {
-        this.setState({ [$(e.target).attr("name")] : $(e.target).val() });
-    }
-
     _attemptLogin = (e) => {
-        $.post("/sign_in", { teacher : this.state })
-            .done((msg) => {
-                toastr.success(msg.message);
-                window.location.replace(msg.to);
-            })
-            .fail((xhr, status, error) => {
-                toastr.error(JSON.parse(xhr.responseText).message);
-            });
+        this._attemptAction("/sign_in", { teacher: this._formFields() });
     }
 
     _handleKeydown = (e) => {

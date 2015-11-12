@@ -10,7 +10,7 @@ def make_teachers
       school: "UC Berkeley",
       city: "Berkeley",
       state: "CA",
-      grades: ["6", "7", "8", "other"]
+      grades: ["3rd", "5th", "8th", "other"]
     )
     teacher.save
   end

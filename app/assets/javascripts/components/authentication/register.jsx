@@ -2,38 +2,14 @@
  * @prop viewType - type of view to toggle
  *       update   - function to update modal views
  */
-class RegistrationModal extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = { };
-    }
+class RegistrationModal extends DefaultForm {
 
     _updateView = (e) => {
         this.props.update(this.props.viewType);
     }
 
-    _handleChange = (e) => {
-        this.setState({ [$(e.target).attr("name")] : $(e.target).val() });
-    }
-
     _attemptRegistration = (e) => {
-        // Necessary because bootstrap-select does not fire onChange events
-        const extraFields = {
-            state: $(".state-select").val(),
-            grades: $(".grade-select").val()
-        }
-
-        $.post("/sign_up", { teacher: $.extend({}, this.state, extraFields )})
-            .done((msg) => {
-                toastr.success(msg.message);
-                window.location.replace(msg.to);
-            })
-            .fail((xhr, status, error) => {
-                JSON.parse(xhr.responseText).errors.forEach((error) => {
-                    toastr.error(error);
-                });
-            });
+        this._attemptAction("/sign_up", { teacher : this._formFields() });
     }
 
     render() {
@@ -118,6 +94,9 @@ RegistrationModal.propTypes = {
     update   : React.PropTypes.func.isRequired
 };
 
+/**
+ * @prop state - default state to select
+ */
 class StatePicker extends React.Component {
 
     constructor(props) {
@@ -127,9 +106,7 @@ class StatePicker extends React.Component {
 
     componentDidMount() {
         this._fetchStates();
-        $('.selectpicker').selectpicker({
-            dropupAuto: false
-        });
+        $(this.refs.select.getDOMNode()).selectpicker({ dropupAuto: false });
     }
 
     _fetchStates() {
@@ -142,40 +119,47 @@ class StatePicker extends React.Component {
             });
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state.states.length != nextState.states.length;
+    }
+
     componentDidUpdate() {
-        $('.state-select').selectpicker('refresh');
+        $(this.refs.select.getDOMNode()).selectpicker('refresh');
     }
 
     render() {
-        // Default before states have been fetched
-        var stateOptions = (
-            <option>AA</option>
-        );
-        if (this.state.states.length > 0) {
-            stateOptions = this.state.states.map((state) => {
-                return (
-                    <option key={state}>{state}</option>
-                );
-            });
-        }
+        const stateOptions = this.state.states.map((state) => {
+            return (
+                <option key={state}>{state}</option>
+            );
+        });
 
         return (
-            <select name="state" className="selectpicker state-select"
-                data-live-search="true">
+            <select value={this.props.state} name="state" ref="select"
+                className="selectpicker state-select" data-live-search="true">
                 {stateOptions}
             </select>
         );
     }
 }
 
-StatePicker.propTypes = { };
+StatePicker.propTypes = { state : React.PropTypes.string };
 
+/**
+ * @prop grades - default grades to select
+ */
 class GradesPicker extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = { grades: ["3rd", "4th", "5th", "6th", "7th", "8th",
             "other"] };
+    }
+
+    componentDidMount() {
+        const select = this.refs.select.getDOMNode();
+        $(select).selectpicker({ dropupAuto: false });
+        $(select).selectpicker('val', this.props.grades.split(/[\s,]+/));
     }
 
     render() {
@@ -187,11 +171,12 @@ class GradesPicker extends React.Component {
 
         return (
             <select name="grades" className="selectpicker grade-select"
-                multiple title="Select a grade">
+                multiple title="Select a grade" ref="select">
                 {grades}
             </select>
         )
     }
 }
 
-GradesPicker.propTypes = { };
+GradesPicker.propTypes = { grades : React.PropTypes.string };
+GradesPicker.defaultProps = { grades : "" };
