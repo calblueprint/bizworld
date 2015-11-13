@@ -36,29 +36,25 @@ class TeacherModal extends React.Component {
         var createCourse = null;
         if (this.props.type == 'active') {
             createCourse = (
-                <div className="col-md-4">
-                    <div className="add-course">
-                        <div className="row">
-                            Create a <br></br> new course
-                        </div>
-                    </div>
+                <div className="classroom-card-col add-course">
+                  <div className="classroom-card add-card">
+                      <span className="fa fa-plus"></span>
+                      Create a new course
+                  </div>
                 </div>
             );
         }
 
         return (
-            <div className="medium-container">
-                <div className="row">
-                    { classrooms }
-                    { createCourse }
-                </div>
+            <div>
+                { classrooms }
+                { createCourse }
             </div>
         );
     }
 }
 
 TeacherModal.propTypes = { classrooms: React.PropTypes.array.isRequired };
-
 
 /**
  * @prop classroom - the info about this classroom
@@ -69,24 +65,22 @@ class ClassroomContainer extends React.Component {
     }
 
     _clickClassroom = (e) => {
-        window.location.replace(`/classrooms/${this.props.classroom.id}`);
+        window.location.href = `/classrooms/${this.props.classroom.id}`;
     }
 
     render() {
-        const classroomClass = `classroom-card ${this.props.type}-classroom`
-
+        const classType = `classroom-${this.props.classroom.program.id}`
         return (
-            <div className="col-md-4">
-                <div className={classroomClass} onClick={this._clickClassroom} >
-                    <div className="row">
-                        <div className="classroom-name col-md-6">
-                            { this.props.classroom.name }<br></br>
-
-                            { this.props.classroom.program.name }<br></br>
-                        </div>
-                        <div className="classroom-count col-md-6">
-                            { this.props.classroom.students.length } Students<br></br>
-                        </div>
+            <div className="classroom-card-col">
+                <div className={`classroom-card ${classType}`}
+                       onClick={this._clickClassroom} >
+                    <div className="name-container">
+                        <h1 className="title">{ this.props.classroom.name }</h1>
+                        <h2 className="program">{ this.props.classroom.program.name }</h2>
+                    </div>
+                    <div className="count-container">
+                        <h3 className="count">{ this.props.classroom.students.length }</h3>
+                        <h2 className="student-label">students</h2>
                     </div>
                 </div>
             </div>

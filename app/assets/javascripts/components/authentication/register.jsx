@@ -9,7 +9,22 @@ class RegistrationModal extends DefaultForm {
     }
 
     _attemptRegistration = (e) => {
-        this._attemptAction("/sign_up", { teacher : this._formFields() });
+        // Necessary because bootstrap-select does not fire onChange events
+        const extraFields = {
+            state: $(".state-select").val(),
+            grades: $(".grade-select").val()
+        }
+
+        $.post("/sign_up", { teacher: $.extend({}, this.state, extraFields )})
+            .done((msg) => {
+                toastr.success(msg.message);
+                window.location.href = msg.to;
+            })
+            .fail((xhr, status, error) => {
+                JSON.parse(xhr.responseText).errors.forEach((error) => {
+                    toastr.error(error);
+                });
+            });
     }
 
     render() {

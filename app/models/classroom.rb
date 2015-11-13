@@ -22,6 +22,10 @@ class Classroom < ActiveRecord::Base
     where("end_date >= ? AND start_date <= ?", Date.current, Date.current)
   end
 
+  def self.inactive(options = {})
+    where("end_date < ? OR start_date > ?", Date.current, Date.current)
+  end
+
   def self.date_range(options)
     range = HashWithIndifferentAccess.new(Date.current).merge!(options || {})
     where("end_date <= ? AND start_date >= ?", range[:end].to_date, range[:start].to_date)
