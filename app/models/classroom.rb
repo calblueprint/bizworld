@@ -18,11 +18,11 @@ class Classroom < ActiveRecord::Base
   belongs_to :program
   belongs_to :teacher
 
-  def self.active(options = {})
+  def self.active(_options = {})
     where("end_date >= ? AND start_date <= ?", Date.current, Date.current)
   end
 
-  def self.inactive(options = {})
+  def self.inactive(_options = {})
     where("end_date < ? OR start_date > ?", Date.current, Date.current)
   end
 

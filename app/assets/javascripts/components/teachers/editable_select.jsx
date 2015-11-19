@@ -10,6 +10,13 @@ class EditableSelect extends React.Component {
         super(props);
     }
 
+    componentDidUpdate(prevProps) {
+        // Workaround since selectpicker creates duplicate DOM elements
+        if (prevProps.editable) {
+            $('.bootstrap-select').remove();
+        }
+    }
+
     render() {
         var selectVal;
         if (this.props.editable) {
@@ -23,12 +30,16 @@ class EditableSelect extends React.Component {
         }
 
         return (
-            <div>
-                <label htmlFor={this.props.label}>
-                    { this.props.label }:
-                </label>
-                { selectVal }
-            </div>
+            <fieldset className="input-container">
+                <div className="label-container">
+                    <label htmlFor={this.props.label}>
+                        { this.props.label }:
+                    </label>
+                </div>
+                <div className="input-box-container">
+                    { selectVal }
+                </div>
+            </fieldset>
         );
     }
 }

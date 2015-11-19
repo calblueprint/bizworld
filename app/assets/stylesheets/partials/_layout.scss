@@ -52,31 +52,32 @@ body {
 }
 
 .button {
-  background: $gray-light;
-  border: 1px solid transparent;
+  background: none;
+  border: 1px solid $gray-light;
   border-radius: 3px;
-  box-shadow: 0px 1px 0px $gray-dark,
-              0px 2px 0px $gray-dark;
   color: black;
   font-weight: 700;
   margin: 20px auto;
   outline: none;
+  opacity: 0.85;
   padding: 10px 20px;
   transition: $faster;
   @include appearance(none);
 
   &:hover {
-    box-shadow: none;
-    @include transform(translateY(2px));
+    border-color: $gray-dark-48;
+    opacity: 1;
   }
 }
 
 .submit-button {
   @extend .button;
   background: $blue-84;
-  box-shadow: 0px 1px 0px $blue-dark,
-              0px 2px 0px $blue-dark;
   color: white;
+
+  &:hover {
+    border-color: $blue;
+  }
 
   &:focus {
     background: $blue;

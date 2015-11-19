@@ -7,6 +7,8 @@
 @import "partials/layout";
 $color-list: $blue $green $red;
 
+// Classroom view
+
 .teacher-classroom-container {
   @extend .content-container;
   background: transparent;
@@ -174,5 +176,42 @@ $color-list: $blue $green $red;
   .classroom-card-col {
     padding: 7px 0;
     width: 100%;
+  }
+}
+
+
+// Teacher account view
+.teacher-account-container {
+  @extend .content-container;
+  max-width: 500px;
+  padding: 40px;
+
+  .input-container {
+    width: 100%;
+    @include clearAfter;
+
+    .label-container {
+      display: inline-block;
+      width: 30%;
+    }
+
+    .input-box-container {
+      display: inline-block;
+      width: 70%;
+    }
+  }
+}
+
+.teacher-account-header {
+  font-size: $f-size-xxl;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.edit-button-container {
+
+  input {
+    margin-right: 10px;
   }
 }

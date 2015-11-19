@@ -23,12 +23,16 @@ class EditableInput extends React.Component {
         }
 
         return (
-            <div>
-                <label htmlFor={this.props.label}>
-                    { this.props.label }:
-                </label>
-                { inputVal }
-            </div>
+            <fieldset className="input-container">
+                <div className="label-container">
+                    <label htmlFor={this.props.label}>
+                        { this.props.label }:
+                    </label>
+                </div>
+                <div className="input-box-container">
+                    { inputVal }
+                </div>
+            </fieldset>
         );
     }
 }

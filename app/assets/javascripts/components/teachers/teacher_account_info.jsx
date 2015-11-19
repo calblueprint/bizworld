@@ -27,7 +27,7 @@ class TeacherAccountInfo extends DefaultForm {
     }
 
     _changeButton = (e) => {
-        this.setState({ [$(e.target).attr("name")] : $(e.target).attr("data-edit") == "true" });
+        this.setState({ editable : !this.state.editable });
     }
 
     _showInput = (label, data) => {
@@ -52,6 +52,7 @@ class TeacherAccountInfo extends DefaultForm {
         const gradesList = this.state.teacher.grades.join(', ');
         return (
             <div>
+                <h1 className="teacher-account-header">Your Account</h1>
                 { this._showInput("First Name", this.state.teacher.first_name) }
                 { this._showInput("Last Name", this.state.teacher.last_name) }
                 { this._showInput("Email", this.state.teacher.email) }
@@ -60,13 +61,9 @@ class TeacherAccountInfo extends DefaultForm {
                 { this._showInput("City", this.state.teacher.city) }
                 { this._showSelect("State", this.state.teacher.state, false) }
                 { this._showSelect("Grades", gradesList, true) }
-                <form>
-                    <fieldset className="input-container">
-                        <input name="editable" type="button" value="Edit"
-                            className="edit-btn" onClick={this._changeButton}
-                            data-edit="true" />
-                    </fieldset>
-                </form>
+
+                <FormEditToggle editable = { this.state.editable }
+                                update   = { this._changeButton } />
             </div>
         );
     }
@@ -74,5 +71,5 @@ class TeacherAccountInfo extends DefaultForm {
 
 TeacherAccountInfo.propTypes = {
     teacher_id : React.PropTypes.number.isRequired,
-    editable   : React.PropTypes.bool
+    editable   : React.PropTypes.bool.isRequired
 };
