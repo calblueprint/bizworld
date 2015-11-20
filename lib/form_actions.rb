@@ -6,7 +6,7 @@ module FormActions
   def self.add_responses(form, responses, student)
     correct = 0.0
     responses.each do |q_id, answer|
-      correct += 1 if Question.find(q_id).answer.eql?(answer)
+      correct += 1 if Question.find(q_id).answer.eql?(answer.to_i)
       student.send(:"#{form.category}_responses").push(
         Response.create!(student_id: student, question_id: q_id, answer: answer))
     end

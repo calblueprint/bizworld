@@ -1,17 +1,17 @@
 namespace :form do
   desc "Generates form based on configuration file"
   task :generate_form, [:program, :type] => :environment do |_t, args|
-    # TODO(nnarayen 10/28): use args to load correct file
-    form_config = HashWithIndifferentAccess.new(
-      YAML.load(File.read(File.expand_path("../../../db/forms/form_1_pre.yml", __FILE__))))
+    fp = File.expand_path("../../../db/forms/form_#{args[:program]}_#{args[:type]}.yml", __FILE__)
+    form_config = HashWithIndifferentAccess.new(YAML.load(File.read(fp)))
 
     form = Form.create(category: args[:type])
     program = Program.find(args[:program])
     program.send(:"#{args[:type]}=", form)
     program.save
 
-    form_config[:questions].each do |question|
-      q = Question.create(question)
+    # Question numbers determined programmatically instead of through config file
+    form_config[:questions].each.with_index do |question, index|
+      q = Question.create(question.merge!(number: index + 1))
       form.questions << q
     end
 

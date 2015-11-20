@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103090010) do
+ActiveRecord::Schema.define(version: 20151119231724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20151103090010) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "teacher_id"
-    t.integer  "program_id"
     t.string   "name"
+    t.integer  "program_id"
     t.date     "start_date"
     t.date     "end_date"
   end
@@ -68,10 +68,11 @@ ActiveRecord::Schema.define(version: 20151103090010) do
     t.integer  "form_id"
     t.integer  "category"
     t.string   "options",    default: [],              array: true
-    t.string   "answer"
+    t.integer  "answer"
     t.string   "title"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "number"
   end
 
   add_index "questions", ["form_id"], name: "index_questions_on_form_id", using: :btree

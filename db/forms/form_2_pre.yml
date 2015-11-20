@@ -1,0 +1,275 @@
+--- !'map':HashWithIndifferentAccess
+
+questions:
+  -
+    title:
+      'What is your gender?'
+    options:
+      - 'Male'
+      - 'Female'
+    category:
+      1
+  -
+    title:
+      'What is your ethnicity?'
+    options:
+      - 'Asian/Pacific Islander'
+      - 'Black/African-American'
+      - 'Caucasian'
+      - 'Hispanic'
+      - 'Native American/Alaska Native'
+      - 'Other/Multi-Racial'
+      - 'Decline to Respond'
+    category:
+      1
+  -
+    title:
+      'Money a company earns from selling a product or service is called:'
+    options:
+      - 'Revenue'
+      - 'Profit'
+      - 'Debt'
+      - 'Expenses'
+    answer:
+      'revenue'
+    category:
+      1
+  -
+    title:
+      'A person who invests money in new and innovative businesses is called:'
+    options:
+      - 'An entrepreneur'
+      - 'A stock broker'
+      - 'A venture capitalist'
+      - 'A banker'
+    answer:
+      2
+    category:
+      1
+  -
+    title:
+      'Owning a share of stock means you own part of:'
+    options:
+      - 'A venture capitalist'
+      - 'A company'
+      - 'A logo'
+      - 'The stock market'
+    answer:
+      1
+    category:
+      1
+  -
+    title:
+      'An entrepreneur is a person who:'
+    options:
+      - 'Loans money to someone starting a business'
+      - 'Takes on the risk of beginning and operating their own business'
+      - 'Decides who is responsible for financial decisions'
+      - 'Buys all the stock in a company'
+    answer:
+      1
+    category:
+      1
+  -
+    title:
+      'Making posters and creating commercials are examples of:'
+    options:
+      - 'Finance'
+      - 'Manufacturing'
+      - 'Distribution'
+      - 'Marketing'
+    answer:
+      3
+    category:
+      1
+  -
+    title:
+      'Rent and salaries are examples of:'
+    options:
+      - 'Finances'
+      - 'Slogans'
+      - 'Expenses'
+      - 'Profits'
+    answer:
+      0
+    category:
+      1
+  -
+    title:
+      'A sequence of pictures which shows the action, dialogue, and special
+       effects of a movie are called:'
+    options:
+      - 'A marketing campaign'
+      - 'A storyboard'
+      - 'A storyline'
+      - 'A slogan'
+    answer:
+      1
+    category:
+      1
+  -
+    title:
+      'A financial document that shows a company’s revenue, expenses, and
+      profit (or loss) over a period of time is called:'
+    options:
+      - 'A bank book'
+      - 'A bill'
+      - 'An income statement'
+      - 'A financial record'
+    answer:
+      3
+    category:
+      1
+  -
+    title:
+      'A short, unique phrase used to advertise a company or product is called:'
+    options:
+      - 'A slogan'
+      - 'A logo'
+      - 'A signature'
+      - 'A share'
+    answer:
+      0
+    category:
+      1
+  -
+    title:
+      'Something owed, such as money, products, or services is called:'
+    options:
+      - 'An income statement'
+      - 'Debt'
+      - 'An expense'
+      - 'Profit'
+    answer:
+      1
+    category:
+      1
+  -
+    title:
+      'What is the profit equation?'
+    options:
+      - 'Expenses - Profit = Revenue'
+      - 'Rent – Interest = Profit (or Loss)'
+      - 'Revenue – Expenses = Profit (or Loss)'
+      - 'Expenses x Revenue = Profit'
+    answer:
+      2
+    category:
+      1
+  -
+    title:
+      'The VP Production’s main responsibility is'
+    options:
+      - 'To manage smooth operations of the company'
+      - 'To make the movie easily and inexpensively'
+      - 'To sell the movie'
+      - 'To promote the movie'
+    answer:
+      1
+    category:
+      1
+  -
+    title:
+      'When a company sells stock, it trades part of the company ownership for:'
+    options:
+      - 'Employees'
+      - 'Products or services'
+      - 'Cash'
+      - 'Employee benefits'
+    answer:
+      2
+    category:
+      1
+  -
+    title:
+      'When people work for a company, the money they are paid is called:'
+    options:
+      - 'A loan'
+      - 'A salary'
+      - 'Stock'
+      - 'Debt'
+    answer:
+      1
+    category:
+      1
+  -
+    title:
+      'What does a venture capitalist receive in exchange for investing in a
+       company?'
+    options:
+      - 'Employee benefits'
+      - 'A promise to repay the loan plus interest'
+      - 'Shares of stock in the company'
+      - 'A discount on company products and services'
+    answer:
+      2
+    category:
+      1
+  -
+    title:
+      'When pricing a product, which of the following needs to be considered?'
+    options:
+      - 'How much each product costs to make'
+      - 'How many products can be made in a given period of time'
+      - 'The price of competitor products'
+      - 'All of the above'
+    answer:
+      3
+    category:
+      1
+  -
+    title:
+      'The NIKE® Corporation often places a graphic image called a “swoosh” on
+       its products. The NIKE® “swoosh” is an example of a:'
+    options:
+      - 'Slogan'
+      - 'Sales pitch'
+      - 'Logo'
+      - 'Business plan'
+    answer:
+      2
+    category:
+      1
+  -
+    title:
+      'The entrepreneurial cycle is best represented as the following:'
+    options:
+      - 'Design > Marketing > Sales > Production'
+      - 'Production > Marketing > Sales > Design'
+      - 'Design > Production > Marketing > Sales'
+      - 'Sales > Marketing > Production > Design'
+    answer:
+      2
+    category:
+      1
+  -
+    title:
+      'Which of the following equations should be used to determine the total
+       revenue from the sale of a product?'
+    options:
+      - 'Price x number sold'
+      - 'Price ÷ number sold'
+      - 'Number sold – price'
+      - 'Number sold ÷ price'
+    answer:
+      0
+    category:
+      1
+  -
+    title:
+      'A company has 10 shares of stock and sells 3. What percentage of the
+       stock does the company still own?'
+    options:
+      - '3%'
+      - '0.3%'
+      - '70%'
+      - '7%'
+    answer:
+      2
+    category:
+      1
+  -
+    title:
+      'Do you think running a business will be easy or hard? Why?'
+    category:
+      2

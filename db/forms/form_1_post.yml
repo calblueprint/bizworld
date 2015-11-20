@@ -64,7 +64,7 @@ questions:
   -
     title:
       'What does a venture capitalist receive in exchange for investing in a
-      company?'
+       company?'
     options:
       - 'A promise to repay the loan plus interest.'
       - 'Shares of stock in the company and a vote in decision-making.'
@@ -242,5 +242,44 @@ questions:
   -
     title:
       'I contribute and pitch in when working in a group.'
+    category:
+      3
+  -
+    title:
+      'How would you rate your Bizworld expereince?'
+    options:
+      - "I loved it! I can't wait to do BizWorld again."
+      - 'I liked it.'
+      - 'It was okay'
+      - "I didn't like it."
+    category:
+      1
+  -
+    title:
+      'Please explain your answer.'
+    category:
+      2
+  -
+    title:
+      'What have you learned about teamwork that you will use again?'
+    category:
+      2
+  -
+    title:
+      'What have you learned about leadership that you will use again?'
+    category:
+      2
+  -
+    title:
+      'What advice would you give to a new student about to begin BizWorld?'
+    category:
+      2
+  -
+    title:
+      'The BizWorld program increased my knowledge of real-world career options.'
+    options:
+      - 'Yes'
+      - 'No'
+      - 'Unsure'
     category:
       3

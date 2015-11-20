@@ -1,0 +1,260 @@
+--- !'map':HashWithIndifferentAccess
+
+questions:
+  -
+    title:
+      'What is your gender?'
+    options:
+      - 'Male'
+      - 'Female'
+    category:
+      1
+  -
+    title:
+      'What is your ethnicity?'
+    options:
+      - 'Asian/Pacific Islander'
+      - 'Black/African-American'
+      - 'Caucasian'
+      - 'Hispanic'
+      - 'Native American/Alaska Native'
+      - 'Other/Multi-Racial'
+      - 'Decline to Respond'
+    category:
+      1
+  -
+    title:
+      'Property or possessions that people buy with the goal of making money
+       are called:'
+    options:
+      - 'investments'
+      - 'returns'
+      - 'risks'
+      - 'stocks'
+    answer:
+      0
+    category:
+      1
+  -
+    title:
+      'Property in the form of land or buildings is called:'
+    options:
+      - 'stock'
+      - 'a collectible'
+      - 'an analyst'
+      - 'real estate'
+    answer:
+      3
+    category:
+      1
+  -
+    title:
+      'Rare baseball cards, toys and cars are examples of what kind of investment?'
+    options:
+      - 'real estate'
+      - 'collectibles'
+      - 'venture capital'
+      - 'stock'
+    answer:
+      1
+    category:
+      1
+  -
+    title:
+      'Cash loans issued to a company or government for a specific period of
+       time in return for a fixed amount of interest are called:'
+    options:
+      - 'collectibles'
+      - 'certificates'
+      - 'bonds'
+      - 'dividends'
+    answer:
+      2
+    category:
+      1
+  -
+    title:
+      'Investing in stock means that you own part of a:'
+    options:
+      - 'portfolio'
+      - 'company'
+      - 'country'
+      - 'collectible'
+    answer:
+      1
+    category:
+      1
+  -
+    title:
+      'Venture capital is money invested in new companies in exchange for:'
+    options:
+      - 'partial ownership of the company'
+      - 'real estate'
+      - 'collectibles'
+      - 'a job'
+    answer:
+      0
+    category:
+      1
+  -
+    title:
+      'The primary goal of every investor is:'
+    options:
+      - 'to invest a lot of money'
+      - 'to make his or her investments grow'
+      - 'to work at a bank'
+      - 'to create a portfolio'
+    answer:
+      1
+    category:
+      1
+  -
+    title:
+      'Investors set goals and track their returns. What is a return?'
+    options:
+      - 'the money gained (or lost) on an investment'
+      - 'the money spent on an investment'
+      - 'the time spent waiting for an investment to grow'
+      - 'the time it takes to purchase an investment'
+    answer:
+      0
+    category:
+      1
+  -
+    title:
+      'What does ROI stand for?'
+    options:
+      - 'return on investment'
+      - 'return on investor'
+      - 'reply once immediately'
+      - 'reply on investments'
+    answer:
+      0
+    category:
+      1
+  -
+    title:
+      'Which of the following equations is used to calculate a return on an
+       investment?'
+    options:
+      - 'initial value + current value = return'
+      - 'current value - initial value = return'
+      - 'initial value/current value = return'
+      - 'current value * initial value = return'
+    answer:
+      1
+    category:
+      1
+  -
+    title:
+      'A collection of investments owned by an individual or group of people is
+      called:'
+    options:
+      - 'a wild card'
+      - 'insurance'
+      - 'a forecast'
+      - 'a portfolio'
+    answer:
+      3
+    category:
+      1
+  -
+    title:
+      'When deciding on types of investments for a portfolio, which of the
+       following should be considered?'
+    options:
+      - 'investment goal'
+      - 'risk-tolerance'
+      - 'economic forecast'
+      - 'all of the above'
+    answer:
+      3
+    category:
+      1
+  -
+    title:
+      'Investors that have a low risk-tolerance and prefer lower, but safer
+       returns are considered to be:'
+    options:
+      - 'risk tolerant'
+      - 'risk averse'
+      - 'risk neutral'
+      - 'none of the above'
+    answer:
+      1
+    category:
+      1
+  -
+    title:
+      'Of the following investments, which would be considered the safest?'
+    options:
+      - 'bonds'
+      - 'venture capital'
+      - 'collectibles'
+      - 'stock'
+    answer:
+      0
+    category:
+      1
+  -
+    title:
+      'Wise investors understand that risky investments mean:'
+    options:
+      - 'they will always make money'
+      - 'they will always lose money'
+      - 'they will never lose money'
+      - 'they can make a lot of money, but they can also lose a lot'
+    answer:
+      3
+    category:
+      1
+  -
+    title:
+      'If the quarterly forecast indicates that venture capital is preparing
+       for a serious downturn and the bond market is in an upswing, a wise
+       investor would:'
+    options:
+      - 'buy bonds and venture capital'
+      - 'sell bonds and venture capital'
+      - 'buy venture capital and sell bonds'
+      - 'sell venture capital and buy bonds'
+    answer:
+      3
+    category:
+      1
+  -
+    title:
+      'If the long-range forecast indicated financial growth in real estate and
+       stock markets, a wise investor would:'
+    options:
+      - 'sell his/her real estate and bonds'
+      - 'buy real estate and bond'
+      - 'read the quarterly forecast and do more research before making any decisions'
+      - 'none of the above'
+    answer:
+      2
+    category:
+      1
+  -
+    title:
+      'What advice would you offer to a student about to start BizWiz?'
+    category:
+      2
+  -
+    title:
+      'What did you learn from BizWiz?'
+    category:
+      2
+  -
+    title:
+      'What was your favorite part of BizWiz?'
+    category:
+      2
+  -
+    title:
+      'Would you like to do BizWiz again?'
+    options:
+      - 'Yes'
+      - 'No'
+    category:
+      1
