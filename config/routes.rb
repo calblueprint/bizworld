@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   end
 
   resources :classrooms do
+    member do
+      post 'upload'
+    end
     resources :forms do
       collection do
         get ':category', to: 'forms#display'

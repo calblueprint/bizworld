@@ -9,14 +9,7 @@ class LoginModal extends DefaultForm {
     }
 
     _attemptLogin = (e) => {
-        $.post("/sign_in", { teacher : this.state })
-            .done((msg) => {
-                toastr.success(msg.message);
-                window.location.href = msg.to;
-            })
-            .fail((xhr, status, error) => {
-                toastr.error(JSON.parse(xhr.responseText).message);
-            });
+        this._attemptAction("/sign_in", { teacher: this._formFields() });
     }
 
     _handleKeydown = (e) => {

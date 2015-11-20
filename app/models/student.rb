@@ -16,4 +16,6 @@ class Student < ActiveRecord::Base
   belongs_to :classroom
   has_many :pre_responses, class_name: 'Response'
   has_many :post_responses, class_name: 'Response'
+
+  validates :first_name, :last_name, presence: true
 end

@@ -5,10 +5,7 @@ class SessionsController < Devise::SessionsController
     self.resource, resource_name = authenticate(auth_options, :teacher)
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
-    render json: {
-      message: "Login successful!",
-      to: after_sign_in_path_for(resource)
-    }, status: :ok
+    render_json_message(:ok, message: "Login successful!", to: after_sign_in_path_for(resource))
   end
 
   # Attempts to authenticate the login request, first as a Teacher and
@@ -39,7 +36,7 @@ class SessionsController < Devise::SessionsController
 
   def failure
     warden.custom_failure!
-    render json: { errors: ["Inavlid email and password combination"] }, status: :unauthorized
+    render_json_message(:unauthorized, errors: ["Invalid email and password combination"])
   end
 
   protected

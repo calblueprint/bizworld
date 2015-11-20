@@ -33,7 +33,7 @@ class TeacherModal extends React.Component {
             );
         });
 
-        var createCourse = null;
+        let createCourse;
         if (this.props.type == 'active') {
             createCourse = (
                 <div className="classroom-card-col add-course">

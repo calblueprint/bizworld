@@ -20,9 +20,9 @@ class FormsController < ApplicationController
     responses = params[:responses] || {}
     if FormActions.validate(form, responses)
       FormActions.add_responses(form, responses, Student.find(params[:student]))
-      render json: { message: "Assessment submitted!" }, status: :ok
+      render_json_message(:ok, message: "Assessment submitted!")
     else
-      render json: { message: "No question can be left blank" }, status: :forbidden
+      render_json_message(:forbidden, errors: ["No question can be left blank"])
     end
   end
 end

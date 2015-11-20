@@ -5,4 +5,12 @@ class ApplicationController < ActionController::Base
 
   # Devise authentication group for any signed in user
   devise_group :user, contains: [:teacher, :admin]
+
+  def render_json_message(status, options = {})
+    render json: {
+      message: options[:message],
+      to: options[:to],
+      errors: options[:errors]
+    }, status: status
+  end
 end

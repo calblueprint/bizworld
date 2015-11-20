@@ -17,6 +17,7 @@ gem 'momentjs-rails', '~> 2.10.6'
 gem 'pg', '~> 0.18.3'
 gem 'rails', '4.2.4'
 gem 'react-rails', '~> 1.3.0'
+gem 'roo', '~> 2.1.0'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim', '~> 3.0.6'

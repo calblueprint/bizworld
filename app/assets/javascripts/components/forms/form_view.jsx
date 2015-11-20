@@ -2,7 +2,7 @@
  * @prop classroom_id - the id of the classroom
  *       form_id      - the id of the form to display
  */
-class FormView extends React.Component {
+class FormView extends DefaultForm {
 
     constructor(props) {
         super(props);
@@ -17,14 +17,7 @@ class FormView extends React.Component {
     }
 
     _submitAnswers = (e) => {
-        const fields = $.extend({}, this.state, { student : $('.student').val() });
-        $.post(`/forms/${this.props.form_id}/submit`, fields)
-            .done((msg) => {
-                toastr.success(msg.message);
-            })
-            .fail((xhr, status, error) => {
-                toastr.error(JSON.parse(xhr.responseText).message);
-            });
+        this._attemptAction(`/forms/${this.props.form_id}/submit`, this._formFields());
     }
 
     render() {
@@ -39,3 +32,8 @@ class FormView extends React.Component {
         );
     }
 }
+
+FormView.propTypes = {
+    classroom_id : React.PropTypes.number.isRequired,
+    form_id      : React.PropTypes.number.isRequired,
+};

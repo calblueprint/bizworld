@@ -5,18 +5,15 @@ class StudentsTable extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            students: [],
-            classroom_id: this.props.classroom_id
-        };
+        this.state = { students: [] };
     }
 
     componentDidMount() {
         this._fetchStudents();
     }
 
-    _fetchStudents() {
-        $.getJSON("/classrooms/" + this.state.classroom_id)
+    _fetchStudents = () => {
+        $.getJSON(`/classrooms/${this.props.classroom_id}`)
             .done((data) => {
                 this.setState({ students: data.students });
             })
@@ -34,6 +31,8 @@ class StudentsTable extends React.Component {
         });
         return (
             <div className="row">
+                <UploadRoster success      = {this._fetchStudents}
+                              classroom_id = {this.props.classroom_id} />
                 <div className="col-md-8">
                     <table className="table">
                         <thead>
@@ -66,6 +65,10 @@ class Student extends React.Component {
         this.state = { student: this.props.student };
     }
 
+    _formattedScore(score) {
+        return (score) ? `${(score*100).toFixed(2)}%` : "N/A";
+    }
+
     render() {
         return (
             <tr>
@@ -76,10 +79,10 @@ class Student extends React.Component {
                     { this.state.student.last_name }
                 </td>
                 <td>
-                    { this.state.student.pre_score }
+                    { this._formattedScore(this.state.student.pre_score) }
                 </td>
                 <td>
-                    { this.state.student.post_score }
+                    { this._formattedScore(this.state.student.post_score) }
                 </td>
             </tr>
         );

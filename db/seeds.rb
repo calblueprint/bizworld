@@ -42,8 +42,6 @@ end
 def make_students
   1.upto(30) do |n|
     student = Student.create(
-      pre_score: 0.0,
-      post_score: 0.0,
       first_name: FFaker::Name.first_name,
       last_name: FFaker::Name.last_name
     )

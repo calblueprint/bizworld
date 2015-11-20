@@ -12,6 +12,13 @@ class DefaultForm extends React.Component {
         this.setState({ [$(e.target).attr("name")] : $(e.target).val() });
     }
 
+    _handleDateRangeChange = (startDate, endDate) => {
+        this.setState({
+            start_date : startDate,
+            end_date   : endDate,
+        });
+    }
+
     _formFields() {
         // Necessary because bootstrap-select does not fire onChange events
         const extraFields = { };

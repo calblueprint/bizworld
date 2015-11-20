@@ -8,4 +8,25 @@ class ClassroomsController < ApplicationController
       format.json { render json: @classroom, serializer: ClassroomSerializer, root: false }
     end
   end
+
+  def upload
+    roster = Roo::Spreadsheet.open(params[:file].path)
+    students = []
+    begin
+      attempt_upload(roster, students)
+    rescue
+      students.map { |student, _| student.destroy }
+      render_json_message(:forbidden, errors: ["Roster upload failed."])
+    end
+  end
+
+  private
+
+  def attempt_upload(roster, students)
+    roster.each(first_name: "First Name", last_name: "Last Name").with_index
+      .reject { |_, index| index == 0 }
+      .map    { |data, _| students << Student.create!(data) }
+    Classroom.find(params[:id]).update!(students: students)
+    render_json_message(:ok, message: "Roster uploaded successfully!")
+  end
 end
