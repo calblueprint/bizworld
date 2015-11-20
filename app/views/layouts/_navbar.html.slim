@@ -1,0 +1,14 @@
+nav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      a.navbar-brand href="/" Bizworld
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        - if current_admin
+            li = link_to 'All Classrooms', classrooms_admins_path
+        - if current_teacher
+            li = link_to 'My Profile', current_teacher
+            li = link_to 'My Classrooms', classrooms_teacher_path(current_teacher)
+        - if current_user
+            li = link_to 'Sign out', destroy_session_path, method: :delete
+

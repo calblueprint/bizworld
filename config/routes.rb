@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_scope :teacher do
     post '/sign_up' => 'registrations#create'
     post '/sign_in' => 'sessions#create', :as => :create_session
-    get '/sign_out' => 'sessions#destroy', :as => :destroy_session
+    delete '/sign_out' => 'sessions#destroy', :as => :destroy_session
   end
 
   resources :partners
