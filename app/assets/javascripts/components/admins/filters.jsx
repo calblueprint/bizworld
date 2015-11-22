@@ -79,3 +79,24 @@ class ClassroomsStatusFilter extends React.Component {
 ClassroomsStatusFilter.propTypes = {
     onFilterChange: React.PropTypes.func.isRequired,
 };
+
+class ClassroomsFilter extends React.Component {
+    render() {
+        return (
+            <div>
+                <ClassroomsStatusFilter onFilterChange    = {this.props.onFilterChange}
+                                        onDateRangeChange = {this.props.onDateRangeChange} />
+                <br />
+                <span>Teacher Email: </span>
+                <input type="text" name="email" onChange={this.props.onFilterChange} />
+                <br />
+            </div>
+        );
+    }
+}
+
+ClassroomsFilter.propTypes = {
+    onDateRangeChange : React.PropTypes.func.isRequired,
+    onFilterChange    : React.PropTypes.func.isRequired
+};
+

@@ -58,9 +58,8 @@ class ClassroomsTable extends React.Component {
             <div className="row">
                 <div className="col-md-8 col-md-offset-2">
                     <form className="filterForm">
-                        <ClassroomsStatusFilter onFilterChange={this._handleFilterChange}
-                                                onDateRangeChange={this._handleDateRangeChange} />
-                        <br />
+                        <ClassroomsFilter onFilterChange    = {this._handleFilterChange} 
+                                          onDateRangeChange = {this._handleDateRangeChange} />
                         <input name="submit" type="button" value="Submit" onClick={this._fetchClassrooms}/>
                     </form>
                     <table className="table">
@@ -74,7 +73,7 @@ class ClassroomsTable extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {classrooms}
+                            { classrooms }
                         </tbody>
                     </table>
                 </div>
@@ -82,8 +81,6 @@ class ClassroomsTable extends React.Component {
         );
     }
 }
-
-ClassroomsTable.propTypes = {};
 
 /**
  * @prop classroom - the info about this classroom
