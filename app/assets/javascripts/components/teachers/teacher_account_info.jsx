@@ -26,13 +26,10 @@ class TeacherAccountInfo extends DefaultForm {
             });
     }
 
-    _changeButton = (e) => {
-        this.setState({ editable : !this.state.editable });
-    }
-
-    _showInput = (label, data) => {
+    _showInput = (label, name, data) => {
         return (
             <EditableInput label        = { label }
+                           name         = { name }
                            data         = { data }
                            editable     = { this.state.editable }
                            handleChange = { this._handleChange} />
@@ -53,17 +50,17 @@ class TeacherAccountInfo extends DefaultForm {
         return (
             <div>
                 <h1 className="teacher-account-header">Your Account</h1>
-                { this._showInput("First Name", this.state.teacher.first_name) }
-                { this._showInput("Last Name", this.state.teacher.last_name) }
-                { this._showInput("Email", this.state.teacher.email) }
-                { this._showInput("Phone", this.state.teacher.phone_number) }
-                { this._showInput("School", this.state.teacher.school) }
-                { this._showInput("City", this.state.teacher.city) }
+                { this._showInput("First Name", "first_name", this.state.teacher.first_name) }
+                { this._showInput("Last Name", "last_name", this.state.teacher.last_name) }
+                { this._showInput("Email", "email", this.state.teacher.email) }
+                { this._showInput("Phone", "phone_number", this.state.teacher.phone_number) }
+                { this._showInput("School", "school", this.state.teacher.school) }
+                { this._showInput("City", "city", this.state.teacher.city) }
                 { this._showSelect("State", this.state.teacher.state, false) }
                 { this._showSelect("Grades", gradesList, true) }
 
                 <FormEditToggle editable = { this.state.editable }
-                                update   = { this._changeButton } />
+                                update   = { this._toggleEdit } />
             </div>
         );
     }

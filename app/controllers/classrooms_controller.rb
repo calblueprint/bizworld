@@ -20,6 +20,18 @@ class ClassroomsController < ApplicationController
     end
   end
 
+  def update
+    if Classroom.find(params[:id]).update!(update_params)
+      render json: {
+        message: 'Classroom successfully updated!'
+      }, status: :ok
+    else
+      render json: {
+        message: 'Classroom update failed.'
+      }, status: :forbidden
+    end
+  end
+
   private
 
   def attempt_upload(roster, students)
@@ -28,5 +40,9 @@ class ClassroomsController < ApplicationController
       .map    { |data, _| students << Student.create!(data) }
     Classroom.find(params[:id]).update!(students: students)
     render_json_message(:ok, message: "Roster uploaded successfully!")
+  end
+
+  def update_params
+    params.permit(:name, :start_date, :end_date)
   end
 end

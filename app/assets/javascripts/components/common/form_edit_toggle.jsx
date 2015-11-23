@@ -1,6 +1,7 @@
 /**
  * @prop editable - true if fields are editable
  * @prop update   - function to toggle editable mode true/false
+ * @prop save     - function to saves the state of the form
  */
 class FormEditToggle extends React.Component {
 
@@ -12,7 +13,7 @@ class FormEditToggle extends React.Component {
                     <input name="editable" type="button" value="Cancel"
                         className="button" onClick={this.props.update} />
                     <input type="button" value="Save Changes"
-                        className="button submit-button" onClick={this.props.update} />
+                        className="button submit-button" onClick={this.props.save} />
                 </div>
             )
         } else {

@@ -1,5 +1,5 @@
 /**
- * @prop classroom_id: id for classroom
+ * @prop classroom_id - id for classroom
  */
 class StudentsTable extends React.Component {
 
@@ -25,8 +25,8 @@ class StudentsTable extends React.Component {
     render() {
         const students = this.state.students.map((student) => {
             return (
-                <Student student  = {student}
-                         key      = {student.id} />
+                <Student student = {student}
+                         key     = {student.id} />
             );
         });
         return (
@@ -53,7 +53,9 @@ class StudentsTable extends React.Component {
     }
 }
 
-StudentsTable.propTypes = { classroom_id: React.PropTypes.number };
+StudentsTable.propTypes = {
+    classroom_id: React.PropTypes.number,
+};
 
 /**
  * @prop student - the info about this student
@@ -91,3 +93,95 @@ class Student extends React.Component {
 
 Student.propTypes = { student: React.PropTypes.object.isRequired };
 Student.defaultProps = { student: {} };
+
+/**
+ * @prop classroom_id - id of classroom
+ */
+class ClassInfo extends DefaultForm {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            classroom: { students: [] },
+            editable: false,
+        };
+    }
+
+    _fetchClassInfo = () => {
+        $.getJSON(`/classrooms/${this.props.classroom_id}`)
+            .done((data) => {
+                this.setState({ classroom: data });
+            })
+            .fail((xhr, status, err) => {
+                console.error(xhr, status, err.toString());
+            });
+    }
+
+    componentDidMount() {
+        this._fetchClassInfo();
+    }
+
+    _showInput = (label, name, data) => {
+        return (
+            <EditableInput label        = { label }
+                           name         = { name }
+                           data         = { data }
+                           editable     = { this.state.editable }
+                           handleChange = { this._handleChange} />
+        );
+    }
+
+    _showDateRange = (label, startDate, endDate) => {
+        return (
+            <EditableDateRange label        = { label }
+                               startDate    = { startDate }
+                               endDate      = { endDate }
+                               handleChange = { this._handleDateRangeChange }
+                               editable     = { this.state.editable } />
+        );
+    }
+
+    _handleDateRangeChange = (startDate, endDate) => {
+        this.setState({
+            start_date : startDate,
+            end_date   : endDate,
+        });
+    }
+
+    _attemptSave = (e) => {
+        $.ajax({
+            url: `/classrooms/${this.props.classroom_id}`,
+            type: 'PUT',
+            data: this.state,
+            success: (msg) => {
+                toastr.success(msg.message);
+                this.setState({ editable: false });
+                this._fetchClassInfo();
+            },
+            error: (xhr, status, error) => {
+               JSON.parse(xhr.responseText).errors.forEach((error) => {
+                    toastr.error(error);
+                });
+            }
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <div> Classroom ID: {this.props.classroom_id} </div>
+                <div> Number students: { this.state.classroom.students.length } </div>
+                { this._showInput("Classroom Name", "name", this.state.classroom.name) }
+                { this._showDateRange("Date Range", this.state.classroom.start_date, this.state.classroom.end_date) }
+
+                <FormEditToggle editable = { this.state.editable }
+                                update   = { this._toggleEdit }
+                                save     = { this._attemptSave } />
+            </div>
+        );
+    }
+}
+
+ClassInfo.propTypes = {
+    classroom_id : React.PropTypes.number.isRequired,
+};
