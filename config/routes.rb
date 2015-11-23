@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :programs, only: [:index]
+
   resources :classrooms do
     member do
       post 'upload'

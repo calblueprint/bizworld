@@ -17,12 +17,13 @@ class Classroom < ActiveRecord::Base
   has_many :students
   belongs_to :program
   belongs_to :teacher
+  validates :name, presence: true
 
-  def self.active(_options)
+  def self.active(_options = {})
     where("end_date >= ? AND start_date <= ?", Date.current, Date.current)
   end
 
-  def self.inactive(_options)
+  def self.inactive(_options = {})
     where("end_date < ? OR start_date > ?", Date.current, Date.current)
   end
 

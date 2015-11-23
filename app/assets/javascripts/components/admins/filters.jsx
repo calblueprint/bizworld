@@ -1,35 +1,4 @@
 /**
- * @prop onFilterChange   - function that is called onChange for inputs, updates state
- * @prop initialStartDate - initial start date for date range
- * @prop initialEndDate   - initial end date for date range
- */
-class DateRangeFilter extends React.Component {
-    componentDidMount() {
-        options = {
-            locale: {
-                format: 'YYYY-MM-DD'
-            },
-            startDate: this.props.initialStartDate,
-            endDate: this.props.initialEndDate
-        }
-        $('input[class="daterange"]').daterangepicker(options, (start, end, label) => {
-            this.props.onFilterChange(start.format('YYYY-MM-DD'),
-                                      end.format('YYYY-MM-DD'));
-        });
-    }
-
-    render() {
-        return (
-            <input type="text" className="daterange"/>
-        );
-    }
-}
-
-DateRangeFilter.propTypes = {
-    onFilterChange: React.PropTypes.func.isRequired,
-};
-
-/**
  * @prop onFilterChange - function that is called onChange for inputs, updates state
  */
 class ClassroomsStatusFilter extends React.Component {
@@ -39,9 +8,9 @@ class ClassroomsStatusFilter extends React.Component {
     }
 
     _handleSelectStatusChange = (e) => {
-        // Updates state of status variable and whether to show the dateRangeFilter.
+        // Updates state of status variable and whether to show the dateRangeInput.
         this.props.onFilterChange(e);
-        this.setState({ showDateRangeFilter: $(e.target).val() === "date_range" });
+        this.setState({ showDateRangeInput: $(e.target).val() === "date_range" });
     }
 
     _handleDateRangeChange = (startDate, endDate) => {
@@ -53,12 +22,12 @@ class ClassroomsStatusFilter extends React.Component {
     }
 
     render() {
-        var dateRangeFilter;
-        if (this.state.showDateRangeFilter) {
-            dateRangeFilter = (
-                <DateRangeFilter onFilterChange={this._handleDateRangeChange}
-                                 initialStartDate={this.state.rangeStart}
-                                 initialEndDate={this.state.rangeEnd} />
+        let dateRangeInput;
+        if (this.state.showDateRangeInput) {
+            dateRangeInput = (
+                <DateRangeInput onFilterChange   = { this._handleDateRangeChange }
+                                initialStartDate = { this.state.rangeStart }
+                                initialEndDate   = { this.state.rangeEnd } />
             );
         }
 
@@ -70,7 +39,7 @@ class ClassroomsStatusFilter extends React.Component {
                     <option value="">All Classrooms</option>
                 </select>
                 <br />
-                {dateRangeFilter}
+                { dateRangeInput }
             </div>
         );
     }

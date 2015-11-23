@@ -5,6 +5,7 @@
 //= require bootstrap/dropdown
 //= require moment
 //= require daterangepicker
+//= require bootstrap/modal
 //= require turbolinks
 //= require react
 //= require react_ujs

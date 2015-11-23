@@ -8,6 +8,10 @@
 $color-list: $blue $green $red;
 
 // Classroom view
+.classroom-card a {
+  text-decoration: none;
+  color: $gray-dark-84;
+}
 
 .teacher-classroom-container {
   @extend .content-container;

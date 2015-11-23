@@ -1,8 +1,9 @@
 
 /**
- * @prop classrooms - the list of classrooms for a teacher
- *       teacher_id - the :id associated with the teacher
+ * @prop teacher_id - the :id associated with the teacher
+ *       type       - active or inactive classroom
  */
+
 class TeacherModal extends React.Component {
     constructor(props) {
         super(props);
@@ -36,11 +37,14 @@ class TeacherModal extends React.Component {
         let createCourse;
         if (this.props.type == 'active') {
             createCourse = (
-                <div className="classroom-card-col add-course">
-                  <div className="classroom-card add-card">
-                      <span className="fa fa-plus"></span>
-                      Create a new course
-                  </div>
+                <div type="button"className="classroom-card-col add-course">
+                    <div data-toggle="modal" data-target="#newClassroomModal" >
+                        <div className="classroom-card add-card">
+                            <span className="fa fa-plus"></span>
+                            Create a new course
+                        </div>
+                    </div>
+                    <ClassroomCreationModal teacher_id={this.props.teacher_id} />
                 </div>
             );
         }
@@ -54,7 +58,10 @@ class TeacherModal extends React.Component {
     }
 }
 
-TeacherModal.propTypes = { classrooms: React.PropTypes.array.isRequired };
+TeacherModal.propTypes = {
+    teacher_id : React.PropTypes.number.isRequired,
+    type       : React.PropTypes.string.isRequired
+};
 
 /**
  * @prop classroom - the info about this classroom
@@ -64,24 +71,21 @@ class ClassroomContainer extends React.Component {
         super(props);
     }
 
-    _clickClassroom = (e) => {
-        window.location.href = `/classrooms/${this.props.classroom.id}`;
-    }
-
     render() {
         const classType = `classroom-${this.props.classroom.program.id}`
         return (
             <div className="classroom-card-col">
-                <div className={`classroom-card ${classType}`}
-                       onClick={this._clickClassroom} >
-                    <div className="name-container">
-                        <h1 className="title">{ this.props.classroom.name }</h1>
-                        <h2 className="program">{ this.props.classroom.program.name }</h2>
-                    </div>
-                    <div className="count-container">
-                        <h3 className="count">{ this.props.classroom.students.length }</h3>
-                        <h2 className="student-label">students</h2>
-                    </div>
+                <div className={`classroom-card ${classType}`}>
+                    <a href={`/classrooms/${this.props.classroom.id}`}>
+                        <div className="name-container">
+                            <h1 className="title">{ this.props.classroom.name }</h1>
+                            <h2 className="program">{ this.props.classroom.program.name }</h2>
+                        </div>
+                        <div className="count-container">
+                            <h3 className="count">{ this.props.classroom.students.length }</h3>
+                            <h2 className="student-label">students</h2>
+                        </div>
+                    </a>
                 </div>
             </div>
         );

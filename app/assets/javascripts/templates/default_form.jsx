@@ -36,7 +36,7 @@ class DefaultForm extends React.Component {
         $.post(endpoint, data)
             .done((msg) => {
                 toastr.success(msg.message);
-                window.location.href = `${msg.to}`;
+                window.location.href = msg.to;
             })
             .fail((xhr, status, error) => {
                 JSON.parse(xhr.responseText).errors.forEach((error) => {

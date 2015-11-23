@@ -1,6 +1,15 @@
 class ClassroomsController < ApplicationController
   before_action :authenticate_user!, if: proc { request.format.html? }
 
+  def create
+    classroom = Classroom.create(classroom_params)
+    if classroom.save
+      render_json_message(:ok, message: 'Classroom create!', to: classroom_path(classroom))
+    else
+      render_json_message(:forbidden, errors: classroom.errors.full_messages)
+    end
+  end
+
   def show
     @classroom = Classroom.find(params[:id])
     respond_to do |format|
@@ -41,6 +50,9 @@ class ClassroomsController < ApplicationController
     Classroom.find(params[:id]).update!(students: students)
     render_json_message(:ok, message: "Roster uploaded successfully!")
   end
+
+  def classroom_params
+    params.permit(:name, :program_id, :teacher_id, :start_date, :end_date)
 
   def update_params
     params.permit(:name, :start_date, :end_date)
