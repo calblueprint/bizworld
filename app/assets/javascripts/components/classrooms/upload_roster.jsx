@@ -39,11 +39,11 @@ class UploadRoster extends React.Component {
     render() {
         return (
             <div>
-                <form className="uploader"
+                <form className="upload-roster-container"
                     encType="multipart/form-data" >
                     <input ref="file" type="file" name="file"
                         className="upload-file" accept={FILE_INPUTS.join(",")} />
-                    <input type="button" value="Upload Roster"
+                    <input className="button upload-button" type="button" value="Upload Roster"
                         onClick={this._uploadRoster} />
                 </form>
             </div>

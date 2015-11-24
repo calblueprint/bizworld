@@ -1,5 +1,5 @@
-nav.navbar.navbar-default
-  .container-fluid
+nav.navbar.navbar-inverse
+  .navbar-container
     .navbar-header
       a.navbar-brand href="/" Bizworld
     .collapse.navbar-collapse
@@ -11,4 +11,3 @@ nav.navbar.navbar-default
             li = link_to 'My Classrooms', classrooms_teacher_path(current_teacher)
         - if current_user
             li = link_to 'Sign out', destroy_session_path, method: :delete
-

@@ -1,4 +1,37 @@
 /**
+ * @prop onFilterChange   - function that is called onChange for inputs, updates state
+ * @prop initialStartDate - initial start date for date range
+ * @prop initialEndDate   - initial end date for date range
+ */
+class DateRangeFilter extends React.Component {
+    componentDidMount() {
+        options = {
+            locale: {
+                format: 'YYYY-MM-DD'
+            },
+            startDate: this.props.initialStartDate,
+            endDate: this.props.initialEndDate
+        }
+        $('input[class="daterange"]').daterangepicker(options, (start, end, label) => {
+            this.props.onFilterChange(start.format('YYYY-MM-DD'),
+                                      end.format('YYYY-MM-DD'));
+        });
+    }
+
+    render() {
+        return (
+            <div className="date-input-container">
+                <input type="text" className="daterange"/>
+            </div>
+        );
+    }
+}
+
+DateRangeFilter.propTypes = {
+    onFilterChange: React.PropTypes.func.isRequired,
+};
+
+/**
  * @prop onFilterChange - function that is called onChange for inputs, updates state
  */
 class ClassroomsStatusFilter extends React.Component {
@@ -32,13 +65,12 @@ class ClassroomsStatusFilter extends React.Component {
         }
 
         return (
-            <div>
-                <select name="status" onChange={this._handleSelectStatusChange}>
+            <div className="classroom-status-filter">
+                <select className="classroom-status-select" name="status" onChange={this._handleSelectStatusChange}>
                     <option value="active">Currently Active</option>
                     <option value="date_range">Date Range</option>
                     <option value="">All Classrooms</option>
                 </select>
-                <br />
                 { dateRangeInput }
             </div>
         );
@@ -52,13 +84,13 @@ ClassroomsStatusFilter.propTypes = {
 class ClassroomsFilter extends React.Component {
     render() {
         return (
-            <div>
+            <div className="temp-class">
                 <ClassroomsStatusFilter onFilterChange    = {this.props.onFilterChange}
                                         onDateRangeChange = {this.props.onDateRangeChange} />
-                <br />
-                <span>Teacher Email: </span>
-                <input type="text" name="email" onChange={this.props.onFilterChange} />
-                <br />
+                <div className="filter-input-container">
+                    <input placeholder="teacher email" type="text" name="email"
+                        onChange={this.props.onFilterChange} />
+                </div>
             </div>
         );
     }
@@ -68,4 +100,3 @@ ClassroomsFilter.propTypes = {
     onDateRangeChange : React.PropTypes.func.isRequired,
     onFilterChange    : React.PropTypes.func.isRequired
 };
-

@@ -31,13 +31,9 @@ class ClassroomsController < ApplicationController
 
   def update
     if Classroom.find(params[:id]).update!(update_params)
-      render json: {
-        message: 'Classroom successfully updated!'
-      }, status: :ok
+      render_json_message(:ok, message: "Classroom successfully updated!")
     else
-      render json: {
-        message: 'Classroom update failed.'
-      }, status: :forbidden
+      render_json_message(:forbidden, message: 'Classroom update failed.')
     end
   end
 
@@ -53,6 +49,7 @@ class ClassroomsController < ApplicationController
 
   def classroom_params
     params.permit(:name, :program_id, :teacher_id, :start_date, :end_date)
+  end
 
   def update_params
     params.permit(:name, :start_date, :end_date)

@@ -20,7 +20,9 @@ class DateRangeInput extends React.Component {
 
     render() {
         return (
-            <input type="text" className="daterange"/>
+            <div className="date-input-container">
+              <input type="text" className="daterange"/>
+            </div>
         );
     }
 }

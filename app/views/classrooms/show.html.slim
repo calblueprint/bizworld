@@ -1,9 +1,9 @@
-h1 All Students
-= react_component "StudentsTable", { \
-    classroom_id: @classroom.id,     \
-}
+.classroom-view-container
+  = react_component "ClassInfo", { \
+      classroom_id: @classroom.id, \
+    }
 
-h2 Class Info Box
-= react_component "ClassInfo", { \
-    classroom_id: @classroom.id, \
-}
+  .student-info-container
+    = react_component "StudentsTable", { \
+        classroom_id: @classroom.id,     \
+      }

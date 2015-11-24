@@ -9,10 +9,11 @@ $gray-dark-60                : rgba($gray-dark, 0.60);
 $gray-dark-48                : rgba($gray-dark, 0.48);
 $gray-dark-36                : rgba($gray-dark, 0.36);
 $gray-dark-24                : rgba($gray-dark, 0.24);
-$gray-dark-12                : rgba($gray-dark, 0.84);
+$gray-dark-12                : rgba($gray-dark, 0.12);
 
 // $gray-light is used for borders
 $gray-light                  : #E1E1E1;
+$gray-light-48               : rgba($gray-light, 0.48);
 
 // these colors are subject to change
 $red                    : #F02B4B;
@@ -45,6 +46,15 @@ $teal-60                : rgba($teal, 0.60);
 $teal-36                : rgba($teal, 0.36);
 $teal-24                : rgba($teal, 0.24);
 $teal-06                : rgba($teal, 0.60);
+
+$white                   : #FFFFFF;
+$white-84                : rgba($white, 0.84);
+$white-72                : rgba($white, 0.72);
+$white-60                : rgba($white, 0.60);
+$white-48                : rgba($white, 0.48);
+$white-36                : rgba($white, 0.36);
+$white-24                : rgba($white, 0.24);
+$white-12                : rgba($white, 0.12);
 
 // font size
 $f-size-title           : 36px;

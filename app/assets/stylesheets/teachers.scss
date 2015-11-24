@@ -1,7 +1,3 @@
-// Place all the styles related to the teachers controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 @import "partials/variables";
 @import "partials/mixins";
 @import "partials/layout";
@@ -19,7 +15,6 @@ $color-list: $blue $green $red;
   border: none;
   margin: 0 auto;
   max-width: 1200px;
-  padding: 40px;
 }
 
 .classes-container-title {

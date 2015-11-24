@@ -1,0 +1,72 @@
+@import "partials/variables";
+@import "partials/mixins";
+@import "partials/layout";
+
+.admin-view-container {
+  @extend .content-container;
+  background: transparent;
+  border: none;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0;
+}
+
+.classroom-status-filter {
+  display: inline-block;
+}
+
+.classroom-status-select {
+  @include appearance(none);
+  background-image: image-url("icons/menulist.svg");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 30px;
+  border: none;
+  border-bottom: 2px solid $gray-light;
+  border-radius: 0;
+  font-size: $f-size-xxl;
+  margin-right: 15px;
+  outline: none;
+  padding-bottom: 3px;
+  padding-right: 30px;
+  transition: $fast;
+
+  &:hover {
+    border-color: $gray-dark-48;
+  }
+}
+
+.filter-input-container {
+  @extend .input-container;
+  float: right;
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+.date-input-container {
+  @extend .input-container;
+  display: inline-block;
+  margin: 0;
+  min-width: 200px;
+}
+
+.temp-class {
+  display: inline-block;
+  margin-left: 10px;
+  width: 90%;
+}
+
+.admin-submit-button {
+  @extend .submit-button;
+  margin: 0;
+  margin-left: 10px;
+  vertical-align: top;
+}
+
+.admin-table {
+  tbody {
+    tr {
+      cursor: pointer;
+    }
+  }
+}

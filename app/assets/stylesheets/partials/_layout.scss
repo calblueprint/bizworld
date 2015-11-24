@@ -18,6 +18,38 @@ body {
   color: $gray-dark;
 }
 
+.navbar {
+  background: $gray-dark;
+  border: 0;
+  border-radius: 0;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar-inverse {
+  .navbar-brand {
+    color: white;
+    font-weight: bold;
+    padding-left: 0;
+  }
+
+  .navbar-nav {
+    li {
+      a {
+        color: $white-72;
+        transition: $fast;
+
+        &:hover {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
 .content-container {
   background: white;
   border: 1px solid $gray-light;
@@ -81,6 +113,52 @@ body {
 
   &:focus {
     background: $blue;
+  }
+}
+
+.table {
+  width: 100%;
+
+  thead {
+    background: $gray-dark;
+    color: white;
+    padding: 20px;
+
+    th {
+      padding: 10px;
+
+      &:first-of-type {
+        padding-left: 30px;
+      }
+    }
+  }
+
+  tbody {
+
+    tr {
+      border-bottom: 1px solid $gray-light;
+
+      &:hover {
+        background: $gray-light-48;
+      }
+    }
+
+    td {
+      padding: 15px 10px;
+
+      &.name {
+        font-weight: bold;
+      }
+
+      &:first-of-type {
+        padding-left: 30px;
+      }
+
+      &:last-of-type {
+        padding-right: 30px;
+      }
+    }
+
   }
 }
 

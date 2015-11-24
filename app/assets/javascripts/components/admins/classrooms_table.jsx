@@ -55,15 +55,17 @@ class ClassroomsTable extends React.Component {
         });
 
         return (
-            <div className="row">
-                <div className="col-md-8 col-md-offset-2">
-                    <form className="filterForm">
-                        <ClassroomsFilter onFilterChange    = {this._handleFilterChange} 
+            <div>
+                <div>
+                    <form className="filter-form-container">
+                        <ClassroomsFilter onFilterChange    = {this._handleFilterChange}
                                           onDateRangeChange = {this._handleDateRangeChange} />
-                        <input name="submit" type="button" value="Submit" onClick={this._fetchClassrooms}/>
+                        <input className="admin-submit-button" name="submit"
+                            type="button" value="Submit" onClick={this._fetchClassrooms}/>
                     </form>
-                    <table className="table">
-                        <thead>
+                    <table id="header-fixed"></table>
+                    <table className="table admin-table">
+                        <thead id="table-head">
                             <tr>
                                 <th>Term</th>
                                 <th>Teacher</th>
@@ -92,9 +94,13 @@ class ClassroomsTableRow extends React.Component {
         this.state = { classroom: this.props.classroom };
     }
 
+    _handleRowClick = (e) => {
+       window.location.href = `/classrooms/${this.props.classroom.id}`;
+    }
+
     render() {
         return (
-            <tr>
+            <tr onClick={this._handleRowClick}>
                 <td>
                     { this.state.classroom.term }
                 </td>

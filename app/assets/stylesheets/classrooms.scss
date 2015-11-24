@@ -1,5 +1,66 @@
-// Place all the styles related to the classrooms controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "partials/variables";
+@import "partials/mixins";
+@import "partials/layout";
 
-@import "partials/variables"
+.classroom-view-container {
+  @extend .content-container;
+  background: transparent;
+  border: none;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0;
+  position: relative;
+}
+
+.classroom-name {
+  display: inline-block;
+  font-size: $f-size-xxl;
+  margin: 0;
+  margin-top: 40px;
+}
+
+.class-info-container {
+  @extend .content-container;
+  color: $gray-dark;
+  left: 0;
+  padding: 30px;
+  position: absolute;
+  width: 25%;
+
+  h1 {
+    font-size: $f-size-lg;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  .fa {
+    margin-right: 7px;
+  }
+}
+
+.student-info-container {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 70%;
+}
+
+.student-table-container {
+  @extend .content-container;
+  min-height: 500px;
+  padding: 0;
+  margin: 0;
+}
+
+.upload-roster-container {
+  margin-bottom: 25px;
+
+  .upload-button {
+    margin: 0;
+  }
+
+  input {
+    display: inline-block;
+  }
+}

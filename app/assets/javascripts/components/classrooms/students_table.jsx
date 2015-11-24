@@ -30,24 +30,24 @@ class StudentsTable extends React.Component {
             );
         });
         return (
-            <div className="row">
+            <div className="">
                 <UploadRoster success      = {this._fetchStudents}
                               classroom_id = {this.props.classroom_id} />
-                <div className="col-md-8">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Pre Score</th>
-                                <th>Post Score</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {students}
-                        </tbody>
-                    </table>
-                </div>
+                  <div className="student-table-container">
+                      <table className="table student-table">
+                          <thead>
+                              <tr>
+                                  <th>FIRST</th>
+                                  <th>LAST</th>
+                                  <th className="score">PRE-SCORE</th>
+                                  <th className="score">POST-SCORE</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {students}
+                          </tbody>
+                      </table>
+                 </div>
             </div>
         );
     }
@@ -141,13 +141,6 @@ class ClassInfo extends DefaultForm {
         );
     }
 
-    _handleDateRangeChange = (startDate, endDate) => {
-        this.setState({
-            start_date : startDate,
-            end_date   : endDate,
-        });
-    }
-
     _attemptSave = (e) => {
         $.ajax({
             url: `/classrooms/${this.props.classroom_id}`,
@@ -169,14 +162,26 @@ class ClassInfo extends DefaultForm {
     render() {
         return (
             <div>
-                <div> Classroom ID: {this.props.classroom_id} </div>
-                <div> Number students: { this.state.classroom.students.length } </div>
-                { this._showInput("Classroom Name", "name", this.state.classroom.name) }
-                { this._showDateRange("Date Range", this.state.classroom.start_date, this.state.classroom.end_date) }
+                <h1 className="classroom-name">
+                    { this.state.classroom.name }
+                </h1>
+                <div className="class-info-container">
+                    <h1>Class Info</h1>
+                    <div>
+                        <span className="fa fa-info-circle"></span>
+                        Classroom ID: { this.props.classroom_id }
+                    </div>
+                    <div>
+                        <span className="fa fa-user"></span>
+                        Number of students: { this.state.classroom.students.length }
+                    </div>
+                    { this._showInput("Classroom Name", "name", this.state.classroom.name) }
+                    { this._showDateRange("Date Range", this.state.classroom.start_date, this.state.classroom.end_date) }
 
-                <FormEditToggle editable = { this.state.editable }
-                                update   = { this._toggleEdit }
-                                save     = { this._attemptSave } />
+                    <FormEditToggle editable = { this.state.editable }
+                                    update   = { this._toggleEdit }
+                                    save     = { this._attemptSave } />
+                </div>
             </div>
         );
     }
