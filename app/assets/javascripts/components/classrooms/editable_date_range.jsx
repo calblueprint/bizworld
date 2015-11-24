@@ -7,31 +7,13 @@
  */
 class EditableDateRange extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (this.props.editable) {
-            options = {
-                locale: {
-                    format: 'YYYY-MM-DD'
-                },
-                startDate: this.props.startDate,
-                endDate: this.props.endDate
-            }
-            $('input[class="daterange"]').daterangepicker(options, (start, end, label) => {
-                this.props.handleChange(start.format('YYYY-MM-DD'),
-                                          end.format('YYYY-MM-DD'));
-            });
-        }
-    }
-
     render() {
         var dateRange;
         if (this.props.editable) {
             dateRange = (
-                <input type="text" className="daterange"/>
+                <DateRangeInput onFilterChange   = { this.props.handleChange }
+                                initialStartDate = { this.props.startDate }
+                                initialEndDate   = { this.props.endDate } />
             );
         } else {
             dateRange = (
