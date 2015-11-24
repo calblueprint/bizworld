@@ -17,13 +17,8 @@ class TeacherAccountInfo extends DefaultForm {
     }
 
     _fetchTeacher(id) {
-        $.getJSON(`/teachers/${id}`)
-            .done((data) => {
-                this.setState({ teacher: data });
-            })
-            .fail((xhr, status, err) => {
-                console.error(xhr, status, err.toString());
-            });
+        const success = (data) => { this.setState({ teacher: data }) }
+        APIRequester.getJSON(`/teachers/${id}`, success)
     }
 
     _showInput = (label, name, data) => {

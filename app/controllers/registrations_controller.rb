@@ -7,15 +7,12 @@ class RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
     if resource.save
       sign_in(resource_name, resource)
-      render_json_message(:ok, message: 'Account created!', to: after_sign_up_path_for(resource))
+      render_json_message(:ok, message: 'Account created!', to:
+                          redirect_user_path(resource))
     else
       clean_up_passwords resource
       render_json_message(:forbidden, errors: resource.errors.full_messages)
     end
-  end
-
-  def after_sign_up_path_for(resource)
-    resource.is_a?(Teacher) ? classrooms_teacher_path(resource) : classrooms_admins_path
   end
 
   protected

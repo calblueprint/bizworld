@@ -162,10 +162,6 @@ body {
   }
 }
 
-
-
-
-
 // overriding bootstrap styles
 .bootstrap-select {
   button {
@@ -204,6 +200,7 @@ body {
       box-shadow: none;
       outline: none;
     }
+
     .dropdown-toggle {
       box-shadow: none;
     }
@@ -221,4 +218,9 @@ body {
 
 .form-control:focus {
   box-shadow: none;
+}
+
+// TODO(nnarayen 11/24): fix styling
+ul.dropdown-menu li.dropdown-link a {
+  color: $gray-dark;
 }

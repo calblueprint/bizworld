@@ -1,6 +1,3 @@
-/**
- * @prop status - The initial status to filter classrooms by. One of 'active', 'inactive', or ''
- */
 class ClassroomsTable extends React.Component {
 
     constructor(props) {
@@ -8,7 +5,7 @@ class ClassroomsTable extends React.Component {
         this.state = {
             classrooms: [],
             filters: {
-                status : this.props.status,
+                status : "active",
                 range : { }
             }
         };
@@ -19,13 +16,8 @@ class ClassroomsTable extends React.Component {
     }
 
     _fetchClassrooms = () => {
-        $.getJSON("/admins/classrooms", this.state.filters)
-            .done((data) => {
-                this.setState({ classrooms: data });
-            })
-            .fail((xhr, status, err) => {
-                console.error(xhr, status, err.toString());
-            });
+        const success = (data) => { this.setState({ classrooms: data }) }
+        APIRequester.getJSON("/admins/classrooms", success, this.state.filters);
     }
 
     _handleDateRangeChange = (startDate, endDate) => {
@@ -67,7 +59,6 @@ class ClassroomsTable extends React.Component {
                     <table className="table admin-table">
                         <thead id="table-head">
                             <tr>
-                                <th>Term</th>
                                 <th>Teacher</th>
                                 <th># Students</th>
                                 <th>Start Date</th>
@@ -101,9 +92,6 @@ class ClassroomsTableRow extends React.Component {
     render() {
         return (
             <tr onClick={this._handleRowClick}>
-                <td>
-                    { this.state.classroom.term }
-                </td>
                 <td>
                     { this.state.classroom.teacher.email }
                 </td>

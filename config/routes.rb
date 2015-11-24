@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     delete '/sign_out' => 'sessions#destroy', :as => :destroy_session
   end
 
-  resources :partners
+  resources :questions, only: [:update]
+
   resources :forms, only: [:show] do
     post 'submit'
   end
@@ -33,7 +34,7 @@ Rails.application.routes.draw do
     end
     resources :forms do
       collection do
-        get ':category', to: 'forms#display'
+        get ':category', to: 'forms#display', as: 'display'
       end
     end
   end

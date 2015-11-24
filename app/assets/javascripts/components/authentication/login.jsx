@@ -1,6 +1,6 @@
 /**
  * @prop viewType - type of view to toggle
- *       update   - function to update modal views
+ * @prop update   - function to update modal views
  */
 class LoginModal extends DefaultForm {
 
@@ -54,4 +54,3 @@ LoginModal.propTypes = {
     viewType : React.PropTypes.number.isRequired,
     update   : React.PropTypes.func.isRequired
 };
-LoginModal.defaultProps = { viewType: 1, update: () => {} };

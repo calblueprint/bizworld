@@ -1,0 +1,11 @@
+.form-container
+  .title-container class=("tint-#{@program.id}")
+    .program-name
+      span.program-icon.fa class=("icon-#{@program.id}")
+      h1 #{@program.name}
+    h1.form-title #{@form.category.capitalize}-Assessment Test
+
+  = react_component "FormView", { \
+    form_id: @form.id,            \
+    view: 1                       \
+  }

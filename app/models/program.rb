@@ -12,6 +12,6 @@
 
 class Program < ActiveRecord::Base
   has_many :classrooms
-  belongs_to :pre, class_name: 'Form'
-  belongs_to :post, class_name: 'Form'
+  belongs_to :pre, class_name: "Form"
+  belongs_to :post, class_name: "Form"
 end

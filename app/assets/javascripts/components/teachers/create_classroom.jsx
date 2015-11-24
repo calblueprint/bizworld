@@ -10,13 +10,8 @@ class ClassroomDropdown extends React.Component {
     }
 
     _fetchPrograms() {
-        $.getJSON(`/programs`)
-            .done((data) => {
-                this.setState({ programs: data });
-            })
-            .fail((xhr, status, err) => {
-                console.error(this.props.url, status, err.toString());
-            });
+        const success = (data) => { this.setState({ programs : data }) }
+        APIRequester.getJSON("/programs", success);
     }
 
     render() {

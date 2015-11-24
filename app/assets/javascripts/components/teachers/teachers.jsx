@@ -1,7 +1,7 @@
 
 /**
  * @prop teacher_id - the :id associated with the teacher
- *       type       - active or inactive classroom
+ * @prop type       - active or inactive classroom
  */
 
 class TeacherModal extends React.Component {
@@ -17,13 +17,8 @@ class TeacherModal extends React.Component {
     }
 
     _fetchClassrooms(id, params) {
-        $.getJSON(`/teachers/${id}/classrooms`, params)
-            .done((data) => {
-                this.setState({ classrooms: data });
-            })
-            .fail((xhr, status, err) => {
-                console.error(this.props.url, status, err.toString());
-            });
+        const success = (data) => { this.setState({ classrooms: data }) }
+        APIRequester.getJSON(`/teachers/${id}/classrooms`, success, params)
     }
 
     render() {

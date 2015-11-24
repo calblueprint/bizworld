@@ -13,13 +13,8 @@ class StudentsTable extends React.Component {
     }
 
     _fetchStudents = () => {
-        $.getJSON(`/classrooms/${this.props.classroom_id}`)
-            .done((data) => {
-                this.setState({ students: data.students });
-            })
-            .fail((xhr, status, err) => {
-                console.error(xhr, status, err.toString());
-            });
+        const success = (data) => { this.setState({ students: data.students }) }
+        APIRequester.getJSON(`/classrooms/${this.props.classroom_id}`, success);
     }
 
     render() {
@@ -92,7 +87,6 @@ class Student extends React.Component {
 }
 
 Student.propTypes = { student: React.PropTypes.object.isRequired };
-Student.defaultProps = { student: {} };
 
 /**
  * @prop classroom_id - id of classroom
@@ -108,13 +102,8 @@ class ClassInfo extends DefaultForm {
     }
 
     _fetchClassInfo = () => {
-        $.getJSON(`/classrooms/${this.props.classroom_id}`)
-            .done((data) => {
-                this.setState({ classroom: data });
-            })
-            .fail((xhr, status, err) => {
-                console.error(xhr, status, err.toString());
-            });
+        const success = (data) => { this.setState({ classroom: data}) }
+        APIRequester.getJSON(`/classrooms/${this.props.classroom_id}`, success);
     }
 
     componentDidMount() {
@@ -142,21 +131,12 @@ class ClassInfo extends DefaultForm {
     }
 
     _attemptSave = (e) => {
-        $.ajax({
-            url: `/classrooms/${this.props.classroom_id}`,
-            type: 'PUT',
-            data: this.state,
-            success: (msg) => {
-                toastr.success(msg.message);
-                this.setState({ editable: false });
-                this._fetchClassInfo();
-            },
-            error: (xhr, status, error) => {
-               JSON.parse(xhr.responseText).errors.forEach((error) => {
-                    toastr.error(error);
-                });
-            }
-        });
+        const success = (msg) => {
+            this.setState({ editable: false });
+            this._fetchClassInfo();
+        };
+        APIRequester.put(`/classrooms/${this.props.classroom_id}`, this.state,
+            success);
     }
 
     render() {

@@ -29,6 +29,6 @@ class DateRangeInput extends React.Component {
 
 DateRangeInput.propTypes = {
     onFilterChange   : React.PropTypes.func.isRequired,
-    initialStartDate : React.PropTypes.number,
-    initialEndDate   : React.PropTypes.number,
+    initialStartDate : React.PropTypes.string,
+    initialEndDate   : React.PropTypes.string,
 };

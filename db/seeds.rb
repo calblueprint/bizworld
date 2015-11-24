@@ -28,7 +28,6 @@ def make_classrooms
   six_months_ago = Date.yesterday.advance(months: -6)
   1.upto(10) do |n|
     classroom = Classroom.create(
-      term: "term#{n}",
       name: "Classroom#{n}",
       start_date: six_months_ago.advance(months: n),
       end_date: six_months_ago.advance(months: n+2)

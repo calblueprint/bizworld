@@ -7,12 +7,8 @@
  */
 class EditableInput extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
-        var inputVal;
+        let inputVal;
         if (this.props.editable) {
             inputVal = (
                 <input name={this.props.name} type="text"
@@ -20,15 +16,22 @@ class EditableInput extends React.Component {
                     onChange={this.props.handleChange} />
             );
         } else {
-            inputVal = this.props.data
+            inputVal = this.props.data;
+        }
+
+        let labelVal;
+        if (this.props.label) {
+            labelVal = (
+                <label htmlFor={this.props.label}>
+                    { this.props.label }:
+                </label>
+            );
         }
 
         return (
             <fieldset className="input-container">
                 <div className="label-container">
-                    <label htmlFor={this.props.label}>
-                        { this.props.label }:
-                    </label>
+                    { labelVal }
                 </div>
                 <div className="input-box-container">
                     { inputVal }

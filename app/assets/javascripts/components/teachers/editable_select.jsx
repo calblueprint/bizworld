@@ -10,6 +10,11 @@ class EditableSelect extends React.Component {
         super(props);
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return (this.props.editable != nextProps.editable ||
+            this.props.data != nextProps.data);
+    }
+
     componentDidUpdate(prevProps) {
         // Workaround since selectpicker creates duplicate DOM elements
         if (prevProps.editable) {

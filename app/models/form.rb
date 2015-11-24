@@ -11,4 +11,8 @@
 class Form < ActiveRecord::Base
   has_one :program
   has_many :questions
+
+  def program
+    Program.where("pre_id = ? OR post_id = ?", id, id).first
+  end
 end

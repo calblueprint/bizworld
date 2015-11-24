@@ -1,14 +1,17 @@
 class FormsController < ApplicationController
+  before_action :authenticate_admin!, only: [:show], if: proc { request.format.html? }
+
   def display
     @category = params[:category]
     @classroom = Classroom.find(params[:classroom_id])
     @teacher = Teacher.find(@classroom.teacher_id)
-    @program = Program.find(@classroom.program_id)
-    @form = @classroom.program.send(@category)
+    @program = @classroom.program
+    @form = @program.send(@category)
   end
 
   def show
     @form = Form.find(params[:id])
+    @program = @form.program
     respond_to do |format|
       format.html
       format.json { render json: @form, serializer: FormSerializer, root: false }
@@ -22,7 +25,7 @@ class FormsController < ApplicationController
       FormActions.add_responses(form, responses, Student.find(params[:student]))
       render_json_message(:ok, message: "Assessment submitted!")
     else
-      render_json_message(:forbidden, errors: ["No question can be left blank"])
+      render_json_message(:forbidden, errors: ["No question can be left blank."])
     end
   end
 end

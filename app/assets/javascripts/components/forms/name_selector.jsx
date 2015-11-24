@@ -14,13 +14,8 @@ class NameSelector extends React.Component {
     }
 
     _fetchStudents(id) {
-        $.getJSON(`/classrooms/${id}`)
-            .done((data) => {
-                this.setState({ students: data.students });
-            })
-            .fail((xhr, status, err) => {
-                console.error(xhr, status, err.toString());
-            });
+        const success = (data) => { this.setState({ students: data.students }) }
+        APIRequester.getJSON(`/classrooms/${id}`, success);
     }
 
     componentDidUpdate() {

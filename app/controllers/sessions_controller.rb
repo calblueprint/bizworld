@@ -5,7 +5,8 @@ class SessionsController < Devise::SessionsController
     self.resource, resource_name = authenticate(auth_options, :teacher)
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
-    render_json_message(:ok, message: "Login successful!", to: after_sign_in_path_for(resource))
+    render_json_message(:ok, message: "Login successful!", to:
+                        redirect_user_path(resource))
   end
 
   # Attempts to authenticate the login request, first as a Teacher and
@@ -23,10 +24,6 @@ class SessionsController < Devise::SessionsController
 
     # Return resource and resource name, required for Devise sign_in method
     [resource, resource_name]
-  end
-
-  def after_sign_in_path_for(resource)
-    resource.is_a?(Teacher) ? classrooms_teacher_path(resource) : classrooms_admins_path
   end
 
   def destroy

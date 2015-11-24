@@ -167,80 +167,176 @@ questions:
   -
     title:
       'I make an effort to get along with my teammates.'
+    options:
+      - 'Strongly Disagree'
+      - 'Disagree'
+      - 'Neither agree nor disagree'
+      - 'Agree'
+      - 'Strongly Agree'
     category:
-      3
+      1
   -
     title:
       'I am confident speaking in front of others.'
+    options:
+      - 'Strongly Disagree'
+      - 'Disagree'
+      - 'Neither agree nor disagree'
+      - 'Agree'
+      - 'Strongly Agree'
     category:
-      3
+      1
   -
     title:
       'I think about the advantages and disadvantages of a choice before making a decision.'
+    options:
+      - 'Strongly Disagree'
+      - 'Disagree'
+      - 'Neither agree nor disagree'
+      - 'Agree'
+      - 'Strongly Agree'
     category:
-      3
+      1
   -
     title:
       'The things I learn in school will help me in the real world.'
+    options:
+      - 'Strongly Disagree'
+      - 'Disagree'
+      - 'Neither agree nor disagree'
+      - 'Agree'
+      - 'Strongly Agree'
     category:
-      3
+      1
   -
     title:
       'I am confident leading others.'
+    options:
+      - 'Strongly Disagree'
+      - 'Disagree'
+      - 'Neither agree nor disagree'
+      - 'Agree'
+      - 'Strongly Agree'
     category:
-      3
+      1
   -
     title:
       "I listen to other people's ideas while working in a group."
+    options:
+      - 'Strongly Disagree'
+      - 'Disagree'
+      - 'Neither agree nor disagree'
+      - 'Agree'
+      - 'Strongly Agree'
     category:
-      3
+      1
   -
     title:
       'How I say something is just important as what I say.'
+    options:
+      - 'Strongly Disagree'
+      - 'Disagree'
+      - 'Neither agree nor disagree'
+      - 'Agree'
+      - 'Strongly Agree'
     category:
-      3
+      1
   -
     title:
       'I am able to motivate others.'
+    options:
+      - 'Strongly Disagree'
+      - 'Disagree'
+      - 'Neither agree nor disagree'
+      - 'Agree'
+      - 'Strongly Agree'
     category:
-      3
+      1
   -
     title:
       'I analyze the effects of my decisions.'
+    options:
+      - 'Strongly Disagree'
+      - 'Disagree'
+      - 'Neither agree nor disagree'
+      - 'Agree'
+      - 'Strongly Agree'
     category:
-      3
+      1
   -
     title:
       'I think that math is important.'
+    options:
+      - 'Strongly Disagree'
+      - 'Disagree'
+      - 'Neither agree nor disagree'
+      - 'Agree'
+      - 'Strongly Agree'
     category:
-      3
+      1
   -
     title:
       'I discuss my ideas with others.'
+    options:
+      - 'Strongly Disagree'
+      - 'Disagree'
+      - 'Neither agree nor disagree'
+      - 'Agree'
+      - 'Strongly Agree'
     category:
-      3
+      1
   -
     title:
       'I can come to a compromise with others when we disagree.'
+    options:
+      - 'Strongly Disagree'
+      - 'Disagree'
+      - 'Neither agree nor disagree'
+      - 'Agree'
+      - 'Strongly Agree'
     category:
-      3
+      1
   -
     title:
       'I develop different ways of solving a problem.'
+    options:
+      - 'Strongly Disagree'
+      - 'Disagree'
+      - 'Neither agree nor disagree'
+      - 'Agree'
+      - 'Strongly Agree'
     category:
-      3
+      1
   -
     title:
       'I take charge on work that needs to get done.'
+    options:
+      - 'Strongly Disagree'
+      - 'Disagree'
+      - 'Neither agree nor disagree'
+      - 'Agree'
+      - 'Strongly Agree'
     category:
-      3
+      1
   -
     title:
       'I think learning is fun.'
+    options:
+      - 'Strongly Disagree'
+      - 'Disagree'
+      - 'Neither agree nor disagree'
+      - 'Agree'
+      - 'Strongly Agree'
     category:
-      3
+      1
   -
     title:
       'I contribute and pitch in when working in a group.'
+    options:
+      - 'Strongly Disagree'
+      - 'Disagree'
+      - 'Neither agree nor disagree'
+      - 'Agree'
+      - 'Strongly Agree'
     category:
-      3
+      1

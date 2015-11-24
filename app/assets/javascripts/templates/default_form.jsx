@@ -23,6 +23,10 @@ class DefaultForm extends React.Component {
         });
     }
 
+    _toggleEdit = (e) => {
+        this.setState({ editable : !this.state.editable });
+    }
+
     _formFields() {
         // Necessary because bootstrap-select does not fire onChange events
         const extraFields = { };
@@ -32,16 +36,7 @@ class DefaultForm extends React.Component {
         return $.extend({}, this.state, extraFields);
     }
 
-    _attemptAction(endpoint, data) {
-        $.post(endpoint, data)
-            .done((msg) => {
-                toastr.success(msg.message);
-                window.location.href = msg.to;
-            })
-            .fail((xhr, status, error) => {
-                JSON.parse(xhr.responseText).errors.forEach((error) => {
-                    toastr.error(error);
-                });
-            });
+    _attemptAction(endpoint, data, success = () => {}) {
+        APIRequester.post(endpoint, data, success);
     }
 }

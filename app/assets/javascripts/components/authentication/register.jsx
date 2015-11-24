@@ -12,6 +12,16 @@ class RegistrationModal extends DefaultForm {
         this._attemptAction("/sign_up", { teacher : this._formFields() });
     }
 
+    _renderInput(name, label, type, placeholder, focus = false) {
+        return (
+            <div className="input-container">
+                <label htmlFor={name}>{label}:</label>
+                <input onChange={this._handleChange} name={name}
+                    type={type} placeholder={placeholder} autoFocus={focus} />
+            </div>
+        );
+    }
+
     render() {
         return (
             <div>
@@ -21,45 +31,13 @@ class RegistrationModal extends DefaultForm {
                     <h1>New Account</h1>
                 </div>
                 <form>
-                    <div className="input-container">
-                        <label htmlFor="first_name">First Name:</label>
-                        <input onChange={this._handleChange} name="first_name"
-                            type="text" placeholder="John" autoFocus />
-                    </div>
-                    <div className="input-container">
-                        <label htmlFor="last_name">Last Name:</label>
-                        <input name="last_name" type="text" placeholder="Doe"
-                            onChange={this._handleChange} />
-                    </div>
-                    <div className="input-container">
-                        <label htmlFor="email">Email:</label>
-                        <input name="email" type="text"
-                            placeholder="johndoe@gmail.com"
-                            onChange={this._handleChange} />
-                    </div>
-                    <div className="input-container">
-                        <label htmlFor="password">Password:</label>
-                        <input name="password" type="password"
-                            onChange={this._handleChange} />
-                    </div>
-                    <div className="input-container">
-                        <label htmlFor="password_confirmation">Confirm
-                            Password:</label>
-                        <input name="password_confirmation" type="password"
-                            onChange={this._handleChange} />
-                    </div>
-                    <div className="input-container">
-                        <label htmlFor="phone">Phone:</label>
-                        <input name="phone" type="text" placeholder="(123)
-                            456 - 7890" onChange={this._handleChange} />
-                    </div>
-                    <div className="input-container">
-                        <label htmlFor="school">School:</label>
-                        <input name="school" type="text"
-                            placeholder="Example Middle School"
-                            onChange={this._handleChange} />
-                    </div>
-
+                    { this._renderInput("first_name", "First Name", "text", "John", true) }
+                    { this._renderInput("last_name", "Last Name", "text", "Doe") }
+                    { this._renderInput("email", "Email", "text", "johndoe@gmail.com") }
+                    { this._renderInput("password", "Password", "password", "") }
+                    { this._renderInput("password_confirmation", "Confirm Password", "password", "") }
+                    { this._renderInput("phone_number", "Phone", "text", "(123) 456 - 7880") }
+                    { this._renderInput("school", "School", "text", "Example Middle School") }
                     <div className="input-container city-state-picker">
                         <div className="item city">
                             <label htmlFor="city">City:</label>
@@ -71,7 +49,6 @@ class RegistrationModal extends DefaultForm {
                             <StatePicker />
                         </div>
                     </div>
-
                     <div className="input-container">
                         <label htmlFor="phone">Grade:</label>
                         <GradesPicker />
@@ -110,13 +87,8 @@ class StatePicker extends React.Component {
     }
 
     _fetchStates() {
-        $.getJSON("/states")
-            .done((data) => {
-                this.setState({ states: data.states });
-            })
-            .fail((xhr, status, err) => {
-                console.error(xhr, status, err.toString());
-            });
+        const success = (data) => { this.setState({ states: data.states }) }
+        APIRequester.getJSON("/states", success);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -172,7 +144,7 @@ class GradesPicker extends React.Component {
         return (
             <select name="grades" className="selectpicker grade-select"
                 multiple title="Select a grade" ref="select">
-                {grades}
+                { grades }
             </select>
         )
     }

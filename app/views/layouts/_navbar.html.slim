@@ -5,9 +5,31 @@ nav.navbar.navbar-inverse
     .collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
         - if current_admin
-            li = link_to 'All Classrooms', classrooms_admins_path
-        - if current_teacher
-            li = link_to 'My Profile', current_teacher
-            li = link_to 'My Classrooms', classrooms_teacher_path(current_teacher)
+            li.dropdown
+              a.dropdown-toggle role="button" data-toggle="dropdown" href="#"
+                | Edit Forms
+                span.caret
+              // TODO(nnarayen 11/24): dynamically generate form links
+              ul.dropdown-menu role="menu"
+                li.dropdown-header BizWorld
+                li.dropdown-link = link_to "Pre Assessment", form_path(1)
+                li.dropdown-link = link_to "Post Assessment", form_path(2)
+                li.divider
+                li.dropdown-header BizMovie
+                li.dropdown-link = link_to "Pre Assessment", form_path(3)
+                li.dropdown-link = link_to "Post Assessment", form_path(4)
+                li.divider
+                li.dropdown-header BizWiz
+                li.dropdown-link = link_to "Pre Assessment", form_path(5)
+                li.dropdown-link = link_to "Post Assessment", form_path(6)
+              li = link_to "All Classrooms", classrooms_admins_path
+        - elsif current_teacher
+            li = link_to "My Profile", current_teacher
+            li = link_to "My Classrooms", classrooms_teacher_path(current_teacher)
         - if current_user
-            li = link_to 'Sign out', destroy_session_path, method: :delete
+            li.dropdown
+              a.dropdown-toggle role="button" data-toggle="dropdown" href="#"
+                | #{current_user.email}
+                span.caret
+              ul.dropdown-menu role="menu"
+                li.dropdown-link = link_to "Sign Out", destroy_session_path, method: :delete
