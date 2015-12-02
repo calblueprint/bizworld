@@ -40,6 +40,15 @@ class TeacherAccountInfo extends DefaultForm {
         );
     }
 
+    _attemptSave = (e) => {
+      const success = (msg) => {
+          this.setState({ editable: false });
+          this._fetchTeacher(this.props.teacher_id);
+      };
+      APIRequester.put(`/teachers/${this.props.teacher_id}`, this._formFields(),
+          success);
+    }
+
     render() {
         const gradesList = this.state.teacher.grades.join(', ');
         return (
@@ -55,7 +64,8 @@ class TeacherAccountInfo extends DefaultForm {
                 { this._showSelect("Grades", gradesList, true) }
 
                 <FormEditToggle editable = { this.state.editable }
-                                update   = { this._toggleEdit } />
+                                update   = { this._toggleEdit }
+                                save     = { this._attemptSave } />
             </div>
         );
     }
