@@ -13,6 +13,12 @@ class UploadRoster extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = { submit : false };
+    }
+
+    _handleFileSelect = (e) => {
+        // Disable roster upload if no file selected
+        this.setState({ submit : $(e.target)[0].files.length > 0 });
     }
 
     _uploadRoster = (e) => {
@@ -29,9 +35,11 @@ class UploadRoster extends React.Component {
                 <form className="upload-roster-container"
                     encType="multipart/form-data" >
                     <input ref="file" type="file" name="file"
-                        className="upload-file" accept={FILE_INPUTS.join(",")} />
-                    <input className="button upload-button" type="button" value="Upload Roster"
-                        onClick={this._uploadRoster} />
+                        className="upload-file" accept={FILE_INPUTS.join(",")}
+                        onChange={this._handleFileSelect} />
+                    <input className="button upload-button" type="button"
+                        value="Upload Roster" onClick={this._uploadRoster}
+                        disabled={!this.state.submit} />
                 </form>
             </div>
         );

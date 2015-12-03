@@ -25,24 +25,24 @@ class StudentsTable extends React.Component {
             );
         });
         return (
-            <div className="">
-                <UploadRoster success      = {this._fetchStudents}
-                              classroom_id = {this.props.classroom_id} />
-                  <div className="student-table-container">
-                      <table className="table student-table">
-                          <thead>
-                              <tr>
-                                  <th>FIRST</th>
-                                  <th>LAST</th>
-                                  <th className="score">PRE-SCORE</th>
-                                  <th className="score">POST-SCORE</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              {students}
-                          </tbody>
-                      </table>
-                 </div>
+            <div>
+                <UploadModal classroom_id = {this.props.classroom_id}
+                             success      = {this._fetchStudents} />
+                <div className="student-table-container">
+                    <table className="table student-table">
+                        <thead>
+                            <tr>
+                                <th>FIRST</th>
+                                <th>LAST</th>
+                                <th className="score">PRE-SCORE</th>
+                                <th className="score">POST-SCORE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {students}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         );
     }

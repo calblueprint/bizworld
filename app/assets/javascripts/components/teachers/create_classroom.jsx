@@ -1,3 +1,6 @@
+/**
+ * @prop teacher_id - the id associated with the teacher
+ */
 class ClassroomDropdown extends React.Component {
 
     constructor(props) {
@@ -58,21 +61,36 @@ class ClassroomCreationModal extends DefaultForm {
 
     render() {
         return (
-            <div className="modal fade" id="newClassroomModal" tabIndex={-1} role="dialog" aria-labelledby="newClassroomModalLabel">
+            <div className="modal fade" id="newClassroomModal" tabIndex={-1}
+                role="dialog" aria-labelledby="newClassroomModalLabel">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <h4 className="modal-title" id="newClassroomModalLabel">New Classroom</h4>
+                            <button type="button" className="close"
+                                data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 className="modal-title" id="newClassroomModalLabel">
+                                New Classroom
+                            </h4>
                         </div>
                         <div className="modal-body">
-                            <input type="text" className="form-control" placeholder="Classroom Name" name="name" onChange={this._handleChange} />
+                            <input type="text" className="form-control"
+                                placeholder="Classroom Name" name="name"
+                                onChange={this._handleChange} />
                             <ClassroomDropdown onChange={this._handleChange} />
-                            <DateRangeInput onFilterChange={this._handleDateRangeChange} className="daterange" />
+                            <DateRangeInput className="daterange"
+                                onFilterChange={this._handleDateRangeChange} />
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" name="submit" value="Create Classroom" className="btn btn-primary" onClick={this._handleClassroomCreation}>Create</button>
+                            <button type="button" className="btn btn-default"
+                                    data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" className="btn btn-primary"
+                                    onClick={this._handleClassroomCreation}>
+                                Create
+                            </button>
                         </div>
                     </div>
                 </div>
