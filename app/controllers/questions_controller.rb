@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
   private
 
   def update_question(question, options, title)
-    options.each do |option_id, option|
+    options.try(:each) do |option_id, option|
       question.options[option_id.to_i] = option
     end
     question.title = title if title.present?

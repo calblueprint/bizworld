@@ -1,10 +1,8 @@
 /**
- * @prop onChange - callback function when form answers change
- * @prop success  - callback function on successful form update
  * @prop question - the question to display
- * @prop view     - view type for this question
+ * @prop success  - callback function on successful form update
  */
-class DefaultFormQuestion extends DefaultForm {
+class DefaultAdminQuestion extends DefaultForm {
 
     constructor(props) {
         super(props);
@@ -23,9 +21,13 @@ class DefaultFormQuestion extends DefaultForm {
             success);
     }
 
+    _onTitleChange = (e) => {
+        this.setState({ [$(e.target).attr("name")] : $(e.target).val() });
+    }
+
     _renderEditButton() {
         let editButton;
-        if (this.props.view == FormViewType.ADMIN && !this.state.editable) {
+        if (!this.state.editable) {
             editButton = (
                 <span className="fa fa-pencil-square-o edit-question"
                     onClick={this._toggleEdit} />
@@ -34,10 +36,10 @@ class DefaultFormQuestion extends DefaultForm {
         return editButton;
     }
 
-    _renderButtonContainer() {
-        let buttonContainer;
-        if (this.props.view == FormViewType.ADMIN && this.state.editable) {
-            buttonContainer = (
+    _renderSaveContainer() {
+        let saveContainer;
+        if (this.state.editable) {
+            saveContainer = (
                 <div className="edit-button-container">
                     <input name="editable" type="button" value="Cancel"
                         className="button" onClick={this._toggleEdit} />
@@ -47,17 +49,11 @@ class DefaultFormQuestion extends DefaultForm {
                 </div>
             );
         }
-        return buttonContainer;
-    }
-
-    _onTextChange = (e) => {
-        this.setState({ [$(e.target).attr("name")] : $(e.target).val() });
+        return saveContainer;
     }
 }
 
-DefaultFormQuestion.propTypes = {
-    onChange : React.PropTypes.func.isRequired,
-    success  : React.PropTypes.func.isRequired,
+DefaultAdminQuestion.propTypes = {
     question : React.PropTypes.object.isRequired,
-    view     : React.PropTypes.number.isRequired
+    success  : React.PropTypes.func.isRequired
 };

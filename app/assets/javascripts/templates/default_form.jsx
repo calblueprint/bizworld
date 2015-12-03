@@ -12,10 +12,6 @@ class DefaultForm extends React.Component {
         this.setState({ [$(e.target).attr("name")] : $(e.target).val() });
     }
 
-    _toggleEdit = (e) => {
-        this.setState({ editable : !this.state.editable });
-    }
-
     _handleDateRangeChange = (startDate, endDate) => {
         this.setState({
             start_date : startDate,

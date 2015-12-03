@@ -1,13 +1,6 @@
-/* Enum for Form view types */
-const FormViewType = {
-    STUDENT : 0,
-    ADMIN   : 1
-};
-
 /**
  * @prop classroom_id - the id of the classroom
  * @prop form_id      - the id of the form to display
- * @prop view         - view type for this form
  */
 class FormView extends DefaultForm {
 
@@ -27,25 +20,18 @@ class FormView extends DefaultForm {
     }
 
     _submitAnswers = (e) => {
-        this._attemptAction(`/forms/${this.props.form_id}/submit`, this._formFields());
+        this._attemptAction(`/forms/${this.props.form_id}/submit`,
+            this._formFields());
     }
 
     render() {
-        let nameSelector, submitButton;
-        if (this.props.view == FormViewType.STUDENT) {
-            nameSelector = <NameSelector id = {this.props.classroom_id} />
-            submitButton = (
-                <input name="submit" type="button" value="Submit Responses"
-                    className="submit-button" onClick={this._submitAnswers} />
-            );
-        }
         return (
             <div className="form-view-container">
-                { nameSelector }
-                <FormQuestions onChange = {this._handleChange}
-                               view     = {this.props.view}
-                               id       = {this.props.form_id} />
-                { submitButton }
+                <NameSelector id = {this.props.classroom_id} />
+                <StudentFormQuestions onChange = {this._handleChange}
+                                      form_id  = {this.props.form_id} />
+                <input name="submit" type="button" value="Submit Responses"
+                    className="submit-button" onClick={this._submitAnswers} />
             </div>
         );
     }
@@ -54,5 +40,4 @@ class FormView extends DefaultForm {
 FormView.propTypes = {
     classroom_id : React.PropTypes.number,
     form_id      : React.PropTypes.number.isRequired,
-    view         : React.PropTypes.number.isRequired
 };
