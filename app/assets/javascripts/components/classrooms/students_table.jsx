@@ -5,7 +5,7 @@ class StudentsTable extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { students: [] };
+        this.state = { students : [] };
     }
 
     componentDidMount() {
@@ -96,7 +96,7 @@ class ClassInfo extends DefaultForm {
     constructor(props) {
         super(props);
         this.state = {
-            classroom: { students: [] },
+            classroom: { students : [] },
             editable: false,
         };
     }
@@ -104,6 +104,10 @@ class ClassInfo extends DefaultForm {
     _fetchClassInfo = () => {
         const success = (data) => { this.setState({ classroom: data}) }
         APIRequester.getJSON(`/classrooms/${this.props.classroom_id}`, success);
+    }
+
+    _formatLink(link) {
+        if (link) { return link.replace(/^https?:\/\//, "") }
     }
 
     componentDidMount() {
@@ -154,6 +158,20 @@ class ClassInfo extends DefaultForm {
                     <div>
                         <span className="fa fa-user"></span>
                         Number of students: { this.state.classroom.students.length }
+                    </div>
+                    <div>
+                        <span className="fa fa-external-link"></span>
+                        Pre Assessment:
+                        <a href={this.state.classroom.pre_link} target="_blank">
+                            { this._formatLink(this.state.classroom.pre_link) }
+                        </a>
+                    </div>
+                    <div>
+                        <span className="fa fa-external-link-square"></span>
+                        Post Assessment:
+                        <a href={this.state.classroom.post_link} target="_blank">
+                            { this._formatLink(this.state.classroom.post_link) }
+                        </a>
                     </div>
                     { this._showInput("Classroom Name", "name", this.state.classroom.name) }
                     { this._showDateRange("Date Range", this.state.classroom.start_date, this.state.classroom.end_date) }

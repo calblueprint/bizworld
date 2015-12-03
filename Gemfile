@@ -3,6 +3,7 @@ ruby '2.2.3'
 
 gem 'active_model_serializers', '~> 0.9.3'
 gem 'bootstrap-daterangepicker-rails', '~> 0.1.2'
+gem 'bitly', '~> 0.10.4'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'bootstrap-select-rails', '~> 1.6.3'
 gem 'countries', '~> 1.1.0'

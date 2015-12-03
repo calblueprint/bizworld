@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151122232258) do
+ActiveRecord::Schema.define(version: 20151202231118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20151122232258) do
     t.integer  "program_id"
     t.date     "start_date"
     t.date     "end_date"
+    t.string   "pre_link"
+    t.string   "post_link"
   end
 
   add_index "classrooms", ["end_date"], name: "index_classrooms_on_end_date", using: :btree
