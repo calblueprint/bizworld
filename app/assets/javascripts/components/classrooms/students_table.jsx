@@ -24,10 +24,13 @@ class StudentsTable extends React.Component {
                          key     = {student.id} />
             );
         });
+
         return (
             <div>
                 <UploadModal classroom_id = {this.props.classroom_id}
                              success      = {this._fetchStudents} />
+                <StudentCreationModal success      = {this._fetchStudents}
+                                      classroom_id = {this.props.classroom_id} />
                 <div className="student-table-container">
                     <table className="table student-table">
                         <thead>
@@ -39,7 +42,7 @@ class StudentsTable extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {students}
+                            { students }
                         </tbody>
                     </table>
                 </div>

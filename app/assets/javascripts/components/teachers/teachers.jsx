@@ -1,6 +1,5 @@
-
 /**
- * @prop teacher_id - the :id associated with the teacher
+ * @prop teacher_id - the id associated with the teacher
  * @prop type       - active or inactive classroom
  */
 

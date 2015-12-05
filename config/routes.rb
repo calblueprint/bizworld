@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :students, only: [:create]
+
   root to: 'pages#home'
 
   get '/states', to: 'pages#states'

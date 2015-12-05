@@ -4,7 +4,7 @@ class ClassroomsController < ApplicationController
   def create
     classroom = Classroom.create(classroom_params)
     if classroom.save
-      render_json_message(:ok, message: 'Classroom create!', to: classroom_path(classroom))
+      render_json_message(:ok, message: 'Classroom created!', to: classroom_path(classroom))
     else
       render_json_message(:forbidden, errors: classroom.errors.full_messages)
     end
@@ -30,10 +30,11 @@ class ClassroomsController < ApplicationController
   end
 
   def update
-    if Classroom.find(params[:id]).update!(update_params)
+    classroom = Classroom.find(params[:id])
+    if classroom.update(update_params)
       render_json_message(:ok, message: "Classroom successfully updated!")
     else
-      render_json_message(:forbidden, message: 'Classroom update failed.')
+      render_json_message(:forbidden, errors: classroom.errors.full_messages)
     end
   end
 

@@ -83,7 +83,7 @@ class StatePicker extends React.Component {
 
     componentDidMount() {
         this._fetchStates();
-        $(this.refs.select.getDOMNode()).selectpicker({ dropupAuto: false });
+        $(React.findDOMNode(this.refs.select)).selectpicker({ dropupAuto: false });
     }
 
     _fetchStates() {
@@ -96,7 +96,7 @@ class StatePicker extends React.Component {
     }
 
     componentDidUpdate() {
-        $(this.refs.select.getDOMNode()).selectpicker('refresh');
+        $(React.findDOMNode(this.refs.select)).selectpicker('refresh');
     }
 
     render() {
@@ -129,7 +129,7 @@ class GradesPicker extends React.Component {
     }
 
     componentDidMount() {
-        const select = this.refs.select.getDOMNode();
+        const select = React.findDOMNode(this.refs.select);
         $(select).selectpicker({ dropupAuto: false });
         $(select).selectpicker('val', this.props.grades.split(/[\s,]+/));
     }

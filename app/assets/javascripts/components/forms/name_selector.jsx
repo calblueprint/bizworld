@@ -10,7 +10,7 @@ class NameSelector extends React.Component {
 
     componentDidMount() {
         this._fetchStudents(this.props.id);
-        $(this.refs.select.getDOMNode()).selectpicker({ dropupAuto: false });
+        $(React.findDOMNode(this.refs.select)).selectpicker({ dropupAuto: false });
     }
 
     _fetchStudents(id) {
@@ -19,7 +19,7 @@ class NameSelector extends React.Component {
     }
 
     componentDidUpdate() {
-        $(this.refs.select.getDOMNode()).selectpicker('refresh');
+        $(React.findDOMNode(this.refs.select)).selectpicker('refresh');
     }
 
     render() {
