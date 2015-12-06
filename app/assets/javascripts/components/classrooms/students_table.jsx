@@ -1,5 +1,7 @@
 /**
- * @prop classroom_id - id for classroom
+ * @prop classroom_id - id associated with the current classroom
+ * @prop students     - students in current classroom
+ * @prop success      - function handler for successful ClassInfo box update
  */
 class StudentsTable extends React.Component {
 
@@ -8,14 +10,8 @@ class StudentsTable extends React.Component {
         this.state = { students : [] };
     }
 
-    componentDidMount() {
-        this._fetchStudents();
-    }
-
-    _fetchStudents = () => {
-        const success = (data) => { this.setState({ students: data.students }) }
-        APIRequester.getJSON(APIConstants.classrooms.member(
-            this.props.classroom_id), success);
+    componentWillReceiveProps(nextProps) {
+        this.setState({ students : nextProps.students });
     }
 
     render() {
@@ -29,8 +25,8 @@ class StudentsTable extends React.Component {
         return (
             <div>
                 <UploadModal classroom_id = {this.props.classroom_id}
-                             success      = {this._fetchStudents} />
-                <StudentCreationModal success      = {this._fetchStudents}
+                             success      = {this.props.success} />
+                <StudentCreationModal success      = {this.props.success}
                                       classroom_id = {this.props.classroom_id} />
                 <div className="student-table-container">
                     <table className="table student-table">
@@ -53,7 +49,9 @@ class StudentsTable extends React.Component {
 }
 
 StudentsTable.propTypes = {
-    classroom_id: React.PropTypes.number,
+    students     : React.PropTypes.arrayOf(React.PropTypes.object),
+    classroom_id : React.PropTypes.number.isRequired,
+    success      : React.PropTypes.func.isRequired
 };
 
 /**
@@ -93,30 +91,25 @@ class Student extends React.Component {
 Student.propTypes = { student: React.PropTypes.object.isRequired };
 
 /**
- * @prop classroom_id - id of classroom
+ * @prop classroom - classroom info to display
+ * @prop success   - function handler for successful ClassInfo box update
  */
 class ClassInfo extends DefaultForm {
 
     constructor(props) {
         super(props);
         this.state = {
-            classroom: { students : [] },
-            editable: false,
+            classroom: { students: [] },
+            editable: false
         };
     }
 
-    _fetchClassInfo = () => {
-        const success = (data) => { this.setState({ classroom: data}) }
-        APIRequester.getJSON(APIConstants.classrooms.member(
-            this.props.classroom_id), success);
+    componentWillReceiveProps(nextProps) {
+        this.setState({ classroom : nextProps.classroom });
     }
 
     _formatLink(link) {
         if (link) { return link.replace(/^https?:\/\//, "") }
-    }
-
-    componentDidMount() {
-        this._fetchClassInfo();
     }
 
     _showInput = (label, name, data) => {
@@ -142,10 +135,10 @@ class ClassInfo extends DefaultForm {
     _attemptSave = (e) => {
         const success = (msg) => {
             this.setState({ editable: false });
-            this._fetchClassInfo();
+            this.props.success();
         };
         APIRequester.put(APIConstants.classrooms.member(
-            this.props.classroom_id), this.state, success);
+            this.props.classroom.id), this.state, success);
     }
 
     render() {
@@ -158,7 +151,7 @@ class ClassInfo extends DefaultForm {
                     <h1>Class Info</h1>
                     <div>
                         <span className="fa fa-info-circle"></span>
-                        Classroom ID: { this.props.classroom_id }
+                        Classroom ID: { this.props.classroom.id }
                     </div>
                     <div>
                         <span className="fa fa-user"></span>
@@ -191,5 +184,6 @@ class ClassInfo extends DefaultForm {
 }
 
 ClassInfo.propTypes = {
-    classroom_id : React.PropTypes.number.isRequired,
+    classroom : React.PropTypes.object.isRequired,
+    success   : React.PropTypes.func.isRequired
 };

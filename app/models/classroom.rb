@@ -42,8 +42,8 @@ class Classroom < ActiveRecord::Base
   private
 
   def create_links
-    self.pre_link = UrlActions.shorten_url(id, "pre")
-    self.post_link = UrlActions.shorten_url(id, "post")
+    self.pre_link = UrlActions.shorten_url(id, :pre)
+    self.post_link = UrlActions.shorten_url(id, :post)
     save
   end
 end

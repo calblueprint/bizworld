@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     resources :students, only: [:create]
     resources :programs, only: [:index]
 
-    resources :teachers, only: [:show] do
+    resources :teachers, only: [:show, :update] do
       get 'classrooms', to: 'teachers#classrooms'
     end
 
