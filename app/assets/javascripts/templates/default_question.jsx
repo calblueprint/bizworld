@@ -17,8 +17,8 @@ class DefaultAdminQuestion extends DefaultForm {
             this.props.success();
             this.setState({ editable: false });
         }
-        APIRequester.put(`/questions/${this.props.question.id}`, this.state,
-            success);
+        APIRequester.put(APIConstants.questions.member(this.props.question.id),
+            this.state, success);
     }
 
     _onTitleChange = (e) => {

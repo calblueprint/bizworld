@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
 
   def redirect_user_path(resource)
     if resource.is_a?(Teacher)
-      classrooms_teacher_path(resource)
+      teacher_classrooms_path(resource)
     elsif resource.is_a?(Admin)
-      classrooms_admins_path
+      admins_classrooms_path
     end
   end
 

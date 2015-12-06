@@ -25,7 +25,7 @@ class UploadRoster extends React.Component {
         const formData = new FormData();
         formData.append("file", $(React.findDOMNode(this.refs.file))[0].files[0]);
         const extraFields = { processData : false, contentType : false };
-        APIRequester.post(`/classrooms/${this.props.classroom_id}/upload`,
+        APIRequester.post(APIConstants.classrooms.upload(this.props.classroom_id),
             formData, this.props.success, extraFields);
     }
 

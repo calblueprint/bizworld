@@ -14,7 +14,7 @@ class ClassroomDropdown extends React.Component {
 
     _fetchPrograms() {
         const success = (data) => { this.setState({ programs : data }) }
-        APIRequester.getJSON("/programs", success);
+        APIRequester.getJSON(APIConstants.programs.collection, success);
     }
 
     render() {
@@ -56,7 +56,7 @@ class ClassroomCreationModal extends DefaultForm {
     }
 
     _handleClassroomCreation = (e) => {
-        this._attemptAction("/classrooms", this._formFields());
+        this._attemptAction(APIConstants.classrooms.collection, this._formFields());
     }
 
     render() {

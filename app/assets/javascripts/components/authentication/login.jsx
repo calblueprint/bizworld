@@ -9,7 +9,8 @@ class LoginModal extends DefaultForm {
     }
 
     _attemptLogin = (e) => {
-        this._attemptAction("/sign_in", { teacher: this._formFields() });
+        this._attemptAction(APIConstants.sessions.sign_in,
+            { teacher: this._formFields() });
     }
 
     _handleKeydown = (e) => {

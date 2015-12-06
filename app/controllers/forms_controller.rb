@@ -1,5 +1,5 @@
 class FormsController < ApplicationController
-  before_action :authenticate_admin!, only: [:show], if: proc { request.format.html? }
+  before_action :authenticate_admin!, only: [:show]
 
   def display
     @category = params[:category]
@@ -12,10 +12,6 @@ class FormsController < ApplicationController
   def show
     @form = Form.find(params[:id])
     @program = @form.program
-    respond_to do |format|
-      format.html
-      format.json { render json: @form, serializer: FormSerializer, root: false }
-    end
   end
 
   def submit

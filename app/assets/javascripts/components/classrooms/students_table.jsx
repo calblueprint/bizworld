@@ -14,7 +14,8 @@ class StudentsTable extends React.Component {
 
     _fetchStudents = () => {
         const success = (data) => { this.setState({ students: data.students }) }
-        APIRequester.getJSON(`/classrooms/${this.props.classroom_id}`, success);
+        APIRequester.getJSON(APIConstants.classrooms.member(
+            this.props.classroom_id), success);
     }
 
     render() {
@@ -106,7 +107,8 @@ class ClassInfo extends DefaultForm {
 
     _fetchClassInfo = () => {
         const success = (data) => { this.setState({ classroom: data}) }
-        APIRequester.getJSON(`/classrooms/${this.props.classroom_id}`, success);
+        APIRequester.getJSON(APIConstants.classrooms.member(
+            this.props.classroom_id), success);
     }
 
     _formatLink(link) {
@@ -142,8 +144,8 @@ class ClassInfo extends DefaultForm {
             this.setState({ editable: false });
             this._fetchClassInfo();
         };
-        APIRequester.put(`/classrooms/${this.props.classroom_id}`, this.state,
-            success);
+        APIRequester.put(APIConstants.classrooms.member(
+            this.props.classroom_id), this.state, success);
     }
 
     render() {

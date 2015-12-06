@@ -18,7 +18,7 @@ class TeacherAccountInfo extends DefaultForm {
 
     _fetchTeacher(id) {
         const success = (data) => { this.setState({ teacher: data }) }
-        APIRequester.getJSON(`/teachers/${id}`, success)
+        APIRequester.getJSON(APIConstants.teachers.member(id), success)
     }
 
     _showInput = (label, name, data) => {
@@ -45,8 +45,8 @@ class TeacherAccountInfo extends DefaultForm {
           this.setState({ editable: false });
           this._fetchTeacher(this.props.teacher_id);
       };
-      APIRequester.put(`/teachers/${this.props.teacher_id}`, this._formFields(),
-          success);
+      APIRequester.put(APIConstants.teachers.member(this.props.teacher_id),
+          this._formFields(), success);
     }
 
     render() {

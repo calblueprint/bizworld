@@ -17,7 +17,7 @@ class TeacherModal extends React.Component {
 
     _fetchClassrooms(id, params) {
         const success = (data) => { this.setState({ classrooms: data }) }
-        APIRequester.getJSON(`/teachers/${id}/classrooms`, success, params)
+        APIRequester.getJSON(APIConstants.teachers.classrooms(id), success, params)
     }
 
     render() {

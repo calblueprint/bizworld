@@ -6,10 +6,7 @@ class FormView extends DefaultForm {
 
     constructor(props) {
         super(props);
-        this.state = {
-            classroom_id : this.props.classroom_id,
-            responses: { }
-        };
+        this.state = { responses: { } };
     }
 
     _handleChange = (e) => {
@@ -20,7 +17,7 @@ class FormView extends DefaultForm {
     }
 
     _submitAnswers = (e) => {
-        this._attemptAction(`/forms/${this.props.form_id}/submit`,
+        this._attemptAction(APIConstants.forms.submit(this.props.form_id),
             this._formFields());
     }
 

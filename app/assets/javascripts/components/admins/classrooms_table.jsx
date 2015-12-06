@@ -17,7 +17,8 @@ class ClassroomsTable extends React.Component {
 
     _fetchClassrooms = () => {
         const success = (data) => { this.setState({ classrooms: data }) }
-        APIRequester.getJSON("/admins/classrooms", success, this.state.filters);
+        APIRequester.getJSON(APIConstants.admins.classrooms, success,
+            this.state.filters);
     }
 
     _handleDateRangeChange = (startDate, endDate) => {

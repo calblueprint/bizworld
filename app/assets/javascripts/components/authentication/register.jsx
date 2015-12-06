@@ -9,7 +9,8 @@ class RegistrationModal extends DefaultForm {
     }
 
     _attemptRegistration = (e) => {
-        this._attemptAction("/sign_up", { teacher : this._formFields() });
+        this._attemptAction(APIConstants.sessions.sign_up,
+            { teacher : this._formFields() });
     }
 
     _renderInput(name, label, type, placeholder, focus = false) {
@@ -88,7 +89,7 @@ class StatePicker extends React.Component {
 
     _fetchStates() {
         const success = (data) => { this.setState({ states: data.states }) }
-        APIRequester.getJSON("/states", success);
+        APIRequester.getJSON(APIConstants.pages.states, success);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
