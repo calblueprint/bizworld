@@ -40,6 +40,11 @@ class Requester {
         this._attemptAjax(endpoint, 'PUT', data, extraFields, success,
             this._postErrorHandler);
     }
+
+    delete(endpoint, success, data = {}, extraFields = {}) {
+        this._attemptAjax(endpoint, 'DELETE', data, extraFields, success,
+            this._postErrorHandler);
+    }
 }
 
 const APIRequester = new Requester();

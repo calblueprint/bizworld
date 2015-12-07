@@ -131,6 +131,15 @@ body {
         padding-left: 30px;
       }
     }
+
+    .score {
+      width: 170px;
+    }
+
+    .trash-col {
+      table-layout: fixed;
+      width: 50px;
+    }
   }
 
   tbody {
@@ -138,8 +147,27 @@ body {
     tr {
       border-bottom: 1px solid $gray-light;
 
+      .delete-control {
+        visibility: hidden;
+        padding: 3px;
+      }
+
+      .fa {
+        color: $red-60;
+        font-size: $f-size-md;
+      }
+
       &:hover {
         background: $gray-light-48;
+
+        .delete-control {
+          cursor: pointer;
+          visibility: visible;
+        }
+
+        .fa:hover {
+          color: $red;
+        }
       }
     }
 

@@ -18,6 +18,7 @@ class StudentsTable extends React.Component {
         const students = this.state.students.map((student) => {
             return (
                 <Student student = {student}
+                         success = {this._fetchStudents}
                          key     = {student.id} />
             );
         });
@@ -36,6 +37,7 @@ class StudentsTable extends React.Component {
                                 <th>LAST</th>
                                 <th className="score">PRE-SCORE</th>
                                 <th className="score">POST-SCORE</th>
+                                <th className="trash-col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,6 +58,7 @@ StudentsTable.propTypes = {
 
 /**
  * @prop student - the info about this student
+ * @prop success - callback function to call on successful actions
  */
 class Student extends React.Component {
 
@@ -66,6 +69,12 @@ class Student extends React.Component {
 
     _formattedScore(score) {
         return (score) ? `${(score*100).toFixed(2)}%` : "N/A";
+    }
+
+    _handleStudentDelete = (e) => {
+      const id = this.props.student.id;
+      APIRequester.delete(APIConstants.students.member(this.props.student.id),
+          this.props.success);
     }
 
     render() {
@@ -83,12 +92,19 @@ class Student extends React.Component {
                 <td>
                     { this._formattedScore(this.state.student.post_score) }
                 </td>
+                <td>
+                    <div className="fa fa-trash-o delete-control"
+                        onClick={this._handleStudentDelete}></div>
+                </td>
             </tr>
         );
     }
 }
 
-Student.propTypes = { student: React.PropTypes.object.isRequired };
+Student.propTypes = {
+    student: React.PropTypes.object.isRequired,
+    success: React.PropTypes.func.isRequired
+ };
 
 /**
  * @prop classroom - classroom info to display

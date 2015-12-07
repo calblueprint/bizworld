@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     post '/forms/submit', to: 'forms#submit'
 
     resources :questions, only: [:update]
-    resources :students, only: [:create]
+    resources :students, only: [:create, :destroy]
     resources :programs, only: [:index]
 
     resources :teachers, only: [:show, :update] do

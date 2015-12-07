@@ -29,10 +29,16 @@ class ApiConstants {
         }
     }
 
+    get students() {
+        return {
+          member     : (id) => `/api/students/${id}`,
+          collection : `/api/students`,
+        }
+    }
+
     get pages()    { return { states     : `/api/states` } }
     get admins()   { return { classrooms : `/api/admins/classrooms` } }
     get programs() { return { collection : `/api/programs` } }
-    get students() { return { collection : `/api/students` } }
 
     get questions() { return { member : (id) => `/api/questions/${id}` } }
 }

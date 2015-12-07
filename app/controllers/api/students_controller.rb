@@ -11,6 +11,15 @@ module Api
       end
     end
 
+    def destroy
+      student = Student.find(params[:id])
+      if student.destroy
+        render_json_message(:ok, message: 'Student successfully deleted!')
+      else
+        render_json_message(:forbidden, errors: student.errors.full_messages)
+      end
+    end
+
     private
 
     def create_params
