@@ -31,4 +31,12 @@ class Teacher < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :classrooms
   validates :last_name, :first_name, :school, presence: true
+
+  def self.csv_header
+    ["Teacher Name", "Teacher Email", "Teacher ID"]
+  end
+
+  def csv_row
+    ["#{first_name} #{last_name}", email, id]
+  end
 end

@@ -39,6 +39,14 @@ class Classroom < ActiveRecord::Base
     joins(:teacher).where(teachers: { email: email })
   end
 
+  def self.csv_header
+    %w(classroom_name classroom_id)
+  end
+
+  def csv_row
+    [name, id]
+  end
+
   private
 
   def create_links

@@ -1,0 +1,39 @@
+module CSVGenerator
+  def self.create_zip(classrooms, temp_file)
+    Zip::OutputStream.open(temp_file) { |zos| }
+    Zip::File.open(temp_file.path, Zip::File::CREATE) { |file| category_csv(file, classrooms) }
+  end
+
+  private
+
+  def self.category_csv(zipfile, classrooms)
+    [:pre, :post].each do |category|
+      zipfile.get_output_stream("#{category}_responses.csv") do |file|
+        file.puts(generate_csv(classrooms, category, classrooms.first.program))
+      end
+    end
+  end
+
+  def self.generate_csv(classrooms, category, program)
+    CSV.generate do |csv|
+      csv << generate_header(category, program)
+      generate_rows(csv, classrooms, category)
+    end
+  end
+
+  def self.generate_header(category, program)
+    Classroom.csv_header + Teacher.csv_header + Student.csv_header + program.csv_header(category)
+  end
+
+  def self.generate_rows(csv, classrooms, category)
+    classrooms.each do |classroom|
+      generate_student_rows(csv, classroom, category)
+    end
+  end
+
+  def self.generate_student_rows(csv, classroom, category)
+    classroom.students.each do |student|
+      csv << classroom.csv_row + classroom.teacher.csv_row + student.csv_row(category)
+    end
+  end
+end

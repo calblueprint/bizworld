@@ -39,6 +39,11 @@ class ClassroomsTable extends React.Component {
         this.setState({ filters: newState });
     }
 
+    _generateCSVLink() {
+        const classroomsIDS = this.state.classrooms.map((val) => { return val.id });
+        return APIConstants.admins.download($.param({classrooms: classroomsIDS}));
+    }
+
     render() {
         const classrooms = this.state.classrooms.map((classroom) => {
             return (
@@ -56,6 +61,7 @@ class ClassroomsTable extends React.Component {
                         <input className="admin-submit-button" name="submit"
                             type="button" value="Submit" onClick={this._fetchClassrooms}/>
                     </form>
+                    <a href={this._generateCSVLink()}>Download CSV</a>
                     <table id="header-fixed"></table>
                     <table className="table admin-table">
                         <thead id="table-head">

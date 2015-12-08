@@ -331,6 +331,7 @@ DEPENDENCIES
   roo-xls (~> 1.0.0)
   rspec-rails
   rubocop
+  rubyzip (~> 1.1.7)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   slim (~> 3.0.6)

@@ -15,4 +15,16 @@ class Response < ActiveRecord::Base
   belongs_to :question
 
   validates :answer, presence: true
+
+  def self.by_category(category)
+    where("category = ?", category)
+  end
+
+  def format
+    if question.answer
+      (question.answer == answer.to_i) ? 1 : 0
+    else
+      question.options ? question.options[answer.to_i] : answer
+    end
+  end
 end

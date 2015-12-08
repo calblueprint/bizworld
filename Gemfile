@@ -20,6 +20,7 @@ gem 'rails', '4.2.4'
 gem 'react-rails', '~> 1.3.0'
 gem 'roo', '~> 2.1.0'
 gem 'roo-xls', '~> 1.0.0'
+gem 'rubyzip', '~> 1.1.7'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim', '~> 3.0.6'

@@ -1,5 +1,12 @@
 class ApiConstants {
 
+    get admins()   {
+        return {
+            classrooms : `/api/admins/classrooms`,
+            download   : (params) => `/api/admins/download?${params}`
+        }
+    }
+
     get classrooms() {
         return {
             member     : (id) => `/api/classrooms/${id}`,
@@ -37,7 +44,6 @@ class ApiConstants {
     }
 
     get pages()    { return { states     : `/api/states` } }
-    get admins()   { return { classrooms : `/api/admins/classrooms` } }
     get programs() { return { collection : `/api/programs` } }
 
     get questions() { return { member : (id) => `/api/questions/${id}` } }
