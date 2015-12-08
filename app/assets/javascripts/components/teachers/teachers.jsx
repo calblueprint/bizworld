@@ -30,17 +30,7 @@ class TeacherModal extends React.Component {
 
         let createCourse;
         if (this.props.type == 'active') {
-            createCourse = (
-                <div type="button" className="classroom-card-col add-course">
-                    <div data-toggle="modal" data-target="#newClassroomModal" >
-                        <div className="classroom-card add-card">
-                            <span className="fa fa-plus"></span>
-                            Create a new course
-                        </div>
-                    </div>
-                    <ClassroomCreationModal teacher_id={this.props.teacher_id} />
-                </div>
-            );
+            createCourse = <ClassroomCreationModal teacher_id={this.props.teacher_id} />
         }
 
         return (

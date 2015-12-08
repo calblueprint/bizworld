@@ -22,9 +22,9 @@ class StudentCreationModal extends DefaultForm {
 
     render() {
         return (
-            <div type="button"className="student-card-col add-student">
+            <div className="action-item">
                 <div data-toggle="modal" data-target="#newStudentModal" >
-                    <div className="student-card add-card">
+                    <div onClick={this._focusInputField} type="button" className="student-card add-card button button-small">
                         <span className="fa fa-plus" />
                         Add a new student
                     </div>
@@ -34,32 +34,22 @@ class StudentCreationModal extends DefaultForm {
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <button type="button" className="close"
-                                        data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                                <h4 className="modal-title"
-                                        id="newStudentModalLabel">
-                                    New Student
-                                </h4>
+                                <h4 className="modal-title">Create New Student</h4>
                             </div>
                             <div className="modal-body">
-                                <input type="text" className="form-control"
-                                    placeholder="First Name" name="first_name"
-                                    onChange={this._handleChange} />
-                                <input type="text" className="form-control"
-                                    placeholder="Last Name" name="last_name"
-                                    onChange={this._handleChange} />
+                                <fieldset className="input-container name-container">
+                                    <label>First name</label>
+                                    <input type="text" placeholder="First Name" ref="focus" name="first_name" onChange={this._handleChange} />
+                                </fieldset>
+
+                                <fieldset className="input-container name-container">
+                                    <label>Last name</label>
+                                    <input type="text" placeholder="Last Name" name="last_name" onChange={this._handleChange} />
+                                </fieldset>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn
-                                    btn-default"
-                                    data-dismiss="modal">Close</button>
-                                <button type="button" name="submit"
-                                        value="Create Student" className="btn
-                                        btn-primary" onClick={this._attemptCreate}>
-                                    Create
-                                </button>
+                                <button type="button" className="button" data-dismiss="modal">Cancel</button>
+                                <button type="button" name="submit" value="Create Student" className="button submit-button" onClick={this._attemptCreate}>Create</button>
                             </div>
                         </div>
                     </div>

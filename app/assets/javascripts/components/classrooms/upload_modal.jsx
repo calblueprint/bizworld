@@ -11,8 +11,8 @@ class UploadModal extends React.Component {
 
     render() {
         return (
-            <div>
-                <input className="button upload-button" type="button"
+            <div className="action-item">
+                <input className="button button-small upload-button" type="button"
                     value="Upload Roster" onClick={this._uploadRoster}
                     data-toggle="modal" data-target="#uploadRosterModal" />
                 <div className="modal fade" id="uploadRosterModal" tabIndex={-1}
@@ -28,15 +28,8 @@ class UploadModal extends React.Component {
                                     Upload Your Student Roster
                                 </h4>
                             </div>
-                            <div className="modal-body">
-                                In order to upload your student roster,
-                                your Excel file needs to have two columns
-                                named exactly "First Name" and "Last Name."
-                                You can have extra information in the file,
-                                but those two columns are necessary.
-                                <UploadRoster classroom_id = {this.props.classroom_id}
-                                              success      = {this._success} />
-                            </div>
+                            <UploadRoster classroom_id = {this.props.classroom_id}
+                                          success      = {this._success} />
                         </div>
                     </div>
                 </div>

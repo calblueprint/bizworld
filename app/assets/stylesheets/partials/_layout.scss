@@ -27,6 +27,7 @@ body {
 .navbar-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .navbar-inverse {
@@ -72,6 +73,8 @@ body {
   input {
     border: 1px solid $gray-light;
     border-radius: 3px;
+    box-shadow: none;
+    height: auto;
     padding: 10px;
     font-size: $f-size-sm;
     width: 100%;
@@ -80,6 +83,22 @@ body {
       border: 1px solid $gray-dark-60;
       outline: none;
     }
+  }
+
+  select {
+    @include appearance(none);
+    background-image: image-url("icons/menulist.svg");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 30px;
+    border: 1px solid $gray-light;
+    border-radius: 3px;
+    box-shadow: none;
+    height: auto;
+    padding: 10px;
+    padding-right: 30px;
+    font-size: $f-size-sm;
+    width: auto;
   }
 }
 
@@ -100,11 +119,16 @@ body {
     border-color: $gray-dark-48;
     opacity: 1;
   }
+
+  &.button-small {
+    padding: 5px 15px;
+  }
 }
 
 .submit-button {
   @extend .button;
   background: $blue-84;
+  border-color: $blue-dark;
   color: white;
 
   &:hover {
@@ -248,7 +272,10 @@ body {
   box-shadow: none;
 }
 
-// TODO(nnarayen 11/24): fix styling
 ul.dropdown-menu li.dropdown-link a {
   color: $gray-dark;
+
+  &:hover {
+    color: $gray-dark;
+  }
 }

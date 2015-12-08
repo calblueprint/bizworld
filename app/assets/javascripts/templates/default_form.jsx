@@ -23,6 +23,10 @@ class DefaultForm extends React.Component {
         this.setState({ editable : !this.state.editable });
     }
 
+    _focusInputField = () => {
+        $(React.findDOMNode(this.refs.focus)).focus();
+    }
+
     _formFields() {
         // Necessary because bootstrap-select does not fire onChange events
         const extraFields = { };

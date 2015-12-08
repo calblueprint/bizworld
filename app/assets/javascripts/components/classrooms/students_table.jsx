@@ -15,6 +15,15 @@ class StudentsTable extends React.Component {
     }
 
     render() {
+        let emptyState;
+        if (this.state.students.length == 0) {
+            emptyState = (
+                <div className="empty-table-container">
+                    <h1>No students yet! Import a roster or add a student to begin.</h1>
+                </div>
+            );
+        }
+
         const students = this.state.students.map((student) => {
             return (
                 <Student student = {student}
@@ -24,12 +33,15 @@ class StudentsTable extends React.Component {
         });
 
         return (
-            <div>
-                <UploadModal classroom_id = {this.props.classroom_id}
-                             success      = {this.props.success} />
-                <StudentCreationModal success      = {this.props.success}
-                                      classroom_id = {this.props.classroom_id} />
+            <div className="student-info-container">
+                <div className="student-table-action-bar">
+                    <StudentCreationModal classroom_id = {this.props.classroom_id}
+                                          success      = {this.props.success}/>
+                    <UploadModal classroom_id = {this.props.classroom_id}
+                                 success      = {this.props.success} />
+                </div>
                 <div className="student-table-container">
+                    { emptyState }
                     <table className="table student-table">
                         <thead>
                             <tr>
@@ -115,7 +127,7 @@ class ClassInfo extends DefaultForm {
     constructor(props) {
         super(props);
         this.state = {
-            classroom: { students: [] },
+            classroom: { students: [], program: {} },
             editable: false
         };
     }
@@ -158,34 +170,46 @@ class ClassInfo extends DefaultForm {
     }
 
     render() {
+        const classType = `classroom-${this.state.classroom.program.id}`;
         return (
-            <div>
-                <h1 className="classroom-name">
-                    { this.state.classroom.name }
-                </h1>
-                <div className="class-info-container">
-                    <h1>Class Info</h1>
-                    <div>
-                        <span className="fa fa-info-circle"></span>
-                        Classroom ID: { this.props.classroom.id }
-                    </div>
-                    <div>
-                        <span className="fa fa-user"></span>
-                        Number of students: { this.state.classroom.students.length }
-                    </div>
-                    <div>
-                        <span className="fa fa-external-link"></span>
-                        Pre Assessment:
-                        <a href={this.state.classroom.pre_link} target="_blank">
-                            { this._formatLink(this.state.classroom.pre_link) }
-                        </a>
-                    </div>
-                    <div>
-                        <span className="fa fa-external-link-square"></span>
-                        Post Assessment:
-                        <a href={this.state.classroom.post_link} target="_blank">
-                            { this._formatLink(this.state.classroom.post_link) }
-                        </a>
+            <div className="class-info-container">
+                <div className="class-title-container">
+                    <h1 className={`classroom-program ${classType}`}>
+                        { this.state.classroom.program.name }
+                    </h1>
+                    <h1 className="classroom-name">{ this.state.classroom.name }</h1>
+                </div>
+                <div className="class-info-box">
+                    <h1><span className="fa fa-info-circle"></span>Class Info</h1>
+                    <div className="info-grid">
+                        <div className="class-info-item">
+                            <h2 className="grid-label">Class ID</h2>
+                            <div className="info-data number">
+                                { this.props.classroom.id }
+                            </div>
+                        </div>
+                        <div className="class-info-item">
+                            <h2 className="grid-label">Students</h2>
+                            <div className="info-data number">
+                                { this.state.classroom.students.length }
+                            </div>
+                        </div>
+                        <div className="class-info-item">
+                            <h2 className="grid-label">Pre-Test</h2>
+                            <div className="info-data">
+                                <a href={this.state.classroom.pre_link} target="_blank">
+                                    { this._formatLink(this.state.classroom.pre_link) }
+                                </a>
+                            </div>
+                        </div>
+                        <div className="class-info-item">
+                            <h2 className="grid-label">Post-Test</h2>
+                            <div className="info-data">
+                                <a href={this.state.classroom.post_link} target="_blank">
+                                    { this._formatLink(this.state.classroom.post_link) }
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     { this._showInput("Classroom Name", "name", this.state.classroom.name) }
                     { this._showDateRange("Date Range", this.state.classroom.start_date, this.state.classroom.end_date) }

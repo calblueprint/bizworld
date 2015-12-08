@@ -27,13 +27,13 @@ class ClassroomDropdown extends React.Component {
         });
 
         return (
-            <div className="form-group">
-                <label htmlFor="program_id">Select module:</label>
+            <fieldset className="input-container program-select">
+                <label htmlFor="program_id">Select program</label>
                 <select name="program_id" className="form-control program-select"
                  onChange={this.props.onChange}>
                     { programNames }
                 </select>
-            </div>
+            </fieldset>
         );
     }
 }
@@ -46,7 +46,7 @@ class ClassroomCreationModal extends DefaultForm {
 
     constructor(props) {
         super(props);
-        const curDate = moment().format('YYYY-MM-DD');
+        const curDate = moment().format(DATE_FORMAT);
         this.state = {
             teacher_id : this.props.teacher_id,
             program_id : "1",
@@ -61,40 +61,51 @@ class ClassroomCreationModal extends DefaultForm {
 
     render() {
         return (
-            <div className="modal fade" id="newClassroomModal" tabIndex={-1}
-                role="dialog" aria-labelledby="newClassroomModalLabel">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <button type="button" className="close"
-                                data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                            <h4 className="modal-title" id="newClassroomModalLabel">
-                                New Classroom
-                            </h4>
-                        </div>
-                        <div className="modal-body">
-                            <input type="text" className="form-control"
-                                placeholder="Classroom Name" name="name"
-                                onChange={this._handleChange} />
-                            <ClassroomDropdown onChange={this._handleChange} />
-                            <DateRangeInput className="daterange"
-                                onFilterChange={this._handleDateRangeChange} />
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-default"
-                                    data-dismiss="modal">
-                                Close
-                            </button>
-                            <button type="button" className="btn btn-primary"
-                                    onClick={this._handleClassroomCreation}>
-                                Create
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div className="classroom-card-col">
+              <div type="button" className="add-course">
+                  <div data-toggle="modal" data-target="#newClassroomModal" >
+                      <div onClick={this._focusInputField} className="classroom-card add-card">
+                          <span className="fa fa-plus"></span>
+                          Create a new course
+                      </div>
+                  </div>
+              </div>
+              <div className="modal fade" id="newClassroomModal" tabIndex={-1}
+                  role="dialog" aria-labelledby="newClassroomModalLabel">
+                  <div className="modal-dialog" role="document">
+                      <div className="modal-content">
+                          <div className="modal-header">
+                              <h4 className="modal-title"
+                                  id="newClassroomModalLabel">
+                                  Create New Classroom
+                              </h4>
+                          </div>
+                          <div className="modal-body">
+                              <fieldset className="input-container">
+                                  <label>Classroom name</label>
+                                  <input type="text" className="form-control" ref="focus"
+                                      placeholder="Bizworld Class 1" name="name"
+                                      onChange={this._handleChange} />
+                              </fieldset>
+                              <ClassroomDropdown onChange={this._handleChange} />
+                              <fieldset className="input-container date-select">
+                                  <label>Date range</label>
+                                  <DateRangeInput className="daterange"
+                                      onFilterChange={this._handleDateRangeChange} />
+                              </fieldset>
+                          </div>
+                          <div className="modal-footer">
+                              <button type="button" className="button"
+                                      data-dismiss="modal">Cancel</button>
+                              <button type="button" className="button submit-button"
+                                      onClick={this._handleClassroomCreation}>
+                                      Create
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
         )
     }
 }

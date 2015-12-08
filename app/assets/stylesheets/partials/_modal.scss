@@ -1,0 +1,57 @@
+@import "partials/variables";
+@import "partials/mixins";
+
+.modal-dialog {
+  margin-top: 80px;
+}
+
+.modal-content {
+  border-radius: 2px;
+  box-shadow: none;
+}
+
+.modal-header {
+  background: $gray-dark;
+  padding: 20px;
+
+  .modal-title {
+    color: white;
+    font-size: $f-size-xl;
+    font-weight: 600;
+  }
+}
+
+.modal-body {
+  padding: 20px;
+
+  .input-container {
+    margin-bottom: 10px;
+    padding: 0 10px;
+
+    select,
+    .date-input-container {
+      width: 100%;
+    }
+  }
+
+  .program-select,
+  .date-select,
+  .name-container {
+    display: inline-block;
+    width: 50%;
+  }
+}
+
+.modal-footer {
+  border-top: none;
+  padding: 0 30px;
+  padding-bottom: 20px;
+
+  .button {
+    margin: 0;
+
+    &:last-of-type {
+      margin-left: 15px;
+    }
+  }
+}

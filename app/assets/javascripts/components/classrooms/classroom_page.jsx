@@ -22,14 +22,12 @@ class ClassroomPage extends React.Component {
 
     render() {
         return (
-            <div className="classroom-view-container">
-                <div className="student-info-container">
-                    <StudentsTable students     = {this.state.classroom.students}
-                                   classroom_id = {this.props.classroom_id}
-                                   success      = {this._fetchClassroom} />
-                </div>
+            <div>
                 <ClassInfo classroom = {this.state.classroom}
                            success   = {this._fetchClassroom} />
+                <StudentsTable students     = {this.state.classroom.students}
+                               classroom_id = {this.props.classroom_id}
+                               success      = {this._fetchClassroom} />
             </div>
         );
     }

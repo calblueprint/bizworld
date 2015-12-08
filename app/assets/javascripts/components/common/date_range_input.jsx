@@ -7,14 +7,14 @@ class DateRangeInput extends React.Component {
     componentDidMount() {
         options = {
             locale: {
-                format: 'YYYY-MM-DD'
+                format: DATE_FORMAT
             },
-            startDate: this.props.initialStartDate,
-            endDate: this.props.initialEndDate
+            startDate: moment(this.props.initialStartDate),
+            endDate: moment(this.props.initialEndDate)
         }
         $('input[class="daterange"]').daterangepicker(options, (start, end, label) => {
-            this.props.onFilterChange(start.format('YYYY-MM-DD'),
-                                      end.format('YYYY-MM-DD'));
+            this.props.onFilterChange(start.format(DATE_FORMAT),
+                                      end.format(DATE_FORMAT));
         });
     }
 

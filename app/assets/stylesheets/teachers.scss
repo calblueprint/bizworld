@@ -37,6 +37,7 @@ $color-list: $red $orange $blue;
 .classroom-card-col {
   display: inline-block;
   padding: 15px;
+  vertical-align: middle;
   width: 33.33%;
 
   @media (min-width: 960px) {
@@ -199,6 +200,16 @@ $color-list: $red $orange $blue;
       width: 70%;
     }
   }
+
+  .edit-button-container {
+    margin-top: 10px;
+    
+    input {
+      @extend .button-small;
+      margin: 0;
+      margin-right: 10px;
+    }
+  }
 }
 
 .teacher-account-header {
@@ -206,11 +217,4 @@ $color-list: $red $orange $blue;
   margin: 0 auto;
   margin-bottom: 40px;
   text-align: center;
-}
-
-.edit-button-container {
-
-  input {
-    margin-right: 10px;
-  }
 }

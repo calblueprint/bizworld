@@ -16,15 +16,17 @@ class EditableDateRange extends React.Component {
                                 initialEndDate   = { this.props.endDate } />
             );
         } else {
+            var start = moment(this.props.startDate).format(DATE_FORMAT);
+            var end = moment(this.props.endDate).format(DATE_FORMAT);
             dateRange = (
                 <div>
-                   { `${this.props.startDate} - ${this.props.endDate}` }
+                   { `${start} to ${end}` }
                 </div>
-                );
+            );
         }
 
         return (
-            <div>
+            <div className="input-container">
                 <label htmlFor={this.props.label}>
                     { this.props.label }:
                 </label>
