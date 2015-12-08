@@ -54,29 +54,27 @@ class ClassroomsTable extends React.Component {
 
         return (
             <div>
-                <div>
-                    <form className="filter-form-container">
-                        <ClassroomsFilter onFilterChange    = {this._handleFilterChange}
-                                          onDateRangeChange = {this._handleDateRangeChange} />
-                        <input className="admin-submit-button" name="submit"
-                            type="button" value="Submit" onClick={this._fetchClassrooms}/>
-                    </form>
-                    <a href={this._generateCSVLink()}>Download CSV</a>
-                    <table id="header-fixed"></table>
-                    <table className="table admin-table">
-                        <thead id="table-head">
-                            <tr>
-                                <th>Teacher</th>
-                                <th># Students</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            { classrooms }
-                        </tbody>
-                    </table>
-                </div>
+                <form className="filter-form-container">
+                    <ClassroomsFilter onFilterChange    = {this._handleFilterChange}
+                                      onDateRangeChange = {this._handleDateRangeChange} />
+                    <input className="admin-submit-button" name="submit"
+                        type="button" value="Submit" onClick={this._fetchClassrooms}/>
+                </form>
+                <a href={this._generateCSVLink()}>Download CSV</a>
+                <table id="header-fixed"></table>
+                <table className="table admin-table">
+                    <thead id="table-head">
+                        <tr>
+                            <th>Teacher</th>
+                            <th># Students</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { classrooms }
+                    </tbody>
+                </table>
             </div>
         );
     }

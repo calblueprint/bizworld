@@ -6,18 +6,20 @@
 class TeacherModal extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            classrooms: [],
-        };
+        this.state = { classrooms: [] };
     }
 
     componentDidMount() {
-        this._fetchClassrooms( this.props.teacher_id, { type : this.props.type } );
+        this._fetchClassrooms(this.props);
     }
 
-    _fetchClassrooms(id, params) {
+    _fetchClassrooms(params) {
         const success = (data) => { this.setState({ classrooms: data }) }
-        APIRequester.getJSON(APIConstants.teachers.classrooms(id), success, params)
+        APIRequester.getJSON(APIConstants.teachers.classrooms(this.props.teacher_id), success, params)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this._fetchClassrooms(nextProps);
     }
 
     render() {

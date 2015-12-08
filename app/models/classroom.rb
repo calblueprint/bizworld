@@ -54,4 +54,8 @@ class Classroom < ActiveRecord::Base
     self.post_link = UrlActions.shorten_url(id, :post)
     save
   end
+
+  def self.by_program(program_id)
+    where("program_id = ?", program_id)
+  end
 end

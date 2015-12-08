@@ -1,18 +1,4 @@
 .teacher-classroom-container
-  h3
-    | All Programs
-    span.fa.fa-angle-down
-
-  .classes-container.active-class
-    h1.classes-container-title Active Classes
-    = react_component "TeacherModal", { \
-            teacher_id: @teacher.id,    \
-            type: 'active',             \
-      }
-
-  .classes-container.inactive-class
-    h1.classes-container-title Inactive Classes
-    = react_component "TeacherModal", { \
-            teacher_id: @teacher.id,    \
-            type: 'inactive',           \
-      }
+  = react_component "TeacherClassrooms", { \
+    teacher_id: @teacher.id,               \
+  }

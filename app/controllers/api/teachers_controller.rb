@@ -4,7 +4,8 @@ module Api
 
     def classrooms
       teacher = Teacher.find(params[:teacher_id])
-      render json: teacher.classrooms.send(params[:type]), each_serializer: ClassroomSerializer, root: false
+      classrooms = filter_classrooms(params[:type], params[:program_id])
+      render json: classrooms, each_serializer: ClassroomSerializer, root: false
     end
 
     def show
@@ -24,6 +25,12 @@ module Api
     def update_params
       params.permit(:first_name, :last_name, :email, :phone_number,
                     :school, :city, :state, grades: [])
+    end
+
+    def filter_classrooms(type, program_id)
+      teacher = Teacher.find(params[:teacher_id])
+      classrooms = teacher.classrooms.send(type)
+      program_id.empty? ? classrooms : classrooms.by_program(program_id)
     end
   end
 end
