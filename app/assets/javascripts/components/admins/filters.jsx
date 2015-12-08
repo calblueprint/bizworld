@@ -48,6 +48,10 @@ ClassroomsStatusFilter.propTypes = {
     onFilterChange: React.PropTypes.func.isRequired,
 };
 
+/**
+ * @prop onDateRangeChange - callback function when date range changes
+ * @prop onFilterChange    - callback function when filter changes
+ */
 class ClassroomsFilter extends React.Component {
     render() {
         return (
@@ -58,6 +62,8 @@ class ClassroomsFilter extends React.Component {
                     <input placeholder="teacher email" type="text" name="email"
                         onChange={this.props.onFilterChange} />
                 </div>
+                <ProgramFilter onChange = {this.props.onFilterChange}
+                               view     = {0} />
             </div>
         );
     }

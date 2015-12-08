@@ -11,6 +11,7 @@ class ApiConstants {
         return {
             member     : (id) => `/api/classrooms/${id}`,
             upload     : (id) => `/api/classrooms/${id}/upload`,
+            download   : (id) => `/api/classrooms/${id}/download`,
             collection : `/api/classrooms/`,
         }
     }

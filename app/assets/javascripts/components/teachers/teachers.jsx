@@ -1,5 +1,6 @@
 /**
  * @prop teacher_id - the id associated with the teacher
+ * @prop program_id - the id associated with the selected program
  * @prop type       - active or inactive classroom
  */
 
@@ -46,6 +47,7 @@ class TeacherModal extends React.Component {
 
 TeacherModal.propTypes = {
     teacher_id : React.PropTypes.number.isRequired,
+    program_id : React.PropTypes.string.isRequired,
     type       : React.PropTypes.string.isRequired
 };
 

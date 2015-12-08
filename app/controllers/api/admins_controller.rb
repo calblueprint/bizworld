@@ -3,32 +3,24 @@ module Api
     before_filter :authenticate_admin!
 
     def classrooms
-      classrooms = filter_classrooms(params[:status], params[:range], params[:email])
+      classrooms = filter_classrooms(params[:status], params[:range],
+                                     params[:email], params[:program_id])
       render json: classrooms, each_serializer: ClassroomSerializer, root: false
     end
 
     def download
       classrooms = params[:classrooms].map { |id| Classroom.find(id) }
-      filename = 'classroom_responses.zip'
-      temp_file = Tempfile.new(filename)
-      begin
-        CSVGenerator.create_zip(classrooms, temp_file)
-        send_data(File.read(temp_file.path), type: 'application/zip', filename: filename)
-      ensure
-        cleanup_file(temp_file)
-      end
+      filename, file = CSVGenerator.create_zip(classrooms, Program.find(params[:program_id]))
+      send_data(File.read(file.path), type: 'application/zip', filename: filename)
+      cleanup_file(file)
     end
 
     private
 
-    def cleanup_file(file)
-      file.close
-      file.unlink
-    end
-
-    def filter_classrooms(status, range, email)
+    def filter_classrooms(status, range, email, program_id)
       classrooms = status.empty? ? Classroom.all : Classroom.all.send(status, range)
-      email.present? ? classrooms.by_teacher_email(email) : classrooms
+      classrooms = classrooms.by_teacher_email(email) if email.present?
+      classrooms.by_program(program_id)
     end
   end
 end

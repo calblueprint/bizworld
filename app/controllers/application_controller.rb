@@ -21,4 +21,9 @@ class ApplicationController < ActionController::Base
       errors: options[:errors]
     }, status: status
   end
+
+  def cleanup_file(file)
+    file.close
+    file.unlink
+  end
 end

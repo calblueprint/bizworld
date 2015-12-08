@@ -1,7 +1,8 @@
 /**
  * @prop onChange - function that is called onChange for inputs, updates program_id
+ * @prop view     - view type for this component
  */
-class ProgramFilterModal extends React.Component {
+class ProgramFilter extends React.Component {
     constructor(props) {
         super(props);
         this.state = { programs: [] };
@@ -28,7 +29,7 @@ class ProgramFilterModal extends React.Component {
         return (
             <div className="dropdown form-group">
                 <select name="program_id" onChange={this.props.onChange} className="program-select form-control" id="module">
-                    <option value="">All Programs</option>
+                    { this.props.view ? <option value="">All Programs</option> : null }
                     { programNames }
                 </select>
             </div>
@@ -36,6 +37,7 @@ class ProgramFilterModal extends React.Component {
     }
 }
 
-ProgramFilterModal.propTypes = {
-    onChange: React.PropTypes.func.isRequired,
+ProgramFilter.propTypes = {
+    onChange : React.PropTypes.func.isRequired,
+    view     : React.PropTypes.number.isRequired
 };

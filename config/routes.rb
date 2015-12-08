@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     end
 
     resources :classrooms, only: [:create, :show, :update] do
+      get 'download', to: 'classrooms#download'
       post 'upload', to: 'classrooms#upload'
     end
 

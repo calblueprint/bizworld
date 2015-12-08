@@ -6,6 +6,7 @@ class ClassroomsTable extends React.Component {
             classrooms: [],
             filters: {
                 status : "active",
+                program_id : "1",
                 range : { }
             }
         };
@@ -40,8 +41,11 @@ class ClassroomsTable extends React.Component {
     }
 
     _generateCSVLink() {
-        const classroomsIDS = this.state.classrooms.map((val) => { return val.id });
-        return APIConstants.admins.download($.param({classrooms: classroomsIDS}));
+        const classrooms = this.state.classrooms.map((val) => { return val.id });
+        return APIConstants.admins.download($.param({
+            classrooms : classrooms,
+            program_id : this.state.filters.program_id
+        }));
     }
 
     render() {
