@@ -62,6 +62,7 @@ class StudentsTable extends React.Component {
                     </table>
                 </div>
                 <a href={this._generateCSVLink()}>Download CSV</a>
+                <DeleteClassroomModal classroom_id = { this.props.classroom_id } />
             </div>
         );
     }

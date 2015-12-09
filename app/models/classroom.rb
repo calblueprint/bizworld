@@ -15,7 +15,7 @@
 #
 
 class Classroom < ActiveRecord::Base
-  has_many :students
+  has_many :students, dependent: :delete_all
   belongs_to :program
   belongs_to :teacher
   validates :name, presence: true

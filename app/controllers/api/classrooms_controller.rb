@@ -41,6 +41,16 @@ module Api
       cleanup_file(file)
     end
 
+    def destroy
+      classroom = Classroom.find(params[:id])
+      if classroom.destroy
+        render_json_message(:ok, message: 'Successfully deleted classroom!',
+                                 to: teacher_classrooms_path(current_teacher))
+      else
+        render_json_message(:forbidden, errors: classroom.errors.full_messages)
+      end
+    end
+
     private
 
     def attempt_upload(roster, students)
