@@ -59,7 +59,7 @@ class ClassroomsFilter extends React.Component {
                 <ClassroomsStatusFilter onFilterChange    = {this.props.onFilterChange}
                                         onDateRangeChange = {this.props.onDateRangeChange} />
                 <div className="filter-input-container">
-                    <input placeholder="teacher email" type="text" name="email"
+                    <input placeholder="Teacher Info" type="text" name="teacher"
                         onChange={this.props.onFilterChange} />
                 </div>
                 <ProgramFilter onChange = {this.props.onFilterChange}

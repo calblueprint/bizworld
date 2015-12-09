@@ -9,12 +9,11 @@ class DateRangeInput extends React.Component {
             locale: {
                 format: DATE_FORMAT
             },
-            startDate: moment(this.props.initialStartDate),
-            endDate: moment(this.props.initialEndDate)
+            startDate: formatDate(this.props.initialStartDate),
+            endDate: formatDate(this.props.initialEndDate)
         }
         $('input[class="daterange"]').daterangepicker(options, (start, end, label) => {
-            this.props.onFilterChange(start.format(DATE_FORMAT),
-                                      end.format(DATE_FORMAT));
+            this.props.onFilterChange(formatDate(start), formatDate(end));
         });
     }
 

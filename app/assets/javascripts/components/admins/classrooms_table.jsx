@@ -69,10 +69,10 @@ class ClassroomsTable extends React.Component {
                 <table className="table admin-table">
                     <thead id="table-head">
                         <tr>
-                            <th>Teacher</th>
-                            <th># Students</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
+                            <th>Classroom Name</th>
+                            <th>Teacher Name</th>
+                            <th>Teacher Email</th>
+                            <th>Date Range</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -98,20 +98,29 @@ class ClassroomsTableRow extends React.Component {
        window.location.href = `/classrooms/${this.props.classroom.id}`;
     }
 
+    _formatTeacherName(teacher) {
+        return `${teacher.first_name} ${teacher.last_name}`;
+    }
+
+    _formatDateRange(classroom) {
+        return `${formatDate(classroom.start_date)} to
+            ${formatDate(classroom.end_date)}`;
+    }
+
     render() {
         return (
             <tr onClick={this._handleRowClick}>
                 <td>
+                    { this.state.classroom.name }
+                </td>
+                <td>
+                    { this._formatTeacherName(this.state.classroom.teacher) }
+                </td>
+                <td>
                     { this.state.classroom.teacher.email }
                 </td>
                 <td>
-                    { this.state.classroom.students.length }
-                </td>
-                <td>
-                    { this.state.classroom.start_date }
-                </td>
-                <td>
-                    { this.state.classroom.end_date }
+                    { this._formatDateRange(this.state.classroom) }
                 </td>
             </tr>
         );

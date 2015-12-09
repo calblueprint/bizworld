@@ -46,7 +46,7 @@ class ClassroomCreationModal extends DefaultForm {
 
     constructor(props) {
         super(props);
-        const curDate = moment().format(DATE_FORMAT);
+        const curDate = formatDate(moment());
         this.state = {
             teacher_id : this.props.teacher_id,
             program_id : "1",

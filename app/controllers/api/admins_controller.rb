@@ -4,7 +4,7 @@ module Api
 
     def classrooms
       classrooms = filter_classrooms(params[:status], params[:range],
-                                     params[:email], params[:program_id])
+                                     params[:teacher], params[:program_id])
       render json: classrooms, each_serializer: ClassroomSerializer, root: false
     end
 
@@ -17,9 +17,9 @@ module Api
 
     private
 
-    def filter_classrooms(status, range, email, program_id)
+    def filter_classrooms(status, range, teacher, program_id)
       classrooms = status.empty? ? Classroom.all : Classroom.all.send(status, range)
-      classrooms = classrooms.by_teacher_email(email) if email.present?
+      classrooms = classrooms.by_teacher(teacher) if teacher.present?
       classrooms.by_program(program_id)
     end
   end

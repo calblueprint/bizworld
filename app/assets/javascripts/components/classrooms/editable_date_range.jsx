@@ -16,8 +16,8 @@ class EditableDateRange extends React.Component {
                                 initialEndDate   = { this.props.endDate } />
             );
         } else {
-            var start = moment(this.props.startDate).format(DATE_FORMAT);
-            var end = moment(this.props.endDate).format(DATE_FORMAT);
+            var start = formatDate(this.props.startDate);
+            var end = formatDate(this.props.endDate);
             dateRange = (
                 <div>
                    { `${start} to ${end}` }

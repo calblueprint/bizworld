@@ -15,12 +15,22 @@
 #
 
 class Classroom < ActiveRecord::Base
+  include PgSearch
+
   has_many :students, dependent: :delete_all
   belongs_to :program
   belongs_to :teacher
   validates :name, presence: true
 
   after_create :create_links
+
+  pg_search_scope :by_teacher,
+    associated_against: {
+      teacher: [:email, :first_name, :last_name]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
 
   def self.active(_options = {})
     where("end_date >= ? AND start_date <= ?", Date.current, Date.current)
@@ -33,10 +43,6 @@ class Classroom < ActiveRecord::Base
   def self.date_range(options)
     range = HashWithIndifferentAccess.new(Date.current).merge!(options || {})
     where("end_date <= ? AND start_date >= ?", range[:end].to_date, range[:start].to_date)
-  end
-
-  def self.by_teacher_email(email)
-    joins(:teacher).where(teachers: { email: email })
   end
 
   def self.csv_header
