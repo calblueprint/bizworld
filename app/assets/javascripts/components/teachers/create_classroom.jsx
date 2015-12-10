@@ -97,7 +97,7 @@ class ClassroomCreationModal extends DefaultForm {
                           <div className="modal-footer">
                               <button type="button" className="button"
                                       data-dismiss="modal">Cancel</button>
-                              <button type="button" className="button submit-button"
+                              <button type="button" className="submit-button"
                                       onClick={this._handleClassroomCreation}>
                                       Create
                               </button>

@@ -29,8 +29,11 @@ class DefaultAdminQuestion extends DefaultForm {
         let editButton;
         if (!this.state.editable) {
             editButton = (
-                <span className="fa fa-pencil-square-o edit-question"
-                    onClick={this._toggleEdit} />
+                <a className="edit-question-button"
+                        onClick={this._toggleEdit} >
+                    <span className="fa fa-pencil"/>
+                    Edit
+                </a>
             );
         }
         return editButton;
@@ -42,9 +45,9 @@ class DefaultAdminQuestion extends DefaultForm {
             saveContainer = (
                 <div className="edit-button-container">
                     <input name="editable" type="button" value="Cancel"
-                        className="button" onClick={this._toggleEdit} />
+                        className="button button-small" onClick={this._toggleEdit} />
                     <input type="button" value="Save Changes"
-                        className="button submit-button"
+                        className="button-small submit-button"
                         onClick={this._attemptSave} />
                 </div>
             );

@@ -3,6 +3,34 @@
 @import "partials/layout";
 $color-list: $red $orange $blue;
 
+.teacher-classroom-filter {
+  margin-bottom: 30px;
+
+  .program-select {
+    @include appearance(none);
+    background-image: image-url("icons/menulist.svg");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 30px;
+    border: none;
+    border-bottom: 2px solid $gray-light;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: $f-size-xl;
+    outline: none;
+    padding-bottom: 8px;
+    padding-right: 15px;
+    transition: $fast;
+
+    optgroup {
+      font-size: $f-size-md;
+    }
+
+    &:hover {
+      border-color: $gray-dark-48;
+    }
+  }
+}
 // Classroom view
 .classroom-card a {
   text-decoration: none;
@@ -18,7 +46,7 @@ $color-list: $red $orange $blue;
 }
 
 .classes-container-title {
-  color: $gray-dark-84;
+  color: $gray-dark-72;
   font-size: $f-size-xl;
   font-weight: bold;
 }
@@ -29,7 +57,7 @@ $color-list: $red $orange $blue;
 
 .inactive-class {
   .classroom-card {
-    opacity: 0.7;
+    opacity: 0.5;
   }
 }
 
@@ -203,7 +231,7 @@ $color-list: $red $orange $blue;
 
   .edit-button-container {
     margin-top: 10px;
-    
+
     input {
       @extend .button-small;
       margin: 0;

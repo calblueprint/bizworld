@@ -8,6 +8,7 @@
 .modal-content {
   border-radius: 2px;
   box-shadow: none;
+  text-align: left;
 }
 
 .modal-header {
@@ -39,6 +40,12 @@
   .name-container {
     display: inline-block;
     width: 50%;
+  }
+
+  &.delete-text {
+    color: $red;
+    font-size: $f-size-md;
+    text-align: center;
   }
 }
 

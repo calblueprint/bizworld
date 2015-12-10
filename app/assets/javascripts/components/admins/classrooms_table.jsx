@@ -58,14 +58,21 @@ class ClassroomsTable extends React.Component {
 
         return (
             <div>
-                <form className="filter-form-container">
-                    <ClassroomsFilter onFilterChange    = {this._handleFilterChange}
-                                      onDateRangeChange = {this._handleDateRangeChange} />
-                    <input className="admin-submit-button" name="submit"
-                        type="button" value="Submit" onClick={this._fetchClassrooms}/>
-                </form>
-                <a href={this._generateCSVLink()}>Download CSV</a>
-                <table id="header-fixed"></table>
+                <div className="admin-filter-container">
+                    <form className="filter-form-container">
+                        <ClassroomsFilter onFilterChange    = {this._handleFilterChange}
+                                          onDateRangeChange = {this._handleDateRangeChange} />
+                        <input className="admin-submit-button" name="submit"
+                            type="button" value="Apply" onClick={this._fetchClassrooms}/>
+                        <a className="button download-button" href={this._generateCSVLink()}>
+                            <span className="fa fa-download"/>
+                            Download CSV
+                        </a>
+                    </form>
+                </div>
+                <h1 className="admin-table-title">Filtered Classrooms:
+                    <span> { this.state.classrooms.length } found</span>
+                </h1>
                 <table className="table admin-table">
                     <thead id="table-head">
                         <tr>

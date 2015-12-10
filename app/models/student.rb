@@ -20,10 +20,10 @@ class Student < ActiveRecord::Base
 
   def self.csv_header
     # Generates header for student fields, header for responses is generated in program.rb
-    ["Student First Name", "Student Last Name", "Student ID"]
+    ["Student Name", "Student ID"]
   end
 
   def csv_row(category)
-    [first_name, last_name, id] + responses.by_category(category).order(:question_id).map(&:format)
+    ["#{first_name} #{last_name}", id] + responses.by_category(category).order(:question_id).map(&:format)
   end
 end

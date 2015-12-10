@@ -27,10 +27,12 @@ class ProgramFilter extends React.Component {
         });
 
         return (
-            <div className="dropdown form-group">
-                <select name="program_id" onChange={this.props.onChange} className="program-select form-control" id="module">
-                    { this.props.view ? <option value="">All Programs</option> : null }
-                    { programNames }
+            <div className="teacher-classroom-filter">
+                <select name="program_id" onChange={this.props.onChange} className="program-select" id="module">
+                    <optgroup>
+                        { this.props.view ? <option value="">All Programs</option> : null }
+                        { programNames }
+                    </optgroup>
                 </select>
             </div>
         );

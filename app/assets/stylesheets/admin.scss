@@ -7,12 +7,42 @@
   background: transparent;
   border: none;
   margin: 0 auto;
+  margin-top: 40px;
   max-width: 1200px;
+  min-width: 1050px;
   padding: 0;
+}
+
+.admin-filter-container {
+  margin-bottom: 30px;
+
+  .teacher-classroom-filter {
+    display: inline-block;
+  }
+
+  .download-button {
+    float: right;
+    margin: 0;
+
+    &:hover {
+      color: initial;
+      text-decoration: none;
+    }
+
+    &:focus {
+      color: initial;
+      text-decoration: none;
+    }
+  }
+
+  .program-select {
+    margin-left: 15px;
+  }
 }
 
 .classroom-status-filter {
   display: inline-block;
+  vertical-align: middle;
 }
 
 .classroom-status-select {
@@ -24,10 +54,10 @@
   border: none;
   border-bottom: 2px solid $gray-light;
   border-radius: 0;
-  font-size: $f-size-xxl;
+  font-size: $f-size-xl;
   margin-right: 15px;
   outline: none;
-  padding-bottom: 3px;
+  padding-bottom: 8px;
   padding-right: 30px;
   transition: $fast;
 
@@ -50,10 +80,14 @@
   min-width: 200px;
 }
 
-.temp-class {
+.filter-options {
   display: inline-block;
   margin-left: 10px;
-  width: 90%;
+  width: 75%;
+
+  .select-options {
+    float: left;
+  }
 }
 
 .admin-submit-button {
@@ -63,10 +97,63 @@
   vertical-align: top;
 }
 
+.admin-table-title {
+  font-size: $f-size-xl;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  margin-top: 0;
+}
+
 .admin-table {
   tbody {
     tr {
       cursor: pointer;
     }
+  }
+}
+
+.form-questions-container {
+
+  .input-container {
+    margin: 10px auto;
+  }
+
+  .edit-button-container {
+    margin-top: 20px;
+
+    input {
+      margin: 0;
+      margin-right: 10px;
+    }
+  }
+
+  .edit-question-button {
+    cursor: pointer;
+    font-size: $f-size-xs;
+    margin-left: 10px;
+    padding: 0 7px;
+
+    .fa {
+      margin-left: 0;
+      margin-right: 5px;
+    }
+  }
+
+  .radio-option {
+    input, label {
+      display: inline-block;
+      width: auto;
+    }
+
+    input[type="text"] {
+      margin: 5px auto 5px 15px;
+      min-width: 200px;
+      padding: 5px 10px;
+    }
+  }
+
+  .button {
+    width: auto;
   }
 }

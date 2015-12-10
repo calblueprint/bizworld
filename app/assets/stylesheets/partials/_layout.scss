@@ -123,20 +123,53 @@ body {
   &.button-small {
     padding: 5px 15px;
   }
+
+  .fa {
+    margin-right: 5px;
+  }
 }
 
 .submit-button {
   @extend .button;
   background: $blue-84;
-  border-color: $blue-dark;
+  border-color: $blue;
   color: white;
+
+  &:hover {
+    border-color: $blue-dark;
+  }
+
+  &:focus {
+    background: $blue;
+  }
+}
+
+.submit-button-o {
+  @extend .button;
+  border-color: $blue-36;
+  color: $blue;
 
   &:hover {
     border-color: $blue;
   }
 
   &:focus {
-    background: $blue;
+    border-color: $blue-84;
+  }
+}
+
+a.button {
+  color: initial;
+  text-decoration: none;
+
+  &:hover {
+    color: initial;
+    text-decoration: none;
+  }
+
+  &:focus {
+    color: initial;
+    text-decoration: none;
   }
 }
 
@@ -243,15 +276,6 @@ body {
   .btn:focus {
     background: white;
     box-shadow: none;
-    outline: none !important;
-  }
-
-  &.open {
-    button, button:focus, button:hover {
-      background: white !important;
-      box-shadow: none;
-      outline: none;
-    }
 
     .dropdown-toggle {
       box-shadow: none;

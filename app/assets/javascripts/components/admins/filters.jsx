@@ -32,13 +32,18 @@ class ClassroomsStatusFilter extends React.Component {
         }
 
         return (
-            <div className="classroom-status-filter">
-                <select className="classroom-status-select" name="status" onChange={this._handleSelectStatusChange}>
-                    <option value="active">Currently Active</option>
-                    <option value="date_range">Date Range</option>
-                    <option value="">All Classrooms</option>
-                </select>
-                { dateRangeInput }
+            <div>
+                <div className="classroom-status-filter">
+                    <select className="classroom-status-select" name="status" onChange={this._handleSelectStatusChange}>
+                        <option value="active">Currently Active</option>
+                        <option value="date_range">Date Range</option>
+                        <option value="">All Classrooms</option>
+                    </select>
+                    { dateRangeInput }
+                </div>
+                <ProgramFilter onChange = {this.props.onFilterChange}
+                               view     = {0} />
+
             </div>
         );
     }
@@ -55,15 +60,15 @@ ClassroomsStatusFilter.propTypes = {
 class ClassroomsFilter extends React.Component {
     render() {
         return (
-            <div className="temp-class">
-                <ClassroomsStatusFilter onFilterChange    = {this.props.onFilterChange}
-                                        onDateRangeChange = {this.props.onDateRangeChange} />
+            <div className="filter-options">
+                <div className="select-options">
+                    <ClassroomsStatusFilter onFilterChange    = {this.props.onFilterChange}
+                                            onDateRangeChange = {this.props.onDateRangeChange} />
+                </div>
                 <div className="filter-input-container">
                     <input placeholder="Teacher Info" type="text" name="teacher"
                         onChange={this.props.onFilterChange} />
                 </div>
-                <ProgramFilter onChange = {this.props.onFilterChange}
-                               view     = {0} />
             </div>
         );
     }

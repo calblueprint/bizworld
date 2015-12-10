@@ -120,30 +120,24 @@ $icon-list: "\f0b1" "\f008" "\f201";
 
 .student-table-action-bar {
   margin-top: 30px;
+  text-align: right;
   @include clearAfter;
 
   .action-item {
-    float: right;
+    display: inline-block;
     margin: 0 5px;
 
     .add-card {
       cursor: pointer;
     }
 
-    &:first-of-type {
+    &:last-of-type {
       margin-right: 0;
     }
   }
 
   .button {
     margin-top: 0;
-  }
-
-  .add-card {
-    .fa {
-      color: $gray-dark-72;
-      margin-right: 5px;
-    }
   }
 }
 

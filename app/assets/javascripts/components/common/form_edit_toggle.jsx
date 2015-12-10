@@ -13,7 +13,7 @@ class FormEditToggle extends React.Component {
                     <input name="editable" type="button" value="Cancel"
                         className="button" onClick={this.props.update} />
                     <input type="button" value="Save Changes"
-                        className="button submit-button" onClick={this.props.save} />
+                        className="submit-button" onClick={this.props.save} />
                 </div>
             )
         } else {

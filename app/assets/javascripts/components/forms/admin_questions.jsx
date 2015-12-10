@@ -34,7 +34,7 @@ class AdminMCQuestion extends DefaultAdminQuestion {
         const radioOptions = this.props.question.options.map((option, index) => {
             const checked = (this.props.question.answer == index);
             return (
-                <div className="radio-option" key={option}>
+                <div className="input-container" key={option}>
                     <EditableRadio name          = {this.props.question.id}
                                    value         = {index}
                                    option        = {option}

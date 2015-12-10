@@ -12,18 +12,17 @@ class UploadModal extends React.Component {
     render() {
         return (
             <div className="action-item">
-                <input className="button button-small upload-button" type="button"
-                    value="Upload Roster" onClick={this._uploadRoster}
-                    data-toggle="modal" data-target="#uploadRosterModal" />
+                <button className="button button-small upload-button" type="button"
+                        onClick={this._uploadRoster} data-toggle="modal"
+                        data-target="#uploadRosterModal">
+                    <span className="fa fa-upload"></span>
+                    Upload Roster
+                </button>
                 <div className="modal fade" id="uploadRosterModal" tabIndex={-1}
                     role="dialog" ref="modal" >
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <button type="button" className="close"
-                                        data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
                                 <h4 className="modal-title">
                                     Upload Your Student Roster
                                 </h4>

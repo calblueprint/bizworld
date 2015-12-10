@@ -39,10 +39,16 @@ class StudentsTable extends React.Component {
         return (
             <div className="student-info-container">
                 <div className="student-table-action-bar">
-                    <StudentCreationModal classroom_id = {this.props.classroom_id}
-                                          success      = {this.props.success}/>
+                    <DeleteClassroomModal classroom_id = { this.props.classroom_id } />
+                    <a className="action-item button button-small"
+                            href={this._generateCSVLink()}>
+                        <span className="fa fa-download"/>
+                        Download CSV
+                    </a>
                     <UploadModal classroom_id = {this.props.classroom_id}
                                  success      = {this.props.success} />
+                    <StudentCreationModal classroom_id = {this.props.classroom_id}
+                                          success      = {this.props.success}/>
                 </div>
                 <div className="student-table-container">
                     { emptyState }
@@ -61,8 +67,6 @@ class StudentsTable extends React.Component {
                         </tbody>
                     </table>
                 </div>
-                <a href={this._generateCSVLink()}>Download CSV</a>
-                <DeleteClassroomModal classroom_id = { this.props.classroom_id } />
             </div>
         );
     }

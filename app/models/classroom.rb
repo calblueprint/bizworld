@@ -46,7 +46,7 @@ class Classroom < ActiveRecord::Base
   end
 
   def self.csv_header
-    %w(classroom_name classroom_id)
+    ["Classroom Name", "Classroom ID"]
   end
 
   def csv_row

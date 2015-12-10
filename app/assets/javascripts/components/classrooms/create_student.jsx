@@ -24,10 +24,10 @@ class StudentCreationModal extends DefaultForm {
         return (
             <div className="action-item">
                 <div data-toggle="modal" data-target="#newStudentModal" >
-                    <div onClick={this._focusInputField} type="button" className="student-card add-card button button-small">
+                    <button onClick={this._focusInputField} type="button" className="student-card add-card submit-button-o button-small">
                         <span className="fa fa-plus" />
                         Add a new student
-                    </div>
+                    </button>
                 </div>
                 <div className="modal fade" id="newStudentModal" tabIndex={-1}
                         role="dialog" ref="modal">
@@ -49,7 +49,7 @@ class StudentCreationModal extends DefaultForm {
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="button" data-dismiss="modal">Cancel</button>
-                                <button type="button" name="submit" value="Create Student" className="button submit-button" onClick={this._attemptCreate}>Create</button>
+                                <button type="button" name="submit" value="Create Student" className="submit-button" onClick={this._attemptCreate}>Create</button>
                             </div>
                         </div>
                     </div>

@@ -68,7 +68,7 @@ class UploadRoster extends React.Component {
                 <div className="modal-footer">
                     <button type="button" className="button"
                             data-dismiss="modal">Cancel</button>
-                    <input className="button submit-button upload-button" type="button"
+                    <input className="submit-button upload-button" type="button"
                         value="Upload Roster" onClick={this._uploadRoster}
                         disabled={!this.state.submit} />
                 </div>
