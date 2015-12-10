@@ -31,7 +31,7 @@ class MCQuestion extends React.Component {
 
     render() {
         const radioOptions = this.props.question.options.map((option, index) => {
-            var uniqueId = this.props.question.id + option;
+            const uniqueId = this.props.question.id + option;
             return (
                 <div className="radio-option" key={option}>
                     <input id={uniqueId} type="radio" name={this.props.question.id}
