@@ -12,6 +12,7 @@ def make_teachers
       state: "CA",
       grades: ["3rd", "5th", "8th", "other"]
     )
+    teacher.id = n
     teacher.save
   end
 end
@@ -32,6 +33,7 @@ def make_classrooms
       start_date: six_months_ago.advance(months: n),
       end_date: six_months_ago.advance(months: n+2)
     )
+    classroom.id = n
     classroom.teacher = Teacher.find(n % 5 + 1)
     classroom.program = Program.find(n % 3 + 1)
     classroom.save
@@ -44,6 +46,7 @@ def make_students
       first_name: FFaker::Name.first_name,
       last_name: FFaker::Name.last_name
     )
+    student.id = n
     student.classroom = Classroom.find((n / 3.0).ceil)
     student.save
   end
@@ -56,6 +59,7 @@ def make_admins
       password: "password",
       password_confirmation: "password"
     )
+    admin.id = n
     admin.save
   end
 end

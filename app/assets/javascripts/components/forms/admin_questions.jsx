@@ -30,6 +30,10 @@ class AdminMCQuestion extends DefaultAdminQuestion {
         this.setState({ options : newOptions });
     }
 
+    _onRadioChange = (e) => {
+        this.setState({ answer: $(e.target).attr("value") });
+    }
+
     render() {
         const radioOptions = this.props.question.options.map((option, index) => {
             const checked = (this.props.question.answer == index);
@@ -41,7 +45,7 @@ class AdminMCQuestion extends DefaultAdminQuestion {
                                    checked       = {checked}
                                    editable      = {this.state.editable}
                                    onTextChange  = {this._onOptionChange}
-                                   onRadioChange = {this._onOptionChange} />
+                                   onRadioChange = {this._onRadioChange} />
                 </div>
             )
         });
