@@ -42,8 +42,7 @@ class ClassroomsStatusFilter extends React.Component {
                     { dateRangeInput }
                 </div>
                 <ProgramFilter onChange = {this.props.onFilterChange}
-                               view     = {0} />
-
+                               showAll  = {false} />
             </div>
         );
     }

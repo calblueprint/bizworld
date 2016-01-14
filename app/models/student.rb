@@ -24,6 +24,12 @@ class Student < ActiveRecord::Base
   end
 
   def csv_row(category)
-    ["#{first_name} #{last_name}", id] + responses.by_category(category).order(:question_id).map(&:format)
+    [full_name, id] + responses.by_category(category).sort_by(&:number).map(&:format)
+  end
+
+  private
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 end

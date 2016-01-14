@@ -5,9 +5,9 @@ class ClassroomsTable extends React.Component {
         this.state = {
             classrooms: [],
             filters: {
-                status : "active",
-                program_id : "1",
-                range : { }
+                range      : { },
+                status     : "active",
+                program_id : "1"
             }
         };
     }

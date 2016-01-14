@@ -44,15 +44,18 @@ class UploadRoster extends React.Component {
         return (
             <div>
                 <div className="modal-body">
-                    <p>In order to upload your student roster,
-                    your Excel file needs to have two columns
-                    named exactly "First Name" and "Last Name."
-                    You can have extra information in the file,
-                    but those two columns are necessary.</p>
+                    <p>
+                        In order to upload your student roster, your Excel file
+                        needs to have two columns named exactly "First Name"
+                        and "Last Name" (case sensitive). You can have extra
+                        information in the file, but those two columns are
+                        necessary.
+                    </p>
                     <form className="upload-roster-container"
-                        encType="multipart/form-data" >
-                        <input ref="file" type="file" name="file" id="roster-upload-input"
-                            className="upload-file" accept={FILE_INPUTS.join(",")}
+                            encType="multipart/form-data" >
+                        <input ref="file" type="file" name="file"
+                            id="roster-upload-input" className="upload-file"
+                            accept={FILE_INPUTS.join(",")}
                             onChange={this._handleFileSelect} />
                         <label htmlFor="roster-upload-input"
                             className={`button upload-label upload-${this.state.submit}`}>
@@ -61,13 +64,14 @@ class UploadRoster extends React.Component {
                           </label>
                     </form>
                     <p className="upload-warning">
-                        Note: Uploading a roster will replace all of your current students.
+                        Note: Uploading a roster will replace all of your
+                        current students.
                     </p>
                 </div>
 
                 <div className="modal-footer">
                     <button type="button" className="button"
-                            data-dismiss="modal">Cancel</button>
+                        data-dismiss="modal">Cancel</button>
                     <input className="submit-button upload-button" type="button"
                         value="Upload Roster" onClick={this._uploadRoster}
                         disabled={!this.state.submit} />

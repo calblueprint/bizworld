@@ -91,7 +91,7 @@ questions:
       - 'Expenses'
       - 'Profits'
     answer:
-      0
+      2
     category:
       1
   -
@@ -117,7 +117,7 @@ questions:
       - 'An income statement'
       - 'A financial record'
     answer:
-      3
+      2
     category:
       1
   -
@@ -158,7 +158,7 @@ questions:
       1
   -
     title:
-      'The VP Production’s main responsibility is'
+      'The VP of Production’s main responsibility is'
     options:
       - 'To manage smooth operations of the company'
       - 'To make the movie easily and inexpensively'

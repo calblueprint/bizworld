@@ -3,8 +3,7 @@ module Api
     before_filter :authenticate_admin!
 
     def classrooms
-      classrooms = filter_classrooms(params[:status], params[:range],
-                                     params[:teacher], params[:program_id])
+      classrooms = filter_classrooms(filter_params.symbolize_keys)
       render json: classrooms, each_serializer: ClassroomSerializer, root: false
     end
 
@@ -17,10 +16,14 @@ module Api
 
     private
 
-    def filter_classrooms(status, range, teacher, program_id)
+    def filter_classrooms(status:, program_id:, teacher: nil, range: nil)
       classrooms = status.empty? ? Classroom.all : Classroom.all.send(status, range)
       classrooms = classrooms.by_teacher(teacher) if teacher.present?
       classrooms.by_program(program_id)
+    end
+
+    def filter_params
+      params.permit(:status, :program_id, :teacher, :range)
     end
   end
 end

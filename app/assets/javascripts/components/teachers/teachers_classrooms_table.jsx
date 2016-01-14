@@ -21,7 +21,7 @@ class TeacherClassrooms extends DefaultForm {
             <div>
                 <h3>
                     <ProgramFilter onChange = {this._handleChange}
-                                   view     = {1} />
+                                   showAll  = {true} />
                 </h3>
                 <div className="classes-container active-class">
                     <h1 className="classes-container-title">Active Classes</h1>

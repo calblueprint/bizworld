@@ -20,11 +20,15 @@ class Response < ActiveRecord::Base
     where("category = ?", category)
   end
 
+  def number
+    question.number
+  end
+
   def format
     if question.answer
       (question.answer == answer.to_i) ? 1 : 0
     else
-      question.options ? question.options[answer.to_i] : answer
+      question.options.present? ? question.options[answer.to_i] : answer
     end
   end
 end

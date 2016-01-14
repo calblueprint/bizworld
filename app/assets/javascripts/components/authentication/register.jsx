@@ -38,7 +38,7 @@ class RegistrationModal extends DefaultForm {
                     { this._renderInput("password", "Password", "password", "") }
                     { this._renderInput("password_confirmation", "Confirm Password", "password", "") }
                     { this._renderInput("phone_number", "Phone", "text", "(123) 456 - 7880") }
-                    { this._renderInput("school", "School", "text", "Example Middle School") }
+                    { this._renderInput("school", "School", "text", "School Name") }
                     <div className="input-container city-state-picker">
                         <div className="item city">
                             <label htmlFor="city">City:</label>

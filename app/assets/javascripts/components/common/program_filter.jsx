@@ -1,6 +1,6 @@
 /**
  * @prop onChange - function that is called onChange for inputs, updates program_id
- * @prop view     - view type for this component
+ * @prop showAll  - whether to show the 'All Programs' option
  */
 class ProgramFilter extends React.Component {
     constructor(props) {
@@ -30,7 +30,7 @@ class ProgramFilter extends React.Component {
             <div className="teacher-classroom-filter">
                 <select name="program_id" onChange={this.props.onChange} className="program-select" id="module">
                     <optgroup>
-                        { this.props.view ? <option value="">All Programs</option> : null }
+                        { this.props.showAll ? <option value="">All Programs</option> : null }
                         { programNames }
                     </optgroup>
                 </select>
@@ -41,5 +41,5 @@ class ProgramFilter extends React.Component {
 
 ProgramFilter.propTypes = {
     onChange : React.PropTypes.func.isRequired,
-    view     : React.PropTypes.number.isRequired
+    showAll  : React.PropTypes.bool.isRequired
 };
