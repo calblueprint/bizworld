@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   # Devise authentication group for any signed in user
   devise_group :user, contains: [:teacher, :admin]
 
+  rescue_from CanCan::AccessDenied do
+    redirect_to root_path
+  end
+
   def redirect_user_path(resource)
     if resource.is_a?(Teacher)
       teacher_classrooms_path(resource)

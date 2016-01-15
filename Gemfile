@@ -2,10 +2,11 @@ source 'https://rubygems.org'
 ruby '2.2.3'
 
 gem 'active_model_serializers', '~> 0.9.3'
-gem 'bootstrap-daterangepicker-rails', '~> 0.1.2'
 gem 'bitly', '~> 0.10.4'
+gem 'bootstrap-daterangepicker-rails', '~> 0.1.2'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'bootstrap-select-rails', '~> 1.6.3'
+gem 'cancancan', '~> 1.10'
 gem 'countries', '~> 1.1.0'
 gem 'devise', '~> 3.5.2'
 gem 'ffaker', '~> 2.1.0'
@@ -37,11 +38,12 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'byebug'
+  gem 'factory_girl_rails'
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'quiet_assets'
   gem 'rspec-rails'
   gem 'rubocop'
-  gem 'quiet_assets'
 end
 
 group :development do
