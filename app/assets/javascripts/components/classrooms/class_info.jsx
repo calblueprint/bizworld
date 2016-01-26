@@ -63,7 +63,7 @@ class ClassInfo extends DefaultForm {
                     <h1><span className="fa fa-info-circle"></span>Class Info</h1>
                     <div className="info-grid">
                         <div className="class-info-item">
-                            <h2 className="grid-label">Class ID</h2>
+                            <h2 className="grid-label">{ this.state.classroom.program.name } Class ID</h2>
                             <div className="info-data number">
                                 { this.props.classroom.id }
                             </div>
@@ -75,7 +75,7 @@ class ClassInfo extends DefaultForm {
                             </div>
                         </div>
                         <div className="class-info-item">
-                            <h2 className="grid-label">Pre-Test</h2>
+                            <h2 className="grid-label">Pre-Assessment</h2>
                             <div className="info-data">
                                 <a href={this.state.classroom.pre_link} target="_blank">
                                     { this._formatLink(this.state.classroom.pre_link) }
@@ -83,7 +83,7 @@ class ClassInfo extends DefaultForm {
                             </div>
                         </div>
                         <div className="class-info-item">
-                            <h2 className="grid-label">Post-Test</h2>
+                            <h2 className="grid-label">Post-Assessment</h2>
                             <div className="info-data">
                                 <a href={this.state.classroom.post_link} target="_blank">
                                     { this._formatLink(this.state.classroom.post_link) }

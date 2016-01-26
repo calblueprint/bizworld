@@ -43,7 +43,7 @@ class StudentsTable extends React.Component {
                     <a className="action-item button button-small"
                             href={this._generateCSVLink()}>
                         <span className="fa fa-download"/>
-                        Download CSV
+                        Download Responses
                     </a>
                     <UploadModal classroom_id = {this.props.classroom_id}
                                  success      = {this.props.success} />

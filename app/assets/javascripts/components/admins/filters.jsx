@@ -33,16 +33,16 @@ class ClassroomsStatusFilter extends React.Component {
 
         return (
             <div>
+                <ProgramFilter onChange = {this.props.onFilterChange}
+                               showAll  = {false} />
                 <div className="classroom-status-filter">
                     <select className="classroom-status-select" name="status" onChange={this._handleSelectStatusChange}>
                         <option value="active">Currently Active</option>
-                        <option value="date_range">Date Range</option>
+                        <option value="date_range">Filter by Date Range</option>
                         <option value="">All Classrooms</option>
                     </select>
                     { dateRangeInput }
                 </div>
-                <ProgramFilter onChange = {this.props.onFilterChange}
-                               showAll  = {false} />
             </div>
         );
     }
@@ -65,7 +65,7 @@ class ClassroomsFilter extends React.Component {
                                             onDateRangeChange = {this.props.onDateRangeChange} />
                 </div>
                 <div className="filter-input-container">
-                    <input placeholder="Teacher Info" type="text" name="teacher"
+                    <input placeholder="Teacher Filter" type="text" name="teacher"
                         onChange={this.props.onFilterChange} />
                 </div>
             </div>

@@ -65,12 +65,7 @@ def make_admins
 end
 
 def make_forms
-  [1, 2, 3].each do |p_id|
-    ["pre", "post"].each do |category|
-      Rake::Task["form:generate_form"].invoke(p_id, category)
-      Rake::Task["form:generate_form"].reenable
-    end
-  end
+  Rake::Task["form:generate_default"].invoke
 end
 
 make_teachers

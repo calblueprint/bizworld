@@ -14,12 +14,6 @@
 }
 
 .admin-filter-container {
-  margin-bottom: 30px;
-
-  .teacher-classroom-filter {
-    display: inline-block;
-  }
-
   .download-button {
     float: right;
     margin: 0;
@@ -34,15 +28,15 @@
       text-decoration: none;
     }
   }
+}
 
-  .program-select {
-    margin-left: 15px;
-  }
+.teacher-classroom-filter {
+  display: inline-block;
 }
 
 .classroom-status-filter {
   display: inline-block;
-  vertical-align: middle;
+  margin-left: 15px;
 }
 
 .classroom-status-select {
@@ -82,8 +76,9 @@
 
 .filter-options {
   display: inline-block;
-  margin-left: 10px;
-  width: 75%;
+  // TODO(liang): setting the filter-options width manually is pretty hacky. we should
+  // find more sustainable way to do this later.
+  width: 69%;
 
   .select-options {
     float: left;

@@ -66,7 +66,7 @@ class ClassroomsTable extends React.Component {
                             type="button" value="Apply" onClick={this._fetchClassrooms}/>
                         <a className="button download-button" href={this._generateCSVLink()}>
                             <span className="fa fa-download"/>
-                            Download CSV
+                            Download Assessment Responses
                         </a>
                     </form>
                 </div>
