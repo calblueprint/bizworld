@@ -12,8 +12,6 @@
  *
  *= require_self
  *= require toastr
- *= require_partials
- *= require_tree .
  */
 
 @import "bootstrap-sprockets";
@@ -22,3 +20,7 @@
 @import "daterangepicker-bs3";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+/* Import all the CSS here */
+@import "partials/*";
+@import "*";

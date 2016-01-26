@@ -113,6 +113,7 @@ body {
   opacity: 0.85;
   padding: 10px 20px;
   transition: $faster;
+  -webkit-user-select: none;
   @include appearance(none);
 
   &:hover {
