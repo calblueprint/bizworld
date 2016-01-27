@@ -11,7 +11,7 @@ class DefaultFormQuestions extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { questions : [] };
+        this.state = { questions : [], isLoading : false };
     }
 
     componentDidMount() {
@@ -19,13 +19,21 @@ class DefaultFormQuestions extends React.Component {
     }
 
     _fetchQuestions = (e) => {
-        const success = (data) => { this.setState({ questions: data.questions }) }
+        this.setState({ isLoading : true })
+        const success = (data) => { this.setState({ questions: data.questions, isLoading : false }) }
         APIRequester.getJSON(APIConstants.forms.member(this.props.form_id),
             success);
     }
 
     render() {
-        const questions = this.state.questions.map(this._mapQuestions);
+        let questions;
+        if (this.state.isLoading) {
+            questions = (
+                <div className="spinner-container"></div>
+            )        
+        } else {
+            questions = this.state.questions.map(this._mapQuestions);                        
+        }
         return (
             <div className="form-questions-container">
                 { questions }
