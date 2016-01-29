@@ -27,7 +27,8 @@ class Response < ActiveRecord::Base
 
   def format
     if question.answer
-      (question.answer == answer.to_i) ? 1 : 0
+      answer_text = question.options[question.answer]
+      (question.answer == answer.to_i) ? "Correct : #{answer_text}" : "Incorrect : #{answer_text}"
     else
       question.options.present? ? question.options[answer.to_i] : answer
     end
