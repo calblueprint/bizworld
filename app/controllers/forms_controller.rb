@@ -13,4 +13,10 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id])
     @program = @form.program
   end
+
+  def finished
+    @form = Form.find(params[:form_id])
+    @program = @form.program
+    @student_name = params[:student_name]
+  end
 end

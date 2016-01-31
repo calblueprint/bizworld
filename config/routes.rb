@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     delete '/sign_out' => 'sessions#destroy', :as => :destroy_session
   end
 
-  resources :forms, only: [:show]
+  resources :forms, only: [:show] do
+    get 'finished', to: 'forms#finished'
+  end
 
   get 'admins/classrooms', to: 'admins#classrooms'
 
