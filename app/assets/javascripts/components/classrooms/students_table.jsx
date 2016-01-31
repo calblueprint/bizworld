@@ -39,7 +39,6 @@ class StudentsTable extends React.Component {
         return (
             <div className="student-info-container">
                 <div className="student-table-action-bar">
-                    <DeleteClassroomModal classroom_id = { this.props.classroom_id } />
                     <a className="action-item button button-small"
                             href={this._generateCSVLink()}>
                         <span className="fa fa-download"/>

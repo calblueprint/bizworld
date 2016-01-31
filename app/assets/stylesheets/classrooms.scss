@@ -126,10 +126,10 @@ $icon-list: "\f0b1" "\f008" "\f201";
     .add-card {
       cursor: pointer;
     }
+  }
 
-    &:last-of-type {
-      margin-right: 0;
-    }
+  .create-item {
+    margin-right: 0;
   }
 
   .button {
@@ -156,6 +156,17 @@ $icon-list: "\f0b1" "\f008" "\f201";
   h1 {
     font-size: $f-size-lg;
     text-align: center;
+  }
+}
+
+.delete-item {
+  .delete-button {
+    margin-bottom: 0;
+
+    &:hover {
+      border-color: $red-36;
+      color: $red-84;
+    }
   }
 }
 
@@ -237,5 +248,36 @@ $icon-list: "\f0b1" "\f008" "\f201";
     float: none;
     padding-left: 0;
     width: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+  .student-table-action-bar {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+    .action-item {
+      margin: 0;
+      margin-bottom: 15px;
+      text-align: center;
+      width: 48%;
+    }
+
+    .upload-button {
+      margin-bottom: 0;
+      text-align: center;
+      width: 100%;
+    }
+
+    .create-item {
+      margin-bottom: 25px;
+      width: 100%;
+
+      .add-card {
+        margin-bottom: 0;
+        width: 100%;
+      }
+    }
   }
 }

@@ -1,6 +1,7 @@
 /**
- * @prop classroom - classroom info to display
- * @prop success   - function handler for successful ClassInfo box update
+ * @prop classroom    - classroom info to display
+ * @prop success      - function handler for successful ClassInfo box update
+ * @prop isAdmin      - whether logged in user is admin
  */
 class ClassInfo extends DefaultForm {
 
@@ -50,6 +51,11 @@ class ClassInfo extends DefaultForm {
     }
 
     render() {
+        let deleteButton;
+        if (this.props.isAdmin) {
+          deleteButton = <DeleteClassroomModal classroom_id = { this.state.classroom.id } />
+        }
+
         const classType = `classroom-${this.state.classroom.program.id}`;
         return (
             <div className="class-info-container">
@@ -97,6 +103,8 @@ class ClassInfo extends DefaultForm {
                     <FormEditToggle editable = { this.state.editable }
                                     update   = { this._toggleEdit }
                                     save     = { this._attemptSave } />
+
+                    { deleteButton }
                 </div>
             </div>
         );
@@ -105,5 +113,6 @@ class ClassInfo extends DefaultForm {
 
 ClassInfo.propTypes = {
     classroom : React.PropTypes.object.isRequired,
-    success   : React.PropTypes.func.isRequired
+    success   : React.PropTypes.func.isRequired,
+    isAdmin   : React.PropTypes.bool.isRequired
 };

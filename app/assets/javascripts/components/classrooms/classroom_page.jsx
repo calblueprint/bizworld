@@ -1,5 +1,6 @@
 /**
  * @prop classroom_id - id for classroom
+ * @prop isAdmin      - whether admin is logged in
  */
 class ClassroomPage extends React.Component {
 
@@ -23,8 +24,9 @@ class ClassroomPage extends React.Component {
     render() {
         return (
             <div>
-                <ClassInfo classroom = {this.state.classroom}
-                           success   = {this._fetchClassroom} />
+                <ClassInfo classroom    = {this.state.classroom}
+                           success      = {this._fetchClassroom}
+                           isAdmin      = {this.props.isAdmin} />
                 <StudentsTable students     = {this.state.classroom.students}
                                classroom_id = {this.props.classroom_id}
                                success      = {this._fetchClassroom} />

@@ -11,7 +11,7 @@ class DeleteClassroomModal extends React.Component {
         return (
             <div className="action-item delete-item">
                 <button data-toggle="modal" data-target="#removeClassroomModal"
-                    className="button button-small">
+                    className="button button-small delete-button">
                     <div>
                         <span className="fa fa-trash-o" />
                         Delete Classroom

@@ -45,7 +45,7 @@ module Api
       classroom = Classroom.find(params[:id])
       if classroom.destroy
         render_json_message(:ok, message: 'Successfully deleted classroom!',
-                                 to: teacher_classrooms_path(current_teacher))
+                                 to: root_path)
       else
         render_json_message(:forbidden, errors: classroom.errors.full_messages)
       end

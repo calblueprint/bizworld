@@ -22,7 +22,7 @@ class StudentCreationModal extends DefaultForm {
 
     render() {
         return (
-            <div className="action-item">
+            <div className="action-item create-item">
                 <div data-toggle="modal" data-target="#newStudentModal" >
                     <button onClick={this._focusInputField} type="button" className="student-card add-card submit-button-o button-small">
                         <span className="fa fa-plus" />
