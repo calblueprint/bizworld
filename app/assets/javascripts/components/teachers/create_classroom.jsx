@@ -71,7 +71,7 @@ class ClassroomCreationModal extends DefaultForm {
                   </div>
               </div>
               <div className="modal fade" id="newClassroomModal" tabIndex={-1}
-                  role="dialog" aria-labelledby="newClassroomModalLabel">
+                  role="dialog" aria-labelledby="newClassroomModalLabel" data-keyboard="false">
                   <div className="modal-dialog" role="document">
                       <div className="modal-content">
                           <div className="modal-header">
