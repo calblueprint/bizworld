@@ -53,6 +53,21 @@ class Classroom < ActiveRecord::Base
     [name, id]
   end
 
+  def self.teacher_csv_header()
+    ["Classroom Name", "Start Date", "End Date", "Number of Students", "Average Pre", "Average Post", "Number Pre", "Number Post"]
+  end
+
+  def teacher_csv_row()
+    [name,
+     start_date,
+     end_date,
+     students.length,
+     average_pre,
+     average_post,
+     num_pre,
+     num_post]
+  end
+
   private
 
   def create_links
@@ -64,4 +79,58 @@ class Classroom < ActiveRecord::Base
   def self.by_program(program_id)
     where("program_id = ?", program_id)
   end
+
+  def average_pre()
+    total = 0
+    count = 0
+    students.each do |student|
+      if student.pre_score
+        total = total + student.pre_score
+        count = count + 1
+      end
+    end
+    if count > 0
+      total/count
+    else
+      0
+    end
+  end
+
+  def num_pre()
+    total = 0
+    students.each do |s|
+      if s.pre_score
+        total = total + 1
+      end
+    end
+    total
+  end
+
+  def average_post()
+    total = 0
+    count = 0
+    students.each do |student|
+      if student.post_score
+        total = total + student.post_score
+        count = count + 1
+      end
+    end
+    if count > 0
+      total/count
+    else
+      0
+    end
+  end
+
+  def num_post()
+    total = 0
+    students.each do |s|
+      if s.post_score
+        total = total + 1
+      end
+    end
+    total
+  end
+
+
 end

@@ -32,11 +32,29 @@ class Teacher < ActiveRecord::Base
   has_many :classrooms
   validates :last_name, :first_name, :school, presence: true
 
-  def self.csv_header
+  def self.classroom_csv_header
     ["Teacher Name", "Teacher Email", "Teacher ID"]
   end
 
-  def csv_row
-    ["#{first_name} #{last_name}", email, id]
+  def classroom_csv_row
+    ["#{first_name} #{last_name}",
+      email,
+      school,
+      city,
+      state,
+      id]
   end
+
+  def self.teacher_csv_header
+    ["Teacher Name",
+      "Teacher Email",
+      "School",
+      "City",
+      "State"]
+  end
+
+  def teacher_csv_row
+    [first_name + " " + last_name, email, school, city, state]
+  end
+
 end

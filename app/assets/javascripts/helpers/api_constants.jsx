@@ -3,7 +3,8 @@ class ApiConstants {
     get admins()   {
         return {
             classrooms : `/api/admins/classrooms`,
-            download   : (params) => `/api/admins/download?${params}`
+            download_classrooms   : (params) => `/api/admins/download/classrooms?${params}`,
+            download_teachers   : (params) => `/api/admins/download/teachers?${params}`
         }
     }
 

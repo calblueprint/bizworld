@@ -18,4 +18,13 @@ class Program < ActiveRecord::Base
   def csv_header(category)
     send(category).questions.order(:id).pluck(:title)
   end
+
+  def self.teacher_csv_header()
+    ["Program Name"]
+  end
+
+  def teacher_csv_row()
+    [name]
+  end
+
 end

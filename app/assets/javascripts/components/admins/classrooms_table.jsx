@@ -40,9 +40,17 @@ class ClassroomsTable extends React.Component {
         this.setState({ filters: newState });
     }
 
-    _generateCSVLink() {
+    _generateClassroomCSVLink() {
         const classrooms = this.state.classrooms.map((val) => { return val.id });
-        return APIConstants.admins.download($.param({
+        return APIConstants.admins.download_classrooms($.param({
+            classrooms : classrooms,
+            program_id : this.state.filters.program_id
+        }));
+    }
+
+    _generateTeacherCSVLink() {
+        const classrooms = this.state.classrooms.map((val) => { return val.id });
+        return APIConstants.admins.download_teachers($.param({
             classrooms : classrooms,
             program_id : this.state.filters.program_id
         }));
@@ -64,9 +72,13 @@ class ClassroomsTable extends React.Component {
                                           onDateRangeChange = {this._handleDateRangeChange} />
                         <input className="admin-submit-button" name="submit"
                             type="button" value="Apply" onClick={this._fetchClassrooms}/>
-                        <a className="button download-button" href={this._generateCSVLink()}>
+                        <a className="button download-button" href={this._generateClassroomCSVLink()}>
                             <span className="fa fa-download"/>
                             Download Assessment Responses
+                        </a>
+                        <a className="button download-button" href={this._generateTeacherCSVLink()}>
+                            <span className="fa fa-download"/>
+                            Download Classroom Summaries
                         </a>
                     </form>
                 </div>

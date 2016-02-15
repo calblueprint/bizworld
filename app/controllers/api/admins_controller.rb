@@ -7,11 +7,17 @@ module Api
       render json: classrooms, each_serializer: ClassroomSerializer, root: false
     end
 
-    def download
+    def download_classrooms
       classrooms = params[:classrooms].map { |id| Classroom.find(id) }
-      filename, file = CSVGenerator.create_zip(classrooms, Program.find(params[:program_id]))
-      send_data(File.read(file.path), type: 'application/zip', filename: filename)
-      cleanup_file(file)
+      filename, file = ClassroomCSVGenerator.create_zip(classrooms, Program.find(params[:program_id]))
+      send_and_cleanup_file(file, filename)
+    end
+
+    def download_teachers
+      classrooms = params[:classrooms].map { |id| Classroom.find(id) }
+      program = Program.find(params[:program_id])
+      filename, file = TeacherCSVGenerator.create_zip(classrooms, program)
+      send_and_cleanup_file(file, filename)
     end
 
     private
@@ -25,5 +31,11 @@ module Api
     def filter_params
       params.permit(:status, :program_id, :teacher, :range)
     end
+
+    def send_and_cleanup_file(file, filename)
+      send_data(File.read(file.path), type: 'application/zip', filename: filename)
+      cleanup_file(file)
+    end
+
   end
 end

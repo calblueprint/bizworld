@@ -27,7 +27,8 @@ Rails.application.routes.draw do
   namespace :api do
     get '/states', to: 'pages#states'
     get '/admins/classrooms', to: 'admins#classrooms'
-    get '/admins/download', to: 'admins#download'
+    get '/admins/download/classrooms', to: 'admins#download_classrooms'
+    get '/admins/download/teachers', to: 'admins#download_teachers'
 
     post '/forms/submit', to: 'forms#submit'
 
