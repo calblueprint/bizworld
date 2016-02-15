@@ -90,7 +90,7 @@ class ClassroomCreationModal extends DefaultForm {
                               <ClassroomDropdown onChange={this._handleChange} />
                               <fieldset className="input-container date-select">
                                   <label>Date range</label>
-                                  <DateRangeInput className="daterange"
+                                  <DateRangeInput className="daterange" placement="left"
                                       onFilterChange={this._handleDateRangeChange} />
                               </fieldset>
                           </div>

@@ -1,4 +1,5 @@
 /**
+ * @prop placement        - direction for the popup to open
  * @prop onFilterChange   - function that is called onChange for inputs, updates state
  * @prop initialStartDate - initial start date for date range
  * @prop initialEndDate   - initial end date for date range
@@ -15,7 +16,8 @@ class DateRangeInput extends React.Component {
                 format: DATE_FORMAT
             },
             startDate: formatDate(this.props.initialStartDate),
-            endDate: formatDate(this.props.initialEndDate)
+            endDate: formatDate(this.props.initialEndDate),
+            opens: this.props.placement
         }
         const dateRange = $(React.findDOMNode(this.refs.date));
         $(dateRange).daterangepicker(options, (start, end, label) => {
@@ -43,6 +45,7 @@ class DateRangeInput extends React.Component {
 }
 
 DateRangeInput.propTypes = {
+    placement        : React.PropTypes.string,
     onFilterChange   : React.PropTypes.func.isRequired,
     initialStartDate : React.PropTypes.string,
     initialEndDate   : React.PropTypes.string,

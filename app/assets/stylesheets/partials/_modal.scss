@@ -42,6 +42,11 @@
     width: 50%;
   }
 
+  .date-select .date-input-container {
+    padding: 0;
+    min-width: auto;
+  }
+
   &.delete-text {
     color: $red;
     font-size: $f-size-md;
