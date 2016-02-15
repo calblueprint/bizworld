@@ -104,12 +104,26 @@ $icon-list: "\f0b1" "\f008" "\f201";
   .question {
     margin: 40px auto;
 
-    .radio-label {
-      font-size: $f-size-md;
-      font-weight: normal;
-      margin-bottom: 0px;
-      margin-left: 10px;
-      padding: 5px 0;
+    .radio-option {
+      display: table;
+      width: 100%;
+      clear: both;
+
+      input {
+        display: table-cell;
+        width: 20px;
+        vertical-align: 2px;
+      }
+
+      .radio-label {
+        font-size: $f-size-md;
+        font-weight: normal;
+        margin-bottom: 0px;
+        margin-left: 10px;
+        padding: 5px 0px 5px 3px;
+        display: table-cell;
+        width: 100%;
+      }
     }
 
     .question-title {
