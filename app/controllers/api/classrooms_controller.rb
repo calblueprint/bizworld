@@ -36,7 +36,7 @@ module Api
 
     def download
       classroom = Classroom.find(params[:classroom_id])
-      filename, file = CSVGenerator.create_zip([classroom], classroom.program)
+      filename, file = ClassroomCSVGenerator.create_zip([classroom], classroom.program)
       send_data(File.read(file.path), type: 'application/zip', filename: filename)
       cleanup_file(file)
     end

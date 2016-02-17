@@ -1,4 +1,4 @@
-module CSVGenerator
+module ClassroomCSVGenerator
   def self.create_zip(classrooms, program)
     filename, temp_file = initialize_file
     Zip::OutputStream.open(temp_file) { |zos| }
@@ -28,7 +28,8 @@ module CSVGenerator
   end
 
   def self.generate_header(category, program)
-    Classroom.csv_header + Teacher.csv_header + Student.csv_header + program.csv_header(category)
+    Classroom.csv_header + Teacher.classroom_csv_header \
+    + Student.csv_header + program.csv_header(category)
   end
 
   def self.generate_rows(csv, classrooms, category)
@@ -39,7 +40,7 @@ module CSVGenerator
 
   def self.generate_student_rows(csv, classroom, category)
     classroom.students.each do |student|
-      csv << classroom.csv_row + classroom.teacher.csv_row + student.csv_row(category)
+      csv << classroom.csv_row + classroom.teacher.classroom_csv_row + student.csv_row(category)
     end
   end
 end
