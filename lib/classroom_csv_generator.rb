@@ -1,16 +1,12 @@
 module ClassroomCSVGenerator
-  def self.create_zip(classrooms, program)
-    filename, temp_file = initialize_file
+  def self.create_zip(classrooms, program, filename = "classroom_responses.zip")
+    temp_file = Tempfile.new(filename)
     Zip::OutputStream.open(temp_file) { |zos| }
     Zip::File.open(temp_file.path, Zip::File::CREATE) { |file| to_csv(file, classrooms, program) }
     [filename, temp_file]
   end
 
   private
-
-  def self.initialize_file(filename = "classroom_responses.zip")
-    [filename, Tempfile.new(filename)]
-  end
 
   def self.to_csv(zipfile, classrooms, program)
     [:pre, :post].each do |category|
