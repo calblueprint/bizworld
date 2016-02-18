@@ -1,0 +1,34 @@
+--- !'map':HashWithIndifferentAccess
+
+additional_questions:
+  -
+    title:
+      'Tell us about your plan to teach the program in your classroom.'
+    hint:
+      'How are you integrating it into your classroom?'
+    id:
+      1
+  -
+    title:
+      'Who will you be teaching your program to?'
+    hint:
+      'Ex: type of class, number of students, anything unique'
+    id:
+      2
+  -
+    title:
+      'Over what time period will you be teaching the program?'
+    hint:
+      'Ex: once a week for seven weeks'
+    id:
+      3
+  -
+    title:
+      'Do you plan to engage your community (volunteers and parents) during your teaching of the program? How?'
+    id:
+      4
+  -
+    title:
+      'Are you teaching this program as part of a team of teachers? If so, please explain in the box below.'
+    id:
+      5

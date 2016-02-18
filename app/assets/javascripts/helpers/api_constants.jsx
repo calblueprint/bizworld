@@ -14,6 +14,7 @@ class ApiConstants {
             upload     : (id) => `/api/classrooms/${id}/upload`,
             download   : (id) => `/api/classrooms/${id}/download`,
             collection : `/api/classrooms/`,
+            questions  : `/api/classrooms/additional_questions`,
         }
     }
 

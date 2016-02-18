@@ -53,6 +53,11 @@ module Api
       end
     end
 
+    def additional_questions
+      additional_questions = YAML.load_file("#{Rails.root}/config/data/classroom_additional_questions.yml")
+      render json: additional_questions
+    end
+
     private
 
     def attempt_upload(roster, students)
@@ -68,7 +73,7 @@ module Api
     end
 
     def update_params
-      params.permit(:name, :start_date, :end_date)
+      params.permit(:name, :start_date, :end_date, :additional_info)
     end
   end
 end

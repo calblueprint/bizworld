@@ -170,6 +170,17 @@ $icon-list: "\f0b1" "\f008" "\f201";
   }
 }
 
+.additional-info-item {
+  .additional-info-button {
+    margin-bottom: 0;
+
+    &:hover {
+      border-color: $red-36;
+      color: $red-84;
+    }
+  }
+}
+
 .upload-roster-container {
   margin: 20px 0;
   text-align: center;

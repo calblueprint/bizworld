@@ -56,6 +56,14 @@ class ClassInfo extends DefaultForm {
           deleteButton = <DeleteClassroomModal classroom_id = { this.state.classroom.id } />
         }
 
+        // Doesn't pass in props until classroom has been loaded.
+        let additionalInfoModal;
+        if (this.state.classroom.id) {
+            additionalInfoModal = <AdditionalInfoModal additional_info = { this.state.classroom.additional_info }
+                                                       classroom_id    = { this.state.classroom.id }
+                                                       success         = { this.props.success } />
+        }
+
         const classType = `classroom-${this.state.classroom.program.id}`;
         return (
             <div className="class-info-container">
@@ -99,6 +107,8 @@ class ClassInfo extends DefaultForm {
                     </div>
                     { this._showInput("Classroom Name", "name", this.state.classroom.name) }
                     { this._showDateRange("Date Range", this.state.classroom.start_date, this.state.classroom.end_date) }
+
+                    { additionalInfoModal }
 
                     <FormEditToggle editable = { this.state.editable }
                                     update   = { this._toggleEdit }

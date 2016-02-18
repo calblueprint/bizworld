@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get '/admins/classrooms', to: 'admins#classrooms'
     get '/admins/download/classrooms', to: 'admins#download_classrooms'
     get '/admins/download/teachers', to: 'admins#download_teachers'
+    get '/classrooms/additional_questions', to: 'classrooms#additional_questions'
 
     post '/forms/submit', to: 'forms#submit'
 
