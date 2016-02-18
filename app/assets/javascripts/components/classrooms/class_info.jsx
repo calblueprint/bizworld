@@ -8,9 +8,15 @@ class ClassInfo extends DefaultForm {
     constructor(props) {
         super(props);
         this.state = {
-            classroom: { students: [], program: {} },
+            classroom: this.props.classroom,
             editable: false
         };
+    }
+
+    getDefaultProps() {
+        return {
+            classroom: { students: [], program: {} },
+        }
     }
 
     componentWillReceiveProps(nextProps) {

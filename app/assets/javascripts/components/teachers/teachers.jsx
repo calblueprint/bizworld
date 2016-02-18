@@ -7,7 +7,7 @@
 class TeacherModal extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { classrooms: [] };
+        this.state = { classrooms : [], isLoading : true };
     }
 
     componentDidMount() {
@@ -15,7 +15,7 @@ class TeacherModal extends React.Component {
     }
 
     _fetchClassrooms(params) {
-        const success = (data) => { this.setState({ classrooms: data }) }
+        const success = (data) => { this.setState({ classrooms: data, isLoading: false }) }
         APIRequester.getJSON(APIConstants.teachers.classrooms(this.props.teacher_id), success, params)
     }
 
@@ -24,16 +24,26 @@ class TeacherModal extends React.Component {
     }
 
     render() {
-        const classrooms = this.state.classrooms.map(function(classroom) {
-            return (
-                <ClassroomContainer classroom = {classroom}
-                                          key = {classroom["id"]} />
-            );
-        });
-
+        let classrooms;
         let createCourse;
-        if (this.props.type == 'active') {
-            createCourse = <ClassroomCreationModal teacher_id={this.props.teacher_id} />
+
+        if (this.state.isLoading) {
+            if (this.props.type == 'active') {
+                classrooms = (
+                    <div className="spinner-container"></div>
+                )
+            }
+        } else {
+            classrooms = this.state.classrooms.map(function(classroom) {
+                return (
+                    <ClassroomContainer classroom = {classroom}
+                                              key = {classroom["id"]} />
+                );
+            });
+
+            if (this.props.type == 'active') {
+                createCourse = <ClassroomCreationModal teacher_id={this.props.teacher_id} />
+            }
         }
 
         return (

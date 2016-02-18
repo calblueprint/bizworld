@@ -7,7 +7,13 @@ class StudentsTable extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { students : [] };
+        this.state = { students : this.props.students };
+    }
+
+    getDefaultProps() {
+        return {
+            students: []
+        }
     }
 
     componentWillReceiveProps(nextProps) {

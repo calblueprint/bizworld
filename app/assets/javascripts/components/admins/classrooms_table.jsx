@@ -3,6 +3,7 @@ class ClassroomsTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLoading: true,
             classrooms: [],
             filters: {
                 range      : { },
@@ -17,7 +18,7 @@ class ClassroomsTable extends React.Component {
     }
 
     _fetchClassrooms = () => {
-        const success = (data) => { this.setState({ classrooms: data }) }
+        const success = (data) => { this.setState({ classrooms: data, isLoading: false }) }
         APIRequester.getJSON(APIConstants.admins.classrooms, success,
             this.state.filters);
     }
@@ -57,12 +58,24 @@ class ClassroomsTable extends React.Component {
     }
 
     render() {
-        const classrooms = this.state.classrooms.map((classroom) => {
-            return (
-                <ClassroomsTableRow classroom  = {classroom}
-                                    key        = {classroom.id} />
-            );
-        });
+        let classrooms;
+        let spinner;
+        if (this.state.isLoading) {
+            spinner = (
+                <div className="spinner-container"></div>
+            )
+        } else {
+            spinner = null;
+            classrooms = (
+                <tbody>
+                    { this.state.classrooms.map((classroom) => {
+                    return (
+                        <ClassroomsTableRow classroom  = {classroom}
+                                            key        = {classroom.id} />
+                    );
+                    })}
+                </tbody> )
+        }
 
         return (
             <div>
@@ -94,10 +107,11 @@ class ClassroomsTable extends React.Component {
                             <th>Date Range</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        { classrooms }
-                    </tbody>
+                    { classrooms }
                 </table>
+                <div className="admin-spinner">
+                    { spinner }
+                </div>
             </div>
         );
     }
@@ -111,6 +125,10 @@ class ClassroomsTableRow extends React.Component {
     constructor(props) {
         super(props);
         this.state = { classroom: this.props.classroom };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({ classroom : nextProps.classroom });
     }
 
     _handleRowClick = (e) => {

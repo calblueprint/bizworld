@@ -6,7 +6,7 @@ class ClassroomPage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { classroom : { } };
+        this.state = { classroom : { }, isLoading : true };
     }
 
     componentDidMount() {
@@ -15,21 +15,33 @@ class ClassroomPage extends React.Component {
 
     _fetchClassroom = () => {
         const success = (data) => {
-            this.setState({ classroom: data })
+            this.setState({ classroom: data, isLoading : false })
         }
         APIRequester.getJSON(APIConstants.classrooms.member(
             this.props.classroom_id), success);
     }
 
     render() {
+        let classpage;
+        if (this.state.isLoading) {
+            classpage = (
+                <div className="spinner-container"></div>
+            )
+        } else {
+            classpage = (
+                <div>
+                    <ClassInfo classroom    = {this.state.classroom}
+                               success      = {this._fetchClassroom}
+                               isAdmin      = {this.props.isAdmin} />
+                    <StudentsTable students     = {this.state.classroom.students}
+                                   classroom_id = {this.props.classroom_id}
+                                   success      = {this._fetchClassroom} />
+                </div>
+            );
+        }
         return (
             <div>
-                <ClassInfo classroom    = {this.state.classroom}
-                           success      = {this._fetchClassroom}
-                           isAdmin      = {this.props.isAdmin} />
-                <StudentsTable students     = {this.state.classroom.students}
-                               classroom_id = {this.props.classroom_id}
-                               success      = {this._fetchClassroom} />
+                { classpage }
             </div>
         );
     }

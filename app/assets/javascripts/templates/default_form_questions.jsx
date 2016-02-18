@@ -30,9 +30,9 @@ class DefaultFormQuestions extends React.Component {
         if (this.state.isLoading) {
             questions = (
                 <div className="spinner-container"></div>
-            )        
+            )
         } else {
-            questions = this.state.questions.map(this._mapQuestions);                        
+            questions = this.state.questions.map(this._mapQuestions);
         }
         return (
             <div className="form-questions-container">
