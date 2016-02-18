@@ -27,6 +27,8 @@ class DateRangeInput extends React.Component {
 
         // Disable updating date on mouseover, which is visually jarring; only change date on click.
         $dateRangePicker.find('.calendar').off('mouseenter', 'td.available');
+        $(dateRange).on('keydown', function(e) { if (e.keyCode == 27) { $('.daterangepicker').hide() } } );
+        $(dateRange).on('mousedown', function() { $('.daterangepicker').show() });
         this.setState({ $dateRangePicker: $dateRangePicker });
     }
 
@@ -38,7 +40,7 @@ class DateRangeInput extends React.Component {
     render() {
         return (
             <div className="date-input-container">
-                <input type="text" ref="date"/>
+                <input type="text" ref="date" className="date-input"/>
             </div>
         );
     }
