@@ -54,8 +54,8 @@ module Api
     end
 
     def additional_questions
-      additional_questions = YAML.load_file("#{Rails.root}/config/data/classroom_additional_questions.yml")
-      render json: additional_questions
+      additional_questions = ClassroomAdditionalQuestion.all
+      render json: additional_questions, each_serializer: ClassroomAdditionalQuestionSerializer, root: false
     end
 
     private

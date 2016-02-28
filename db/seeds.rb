@@ -68,9 +68,14 @@ def make_forms
   Rake::Task["form:generate_default"].invoke
 end
 
+def make_classroom_additional_questions
+  Rake::Task["classroom_additional_question:generate_default"].invoke  
+end
+
 make_teachers
 make_programs
 make_classrooms
 make_students
 make_admins
 make_forms
+make_classroom_additional_questions

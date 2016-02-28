@@ -29,14 +29,14 @@ class AdditionalInfoModal extends React.Component {
         }
         const success = (data) => {
             // Appends preexisting responses to relevant questions.
-            data.additional_questions.forEach(function (item, index, array) {
+            data.forEach(function (item, index, array) {
                 if (item.id in responses) {
                     item.response = responses[item.id];
                 } else {
                     item.response = "";
                 }
             });
-            this.setState({ questions: data.additional_questions, isLoading : false, responses: responses });
+            this.setState({ questions: data, isLoading : false, responses: responses });
         }
         APIRequester.getJSON(APIConstants.classrooms.questions, success);
     }
