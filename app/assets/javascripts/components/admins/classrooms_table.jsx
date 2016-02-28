@@ -18,7 +18,7 @@ class ClassroomsTable extends React.Component {
     }
 
     _fetchClassrooms = () => {
-        const success = (data) => { this.setState({ classrooms: data, isLoading: false }) }
+        const success = (data) => { this.setState({ classrooms: data, isLoading: false }); }
         APIRequester.getJSON(APIConstants.admins.classrooms, success,
             this.state.filters);
     }
@@ -30,7 +30,7 @@ class ClassroomsTable extends React.Component {
                 end:   { $set: endDate }
             }
         });
-        this.setState({ filters: newState });
+        this.setState({ filters: newState }, this._fetchClassrooms);
     }
 
     _handleFilterChange = (e) => {
@@ -38,7 +38,7 @@ class ClassroomsTable extends React.Component {
         const newState = React.addons.update(this.state.filters, {
             [$(e.target).attr("name")]: { $set: $(e.target).val() }
         });
-        this.setState({ filters: newState });
+        this.setState({ filters: newState }, this._fetchClassrooms);
     }
 
     _generateClassroomCSVLink() {
@@ -122,15 +122,6 @@ class ClassroomsTable extends React.Component {
  */
 class ClassroomsTableRow extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = { classroom: this.props.classroom };
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({ classroom : nextProps.classroom });
-    }
-
     _handleRowClick = (e) => {
        window.location.href = `/classrooms/${this.props.classroom.id}`;
     }
@@ -148,16 +139,16 @@ class ClassroomsTableRow extends React.Component {
         return (
             <tr onClick={this._handleRowClick}>
                 <td>
-                    { this.state.classroom.name }
+                    { this.props.classroom.name }
                 </td>
                 <td>
-                    { this._formatTeacherName(this.state.classroom.teacher) }
+                    { this._formatTeacherName(this.props.classroom.teacher) }
                 </td>
                 <td>
-                    { this.state.classroom.teacher.email }
+                    { this.props.classroom.teacher.email }
                 </td>
                 <td>
-                    { this._formatDateRange(this.state.classroom) }
+                    { this._formatDateRange(this.props.classroom) }
                 </td>
             </tr>
         );
