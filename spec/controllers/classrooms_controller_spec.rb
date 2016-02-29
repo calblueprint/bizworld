@@ -22,6 +22,7 @@ RSpec.describe ClassroomsController, type: :controller do
 
   context 'when logged in as admin' do
     let(:admin) { FactoryGirl.create :admin }
+    let(:classroom3) { FactoryGirl.create :classroom, teacher_id: teacher1.id }
     before { sign_in admin }
 
     it 'should be able to access any classroom' do
