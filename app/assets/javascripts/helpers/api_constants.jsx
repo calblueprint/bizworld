@@ -49,7 +49,12 @@ class ApiConstants {
     get pages()    { return { states     : `/api/states` } }
     get programs() { return { collection : `/api/programs` } }
 
-    get questions() { return { member : (id) => `/api/questions/${id}` } }
+    get questions() {
+        return {
+            member : (id) => `/api/questions/${id}`,
+            create : `/api/questions`,
+        }
+    }
 }
 
 const APIConstants = new ApiConstants();

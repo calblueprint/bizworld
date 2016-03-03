@@ -20,4 +20,19 @@ class Question < ActiveRecord::Base
   validates :title, :category, :number, presence: true
 
   scope :gradeable, -> { where.not(answer: nil) }
+
+  before_destroy :before_destroy
+  before_create :before_create
+
+  def following_questions
+    Question.where('form_id = ? and number >= ?', form_id, number)
+  end
+
+  def before_create
+    following_questions.update_all('number = number + 1')
+  end
+
+  def before_destroy
+    following_questions.update_all('number = number - 1')
+  end
 end

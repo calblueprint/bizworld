@@ -11,9 +11,14 @@ class EditableTitle extends React.Component {
         let questionTitle;
         if (this.props.editable) {
             questionTitle = (
-                <input name={this.props.name} type="text"
-                    defaultValue={this.props.title}
-                    onChange={this.props.onTextChange} />
+                <div>
+                    <label>
+                        { `${this.props.number}. ` }
+                    </label>
+                    <input name={this.props.name} type="text"
+                        defaultValue={this.props.title}
+                        onChange={this.props.onTextChange} />
+                </div>
             );
         } else {
             questionTitle = (
