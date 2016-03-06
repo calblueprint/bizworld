@@ -7,6 +7,7 @@ class DefaultAdminQuestion extends DefaultForm {
     constructor(props) {
         super(props);
         this.state = {
+            title    : this.props.question.title,
             editable : false,
             options  : { }
         };
@@ -22,7 +23,7 @@ class DefaultAdminQuestion extends DefaultForm {
     }
 
     _onTitleChange = (e) => {
-        this.setState({ [$(e.target).attr("name")] : $(e.target).val() });
+        this.setState({ title : $(e.target).val() });
     }
 
     _renderEditButton() {

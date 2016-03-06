@@ -50,10 +50,18 @@ class AdminMCQuestion extends DefaultAdminQuestion {
             )
         });
 
+        const questionTitle = (
+            <EditableTitle name         = {this.props.question.id}
+                           number       = {this.props.question.number}
+                           title        = {this.props.question.title}
+                           editable     = {this.state.editable}
+                           onTextChange = {this._onTitleChange} />
+        );
+
         return (
             <fieldset className="question mc-question">
                 <label className="question-title" htmlFor={this.props.id}>
-                    { `${this.props.question.number}. ${this.props.question.title}` }
+                    { questionTitle }
                     { this._renderEditButton() }
                 </label>
                 { radioOptions }
