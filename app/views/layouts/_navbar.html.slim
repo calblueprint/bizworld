@@ -22,6 +22,9 @@ nav.navbar.navbar-inverse
                 li.dropdown-header BizWiz
                 li.dropdown-link = link_to "Pre Assessment", form_path(5)
                 li.dropdown-link = link_to "Post Assessment", form_path(6)
+                li.divider
+                li.dropdown-header Classroom Questions
+                li.dropdown-link = link_to "Additional Questions", classrooms_edit_questions_path
               li = link_to "Classrooms", admins_classrooms_path
         - elsif current_teacher
             li = link_to "My Profile", current_teacher

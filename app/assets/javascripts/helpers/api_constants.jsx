@@ -50,6 +50,7 @@ class ApiConstants {
     get programs() { return { collection : `/api/programs` } }
 
     get questions() { return { member : (id) => `/api/questions/${id}` } }
+    get classroom_additional_questions() { return { member : (id) => `/api/classroom_additional_questions/${id}` } }
 }
 
 const APIConstants = new ApiConstants();

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   get 'admins/classrooms', to: 'admins#classrooms'
+  get 'classrooms/edit_questions', to: 'classrooms#edit_questions'
 
   resources :teachers, only: [:show] do
     get 'classrooms', to: 'teachers#classrooms'
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
 
     post '/forms/submit', to: 'forms#submit'
 
+    resources :classroom_additional_questions, only: [:update]
     resources :questions, only: [:update]
     resources :students, only: [:create, :destroy]
     resources :programs, only: [:index]

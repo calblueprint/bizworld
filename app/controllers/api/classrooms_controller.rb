@@ -54,7 +54,7 @@ module Api
     end
 
     def additional_questions
-      additional_questions = ClassroomAdditionalQuestion.all
+      additional_questions = ClassroomAdditionalQuestion.order("id ASC")
       render json: additional_questions, each_serializer: ClassroomAdditionalQuestionSerializer, root: false
     end
 

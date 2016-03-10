@@ -139,7 +139,7 @@ class QuestionsList extends React.Component {
 QuestionsList.propTypes = {
     questions        : React.PropTypes.array.isRequired,
     responses        : React.PropTypes.object,
-    handleInfoChange : React.PropTypes.func.isRequired
+    handleInfoChange : React.PropTypes.func.isRequired,
 };
 
 /*
@@ -161,7 +161,7 @@ class AdditionalInfoQuestion extends React.Component {
                         { this.props.question.hint }
                     </p>
                 </div>
-                <div className="input-box-container">
+                <div>
                     <input name={this.props.question.id} type="text"
                         defaultValue={this.props.question.response}
                         onChange={this.props.handleInfoChange} />
@@ -174,5 +174,5 @@ class AdditionalInfoQuestion extends React.Component {
 
 AdditionalInfoQuestion.propTypes = {
     question         : React.PropTypes.object.isRequired,
-    handleInfoChange : React.PropTypes.func.isRequired
+    handleInfoChange : React.PropTypes.func.isRequired,
 }
