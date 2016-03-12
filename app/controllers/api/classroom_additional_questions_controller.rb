@@ -9,6 +9,15 @@ module Api
       end
     end
 
+    def destroy
+      additional_question = ClassroomAdditionalQuestion.find(params[:id])
+      if additional_question.destroy
+        render_json_message(:ok, message: 'Question successfully deleted!')
+      else
+        render_json_message(:forbidden, errors: question.errors.full_messages)
+      end
+    end
+
     private
 
     def update_params
