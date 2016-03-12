@@ -1,6 +1,8 @@
 /**
  * @prop classroom_id - id for classroom
+ * @prop teacher_id   - id for teacher
  * @prop isAdmin      - whether admin is logged in
+ * @prop onboarding   - whether to show user onboarding
  */
 class ClassroomPage extends React.Component {
 
@@ -22,7 +24,11 @@ class ClassroomPage extends React.Component {
     }
 
     render() {
-        let classpage;
+        let classpage, onboard;
+
+        if (this.props.onboarding) {
+            onboard = <ClassroomOnboard teacher_id = {this.props.teacher_id} />
+        }
         if (this.state.isLoading) {
             classpage = (
                 <div className="spinner-container"></div>
@@ -30,6 +36,7 @@ class ClassroomPage extends React.Component {
         } else {
             classpage = (
                 <div>
+                    { onboard }
                     <ClassInfo classroom    = {this.state.classroom}
                                success      = {this._fetchClassroom}
                                isAdmin      = {this.props.isAdmin} />

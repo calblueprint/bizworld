@@ -81,6 +81,7 @@ class ClassInfo extends DefaultForm {
                 </div>
                 <div className="class-info-box">
                     <h1><span className="fa fa-info-circle"></span>Class Info</h1>
+                    { additionalInfoModal }
                     <div className="info-grid">
                         <div className="class-info-item">
                             <h2 className="grid-label">{ this.state.classroom.program.name } Class ID</h2>
@@ -102,7 +103,7 @@ class ClassInfo extends DefaultForm {
                                 </a>
                             </div>
                         </div>
-                        <div className="class-info-item">
+                        <div className="class-info-item" id="onboarding-assessment-link">
                             <h2 className="grid-label">Post-Assessment</h2>
                             <div className="info-data">
                                 <a href={this.state.classroom.post_link} target="_blank">
@@ -113,8 +114,6 @@ class ClassInfo extends DefaultForm {
                     </div>
                     { this._showInput("Classroom Name", "name", this.state.classroom.name) }
                     { this._showDateRange("Date Range", this.state.classroom.start_date, this.state.classroom.end_date) }
-
-                    { additionalInfoModal }
 
                     <FormEditToggle editable = { this.state.editable }
                                     update   = { this._toggleEdit }

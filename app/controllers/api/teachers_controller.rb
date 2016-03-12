@@ -14,7 +14,11 @@ module Api
 
     def update
       if Teacher.find(params[:id]).update(update_params)
-        render_json_message(:ok, message: "Teacher Info successfully updated!")
+        if params[:did_onboard]
+          render_json_message(:ok, message: "Completed Tutorial!")
+        else
+          render_json_message(:ok, message: "Teacher Info successfully updated!")
+        end
       else
         render_json_message(:forbidden, errors: ["Teacher info update failed."])
       end
@@ -23,7 +27,7 @@ module Api
     private
 
     def update_params
-      params.permit(:first_name, :last_name, :email, :phone_number,
+      params.permit(:first_name, :last_name, :email, :phone_number, :did_onboard,
                     :school, :city, :state, grades: [])
     end
 

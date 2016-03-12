@@ -22,6 +22,7 @@
 #  city                   :string
 #  state                  :string
 #  grades                 :string           default([]), is an Array
+#  did_onboard            :boolean
 #
 
 class Teacher < ActiveRecord::Base
@@ -55,5 +56,9 @@ class Teacher < ActiveRecord::Base
 
   def teacher_csv_row
     [first_name + " " + last_name, email, school, city, state]
+  end
+
+  def onboarding?
+    !did_onboard && classrooms.size == 1
   end
 end

@@ -130,6 +130,8 @@ GEM
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (5.0.5)
+      railties (>= 3.2.16)
     json (1.8.3)
     jwt (1.5.2)
     loofah (2.0.3)
@@ -292,6 +294,7 @@ GEM
     tins (1.6.0)
     toastr-rails (1.0.3)
       railties (>= 3.1.0)
+    tourist-rails (0.0.1)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -331,6 +334,7 @@ DEPENDENCIES
   gon (~> 6.0.1)
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0.5)
+  jquery-ui-rails (~> 5.0.5)
   momentjs-rails (~> 2.10.6)
   pg (~> 0.18.3)
   pg_search (~> 1.0.5)
@@ -352,6 +356,7 @@ DEPENDENCIES
   spring
   thin (~> 1.6.4)
   toastr-rails (~> 1.0.3)
+  tourist-rails
   turbolinks (~> 2.5.3)
   uglifier (>= 1.3.0)
   web-console (~> 2.0)

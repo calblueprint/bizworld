@@ -21,7 +21,7 @@ class ApiConstants {
     get teachers() {
         return {
             member     : (id) => `/api/teachers/${id}`,
-            classrooms : (id) => `/api/teachers/${id}/classrooms`
+            classrooms : (id) => `/api/teachers/${id}/classrooms`,
         }
     }
 

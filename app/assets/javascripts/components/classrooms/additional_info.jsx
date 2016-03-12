@@ -65,9 +65,7 @@ class AdditionalInfoModal extends React.Component {
             <div className="action-item additional-info-item">
                 <button data-toggle="modal" data-target="#additionalInfoModal"
                     className="button button-small additional-info-item-button">
-                    <div>
-                        Additional Info
-                    </div>
+                    <div>More info</div>
                 </button>
                 <div className="modal fade" id="additionalInfoModal" tabIndex={-1}
                         role="dialog" ref="modal">
@@ -75,7 +73,7 @@ class AdditionalInfoModal extends React.Component {
                         <div className="modal-content">
                             <div className="modal-header">
                                 <h4 className="modal-title">
-                                    Additional Info
+                                    More Info
                                 </h4>
                             </div>
 
@@ -90,7 +88,7 @@ class AdditionalInfoModal extends React.Component {
                                     data-dismiss="modal">Cancel</button>
                                 <button type="button" name="update-info"
                                         value="Update Info" className="submit-button" onClick={this._attemptSave}>
-                                    Update Info
+                                    Update
                                 </button>
                             </div>
                         </div>

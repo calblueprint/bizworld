@@ -1,5 +1,7 @@
 .classroom-view-container
-  = react_component "ClassroomPage", { \
-      classroom_id: @classroom.id,     \
-           isAdmin: admin_signed_in?,  \
+  = react_component "ClassroomPage", {             \
+      classroom_id: @classroom.id,                 \
+        teacher_id: @classroom.teacher.id,         \
+           isAdmin: admin_signed_in?,              \
+        onboarding: @classroom.teacher.onboarding? \
     }

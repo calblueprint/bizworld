@@ -1,11 +1,16 @@
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/effect-slide
 //= require bootstrap-select
 //= require bootstrap/alert
 //= require bootstrap/dropdown
+//= require bootstrap/tooltip
+//= require bootstrap/popover
+//= require bootstrap/transition
 //= require moment
 //= require daterangepicker
 //= require bootstrap/modal
+//= require tourist
 //= require turbolinks
 //= require react
 //= require react_ujs

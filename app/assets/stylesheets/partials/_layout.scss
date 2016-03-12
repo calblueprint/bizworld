@@ -304,3 +304,60 @@ ul.dropdown-menu li.dropdown-link a {
     color: $gray-dark;
   }
 }
+
+.popover {
+  border-radius: 4px;
+  border: 1px solid $gray-dark-24;
+  box-shadow: 0 0 10px $gray-dark-24;
+  font-family: Lato, Helvetica, sans-serif;
+  z-index: 100;
+
+  .popover-content {
+    font-size: $f-size-md;
+    position: relative;
+
+    .tour-counter {
+      font-size: $f-size-sm;
+      left: 14px;
+    }
+
+    .tour-close {
+      box-shadow: none;
+    }
+
+    .tour-close:after {
+      content: "\f00d";
+      cursor: pointer;
+      font-family: "FontAwesome";
+      position: absolute;
+      right: 12px;
+      top: 8px;
+    }
+  }
+
+  .btn {
+    @extend .button.button-small;
+    margin: 0;
+  }
+
+  .tour-next {
+    @extend .submit-button;
+  }
+
+  .tour-close.btn-primary {
+    @extend .submit-button.button-small;
+    background: $teal;
+    float: right;
+    font-weight: 600;
+  }
+
+  .tour-container {
+    padding: 0 5px;
+    padding-right: 10px;
+  }
+
+  .tour-buttons {
+      border-radius: 0px 0px 4px 4px;
+      padding: 10px;
+  }
+}
