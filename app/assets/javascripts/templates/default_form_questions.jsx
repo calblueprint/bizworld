@@ -11,7 +11,10 @@ class DefaultFormQuestions extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { questions : [], isLoading : false };
+        this.state = {
+            questions    : [],
+            isLoading    : false,
+        };
     }
 
     componentDidMount() {
