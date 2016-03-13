@@ -20,4 +20,21 @@ class Question < ActiveRecord::Base
   validates :title, :category, :number, presence: true
 
   scope :gradeable, -> { where.not(answer: nil) }
+
+  around_destroy :around_destroy
+  around_create :around_create
+
+  def around_create
+    following_questions = Question.where('form_id = ? and number >= ?',
+                                         form_id, number)
+    following_questions.update_all('number = number + 1')
+    yield
+  end
+
+  def around_destroy
+    following_questions = Question.where('form_id = ? and number > ?',
+                                         form_id, number)
+    yield
+    following_questions.update_all('number = number - 1')
+  end
 end

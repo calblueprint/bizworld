@@ -10,7 +10,29 @@ module Api
       end
     end
 
+    def create
+      question = Question.create(create_params)
+      if question.save
+        render_json_message(:ok, message: 'Question created!')
+      else
+        render_json_message(:forbidden, errors: question.errors.full_messages)
+      end
+    end
+
+    def destroy
+      question = Question.find(params[:id])
+      if question.destroy
+        render_json_message(:ok, message: 'Question deleted!')
+      else
+        render_json_message(:forbidden, errors: 'Failed to delete question.')
+      end
+    end
+
     private
+
+    def create_params
+      params.permit(:id, :form_id, :category, :options, :answer, :title, :number)
+    end
 
     def update_question(question)
       params[:options].try(:each) do |option_id, option|

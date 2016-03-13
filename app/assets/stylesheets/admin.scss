@@ -135,6 +135,12 @@
     }
   }
 
+  .delete-question-button {
+    color: $red;
+    float: right;
+    margin-right: 15px;
+  }
+
   .radio-option {
     input, label {
       display: inline-block;
