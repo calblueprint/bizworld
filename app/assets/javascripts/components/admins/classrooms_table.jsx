@@ -15,6 +15,14 @@ class ClassroomsTable extends React.Component {
 
     componentDidMount() {
         this._fetchClassrooms();
+
+        this.refs.successLabel.getDOMNode().addEventListener("animationend", function() {
+            this.style.animation = "";
+        });
+    }
+
+    _showUpdateAnimation = (e) => {
+        this.refs.successLabel.getDOMNode().style.animation = "show-confirm 2s ease-in-out";
     }
 
     _fetchClassrooms = () => {
@@ -31,6 +39,7 @@ class ClassroomsTable extends React.Component {
             }
         });
         this.setState({ filters: newState }, this._fetchClassrooms);
+        this._showUpdateAnimation();
     }
 
     _handleFilterChange = (e) => {
@@ -39,6 +48,7 @@ class ClassroomsTable extends React.Component {
             [$(e.target).attr("name")]: { $set: $(e.target).val() }
         });
         this.setState({ filters: newState }, this._fetchClassrooms);
+        this._showUpdateAnimation();
     }
 
     _generateClassroomCSVLink() {
@@ -81,23 +91,41 @@ class ClassroomsTable extends React.Component {
             <div>
                 <div className="admin-filter-container">
                     <form className="filter-form-container">
+                        <h1>Filter Settings
+                            <label ref="successLabel" className="update-success-label">
+                                <span className="fa fa-check"></span>Updated!</label>
+                        </h1>
                         <ClassroomsFilter onFilterChange    = {this._handleFilterChange}
                                           onDateRangeChange = {this._handleDateRangeChange} />
-                        <input className="admin-submit-button" name="submit"
-                            type="button" value="Apply" onClick={this._fetchClassrooms}/>
-                        <a className="button download-button" href={this._generateClassroomCSVLink()}>
-                            <span className="fa fa-download"/>
-                            Download Assessment Responses
-                        </a>
-                        <a className="button download-button" href={this._generateTeacherCSVLink()}>
-                            <span className="fa fa-download"/>
-                            Download Classroom Summaries
-                        </a>
                     </form>
                 </div>
-                <h1 className="admin-table-title">Filtered Classrooms:
-                    <span> { this.state.classrooms.length } found</span>
-                </h1>
+                <div className="admin-table-header">
+                    <h1 className="admin-table-title">Filtered Classrooms:
+                        <span> { this.state.classrooms.length } found</span>
+                    </h1>
+                    <div className="dropdown">
+                        <button className="button button-small download-dropdown-button"
+                                id="download-label" data-toggle="dropdown">
+                            <span className="fa fa-download"/>
+                            Downloads
+                            <span className="caret"></span>
+                        </button>
+                        <ul className="dropdown-menu" aria-labelledby="download-label">
+                            <li className="dropdown-link" >
+                                <a href={this._generateClassroomCSVLink()}>
+                                    <span className="fa fa-file-text fa-fw"/>
+                                    Download Assessment Responses
+                                </a>
+                            </li>
+                            <li className="dropdown-link">
+                                <a href={this._generateTeacherCSVLink()}>
+                                    <span className="fa fa-university fa-fw"/>
+                                    Download Classroom Summaries
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <table className="table admin-table">
                     <thead id="table-head">
                         <tr>

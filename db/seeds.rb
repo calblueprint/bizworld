@@ -69,7 +69,7 @@ def make_forms
 end
 
 def make_classroom_additional_questions
-  Rake::Task["classroom_additional_question:generate_default"].invoke  
+  Rake::Task["classroom_additional_question:generate_default"].invoke
 end
 
 make_teachers

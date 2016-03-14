@@ -57,7 +57,10 @@ ClassroomsStatusFilter.propTypes = {
  * @prop onFilterChange    - callback function when filter changes
  */
 class ClassroomsFilter extends React.Component {
+
     render() {
+        var debounceInput = debounceEvent(this.props.onFilterChange, 400);
+
         return (
             <div className="filter-options">
                 <div className="select-options">
@@ -65,8 +68,8 @@ class ClassroomsFilter extends React.Component {
                                             onDateRangeChange = {this.props.onDateRangeChange} />
                 </div>
                 <div className="filter-input-container">
-                    <input placeholder="Teacher Filter" type="text" name="teacher"
-                        onChange={this.props.onFilterChange} />
+                    <input placeholder="Teacher Name or Email" type="text" name="teacher"
+                        onChange={debounceInput} />
                 </div>
             </div>
         );

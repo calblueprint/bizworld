@@ -26,13 +26,17 @@ nav.navbar.navbar-inverse
                 li.dropdown-header Classroom Questions
                 li.dropdown-link = link_to "Additional Questions", classrooms_edit_questions_path
               li = link_to "Classrooms", admins_classrooms_path
-        - elsif current_teacher
-            li = link_to "My Profile", current_teacher
+        - if current_teacher
             li = link_to "My Classrooms", teacher_classrooms_path(current_teacher)
         - if current_user
             li.dropdown
               a.dropdown-toggle role="button" data-toggle="dropdown" href="#"
-                | #{current_user.email}
+                - if current_admin
+                  | #{current_user.email}
+                - else
+                  | #{current_user.first_name} #{current_user.last_name}
                 span.caret
               ul.dropdown-menu role="menu"
+                - if current_teacher
+                    li.dropdown-link = link_to "View Profile", current_teacher
                 li.dropdown-link = link_to "Sign Out", destroy_session_path, method: :delete

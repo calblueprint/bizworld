@@ -103,8 +103,8 @@ body {
 }
 
 .button {
-  background: none;
-  border: 1px solid $gray-light;
+  background: white;
+  border: 1px solid $gray-dark-24;
   border-radius: 3px;
   color: black;
   font-weight: 700;
@@ -248,7 +248,8 @@ a.button {
   }
 }
 
-// overriding bootstrap styles
+/* >>>> Overriding Bootstrap <<<< */
+
 .bootstrap-select {
   button {
     border: 1px solid $gray-light;
@@ -284,6 +285,34 @@ a.button {
   }
 }
 
+.daterangepicker {
+  .input-mini {
+    border-radius: 2px;
+  }
+
+  .input-mini.active {
+    background: $blue;
+    color: $white;
+    font-weight: bold;
+
+    & ~ .fa {
+      color: $white;
+    }
+  }
+
+  td.active,
+  td.start-date,
+  td.end-date {
+    background: $blue;
+  }
+}
+/* Dropdown Menu */
+
+.dropdown-menu {
+  border-radius: 2px;
+  box-shadow: 1px 2px 5px $gray-dark-12;
+}
+
 .dropdown-menu.open {
   border-radius: 2px;
   box-shadow: none;
@@ -291,6 +320,10 @@ a.button {
   .bs-searchbox {
     margin-bottom: 5px;
   }
+}
+
+.dropdown-toggle .caret {
+  margin-left: 4px;
 }
 
 .form-control:focus {
@@ -304,6 +337,8 @@ ul.dropdown-menu li.dropdown-link a {
     color: $gray-dark;
   }
 }
+
+/* Onboarding Popover */
 
 .popover {
   border-radius: 4px;

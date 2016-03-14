@@ -32,7 +32,7 @@ class StudentCreationModal extends DefaultForm {
                 <div className="modal fade" id="newStudentModal" tabIndex={-1}
                         role="dialog" ref="modal">
                     <div className="modal-dialog" role="document">
-                        <div className="modal-content">
+                        <form className="modal-content">
                             <div className="modal-header">
                                 <h4 className="modal-title">Create New Student</h4>
                             </div>
@@ -49,9 +49,9 @@ class StudentCreationModal extends DefaultForm {
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="button" data-dismiss="modal">Cancel</button>
-                                <button type="button" name="submit" value="Create Student" className="submit-button" onClick={this._attemptCreate}>Create</button>
+                                <button type="submit" name="submit" value="Create Student" className="submit-button" onClick={this._attemptCreate}>Create</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

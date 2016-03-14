@@ -1,8 +1,6 @@
 $color-list: $red $orange $blue;
 
 .teacher-classroom-filter {
-  margin-bottom: 30px;
-
   .program-select {
     @include appearance(none);
     background-image: image-url("icons/menulist.svg");
@@ -40,6 +38,10 @@ $color-list: $red $orange $blue;
   border: none;
   margin: 0 auto;
   max-width: 1200px;
+
+  .teacher-classroom-filter {
+    margin-bottom: 30px;
+  }
 }
 
 .classes-container-title {
@@ -88,7 +90,7 @@ $color-list: $red $orange $blue;
 
   .name-container {
     padding-right: 10px;
-    width: 70%;
+    width: 75%;
 
     .title {
       color: $gray-dark-84;
@@ -116,7 +118,7 @@ $color-list: $red $orange $blue;
     text-align: right;
     top: 0;
     right: 0;
-    width: 30%;
+    width: 25%;
 
     .count {
       font-size: 28px;

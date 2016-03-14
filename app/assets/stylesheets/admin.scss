@@ -6,7 +6,7 @@
   margin-top: 40px;
   max-width: 1200px;
   min-width: 1050px;
-  padding: 0;
+  padding: 0 20px;
 }
 
 .admin-spinner {
@@ -15,9 +15,6 @@
 
 .admin-filter-container {
   .download-button {
-    float: right;
-    margin: 0;
-
     &:hover {
       color: initial;
       text-decoration: none;
@@ -32,6 +29,7 @@
 
 .teacher-classroom-filter {
   display: inline-block;
+  margin-bottom: 0;
 }
 
 .classroom-status-filter {
@@ -41,6 +39,7 @@
 
 .classroom-status-select {
   @include appearance(none);
+  background-color: transparent;
   background-image: image-url("icons/menulist.svg");
   background-repeat: no-repeat;
   background-position: right;
@@ -60,28 +59,66 @@
   }
 }
 
+.filter-form-container {
+  border: 1px solid $gray-dark-24;
+  border-radius: 3px;
+  margin-bottom: 35px;
+  padding: 20px 30px;
+
+  h1 {
+    color: $gray-dark-60;
+    font-size: $f-size-md;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0;
+    margin-bottom: 12px;
+  }
+}
+
+.update-success-label {
+  background-color: $blue-60;
+  border-radius: 2px;
+  color: white;
+  font-size: 13px;
+  margin-left: 20px;
+  padding: 4px 7px;
+  text-transform: none;
+  visibility: hidden;
+  @include prefixer(animation, blank);
+
+  .fa {
+    margin-right: 4px;
+  }
+}
+
+@keyframes show-confirm {
+  0%   {visibility: hidden; opacity: 0;}
+  8%  {visibility: visible; opacity: 1;}
+  85%  {visibility: visible; opacity: 1;}
+  100% {visibility: hidden; opacity: 0;}
+}
+
 .filter-input-container {
   @extend .input-container;
   float: right;
   margin: 0;
-  margin-bottom: 30px;
+  margin-bottom: 0;
 }
 
 .date-input-container {
   @extend .input-container;
   display: inline-block;
   margin: 0;
-  min-width: 200px;
+  min-width: 250px;
+  vertical-align: top;
 }
 
 .filter-options {
   display: inline-block;
-  // TODO(liang): setting the filter-options width manually is pretty hacky. we should
-  // find more sustainable way to do this later.
-  // width: 69%;
 
   .select-options {
     float: left;
+    margin-right: 15px;
   }
 }
 
@@ -92,15 +129,48 @@
   vertical-align: top;
 }
 
+.admin-table-header {
+  margin-bottom: 20px;
+  position: relative;
+  @include clearAfter;
+}
+
 .admin-table-title {
+  display: inline-block;
   font-size: $f-size-xl;
   font-weight: 600;
-  margin-bottom: 20px;
-  margin-left: 10px;
-  margin-top: 0;
+  margin: 0 auto;
+}
+
+.dropdown {
+  display: inline-block;
+  float: right;
+
+  .dropdown-menu {
+    left: initial;
+    right: 0;
+  }
+
+  .dropdown-link a {
+    padding: 4px 14px;
+  }
+
+  .fa {
+    margin-right: 7px;
+  }
+}
+
+.download-dropdown-button {
+  margin: 0;
+
+  .caret {
+    margin-left: 4px;
+  }
 }
 
 .admin-table {
+  margin-bottom: 40px;
+
   tbody {
     tr {
       cursor: pointer;

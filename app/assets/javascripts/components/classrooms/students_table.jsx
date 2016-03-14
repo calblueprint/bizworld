@@ -60,8 +60,8 @@ class StudentsTable extends React.Component {
                     <table className="table student-table">
                         <thead>
                             <tr>
-                                <th>FIRST</th>
-                                <th>LAST</th>
+                                <th className="name-col">FIRST</th>
+                                <th className="name-col">LAST</th>
                                 <th className="score">PRE-SCORE</th>
                                 <th className="score">POST-SCORE</th>
                                 <th className="trash-col"></th>
