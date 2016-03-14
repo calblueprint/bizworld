@@ -37,7 +37,7 @@ class EditClassroomQuestions extends React.Component {
             )
         } else {
             editpage = (
-                <div className="form-view-container">
+                <div className="form-questions-container">
                     <h4>Edit Classroom Additional Info Questions</h4>
                     { questions }
                 </div>
@@ -78,6 +78,14 @@ class AdminAdditionalInfoQuestion extends DefaultForm {
         this.setState({ hint : $(e.target).val() });
     }
 
+    _handleQuestionDelete = (e) => {
+        const result = confirm("Are you sure you want to delete this question? This action cannot be undone.");
+        if (result) {
+            APIRequester.delete(APIConstants.classroom_additional_questions.member(this.props.question.id),
+                this.props.success);
+        }
+    }
+
     _renderEditButton() {
         let editButton;
         if (!this.state.editable) {
@@ -90,6 +98,20 @@ class AdminAdditionalInfoQuestion extends DefaultForm {
             );
         }
         return editButton;
+    }
+
+    _renderDeleteButton() {
+        let deleteButton;
+        if (!this.state.editable) {
+            deleteButton = (
+                <a className="delete-question-button"
+                        onClick={this._handleQuestionDelete} >
+                    <span className="fa fa-trash-o"/>
+                    Delete
+                </a>
+            );            
+        }
+        return deleteButton;
     }
 
     _renderSaveContainer() {
@@ -163,9 +185,10 @@ class AdminAdditionalInfoQuestion extends DefaultForm {
         return (
             <div>
                 <fieldset className="question input-question input-container">
+                    { this._renderEditButton() }
+                    { this._renderDeleteButton() }
                     { this._renderTitleContainer() }
                     { this._renderHintContainer() }
-                    { this._renderEditButton() }
                     { this._renderAnswerContainer() }
                 </fieldset>
                 { this._renderSaveContainer() }
