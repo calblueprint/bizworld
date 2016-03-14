@@ -103,11 +103,7 @@ class AdminAdditionalInfoQuestion extends DefaultForm {
     }
 
     _handleQuestionDelete = (e) => {
-<<<<<<< HEAD
-        const result = confirm("Are you sure you want to delete this question? This action cannot be undone");
-=======
         const result = confirm("Are you sure you want to delete this question? This action cannot be undone.");
->>>>>>> master
         if (result) {
             APIRequester.delete(APIConstants.classroom_additional_questions.member(this.props.question.id),
                 this.props.success);
