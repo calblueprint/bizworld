@@ -40,9 +40,6 @@ class Teacher < ActiveRecord::Base
   def classroom_csv_row
     ["#{first_name} #{last_name}",
      email,
-     school,
-     city,
-     state,
      id]
   end
 

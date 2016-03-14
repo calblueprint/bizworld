@@ -25,7 +25,7 @@ module ClassroomCSVGenerator
 
   def self.generate_header(category, program)
     Classroom.csv_header + Teacher.classroom_csv_header \
-    + Student.csv_header + program.csv_header(category)
+    + Student.csv_header(category) + program.csv_header(category)
   end
 
   def self.generate_rows(csv, classrooms, category)
