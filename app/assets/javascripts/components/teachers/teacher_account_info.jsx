@@ -51,6 +51,7 @@ class TeacherAccountInfo extends DefaultForm {
 
     render() {
         const gradesList = this.state.teacher.grades.join(', ');
+
         return (
             <div>
                 <h1 className="teacher-account-header">Your Account</h1>
@@ -66,7 +67,7 @@ class TeacherAccountInfo extends DefaultForm {
                 <FormEditToggle editable = { this.state.editable }
                                 update   = { this._toggleEdit }
                                 save     = { this._attemptSave } />
-            </div>
+          </div>
         );
     }
 }

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     post '/sign_up' => 'registrations#create'
     post '/sign_in' => 'sessions#create', :as => :create_session
     delete '/sign_out' => 'sessions#destroy', :as => :destroy_session
+    get '/password_update' => 'registrations#password_update', :as => :password_update
   end
 
   resources :forms, only: [:show] do
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
     post '/forms/submit', to: 'forms#submit'
 
     resources :classroom_additional_questions, only: [:create, :update, :destroy]
+    resources :passwords, only: [:update]
     resources :questions, only: [:update]
     resources :students, only: [:create, :destroy]
     resources :programs, only: [:index]

@@ -40,3 +40,4 @@ nav.navbar.navbar-inverse
                 - if current_teacher
                     li.dropdown-link = link_to "View Profile", current_teacher
                 li.dropdown-link = link_to "Sign Out", destroy_session_path, method: :delete
+                li.dropdown-link = link_to "Change Password", password_update_path

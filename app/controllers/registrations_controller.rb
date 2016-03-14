@@ -15,6 +15,11 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def password_update
+    @model = current_user.is_a?(Teacher) ? :teacher : :admin
+    @user_id = current_user.id
+  end
+
   protected
 
   def configure_permitted_parameters

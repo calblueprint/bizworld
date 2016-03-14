@@ -39,6 +39,12 @@ class ApiConstants {
         }
     }
 
+    get passwords() {
+        return {
+            update : (id) => `/api/passwords/${id}`
+        }
+    }
+
     get students() {
         return {
           member     : (id) => `/api/students/${id}`,
