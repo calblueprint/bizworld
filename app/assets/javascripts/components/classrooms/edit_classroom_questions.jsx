@@ -14,13 +14,32 @@ class EditClassroomQuestions extends React.Component {
         this._fetchQuestions();
     }
 
-    _fetchQuestions = () => {
+    _fetchQuestions = (scrollToBottom = false) => {
         this.setState({ isLoading : true })
         // Attempts to parse JSON, if it is invalid, sets responses to be empty.
         const success = (data) => {
             this.setState({ questions: data, isLoading : false });
+            if (scrollToBottom) {
+                // Scrolls to bottom of the questions list. Called when creating
+                // a new question.
+                $('html body').scrollTop($(document).height());                
+            }
         }
         APIRequester.getJSON(APIConstants.classrooms.questions, success);
+    }
+
+    _createNewQuestion = () => {
+        const success = (msg) => {
+            this._fetchQuestions(scrollToBottom = true);
+        }
+        const defaultQuestionFields = {
+            title: "New Question",
+            hint: "Edit the fields by clicking the small pencil"
+        };
+        APIRequester.post(APIConstants.classroom_additional_questions.collection,
+            defaultQuestionFields,
+            success
+        );
     }
 
     render() {
@@ -38,7 +57,12 @@ class EditClassroomQuestions extends React.Component {
         } else {
             editpage = (
                 <div className="form-questions-container">
-                    <h4>Edit Classroom Additional Info Questions</h4>
+                    <div className="edit-classroom-questions-header-container">
+                        <h4>Edit Classroom Additional Info Questions</h4>
+                        <input type="button" value="New Question"
+                                    className="button-small submit-button"
+                                    onClick={this._createNewQuestion} />
+                    </div>
                     { questions }
                 </div>
             );
@@ -79,7 +103,11 @@ class AdminAdditionalInfoQuestion extends DefaultForm {
     }
 
     _handleQuestionDelete = (e) => {
+<<<<<<< HEAD
+        const result = confirm("Are you sure you want to delete this question? This action cannot be undone");
+=======
         const result = confirm("Are you sure you want to delete this question? This action cannot be undone.");
+>>>>>>> master
         if (result) {
             APIRequester.delete(APIConstants.classroom_additional_questions.member(this.props.question.id),
                 this.props.success);

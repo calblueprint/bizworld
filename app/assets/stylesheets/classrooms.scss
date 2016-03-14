@@ -189,6 +189,20 @@ $icon-list: "\f0b1" "\f008" "\f201";
   }
 }
 
+.edit-classroom-questions-header-container {
+  display: inline-block;
+  width: 100%;
+
+  h4 {
+    float: left;
+  }
+
+  input {
+    float: right;
+    margin: 0;
+  }
+}
+
 .upload-roster-container {
   margin: 20px 0;
   text-align: center;
