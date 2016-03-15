@@ -27,8 +27,10 @@ class FormView extends DefaultForm {
                 <NameSelector id = {this.props.classroom_id} />
                 <StudentFormQuestions onChange = {this._handleChange}
                                       form_id  = {this.props.form_id} />
-                <input name="submit" type="button" value="Submit Responses"
-                    className="submit-button" onClick={this._submitAnswers} />
+                <div className="classroom-form-submit-container">
+                    <input name="submit" type="button" value="Submit Responses"
+                        className="submit-button" onClick={this._submitAnswers} />
+                </div>
             </div>
         );
     }

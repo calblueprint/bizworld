@@ -5,7 +5,7 @@
       h1 #{@program.name}
     h1.form-title #{@form.category.capitalize}-Assessment
 
-  .form-view-container
+  .form-view-container.admin-form-container
     = react_component "AdminFormQuestions", { \
       form_id: @form.id,                      \
     }

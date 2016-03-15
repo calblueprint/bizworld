@@ -15,8 +15,8 @@
         span.fa.fa-building-o
         | School
       h2.content #{@teacher.school}
-
-  = react_component "FormView", { \
-    classroom_id: @classroom.id,  \
-    form_id: @form.id,            \
-  }
+  .classroom-form-container
+    = react_component "FormView", { \
+      classroom_id: @classroom.id,  \
+      form_id: @form.id,            \
+    }

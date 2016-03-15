@@ -25,15 +25,11 @@ class DefaultAdminQuestion extends DefaultForm {
     }
 
     _renderNewQuestionButton() {
-        let newButton;
-        if (this.state.mouseEntered && !this.state.editable) {
-            newButton = (
-                <input type="button" value="New Question"
-                    className="button-small submit-button"
-                    onClick={this._insertQuestionAfter} />
-            );
-        }
-        return newButton;
+        return (
+            <input type="button" value="New Question"
+                className="button-small submit-button new-question-button"
+                onClick={this._insertQuestionAfter} />
+        );
     }
 
     _attemptSave = (e) => {
@@ -56,35 +52,32 @@ class DefaultAdminQuestion extends DefaultForm {
         this.setState({ title : $(e.target).val() });
     }
 
-    _insertQuestionAfter = () => {
+    _insertQuestionAfter = (e) => {
+        e.stopPropagation();
         this.props.insertQuestionCallback(this.props.index, this.props.question.number);
     }
 
     _deleteQuestion = () => {
-        APIRequester.delete(APIConstants.questions.member(this.props.question.id),
-            this.props.success);
+        if (Question.isNew(this.props.question)) {
+            this.props.success();
+        } else {
+            APIRequester.delete(APIConstants.questions.member(this.props.question.id),
+                this.props.success);
+        }
     }
 
-    toggleEdit = () => { // TODO: weird React name conflict
-        if (Question.isNew(this.props.question)) {
-            this.props.success(); // TODO: shouldn't need to hit backend in this case
-        } else {
+    _startEditing = () => {
+        if (!this.state.editable) {
             this._toggleEdit();
         }
     }
 
-    _renderEditButton() {
-        let editButton;
-        if (!this.state.editable) {
-            editButton = (
-                <a className="edit-question-button"
-                        onClick={this.toggleEdit} >
-                    <span className="fa fa-pencil"/>
-                    Edit
-                </a>
-            );
+    _stopEditing = () => {
+        if (Question.isNew(this.props.question)) {
+            this.props.success();
+        } else {
+            this._toggleEdit();
         }
-        return editButton;
     }
 
     _renderSaveContainer() {
@@ -93,14 +86,36 @@ class DefaultAdminQuestion extends DefaultForm {
             saveContainer = (
                 <div className="edit-button-container">
                     <input name="editable" type="button" value="Cancel"
-                        className="button button-small" onClick={this.toggleEdit} />
-                    <input type="button" value="Save Changes"
+                        className="button button-small" onClick={this._stopEditing} />
+                    <input type="submit" value="Save Changes"
                         className="button-small submit-button"
                         onClick={this._attemptSave} />
                 </div>
             );
         }
         return saveContainer;
+    }
+
+    _renderQuestionTitle() {
+        return (
+            <EditableTitle name         = {this.props.question.id}
+                           number       = {this.props.question.number}
+                           title        = {this.props.question.title}
+                           editable     = {this.state.editable}
+                           onTextChange = {this._onTitleChange} />
+        );
+    }
+
+    _editClass() {
+        return this.state.editable ? "editing-true" : "";
+    }
+
+    _renderEditLabel() {
+        if (this.state.editable) {
+            return <div className="edit-label active">Currently editing</div>
+        } else {
+            return <div className="edit-label">Click anywhere to edit</div>
+        }
     }
 }
 

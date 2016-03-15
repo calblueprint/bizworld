@@ -32,7 +32,7 @@ class NameSelector extends React.Component {
         });
 
         return (
-            <div className="input-container">
+            <div className="input-container form-name-container">
                 <label className="question-title" htmlFor="name-dropdown">Name:</label>
                 <select id="name-dropdown" name="student" ref="select"
                     className="selectpicker" data-live-search="true">

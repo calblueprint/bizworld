@@ -41,6 +41,14 @@ class AdminFormQuestions extends DefaultFormQuestions {
  */
 class AdminMCQuestion extends DefaultAdminQuestion {
 
+    _onMouseEnter = (e) => {
+        this.setState({ mouseEntered: true });
+    }
+
+    _onMouseLeave = (e) => {
+        this.setState({ mouseEntered: false });
+    }
+
     _onOptionChange = (e) => {
         const newOptions = React.addons.update(this.state.options, {
             [$(e.target).attr("name")]: { $set: $(e.target).val() }
@@ -68,27 +76,20 @@ class AdminMCQuestion extends DefaultAdminQuestion {
             )
         });
 
-        const questionTitle = (
-            <EditableTitle name         = {this.props.question.id}
-                           number       = {this.props.question.number}
-                           title        = {this.props.question.title}
-                           editable     = {this.state.editable}
-                           onTextChange = {this._onTitleChange} />
-        );
-
         return (
             <div onMouseEnter={this._onMouseEnter} onMouseLeave={this._onMouseLeave}>
-                <fieldset className="question mc-question">
-                    { this._renderEditButton() }
-                    <div className="fa fa-trash-o edit-question-button delete-question-button"
+                <fieldset className={`question admin-question mc-question ${this._editClass()}`}
+                          onClick={this._startEditing}>
+                    { this._renderEditLabel() }
+                    <div className="fa fa-trash-o delete-question-button"
                         onClick={this._deleteQuestion}></div>
-                    <label className="question-title" htmlFor={this.props.id}>
-                        { questionTitle }
-                    </label>
+                    <div htmlFor={this.props.id}>
+                        { this._renderQuestionTitle() }
+                    </div>
                     { radioOptions }
                     { this._renderSaveContainer() }
+                    { this._renderNewQuestionButton() }
                 </fieldset>
-                { this._renderNewQuestionButton() }
             </div>
         );
     }
@@ -105,29 +106,32 @@ AdminMCQuestion.propTypes = {
  */
 class AdminInputQuestion extends DefaultAdminQuestion {
 
-    render() {
-        const questionTitle = (
-            <EditableTitle name         = {this.props.question.id}
-                           number       = {this.props.question.number}
-                           title        = {this.props.question.title}
-                           editable     = {this.state.editable}
-                           onTextChange = {this._onTitleChange} />
-        );
+    // TODO: delete question
+    _onMouseEnter = (e) => {
+        this.setState({ mouseEntered: true });
+    }
 
+    _onMouseLeave = (e) => {
+        this.setState({ mouseEntered: false });
+    }
+
+    render() {
         return (
             <div onMouseEnter={this._onMouseEnter} onMouseLeave={this._onMouseLeave}>
-                <fieldset className="question input-question input-container">
-                    { this._renderEditButton() }
-                    <div className="fa fa-trash-o edit-question-button delete-question-button"
+                <fieldset className={`question admin-question input-question
+                                      input-container ${this._editClass()}`}
+                          onClick={this._startEditing}>
+                    { this._renderEditLabel() }
+                    <div className="fa fa-trash-o delete-question-button"
                         onClick={this._deleteQuestion}></div>
-                    <label className="question-title" htmlFor={this.props.id}>
-                        { questionTitle }
-                    </label>
+                    <div htmlFor={this.props.id}>
+                        { this._renderQuestionTitle() }
+                    </div>
                     <input name={this.props.question.id} type="text"
                         onChange={this.props.onChange} />
                     { this._renderSaveContainer() }
+                    { this._renderNewQuestionButton() }
                 </fieldset>
-                { this._renderNewQuestionButton() }
             </div>
         );
     }
