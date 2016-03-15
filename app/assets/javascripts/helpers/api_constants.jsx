@@ -55,11 +55,17 @@ class ApiConstants {
     get pages()    { return { states     : `/api/states` } }
     get programs() { return { collection : `/api/programs` } }
 
-    get questions() { return { member : (id) => `/api/questions/${id}` } }
+    get questions() {
+        return {
+            member     : (id) => `/api/questions/${id}`,
+            collection : `/api/questions`,
+        }
+    }
+
     get classroom_additional_questions() {
         return {
-            member : (id) => `/api/classroom_additional_questions/${id}`,
-            collection : `/api/classroom_additional_questions`
+            member     : (id) => `/api/classroom_additional_questions/${id}`,
+            collection : `/api/classroom_additional_questions`,
         }
     }
 }

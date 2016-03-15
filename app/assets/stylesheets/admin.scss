@@ -206,16 +206,10 @@
   }
 
   .delete-question-button {
+    color: $red;
+    float: right;
+    margin-right: 15px;
     cursor: pointer;
-    color: $red-84;
-    font-size: $f-size-xs;
-    margin-left: 10px;
-    padding: 0 7px;
-
-    .fa {
-      margin-left: 0;
-      margin-right: 5px;
-    }
   }
 
   .radio-option {

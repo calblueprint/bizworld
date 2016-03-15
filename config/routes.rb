@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
     resources :classroom_additional_questions, only: [:create, :update, :destroy]
     resources :passwords, only: [:update]
-    resources :questions, only: [:update]
+    resources :questions, only: [:update, :create, :destroy]
     resources :students, only: [:create, :destroy]
     resources :programs, only: [:index]
 
