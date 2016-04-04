@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.2.3'
 
 gem 'active_model_serializers', '~> 0.9.3'
+gem 'acts_as_list', '~> 0.7.2'
 gem 'bitly', '~> 0.10.4'
 gem 'bootstrap-daterangepicker-rails', '~> 0.1.2'
 gem 'bootstrap-sass', '~> 3.3.5'

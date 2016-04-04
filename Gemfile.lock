@@ -38,6 +38,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts_as_list (0.7.2)
+      activerecord (>= 3.0)
     annotate (2.6.10)
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
@@ -315,6 +317,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.9.3)
+  acts_as_list (~> 0.7.2)
   annotate
   awesome_print
   better_errors

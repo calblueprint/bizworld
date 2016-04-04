@@ -31,7 +31,7 @@ module Api
     private
 
     def create_params
-      params.permit(:id, :form_id, :category, :options, :answer, :title, :number)
+      params.permit(:form_id, :category, :options, :answer, :title, :number)
     end
 
     def update_question(question)

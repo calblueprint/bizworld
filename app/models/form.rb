@@ -10,7 +10,7 @@
 
 class Form < ActiveRecord::Base
   has_one :program
-  has_many :questions
+  has_many :questions, -> { order(number: :asc) }
 
   def program
     Program.where("pre_id = ? OR post_id = ?", id, id).first
