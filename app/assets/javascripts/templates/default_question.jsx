@@ -3,17 +3,24 @@
  * @prop index                   - question index
  * @prop insertQuestionCallback  - callback function to insert question
  * @prop question                - the question to display
- * @prop success                 - callback function on successful form update
+ * @prop saveSuccess             - callback function on successful question update
+ * @prop delSuccess              - callback function on successful question delete
  */
 class DefaultAdminQuestion extends DefaultForm {
 
     constructor(props) {
         super(props);
         this.state = {
-            editable     : this.props.editableOnRender || false,
+            editable     : (this.props.editableOnRender != null) ? this.props.editableOnRender : false,
             options      : { },
             mouseEntered : false,
         };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.editableOnRender != null) {
+            this.setState({ editable: nextProps.editableOnRender })
+        }
     }
 
     _onMouseEnter = (e) => {
@@ -34,8 +41,10 @@ class DefaultAdminQuestion extends DefaultForm {
 
     _attemptSave = (e) => {
         const success = (msg) => {
-            this.props.success();
-            this.setState({ editable: false });
+            this.props.saveSuccess(this.props.index,
+                React.addons.update( { id: msg.data.id }, {
+                    $merge: { title: this.state.title }
+                }));
         }
         if (Question.isNew(this.props.question)) {
             APIRequester.post(APIConstants.questions.collection,
@@ -57,12 +66,16 @@ class DefaultAdminQuestion extends DefaultForm {
         this.props.insertQuestionCallback(this.props.index, this.props.question.number);
     }
 
-    _deleteQuestion = () => {
+    _deleteQuestion = (e) => {
+        e.stopPropagation();
+        const success = (msg) => {
+            this.props.delSuccess(this.props.index);
+        }
         if (Question.isNew(this.props.question)) {
-            this.props.success();
+            this.props.delSuccess(this.props.index);
         } else {
             APIRequester.delete(APIConstants.questions.member(this.props.question.id),
-                this.props.success);
+                success);
         }
     }
 
@@ -74,7 +87,7 @@ class DefaultAdminQuestion extends DefaultForm {
 
     _stopEditing = () => {
         if (Question.isNew(this.props.question)) {
-            this.props.success();
+            this.props.delSuccess(this.props.index);
         } else {
             this._toggleEdit();
         }
@@ -124,5 +137,6 @@ DefaultAdminQuestion.propTypes = {
     index                  : React.PropTypes.number.isRequired,
     insertQuestionCallback : React.PropTypes.func.isRequired,
     question               : React.PropTypes.object.isRequired,
-    success                : React.PropTypes.func.isRequired,
+    saveSuccess            : React.PropTypes.func.isRequired,
+    delSuccess             : React.PropTypes.func.isRequired,
 };

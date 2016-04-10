@@ -18,6 +18,26 @@ class AdminFormQuestions extends DefaultFormQuestions {
         this.setState({ questions: newQuestions });
     }
 
+    _saveQuestion = (questionIndex, questionState) => {
+        newQuestion = Object.assign({}, this.state.questions[questionIndex]);
+        newQuestion.editableOnRender = false;
+        newQuestion = React.addons.update(newQuestion, { $merge: questionState });
+        const tempQuestions = React.addons.update(this.state.questions, {
+            $splice: [[questionIndex, 1, newQuestion]],
+        });
+        this.setState({ questions: tempQuestions });
+    }
+
+    _delQuestion = (questionIndex) => {
+        const tempQuestions = React.addons.update(this.state.questions, {
+            $splice: [[questionIndex, 1]],
+        });
+        for (let i = questionIndex; i < tempQuestions.length; i++) {
+            tempQuestions[i].number -= 1;
+        }
+        this.setState({ questions: tempQuestions });
+    }
+
     _mapQuestions = (question, index) => {
         const categoryToComponent = {
             [QuestionType.MC]    : AdminMCQuestion,
@@ -25,7 +45,8 @@ class AdminFormQuestions extends DefaultFormQuestions {
         };
         const AdminQuestion = categoryToComponent[question.category];
         return (
-            <AdminQuestion success                = {this._fetchQuestions}
+            <AdminQuestion saveSuccess            = {this._saveQuestion}
+                           delSuccess             = {this._delQuestion}
                            question               = {question}
                            key                    = {question.id}
                            index                  = {index}
@@ -36,18 +57,11 @@ class AdminFormQuestions extends DefaultFormQuestions {
 }
 
 /**
- * @prop question - the MC question to display
- * @prop success  - callback function when form successfully updates
+ * @prop question    - the MC question to display
+ * @prop saveSuccess - callback function when form successfully updates
+ * @prop delSuccess  - callback function when question successfully deletes
  */
 class AdminMCQuestion extends DefaultAdminQuestion {
-
-    _onMouseEnter = (e) => {
-        this.setState({ mouseEntered: true });
-    }
-
-    _onMouseLeave = (e) => {
-        this.setState({ mouseEntered: false });
-    }
 
     _onOptionChange = (e) => {
         const newOptions = React.addons.update(this.state.options, {
@@ -96,24 +110,17 @@ class AdminMCQuestion extends DefaultAdminQuestion {
 }
 
 AdminMCQuestion.propTypes = {
-    question : React.PropTypes.object.isRequired,
-    success  : React.PropTypes.func.isRequired
+    question    : React.PropTypes.object.isRequired,
+    saveSuccess : React.PropTypes.func.isRequired,
+    delSuccess  : React.PropTypes.func.isRequired
 };
 
 /**
- * @prop success  - callback function when form answers successfully update
- * @prop question - the MC question to display
+ * @prop question    - the MC question to display
+ * @prop saveSuccess - callback function when form successfully updates
+ * @prop delSuccess  - callback function when question successfully deletes
  */
 class AdminInputQuestion extends DefaultAdminQuestion {
-
-    // TODO: delete question
-    _onMouseEnter = (e) => {
-        this.setState({ mouseEntered: true });
-    }
-
-    _onMouseLeave = (e) => {
-        this.setState({ mouseEntered: false });
-    }
 
     render() {
         return (
@@ -138,6 +145,7 @@ class AdminInputQuestion extends DefaultAdminQuestion {
 }
 
 AdminInputQuestion.propTypes = {
-    success  : React.PropTypes.func.isRequired,
-    question : React.PropTypes.object.isRequired
+    question    : React.PropTypes.object.isRequired,
+    saveSuccess : React.PropTypes.func.isRequired,
+    delSuccess  : React.PropTypes.func.isRequired
 };

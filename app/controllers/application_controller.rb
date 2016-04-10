@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
 
   def render_json_message(status, options = {})
     render json: {
+      data: options[:data],
       message: options[:message],
       to: options[:to],
       errors: options[:errors]

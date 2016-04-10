@@ -3,8 +3,9 @@ module Api
     before_action :authenticate_admin!
 
     def update
-      if update_question(Question.find(params[:id]))
-        render_json_message(:ok, message: "Question updated!")
+      question = Question.find(params[:id])
+      if update_question(question)
+        render_json_message(:ok, data: { id: question.id }, message: "Question updated!")
       else
         render_json_message(:forbidden, errors: ["Question update failed."])
       end
@@ -13,7 +14,7 @@ module Api
     def create
       question = Question.create(create_params)
       if question.save
-        render_json_message(:ok, message: 'Question created!')
+        render_json_message(:ok, data: { id: question.id }, message: 'Question created!')
       else
         render_json_message(:forbidden, errors: question.errors.full_messages)
       end
