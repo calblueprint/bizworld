@@ -1,86 +1,47 @@
 /**
- * @prop editableOnRender        - true if question is editable on render
  * @prop index                   - question index
- * @prop insertQuestionCallback  - callback function to insert question
  * @prop question                - the question to display
- * @prop saveSuccess             - callback function on successful question update
- * @prop delSuccess              - callback function on successful question delete
+ * @prop updatingFromSave        - true if updating from save
+ * @prop editableOnRender        - true if question is editable on render
+ * @prop insertQuestionCallback  - callback function to insert new question
+ * @prop saveCallback            - callback function to save question
+ * @prop deleteCallback          - callback function to delete question
  */
 class DefaultAdminQuestion extends DefaultForm {
 
     constructor(props) {
         super(props);
         this.state = {
-            editable     : (this.props.editableOnRender != null) ? this.props.editableOnRender : false,
-            options      : { },
-            mouseEntered : false,
+            editable:     (this.props.editableOnRender != null) ? this.props.editableOnRender : false,
+            question:     Object.assign({}, props.question),
+            mouseEntered: false,
         };
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.editableOnRender != null) {
-            this.setState({ editable: nextProps.editableOnRender })
+        if (nextProps.updatingFromSave === true) {
+            this.state = {
+                editable: (nextProps.editableOnRender != null) ? nextProps.editableOnRender : false,
+                question: Object.assign({}, nextProps.question),
+            }
         }
     }
 
     _onMouseEnter = (e) => {
-        this.setState({ mouseEntered: true });
+        if (!this.state.mouseEntered) {
+            this.setState({ mouseEntered: true });
+        }
     }
 
     _onMouseLeave = (e) => {
-        this.setState({ mouseEntered: false });
-    }
-
-    _renderNewQuestionButton() {
-        return (
-            <input type="button" value="New Question"
-                className="button-small submit-button new-question-button"
-                onClick={this._insertQuestionAfter} />
-        );
-    }
-
-    _attemptSave = (e) => {
-        const success = (msg) => {
-            this.props.saveSuccess(this.props.index,
-                React.addons.update( { id: msg.data.id }, {
-                    $merge: { title: this.state.title }
-                }));
-        }
-        if (Question.isNew(this.props.question)) {
-            APIRequester.post(APIConstants.questions.collection,
-                React.addons.update(this.props.question, {
-                    $merge: { title: this.state.title }
-                }), success);
-        } else {
-            APIRequester.put(APIConstants.questions.member(this.props.question.id),
-                this.state, success);
+        if (this.state.mouseEntered) {
+            this.setState({ mouseEntered: false });
         }
     }
 
-    _onTitleChange = (e) => {
-        this.setState({ title : $(e.target).val() });
-    }
-
-    _insertQuestionAfter = (e) => {
-        e.stopPropagation();
-        this.props.insertQuestionCallback(this.props.index, this.props.question.number);
-    }
-
-    _deleteQuestion = (e) => {
-        e.stopPropagation();
-        const success = (msg) => {
-            this.props.delSuccess(this.props.index);
-        }
-        if (Question.isNew(this.props.question)) {
-            this.props.delSuccess(this.props.index);
-        } else {
-            APIRequester.delete(APIConstants.questions.member(this.props.question.id),
-                success);
-        }
-    }
-
-    _startEditing = () => {
+    _startEditing = (e) => {
         if (!this.state.editable) {
+            e.preventDefault();
             this._toggleEdit();
         }
     }
@@ -93,6 +54,31 @@ class DefaultAdminQuestion extends DefaultForm {
         }
     }
 
+    _onTitleChange = (e) => {
+        const newQuestion = React.addons.update(this.state.question, {
+            title: { $set: $(e.target).val() }
+        });
+        this.setState({ question: newQuestion });
+    }
+
+    _insertQuestionAfter = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        this.props.insertQuestionCallback(this.props.index, this.props.question.number);
+    }
+
+    _saveQuestion = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        this.props.saveCallback(this.props.index, this.state.question);
+    }
+
+    _deleteQuestion = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        this.props.deleteCallback(this.props.index, this.state.question);
+    }
+
     _renderSaveContainer() {
         let saveContainer;
         if (this.state.editable) {
@@ -102,11 +88,19 @@ class DefaultAdminQuestion extends DefaultForm {
                         className="button button-small" onClick={this._stopEditing} />
                     <input type="submit" value="Save Changes"
                         className="button-small submit-button"
-                        onClick={this._attemptSave} />
+                        onClick={this._saveQuestion} />
                 </div>
             );
         }
         return saveContainer;
+    }
+
+    _renderNewQuestionButton() {
+        return (
+            <input type="button" value="New Question"
+                className="button-small submit-button new-question-button"
+                onClick={this._insertQuestionAfter} />
+        );
     }
 
     _renderQuestionTitle() {
@@ -133,10 +127,11 @@ class DefaultAdminQuestion extends DefaultForm {
 }
 
 DefaultAdminQuestion.propTypes = {
-    editableOnRender       : React.PropTypes.bool,
-    index                  : React.PropTypes.number.isRequired,
-    insertQuestionCallback : React.PropTypes.func.isRequired,
-    question               : React.PropTypes.object.isRequired,
-    saveSuccess            : React.PropTypes.func.isRequired,
-    delSuccess             : React.PropTypes.func.isRequired,
+    index:                  React.PropTypes.number.isRequired,
+    question:               React.PropTypes.object.isRequired,
+    updatingFromSave:       React.PropTypes.bool,
+    editableOnRender:       React.PropTypes.bool,
+    insertQuestionCallback: React.PropTypes.func.isRequired,
+    saveCallback:           React.PropTypes.func.isRequired,
+    deleteCallback:         React.PropTypes.func.isRequired,
 };

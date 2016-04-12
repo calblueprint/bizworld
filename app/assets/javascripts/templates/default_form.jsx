@@ -19,7 +19,7 @@ class DefaultForm extends React.Component {
         });
     }
 
-    _toggleEdit = (e) => {
+    _toggleEdit = () => {
         this.setState({ editable : !this.state.editable });
     }
 

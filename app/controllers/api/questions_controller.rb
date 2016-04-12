@@ -5,16 +5,17 @@ module Api
     def update
       question = Question.find(params[:id])
       if update_question(question)
-        render_json_message(:ok, data: { id: question.id }, message: "Question updated!")
+        render_json_message(:ok, data: { question: question }, message: "Question updated!")
       else
         render_json_message(:forbidden, errors: ["Question update failed."])
       end
     end
 
     def create
-      question = Question.create(create_params)
+      question = Question.create(create_params[:question].merge!(number: new_question_number))
+      question.options.reject!(&:empty?)
       if question.save
-        render_json_message(:ok, data: { id: question.id }, message: 'Question created!')
+        render_json_message(:ok, data: { question: question }, message: 'Question created!')
       else
         render_json_message(:forbidden, errors: question.errors.full_messages)
       end
@@ -31,15 +32,21 @@ module Api
 
     private
 
+    def new_question_number
+      return 0 if params[:insert_after].empty?
+      Question.find(params[:insert_after]).number + 1
+    end
+
     def create_params
-      params.permit(:form_id, :category, :options, :answer, :title, :number)
+      params.permit(:insert_after,
+                    question: [:form_id, :category, { options: [] }, :answer, :title, :number])
     end
 
     def update_question(question)
-      params[:options].try(:each) do |option_id, option|
-        question.options[option_id.to_i] = option
+      question.options = params[:options].reject(&:empty?) if params.key?(:options)
+      if params.key?(:answer)
+        question.answer = (params[:answer] == '-1') ? nil : params[:answer]
       end
-      question.answer = params[:answer] if params.key?(:answer)
       question.title = params[:title] if params.key?(:title)
       question.save
     end

@@ -4,6 +4,7 @@
  * @prop checked       - whether this radio option should be selected
  * @prop option        - option for this radio button
  * @prop editable      - true if fields are editable
+ * @prop editableRadio - true if radio is editable
  * @prop onTextChange  - callback function when text changes
  * @prop onRadioChange - callback function when radio changes
  */
@@ -11,12 +12,25 @@ class EditableRadio extends React.Component {
 
     render() {
         let radioValue;
-        const uniqueId = this.props.name + this.props.option;
+        const uniqueId = `${this.props.name}_${this.props.value}`;
         if (this.props.editable) {
             radioValue = (
-                <input name={this.props.value} type="text"
-                    defaultValue={this.props.option}
-                    onChange={this.props.onTextChange} />
+                <div className="table-stretch">
+                    <input name={this.props.value}
+                        type="text"
+                        defaultValue={this.props.option}
+                        onChange={this.props.onTextChange}
+                        data-index={this.props.value} />
+                </div>
+            );
+            deleteButton = (
+                <div>
+                    <a className="question-delete"
+                        onClick={this.props.onDelete}
+                        data-index={this.props.value} >
+                        <span className="fa fa-trash-o"/>
+                    </a>
+                </div>
             );
         } else {
             radioValue = (
@@ -24,15 +38,21 @@ class EditableRadio extends React.Component {
                     {this.props.option}
                 </label>
             );
+            deleteButton = null;
         }
 
         return (
             <div className="radio-option" key={this.props.option}>
-                <input id={uniqueId} type="radio" name={this.props.name}
-                    value={this.props.value} onClick={this.props.onRadioChange}
+                <input
+                    id={uniqueId}
+                    type="radio"
+                    name={this.props.name}
+                    value={this.props.value}
+                    onClick={this.props.onRadioChange}
                     defaultChecked={this.props.checked}
-                    disabled={!this.props.editable} />
+                    disabled={!this.props.editable && !this.props.editableRadio} />
                 { radioValue }
+                { deleteButton }
             </div>
         );
     }
@@ -44,6 +64,7 @@ EditableRadio.propTypes = {
     option        : React.PropTypes.string.isRequired,
     checked       : React.PropTypes.bool.isRequired,
     editable      : React.PropTypes.bool.isRequired,
-    onTextChange  : React.PropTypes.func.isRequired,
+    editableRadio : React.PropTypes.bool,
+    onTextChange  : React.PropTypes.func,
     onRadioChange : React.PropTypes.func.isRequired
 };

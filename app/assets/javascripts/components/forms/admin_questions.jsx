@@ -4,38 +4,54 @@
 class AdminFormQuestions extends DefaultFormQuestions {
 
     _insertQuestion = (prev_index, prev_number) => {
-        const questionStub = Question.createStub({
+        const newQuestionStub = Question.createStub({
             form_id: this.props.form_id,
             category: QuestionType.MC,
             number: prev_number + 1,
         });
-        const newQuestions = React.addons.update(this.state.questions, {
-            $splice: [[prev_index + 1, 0, questionStub]],
+        const newQuestionList = this.state.questionList.insertAt(prev_index + 1, newQuestionStub);
+        this.setState({
+            questionList: newQuestionList,
         });
-        for (let i = prev_index + 2; i < newQuestions.length; i++) {
-            newQuestions[i].number += 1;
-        }
-        this.setState({ questions: newQuestions });
     }
 
-    _saveQuestion = (questionIndex, questionState) => {
-        newQuestion = Object.assign({}, this.state.questions[questionIndex]);
-        newQuestion.editableOnRender = false;
-        newQuestion = React.addons.update(newQuestion, { $merge: questionState });
-        const tempQuestions = React.addons.update(this.state.questions, {
-            $splice: [[questionIndex, 1, newQuestion]],
-        });
-        this.setState({ questions: tempQuestions });
+    _saveQuestion = (index, question) => {
+        var savingQuestion = Object.assign({}, question);
+
+        const success = (msg) => {
+            let savedQuestion = msg.data.question;
+            savedQuestion.updatingFromSave = true;
+
+            const newQuestionList = this.state.questionList.replaceAt(index, savedQuestion);
+            this.setState({ 
+                questionList: newQuestionList,
+            });
+        }
+
+        if (Question.isNew(question)) {
+            const prevId = this.state.questionList.previousSavedQuestionFromIndex(index).id;
+            APIRequester.post(APIConstants.questions.collection, {
+                question: question,
+                insert_after: prevId,
+            }, success);
+        } else {
+            APIRequester.put(APIConstants.questions.member(question.id), question, success);
+        }
     }
 
-    _delQuestion = (questionIndex) => {
-        const tempQuestions = React.addons.update(this.state.questions, {
-            $splice: [[questionIndex, 1]],
-        });
-        for (let i = questionIndex; i < tempQuestions.length; i++) {
-            tempQuestions[i].number -= 1;
+    _deleteQuestion = (index, question) => {
+        const success = () => {
+            const newQuestionList = this.state.questionList.removeIndex(index);
+            this.setState({ 
+                questionList: newQuestionList,
+            });
         }
-        this.setState({ questions: tempQuestions });
+
+        if (Question.isNew(question)) {
+            success();
+        } else {
+            APIRequester.delete(APIConstants.questions.member(question.id), success);
+        }
     }
 
     _mapQuestions = (question, index) => {
@@ -45,47 +61,108 @@ class AdminFormQuestions extends DefaultFormQuestions {
         };
         const AdminQuestion = categoryToComponent[question.category];
         return (
-            <AdminQuestion saveSuccess            = {this._saveQuestion}
-                           delSuccess             = {this._delQuestion}
-                           question               = {question}
-                           key                    = {question.id}
-                           index                  = {index}
-                           insertQuestionCallback = {this._insertQuestion}
-                           editableOnRender       = {question.editableOnRender} />
+            <AdminQuestion
+                question               = {question}
+                key                    = {question.id}
+                index                  = {index}
+                editableOnRender       = {question.editableOnRender}
+                updatingFromSave       = {question.updatingFromSave}
+                saveCallback           = {this._saveQuestion}
+                deleteCallback         = {this._deleteQuestion}
+                insertQuestionCallback = {this._insertQuestion}
+            />
         );
     }
 }
 
 /**
- * @prop question    - the MC question to display
- * @prop saveSuccess - callback function when form successfully updates
- * @prop delSuccess  - callback function when question successfully deletes
+ * @prop question       - the question to display
+ * @prop saveCallback   - callback function to save question
+ * @prop deleteCallback - callback function to delete question
  */
 class AdminMCQuestion extends DefaultAdminQuestion {
 
-    _onOptionChange = (e) => {
-        const newOptions = React.addons.update(this.state.options, {
-            [$(e.target).attr("name")]: { $set: $(e.target).val() }
+    constructor(props) {
+        super(props);
+        this.state = React.addons.update(this.state, { $merge: {
+            shouldUpdate: true,
+        }});
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextState.shouldUpdate === false) {
+            nextState.shouldUpdate = true;
+            return false;
+        }
+        return true;
+    }
+
+    _changeOption(index, newVal, shouldUpdate = true) {
+        const newQuestion = React.addons.update(this.state.question, {
+            options: { $merge: { [index]: newVal } }
         });
-        this.setState({ options : newOptions });
+        this.setState({ question: newQuestion, shouldUpdate: shouldUpdate });
+    }
+
+    _onOptionChange = (e) => {
+        this._changeOption($(e.target).data("index"), $(e.target).val(), false);
+    }
+
+    _renderNewOption = () => {
+        this._changeOption(this.state.question.options.length, "");
+    }
+
+    _onOptionDelete = (e) => {
+        const i = $(e.target).data("index");
+
+        let newAnswer;
+        if (this.state.question.answer >= i) {
+            newAnswer = this.state.question.answer - 1;
+        } else {
+            newAnswer = this.state.question.answer;
+        }
+
+        const newQuestion = React.addons.update(this.state.question, {
+            options: { $splice: [[i, 1]] },
+            answer: { $set: newAnswer },
+        });
+        this.setState({ question: newQuestion });
     }
 
     _onRadioChange = (e) => {
-        this.setState({ answer: $(e.target).attr("value") });
+        const newQuestion = React.addons.update(this.state.question, {
+            answer: { $set: $(e.target).attr("value") }
+        });
+        this.setState({ question: newQuestion });
+    }
+
+    _renderAddOptionButton() {
+        let addOptionButton;
+        if (this.state.editable) {
+            addOptionButton = (
+                <a className="add-option-button"
+                        onClick={this._renderNewOption} >
+                    <span className="fa fa-plus"/>
+                    Add Option
+                </a>
+            );
+        }
+        return addOptionButton;
     }
 
     render() {
-        const radioOptions = this.props.question.options.map((option, index) => {
-            const checked = (this.props.question.answer == index);
+        const radioOptions = this.state.question.options.map((option, index) => {
+            const checked = (this.state.question.answer == index);
             return (
-                <div className="input-container" key={option}>
+                <div className="input-container" key={`input_${this.props.question.id}_${index}`}>
                     <EditableRadio name          = {this.props.question.id}
                                    value         = {index}
                                    option        = {option}
                                    checked       = {checked}
                                    editable      = {this.state.editable}
                                    onTextChange  = {this._onOptionChange}
-                                   onRadioChange = {this._onRadioChange} />
+                                   onRadioChange = {this._onRadioChange}
+                                   onDelete      = {this._onOptionDelete} />
                 </div>
             )
         });
@@ -101,6 +178,20 @@ class AdminMCQuestion extends DefaultAdminQuestion {
                         { this._renderQuestionTitle() }
                     </div>
                     { radioOptions }
+                    { this._renderAddOptionButton() }
+
+                    { this.state.editable ? (
+                        <div className="input-container">
+                            <EditableRadio name          = {this.props.question.id}
+                                           value         = {-1}
+                                           option        = {'No Correct Option'}
+                                           checked       = {this.state.question.answer === null}
+                                           editable      = {false}
+                                           editableRadio = {true}
+                                           onRadioChange = {this._onRadioChange} />
+                        </div>
+                    ) : null }
+
                     { this._renderSaveContainer() }
                     { this._renderNewQuestionButton() }
                 </fieldset>
@@ -110,15 +201,15 @@ class AdminMCQuestion extends DefaultAdminQuestion {
 }
 
 AdminMCQuestion.propTypes = {
-    question    : React.PropTypes.object.isRequired,
-    saveSuccess : React.PropTypes.func.isRequired,
-    delSuccess  : React.PropTypes.func.isRequired
+    question:       React.PropTypes.object.isRequired,
+    saveCallback:   React.PropTypes.func.isRequired,
+    deleteCallback: React.PropTypes.func.isRequired,
 };
 
 /**
- * @prop question    - the MC question to display
- * @prop saveSuccess - callback function when form successfully updates
- * @prop delSuccess  - callback function when question successfully deletes
+ * @prop question       - the question to display
+ * @prop saveCallback   - callback function to save question
+ * @prop deleteCallback - callback function to delete question
  */
 class AdminInputQuestion extends DefaultAdminQuestion {
 
@@ -145,7 +236,7 @@ class AdminInputQuestion extends DefaultAdminQuestion {
 }
 
 AdminInputQuestion.propTypes = {
-    question    : React.PropTypes.object.isRequired,
-    saveSuccess : React.PropTypes.func.isRequired,
-    delSuccess  : React.PropTypes.func.isRequired
+    question:       React.PropTypes.object.isRequired,
+    saveCallback:   React.PropTypes.func.isRequired,
+    deleteCallback: React.PropTypes.func.isRequired,
 };
