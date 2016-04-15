@@ -23,7 +23,7 @@ class AdminFormQuestions extends DefaultFormQuestions {
             savedQuestion.updatingFromSave = true;
 
             const newQuestionList = this.state.questionList.replaceAt(index, savedQuestion);
-            this.setState({ 
+            this.setState({
                 questionList: newQuestionList,
             });
         }
@@ -42,7 +42,7 @@ class AdminFormQuestions extends DefaultFormQuestions {
     _deleteQuestion = (index, question) => {
         const success = () => {
             const newQuestionList = this.state.questionList.removeIndex(index);
-            this.setState({ 
+            this.setState({
                 questionList: newQuestionList,
             });
         }
@@ -54,12 +54,15 @@ class AdminFormQuestions extends DefaultFormQuestions {
         }
     }
 
+    _replaceQuestion = (index, question) => {
+        const newQuestionList = this.state.questionList.replaceAt(index, question);
+        this.setState({
+            questionList: newQuestionList,
+        });
+    }
+
     _mapQuestions = (question, index) => {
-        const categoryToComponent = {
-            [QuestionType.MC]    : AdminMCQuestion,
-            [QuestionType.INPUT] : AdminInputQuestion,
-        };
-        const AdminQuestion = categoryToComponent[question.category];
+        const AdminQuestion = QuestionType.reactComponentFor(question.category);
         return (
             <AdminQuestion
                 question               = {question}
@@ -68,6 +71,7 @@ class AdminFormQuestions extends DefaultFormQuestions {
                 editableOnRender       = {question.editableOnRender}
                 updatingFromSave       = {question.updatingFromSave}
                 saveCallback           = {this._saveQuestion}
+                replaceCallback        = {this._replaceQuestion}
                 deleteCallback         = {this._deleteQuestion}
                 insertQuestionCallback = {this._insertQuestion}
             />
@@ -171,9 +175,7 @@ class AdminMCQuestion extends DefaultAdminQuestion {
             <div onMouseEnter={this._onMouseEnter} onMouseLeave={this._onMouseLeave}>
                 <fieldset className={`question admin-question mc-question ${this._editClass()}`}
                           onClick={this._startEditing}>
-                    { this._renderEditLabel() }
-                    <div className="fa fa-trash-o delete-question-button"
-                        onClick={this._deleteQuestion}></div>
+                    { this._renderQuestionHeader() }
                     <div htmlFor={this.props.id}>
                         { this._renderQuestionTitle() }
                     </div>
@@ -219,9 +221,7 @@ class AdminInputQuestion extends DefaultAdminQuestion {
                 <fieldset className={`question admin-question input-question
                                       input-container ${this._editClass()}`}
                           onClick={this._startEditing}>
-                    { this._renderEditLabel() }
-                    <div className="fa fa-trash-o delete-question-button"
-                        onClick={this._deleteQuestion}></div>
+                    { this._renderQuestionHeader() }
                     <div htmlFor={this.props.id}>
                         { this._renderQuestionTitle() }
                     </div>
