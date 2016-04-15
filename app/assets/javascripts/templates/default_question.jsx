@@ -3,9 +3,10 @@
  * @prop question                - the question to display
  * @prop updatingFromSave        - true if updating from save
  * @prop editableOnRender        - true if question is editable on render
- * @prop insertQuestionCallback  - callback function to insert new question
+ * @prop replaceCallback         - callback function to replace question
  * @prop saveCallback            - callback function to save question
  * @prop deleteCallback          - callback function to delete question
+ * @prop insertQuestionCallback  - callback function to insert new question
  */
 class DefaultAdminQuestion extends DefaultForm {
 
@@ -47,8 +48,8 @@ class DefaultAdminQuestion extends DefaultForm {
     }
 
     _stopEditing = () => {
-        if (Question.isNew(this.props.question)) {
-            this.props.delSuccess(this.props.index);
+        if (Question.isNew(this.state.question)) {
+            this.props.deleteCallback(this.props.index, this.state.question);
         } else {
             this._toggleEdit();
         }
@@ -77,6 +78,60 @@ class DefaultAdminQuestion extends DefaultForm {
         e.stopPropagation();
         e.preventDefault();
         this.props.deleteCallback(this.props.index, this.state.question);
+    }
+
+    _renderEditLabel() {
+        if (this.state.editable) {
+            return <div className="edit-label active">Currently editing</div>
+        } else {
+            return <div className="edit-label">Click anywhere to edit</div>
+        }
+    }
+
+    _onTypeChange = (e) => {
+        const newQuestion = React.addons.update(this.state.question, { $merge: {
+            category: parseInt(e.target.value),
+            editableOnRender: true,
+        }});
+        this.props.replaceCallback(this.props.index, newQuestion);
+    }
+
+    _renderQuestionTypeSelecter() {
+        let questionTypeSelecter;
+        if (this.state.editable) {
+            let questionOptions = [];
+            for (let category in QuestionType.categoryToName) {
+                if (QuestionType.categoryToName.hasOwnProperty(category)) {
+                    let categoryName = QuestionType.categoryToName[category];
+                    questionOptions.push((
+                        <option key={category} value={category}>
+                            {categoryName}
+                        </option>
+                    ));
+                }
+            }
+
+            questionTypeSelecter = (
+                <div className="question-type-select-container">
+                    <select onChange={this._onTypeChange} value={this.state.question.category}
+                            name="question_type">
+                        {questionOptions}
+                    </select>
+                </div>
+            );
+        }
+        return questionTypeSelecter;
+    }
+
+    _renderQuestionHeader() {
+        return (
+            <div className="question-header">
+                { this._renderEditLabel() }
+                <div className="fa fa-trash-o delete-question-button"
+                    onClick={this._deleteQuestion}></div>
+                { this._renderQuestionTypeSelecter() }
+            </div>
+        );
     }
 
     _renderSaveContainer() {
@@ -117,13 +172,6 @@ class DefaultAdminQuestion extends DefaultForm {
         return this.state.editable ? "editing-true" : "";
     }
 
-    _renderEditLabel() {
-        if (this.state.editable) {
-            return <div className="edit-label active">Currently editing</div>
-        } else {
-            return <div className="edit-label">Click anywhere to edit</div>
-        }
-    }
 }
 
 DefaultAdminQuestion.propTypes = {
@@ -131,7 +179,8 @@ DefaultAdminQuestion.propTypes = {
     question:               React.PropTypes.object.isRequired,
     updatingFromSave:       React.PropTypes.bool,
     editableOnRender:       React.PropTypes.bool,
-    insertQuestionCallback: React.PropTypes.func.isRequired,
+    replaceCallback:        React.PropTypes.func.isRequired,
     saveCallback:           React.PropTypes.func.isRequired,
     deleteCallback:         React.PropTypes.func.isRequired,
+    insertQuestionCallback: React.PropTypes.func.isRequired,
 };

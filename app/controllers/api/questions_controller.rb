@@ -47,6 +47,7 @@ module Api
       if params.key?(:answer)
         question.answer = (params[:answer] == '-1') ? nil : params[:answer]
       end
+      question.category = params[:category] if params.key?(:category)
       question.title = params[:title] if params.key?(:title)
       question.save
     end
