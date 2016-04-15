@@ -13,8 +13,8 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # Raise delivery errors for mailer debugging.
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -38,6 +38,15 @@ Rails.application.configure do
 
   # Default Devise Mailer
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: ENV["BIZWORLD_MAIL_SERVER"],
+                                         port: ENV["BIZWORLD_MAIL_PORT"],
+                                         domain: ENV["BIZWORLD_MAIL_DOMAIN"],
+                                         authentication: "plain",
+                                         enable_starttls_auto: true,
+                                         user_name: ENV["BIZWORLD_MAIL_ADDR"],
+                                         password: ENV["BIZWORLD_MAIL_PASS"] }
 
   # React setup
   config.react.variant = :development

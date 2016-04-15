@@ -41,7 +41,9 @@ class ApiConstants {
 
     get passwords() {
         return {
-            update : (id) => `/api/passwords/${id}`
+            update         : (id) => `/api/passwords/${id}`,
+            request_reset  : `/api/passwords/request_reset`,
+            reset          : `/api/passwords/reset`
         }
     }
 

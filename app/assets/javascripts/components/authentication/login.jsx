@@ -43,8 +43,7 @@ class LoginModal extends DefaultForm {
                 </form>
                 <div className="login-links-container">
                     <a onClick={this._updateView}>Create an account</a><br />
-                    {/* TODO(nnarayen 10/27) implement password reset */}
-                    <a href="#">Forgot your password?</a>
+                    <a href="/forgot_password">Forgot your password?</a>
                 </div>
             </div>
         );

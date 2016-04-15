@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
 
+  get '/forgot_password', to: 'pages#password_reset_request_form'
   devise_for :admins, skip: [:sessions, :registrations, :passwords]
   devise_for :teachers, skip: [:sessions, :registrations, :passwords]
 
@@ -9,6 +10,11 @@ Rails.application.routes.draw do
     post '/sign_in' => 'sessions#create', :as => :create_session
     delete '/sign_out' => 'sessions#destroy', :as => :destroy_session
     get '/password_update' => 'registrations#password_update', :as => :password_update
+    get '/teachers/password_reset' => 'registrations#password_reset', :as => 'edit_teacher_password'
+  end
+
+  devise_scope :admin do
+    get '/admins/password_reset' => 'registrations#password_reset', :as => 'edit_admin_password'
   end
 
   resources :forms, only: [:show] do
@@ -34,6 +40,8 @@ Rails.application.routes.draw do
     get '/classrooms/additional_questions', to: 'classrooms#additional_questions'
 
     post '/forms/submit', to: 'forms#submit'
+    post '/passwords/request_reset', to: 'passwords#request_reset'
+    post '/passwords/reset', to: 'passwords#reset'
 
     resources :classroom_additional_questions, only: [:create, :update, :destroy]
     resources :passwords, only: [:update]

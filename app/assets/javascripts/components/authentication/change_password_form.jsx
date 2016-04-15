@@ -1,28 +1,47 @@
 /**
-* @prop endpoint - the endpoint we should hit for updating the password
+* @prop model - the type of model this user has (admin or teacher)
+* @prop user_id - the id of the user
+* @prop reset_token - the password reset token if this form is in reset mode
 */
 class ChangePasswordForm extends DefaultForm {
 
     _attemptPasswordUpdate = (e) => {
-        APIRequester.put(APIConstants.passwords.update(this.props.user_id), {
-                old_password          : this.refs.old_password.getDOMNode().value,
-                password              : this.refs.new_password.getDOMNode().value,
-                password_confirmation : this.refs.password_confirmation.getDOMNode().value,
-                model                 : this.props.model
-            }, (msg) => {} );
+        if (this.props.reset_token == null) {
+            APIRequester.put(APIConstants.passwords.update(this.props.user_id), {
+                    old_password          : this.refs.old_password.getDOMNode().value,
+                    password              : this.refs.new_password.getDOMNode().value,
+                    password_confirmation : this.refs.password_confirmation.getDOMNode().value,
+                    model                 : this.props.model
+                }, (msg) => {} );
+        } else {
+            APIRequester.post(APIConstants.passwords.reset, {
+                    password              : this.refs.new_password.getDOMNode().value,
+                    password_confirmation : this.refs.password_confirmation.getDOMNode().value,
+                    reset_password_token  : this.props.reset_token,
+                    model                 : this.props.model
+                }, (msg) => {} );
+        }
+
     }
 
 
     render() {
-      return (
-          <div>
+        var old_password = <div></div>;
+        if (this.props.reset_token == null) {
+            old_password = (
+                <fieldset className="input-container">
+                    <label>Current password</label>
+                    <input type="password" ref="old_password"
+                        name="old_password"
+                        onChange={this._handleChange} />
+                </fieldset>
+            );
+        }
+
+        return (
+            <div>
               <h1 className="teacher-account-header">Change Password</h1>
-              <fieldset className="input-container">
-                  <label>Current password</label>
-                  <input type="password" ref="old_password"
-                      name="old_password"
-                      onChange={this._handleChange} />
-              </fieldset>
+              {old_password}
               <fieldset className="input-container">
                   <label>New password</label>
                   <input type="password" ref="new_password"
@@ -39,12 +58,13 @@ class ChangePasswordForm extends DefaultForm {
                   onClick={this._attemptPasswordUpdate}>
                   Submit
               </button>
-          </div>
+            </div>
       )
     }
 }
 
 ChangePasswordForm.propTypes = {
-    model      : React.PropTypes.string.isRequired,
-    user_id    : React.PropTypes.number.isRequired
+    model       : React.PropTypes.string,
+    user_id     : React.PropTypes.number,
+    reset_token : React.PropTypes.string
 };

@@ -11,4 +11,8 @@ class TeachersController < ApplicationController
   def show
     @teacher = Teacher.find(params[:id])
   end
+
+  def edit_teacher_password_url
+    `/passwords/update`
+  end
 end
