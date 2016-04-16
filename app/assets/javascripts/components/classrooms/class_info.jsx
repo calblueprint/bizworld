@@ -65,9 +65,8 @@ class ClassInfo extends DefaultForm {
         // Doesn't pass in props until classroom has been loaded.
         let additionalInfoModal;
         if (this.state.classroom.id) {
-            additionalInfoModal = <AdditionalInfoModal additional_info = { this.state.classroom.additional_info }
-                                                       classroom_id    = { this.state.classroom.id }
-                                                       success         = { this.props.success } />
+            additionalInfoModal = <StudentFormQuestions form_id  = { this.state.classroom.additional_info_form_id }
+                                                        onChange = { (e) => { debugger } } />
         }
 
         const classType = `classroom-${this.state.classroom.program.id}`;

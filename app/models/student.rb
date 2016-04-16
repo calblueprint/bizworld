@@ -14,7 +14,7 @@
 
 class Student < ActiveRecord::Base
   belongs_to :classroom
-  has_many :responses, class_name: 'Response'
+  has_many :responses, as: :responder
 
   validates :first_name, :last_name, presence: true
 

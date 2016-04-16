@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304042550) do
+ActiveRecord::Schema.define(version: 20160416180555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,10 +67,11 @@ ActiveRecord::Schema.define(version: 20160304042550) do
 
   create_table "programs", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "pre_id"
     t.integer  "post_id"
+    t.integer  "classroom_additional_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -82,21 +83,23 @@ ActiveRecord::Schema.define(version: 20160304042550) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "number"
+    t.string   "hint"
   end
 
   add_index "questions", ["form_id"], name: "index_questions_on_form_id", using: :btree
 
   create_table "responses", force: :cascade do |t|
     t.integer  "question_id"
-    t.integer  "student_id"
     t.string   "answer"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "category"
+    t.integer  "responder_id"
+    t.string   "responder_type"
   end
 
   add_index "responses", ["question_id"], name: "index_responses_on_question_id", using: :btree
-  add_index "responses", ["student_id"], name: "index_responses_on_student_id", using: :btree
+  add_index "responses", ["responder_type", "responder_id"], name: "index_responses_on_responder_type_and_responder_id", using: :btree
 
   create_table "students", force: :cascade do |t|
     t.string   "first_name"

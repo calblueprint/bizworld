@@ -15,8 +15,7 @@ class DefaultFormQuestions extends React.Component {
     _fetchQuestions = (e) => {
         this.setState({ isLoading : true })
         const success = (data) => { this.setState({ questions: data.questions, isLoading : false }) }
-        APIRequester.getJSON(APIConstants.forms.member(this.props.form_id),
-            success);
+        APIRequester.getJSON(APIConstants.forms.member(this.props.form_id), success);
     }
 
     render() {
