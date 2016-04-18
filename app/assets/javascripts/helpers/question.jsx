@@ -28,6 +28,10 @@ class Question {
         return question.id < 0;
     }
 
+    static isSaved(question) {
+        return !Question.isNew(question);
+    }
+
 }
 // HACK(aleks, 03/14/16): currently the only way to assign static fields to classes in ES6
 Question.unique_id = -1;

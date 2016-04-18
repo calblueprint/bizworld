@@ -5,7 +5,10 @@ class DefaultFormQuestions extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { questions: [], isLoading: false };
+        this.state = {
+            questionList: new QuestionList(),
+            isLoading: false,
+        };
     }
 
     componentDidMount() {
@@ -14,9 +17,11 @@ class DefaultFormQuestions extends React.Component {
 
     _fetchQuestions = (e) => {
         this.setState({ isLoading : true })
-        const success = (data) => { this.setState({ questions: data.questions, isLoading : false }) }
-        APIRequester.getJSON(APIConstants.forms.member(this.props.form_id),
-            success);
+        const success = (data) => this.setState({
+            questionList: new QuestionList(data.questions),
+            isLoading : false
+        })
+        APIRequester.getJSON(APIConstants.forms.member(this.props.form_id), success);
     }
 
     render() {
@@ -26,7 +31,7 @@ class DefaultFormQuestions extends React.Component {
                 <div className="spinner-container"></div>
             )
         } else {
-            questions = this.state.questions.map(this._mapQuestions);
+            questions = this.state.questionList.map(this._mapQuestions);
         }
         return (
             <div className="form-questions-container">
@@ -36,4 +41,6 @@ class DefaultFormQuestions extends React.Component {
     }
 }
 
-DefaultFormQuestions.propTypes = { form_id : React.PropTypes.number.isRequired }
+DefaultFormQuestions.propTypes = {
+    form_id: React.PropTypes.number.isRequired,
+}

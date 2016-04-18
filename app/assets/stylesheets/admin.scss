@@ -193,7 +193,7 @@
     }
   }
 
-  .edit-question-button {
+  .edit-question-button, .add-option-button {
     cursor: pointer;
     font-size: $f-size-xs;
     margin-left: 10px;
@@ -219,9 +219,26 @@
     }
 
     input[type="text"] {
-      margin: 5px auto 5px 15px;
-      min-width: 90%;
+      margin: 5px 0px 5px 0px;
+      min-width: 100%;
       padding: 5px 10px;
+    }
+  }
+
+  .question-delete {
+    width: 11px;
+    margin-left: 8px;
+    cursor: pointer;
+    transition: $fast;
+
+    &:hover {
+      color: $red-84;
+    }
+
+    // disable pointer events on icon because we want the <a> to always
+    // be the target of the event
+    span {
+      pointer-events: none;
     }
   }
 
