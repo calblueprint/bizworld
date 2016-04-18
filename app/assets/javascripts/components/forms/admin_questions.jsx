@@ -23,7 +23,7 @@ class AdminFormQuestions extends DefaultFormQuestions {
             savedQuestion.updatingFromSave = true;
 
             const newQuestionList = this.state.questionList.replaceAt(index, savedQuestion);
-            this.setState({ 
+            this.setState({
                 questionList: newQuestionList,
             });
         }
@@ -42,7 +42,7 @@ class AdminFormQuestions extends DefaultFormQuestions {
     _deleteQuestion = (index, question) => {
         const success = () => {
             const newQuestionList = this.state.questionList.removeIndex(index);
-            this.setState({ 
+            this.setState({
                 questionList: newQuestionList,
             });
         }
@@ -140,11 +140,11 @@ class AdminMCQuestion extends DefaultAdminQuestion {
         let addOptionButton;
         if (this.state.editable) {
             addOptionButton = (
-                <a className="add-option-button"
+                <button className="add-option-button"
                         onClick={this._renderNewOption} >
                     <span className="fa fa-plus"/>
                     Add Option
-                </a>
+                </button>
             );
         }
         return addOptionButton;

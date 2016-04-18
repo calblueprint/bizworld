@@ -28,7 +28,7 @@ class EditableRadio extends React.Component {
                     <a className="question-delete"
                         onClick={this.props.onDelete}
                         data-index={this.props.value} >
-                        <span className="fa fa-trash-o"/>
+                        <span className="fa fa-times"/>
                     </a>
                 </div>
             );
