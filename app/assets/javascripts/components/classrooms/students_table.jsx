@@ -24,6 +24,26 @@ class StudentsTable extends React.Component {
         return APIConstants.classrooms.download(this.props.classroom_id);
     }
 
+    componentDidMount() {
+        var $lastRow = $(".student-row:last-of-type");
+        var tbodyHeight = $("tbody").height() + $("tbody").offset().top;
+        var lastRowTop = $lastRow.offset().top + $lastRow.height();
+
+        var threshold = lastRowTop - tbodyHeight;
+
+        if (threshold <= 0) {
+            $("tbody").addClass("no-shadow-bot");
+        }
+
+        $("tbody").scroll(function() {
+            if ($(this).scrollTop() >= threshold) {
+                $("tbody").addClass("no-shadow-bot");
+            } else {
+                $("tbody").removeClass("no-shadow-bot");
+            }
+        })
+    }
+
     render() {
         let emptyState;
         if (this.state.students.length == 0) {
@@ -106,7 +126,7 @@ class Student extends React.Component {
 
     render() {
         return (
-            <tr>
+            <tr className="student-row">
                 <td>
                     { this.state.student.first_name }
                 </td>

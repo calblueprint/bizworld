@@ -180,9 +180,9 @@ a.button {
   thead {
     background: $gray-dark;
     color: white;
-    padding: 20px;
 
-    th {
+    tr th {
+      border-bottom: none;
       padding: 10px;
 
       &:first-of-type {
@@ -190,13 +190,8 @@ a.button {
       }
     }
 
-    .score {
-      width: 170px;
-    }
-
     .trash-col {
-      table-layout: fixed;
-      width: 50px;
+      padding-right: 50px;
     }
   }
 

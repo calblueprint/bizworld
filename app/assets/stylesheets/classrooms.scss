@@ -147,13 +147,39 @@ $icon-list: "\f0b1" "\f008" "\f201";
 
 .student-table-container {
   @extend .content-container;
-  min-height: 500px;
+  overflow: auto;
   padding: 0;
   position: relative;
   margin: 0;
   width: 100%;
 
   .name-col {
+    width: 25%;
+  }
+}
+
+.student-table {
+  margin-bottom: 0;
+  width: 100%;
+
+  tbody, thead {
+    display: block;
+  }
+
+  tbody {
+    box-shadow: inset 0px -20px 50px -20px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 500px;
+    height: calc(100vh - 300px);
+    transition: 100ms;
+  }
+
+  .no-shadow-bot {
+    box-shadow: none;
+  }
+
+  tbody td, thead th {
     width: 25%;
   }
 }
