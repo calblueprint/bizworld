@@ -175,22 +175,68 @@ $icon-list: "\f0b1" "\f008" "\f201";
       border-top-color: $gray-dark-24;
       border-bottom-color: $gray-dark-24;
       box-shadow: 0px 1px 5px $gray-dark-12;
-      padding-top: 60px;
+      padding-top: 40px;
       padding-bottom: 40px;
 
       .delete-question-button {
-        display: block;
+        position: relative;
+        float: right;
+        top: 0;
+        right: 0;
+        padding: 0;
+        margin-top: 4px;
+        display: inline-block;
       }
 
       .new-question-button {
         visibility: visible;
         opacity: 1;
       }
+
+      .edit-label {
+        position: relative;
+        top: 0;
+        right: 0;
+        display: inline-block;
+        opacity: 1;
+        visibility: visible;
+      }
     }
 
-    &:hover .edit-label {
-      opacity: 1;
-      visibility: visible;
+    .question-header {
+      margin-bottom: 20px;
+    }
+
+    .question-type-select-container {
+      display: inline-block;
+      margin-right: 10px;
+      float: right;
+
+      > select {
+        @include appearance(none);
+        background-image: image-url("icons/menulist.svg");
+        background-repeat: no-repeat;
+        background-position-y: -2px;
+        background-position-x: 100%;
+        background-size: 25px;
+        border: none;
+        border-bottom: 2px solid $gray-light;
+        border-radius: 0;
+        cursor: pointer;
+        outline: none;
+        padding: 0;
+        padding-bottom: 2px;
+        padding-right: 24px;
+        transition: $fast;
+
+        optgroup {
+          font-size: $f-size-md;
+        }
+
+        &:hover {
+          border-color: $gray-dark-48;
+        }
+      }
     }
 
     .question-title-part {
@@ -276,12 +322,12 @@ $icon-list: "\f0b1" "\f008" "\f201";
 
 .delete-question-button {
   cursor: pointer;
-  display: none;
-  padding: 10px;
+  animation: fadein 500ms;
   position: absolute;
+  padding: 10px;
   top: 10px;
   right: 10px;
-  animation: fadein 500ms;
+  display: none;  // will be toggled in Javascript
 }
 
 @keyframes fadein {

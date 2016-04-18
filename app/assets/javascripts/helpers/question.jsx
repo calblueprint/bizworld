@@ -1,8 +1,18 @@
-
 /* Enum for different question types */
-const QuestionType = {
-    MC    : 1,
-    INPUT : 2
+class QuestionType {
+    static reactComponentFor(type) {
+        return QuestionType.categoryToComponent[type];
+    }
+};
+QuestionType.MC = 1;
+QuestionType.INPUT = 2
+QuestionType.categoryToComponent = {
+    [QuestionType.MC]:    AdminMCQuestion,
+    [QuestionType.INPUT]: AdminInputQuestion,
+};
+QuestionType.categoryToName = {
+    [QuestionType.MC]:    "Multiple Choice",
+    [QuestionType.INPUT]: "Free Response",
 };
 
 class Question {
