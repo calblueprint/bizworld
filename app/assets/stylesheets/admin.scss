@@ -193,11 +193,24 @@
     }
   }
 
-  .edit-question-button, .add-option-button {
+  .add-option-button {
+    background: transparent;
+    border: 1px dashed $gray-dark-48;
+    border-radius: 3px;
+    outline: none;
+    padding: 7px 10px;
+    position: relative;
     cursor: pointer;
-    font-size: $f-size-xs;
-    margin-left: 10px;
-    padding: 0 7px;
+    margin-top: 10px;
+    margin-left: 27px;
+    font-size: 12px;
+    transition: 100ms;
+    width: calc(100% - 46px);
+
+    &:hover {
+      background: white;
+      border: 1px solid $gray-dark-60;
+    }
 
     .fa {
       margin-left: 0;
@@ -226,6 +239,7 @@
   }
 
   .question-delete {
+    color: $blue-84;
     width: 11px;
     margin-left: 8px;
     cursor: pointer;

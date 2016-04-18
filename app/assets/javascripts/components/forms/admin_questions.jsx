@@ -144,11 +144,11 @@ class AdminMCQuestion extends DefaultAdminQuestion {
         let addOptionButton;
         if (this.state.editable) {
             addOptionButton = (
-                <a className="add-option-button"
+                <button className="add-option-button"
                         onClick={this._renderNewOption} >
                     <span className="fa fa-plus"/>
                     Add Option
-                </a>
+                </button>
             );
         }
         return addOptionButton;
@@ -164,6 +164,7 @@ class AdminMCQuestion extends DefaultAdminQuestion {
                                    option        = {option}
                                    checked       = {checked}
                                    editable      = {this.state.editable}
+                                   focusOnRender = {true}
                                    onTextChange  = {this._onOptionChange}
                                    onRadioChange = {this._onRadioChange}
                                    onDelete      = {this._onOptionDelete} />

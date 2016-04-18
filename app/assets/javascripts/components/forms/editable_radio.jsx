@@ -5,10 +5,17 @@
  * @prop option        - option for this radio button
  * @prop editable      - true if fields are editable
  * @prop editableRadio - true if radio is editable
+ * @prop focusOnRender - true if focus input on render
  * @prop onTextChange  - callback function when text changes
  * @prop onRadioChange - callback function when radio changes
  */
 class EditableRadio extends React.Component {
+
+    componentDidMount() {
+        if (this.props.focusOnRender) {
+            React.findDOMNode(this.refs.focus).focus();
+        }
+    }
 
     render() {
         let radioValue;
@@ -17,7 +24,7 @@ class EditableRadio extends React.Component {
             radioValue = (
                 <div className="table-stretch">
                     <input name={this.props.value}
-                        type="text"
+                        type="text" ref="focus"
                         defaultValue={this.props.option}
                         onChange={this.props.onTextChange}
                         data-index={this.props.value} />
@@ -28,7 +35,7 @@ class EditableRadio extends React.Component {
                     <a className="question-delete"
                         onClick={this.props.onDelete}
                         data-index={this.props.value} >
-                        <span className="fa fa-trash-o"/>
+                        <span className="fa fa-times"/>
                     </a>
                 </div>
             );
@@ -47,7 +54,7 @@ class EditableRadio extends React.Component {
                     id={uniqueId}
                     type="radio"
                     name={this.props.name}
-                    value={this.props.value}
+                    value={this.props.value} ref="focus"
                     onClick={this.props.onRadioChange}
                     defaultChecked={this.props.checked}
                     disabled={!this.props.editable && !this.props.editableRadio} />
@@ -65,6 +72,7 @@ EditableRadio.propTypes = {
     checked       : React.PropTypes.bool.isRequired,
     editable      : React.PropTypes.bool.isRequired,
     editableRadio : React.PropTypes.bool,
+    focusOnRender : React.PropTypes.bool,
     onTextChange  : React.PropTypes.func,
     onRadioChange : React.PropTypes.func.isRequired
 };
