@@ -1,5 +1,5 @@
 class QuestionList {
-    
+
     constructor(questions) {
         this.questions = questions || [];
     }

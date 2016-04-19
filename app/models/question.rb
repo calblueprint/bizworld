@@ -18,7 +18,8 @@ class Question < ActiveRecord::Base
   acts_as_list column: :number, scope: :form
   has_many :responses
 
-  validates :title, :category, :number, presence: true
+  validates :title, :category, presence: true
 
   scope :gradeable, -> { where.not(answer: nil) }
+  scope :active, -> { where(active: true) }
 end

@@ -3,8 +3,22 @@ module Api
     before_action :authenticate_admin!
 
     def update
-      question = Question.find(params[:id])
-      if update_question(question)
+      old_question = Question.find(params[:id])
+      success = false
+      if old_question.responses.any?
+        new_question = Question.new(old_question.attributes)
+        new_question.id = nil
+        old_question.active = false
+        old_question.remove_from_list
+        question = new_question
+        Question.transaction do
+          success = old_question.save && update_question(new_question)
+        end
+      else
+        success = update_question(old_question)
+        question = old_question
+      end
+      if success
         render_json_message(:ok, data: { question: question }, message: "Question updated!")
       else
         render_json_message(:forbidden, errors: ["Question update failed."])
@@ -23,7 +37,15 @@ module Api
 
     def destroy
       question = Question.find(params[:id])
-      if question.destroy
+      success = false
+      if question.responses.any?
+        question.active = false
+        question.remove_from_list
+        success = question.save
+      else
+        success = question.destroy
+      end
+      if success
         render_json_message(:ok, message: 'Question deleted!')
       else
         render_json_message(:forbidden, errors: ['Failed to delete question.'])

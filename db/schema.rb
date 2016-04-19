@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304042550) do
+ActiveRecord::Schema.define(version: 20160427192325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,12 +76,13 @@ ActiveRecord::Schema.define(version: 20160304042550) do
   create_table "questions", force: :cascade do |t|
     t.integer  "form_id"
     t.integer  "category"
-    t.string   "options",    default: [],              array: true
+    t.string   "options",    default: [],                array: true
     t.integer  "answer"
     t.string   "title"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "number"
+    t.boolean  "active",     default: true
   end
 
   add_index "questions", ["form_id"], name: "index_questions_on_form_id", using: :btree

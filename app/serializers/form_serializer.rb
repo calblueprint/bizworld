@@ -4,6 +4,6 @@ class FormSerializer < ActiveModel::Serializer
   has_many :questions
 
   def questions
-    object.questions.sort_by(&:number)
+    object.questions.active.sort_by(&:number)
   end
 end
