@@ -26,22 +26,27 @@ class StudentsTable extends React.Component {
 
     componentDidMount() {
         var $lastRow = $(".student-row:last-of-type");
-        var tbodyHeight = $("tbody").height() + $("tbody").offset().top;
-        var lastRowTop = $lastRow.offset().top + $lastRow.height();
 
-        var threshold = lastRowTop - tbodyHeight;
+        if ($lastRow.length == 0) {
+          $("tbody").addClass("no-shadow-bot");
+        } else {
+          var tbodyHeight = $("tbody").height() + $("tbody").offset().top;
+          var lastRowTop = $lastRow.offset().top + $lastRow.height();
 
-        if (threshold <= 0) {
-            $("tbody").addClass("no-shadow-bot");
+          var threshold = lastRowTop - tbodyHeight;
+
+          if (threshold <= 0) {
+              $("tbody").addClass("no-shadow-bot");
+          }
+
+          $("tbody").scroll(function() {
+              if ($(this).scrollTop() >= threshold) {
+                  $("tbody").addClass("no-shadow-bot");
+              } else {
+                  $("tbody").removeClass("no-shadow-bot");
+              }
+          })
         }
-
-        $("tbody").scroll(function() {
-            if ($(this).scrollTop() >= threshold) {
-                $("tbody").addClass("no-shadow-bot");
-            } else {
-                $("tbody").removeClass("no-shadow-bot");
-            }
-        })
     }
 
     render() {
