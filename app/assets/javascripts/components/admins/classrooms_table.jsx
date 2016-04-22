@@ -1,3 +1,6 @@
+/**
+ * @prop program - the current program
+ */
 class ClassroomsTable extends React.Component {
 
     constructor(props) {
@@ -8,7 +11,7 @@ class ClassroomsTable extends React.Component {
             filters: {
                 range      : { },
                 status     : "active",
-                program_id : "1"
+                program_id : this.props.program.id
             }
         };
     }
@@ -126,17 +129,20 @@ class ClassroomsTable extends React.Component {
                         </ul>
                     </div>
                 </div>
-                <table className="table admin-table">
-                    <thead id="table-head">
-                        <tr>
-                            <th>Classroom Name</th>
-                            <th>Teacher Name</th>
-                            <th>Teacher Email</th>
-                            <th>Date Range</th>
-                        </tr>
-                    </thead>
-                    { classrooms }
-                </table>
+                <div>
+                  <ProgramInfo program = {this.props.program} />
+                  <table className="table admin-table">
+                      <thead id="table-head">
+                          <tr>
+                              <th>Classroom Name</th>
+                              <th>Teacher Name</th>
+                              <th>Teacher Email</th>
+                              <th>Date Range</th>
+                          </tr>
+                      </thead>
+                      { classrooms }
+                  </table>
+                </div>
                 <div className="admin-spinner">
                     { spinner }
                 </div>
@@ -144,6 +150,8 @@ class ClassroomsTable extends React.Component {
         );
     }
 }
+
+ClassroomsTable.propTypes = { program: React.PropTypes.object.isRequired };
 
 /**
  * @prop classroom - the info about this classroom

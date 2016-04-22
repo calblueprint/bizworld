@@ -55,7 +55,13 @@ class ApiConstants {
     }
 
     get pages()    { return { states     : `/api/states` } }
-    get programs() { return { collection : `/api/programs` } }
+
+    get programs() {
+        return {
+            collection : `/api/programs`,
+            update     : (id) => `/api/programs/${id}`
+        }
+    }
 
     get questions() {
         return {

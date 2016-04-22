@@ -2,16 +2,17 @@
 #
 # Table name: classrooms
 #
-#  id         :integer          not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  teacher_id :integer
-#  name       :string
-#  program_id :integer
-#  start_date :date
-#  end_date   :date
-#  pre_link   :string
-#  post_link  :string
+#  id              :integer          not null, primary key
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  teacher_id      :integer
+#  name            :string
+#  program_id      :integer
+#  start_date      :date
+#  end_date        :date
+#  pre_link        :string
+#  post_link       :string
+#  additional_info :string
 #
 
 class Classroom < ActiveRecord::Base

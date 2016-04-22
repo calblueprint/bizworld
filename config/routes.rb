@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   devise_scope :admin do
     get '/admins/password_reset' => 'registrations#password_reset', :as => 'edit_admin_password'
+    get '/programs/:id' => 'admins#classrooms'
   end
 
   resources :forms, only: [:show] do
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
   end
 
   get 'admins/classrooms', to: 'admins#classrooms'
+  get 'admins/programs', to: 'admins#programs'
   get 'classrooms/edit_questions', to: 'classrooms#edit_questions'
 
   resources :teachers, only: [:show] do
@@ -47,7 +49,7 @@ Rails.application.routes.draw do
     resources :passwords, only: [:update]
     resources :questions, only: [:update, :create, :destroy]
     resources :students, only: [:create, :destroy]
-    resources :programs, only: [:index]
+    resources :programs, only: [:index, :update, :create]
 
     resources :teachers, only: [:show, :update] do
       get 'classrooms', to: 'teachers#classrooms'

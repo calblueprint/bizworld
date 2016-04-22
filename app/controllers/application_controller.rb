@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     if resource.is_a?(Teacher)
       teacher_classrooms_path(resource)
     elsif resource.is_a?(Admin)
-      admins_classrooms_path
+      admins_programs_path
     end
   end
 

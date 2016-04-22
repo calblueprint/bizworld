@@ -33,8 +33,6 @@ class ClassroomsStatusFilter extends React.Component {
 
         return (
             <div>
-                <ProgramFilter onChange = {this.props.onFilterChange}
-                               showAll  = {false} />
                 <div className="classroom-status-filter">
                     <select className="classroom-status-select" name="status" onChange={this._handleSelectStatusChange}>
                         <option value="active">Currently Active</option>
