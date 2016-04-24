@@ -6,13 +6,9 @@
  */
 class EditableSelect extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
-    return (this.props.editable != nextProps.editable ||
-      this.props.data != nextProps.data);
+    return (this.props.editable !== nextProps.editable ||
+      this.props.data !== nextProps.data);
   }
 
   componentDidUpdate(prevProps) {
@@ -23,12 +19,12 @@ class EditableSelect extends React.Component {
   }
 
   render() {
-    var selectVal;
+    let selectVal;
     if (this.props.editable) {
       if (this.props.multiple) {
-        selectVal = <GradesPicker grades = { this.props.data } />
+        selectVal = <GradesPicker grades={this.props.data} />;
       } else {
-        selectVal = <StatePicker state = { this.props.data } />
+        selectVal = <StatePicker state={this.props.data} />;
       }
     } else {
       selectVal = this.props.data;
@@ -38,11 +34,11 @@ class EditableSelect extends React.Component {
       <fieldset className="input-container">
         <div className="label-container">
           <label htmlFor={this.props.label}>
-            { this.props.label }:
+            {this.props.label}:
           </label>
         </div>
         <div className="input-box-container">
-          { selectVal }
+          {selectVal}
         </div>
       </fieldset>
     );
@@ -50,8 +46,8 @@ class EditableSelect extends React.Component {
 }
 
 EditableSelect.propTypes = {
-  data     : React.PropTypes.string,
-  label     : React.PropTypes.string.isRequired,
-  multiple   : React.PropTypes.bool.isRequired,
-  editable   : React.PropTypes.bool.isRequired
+  data: React.PropTypes.string,
+  label: React.PropTypes.string.isRequired,
+  multiple: React.PropTypes.bool.isRequired,
+  editable: React.PropTypes.bool.isRequired,
 };
