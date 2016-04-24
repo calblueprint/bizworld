@@ -1,12 +1,14 @@
+/* eslint func-names: 0 */
 function debounceEvent(func, wait) {
-    var timeout;
-    return function(_e) {
-        var context = this, e = Object.assign({}, _e);
-        var later = function() {
-            timeout = null;
-            func.apply(context, [e]);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
+  let timeout;
+  return function (_e) {
+    const context = this;
+    const e = Object.assign({}, _e);
+    const later = function () {
+      timeout = null;
+      func.apply(context, [e]);
     };
-};
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}

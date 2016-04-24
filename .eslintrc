@@ -1,5 +1,6 @@
 {
   "parser": "babel-eslint",
+  "extends": "airbnb",
   "env": {
     "browser": true,
     "node": true
@@ -9,9 +10,17 @@
     "jsx": true
   },
   "plugins": [
-    "react"
+    "react",
   ],
+  "globals": {
+    "React": false,
+  },
   "rules": {
+    "no-multi-str": 0,
+    "no-restricted-syntax": 1,
+    "react/jsx-no-undef": 0,
+    "func-names": 0,
+    "no-undef": 0,
     "strict": 0,
     "quotes": 0,
     "no-unused-vars": 0,
@@ -20,5 +29,5 @@
   },
   "ecmaFeatures": {
     "jsx": true
-  }
+  },
 }
