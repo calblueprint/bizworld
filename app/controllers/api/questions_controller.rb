@@ -33,7 +33,7 @@ module Api
     private
 
     def new_question_number
-      return 0 if params[:insert_after].empty?
+      return 1 if params[:insert_after].empty?
       Question.find(params[:insert_after]).number + 1
     end
 

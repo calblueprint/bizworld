@@ -1,3 +1,6 @@
+$color-list: $red $orange $blue;
+$icon-list: "\f0b1" "\f008" "\f201";
+
 .admin-view-container {
   @extend .content-container;
   background: transparent;
@@ -7,6 +10,120 @@
   max-width: 1200px;
   min-width: 1050px;
   padding: 0 20px;
+
+  .program-info-container {
+    margin-bottom: 20px;
+    padding-right: 0;
+    width: 25%;
+  }
+
+  .program-info-box {
+    padding: 0;
+  }
+
+  .class-title-container {
+    background: $gray-dark;
+    color: white;
+    margin-bottom: 0;
+    padding: 10px 15px;
+  }
+
+  @each $color in $color-list {
+    $i: index($color-list, $color);
+    .program-#{$i} {
+      background: nth($color-list, $i);
+      color: white;
+    }
+
+    .program-#{$i}:before {
+      content: nth($icon-list, $i);
+      font-family: 'FontAwesome';
+      margin-right: 5px;
+    }
+  }
+
+  .classroom-program {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 0;
+    vertical-align: middle;
+    &:before {
+      vertical-align: middle;
+    }
+  }
+
+  .toggle-container {
+    bottom: 0;
+    position: absolute;
+    right: 0;
+
+    .toggle {
+      display: none;
+    }
+
+    .toggle-btn {
+      background: $gray-light;
+      border-radius: 30px;
+      height: 31px;
+      margin-bottom: 0;
+      position: relative;
+      transition: 100ms;
+      width: 60px;
+
+      &:after {
+        border-radius: 50%;
+        background: white;
+        content: '';
+        left: 2px;
+        position: absolute;
+        height: 25px;
+        top: 3px;
+        transition: 100ms;
+        width: 25px;
+      }
+    }
+
+    .toggle-true {
+      background: #9FD6AE;
+
+      &:after {
+        left: 53%;
+      }
+    }
+  }
+
+  .grid-label {
+    font-size: $f-size-sm;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 5px;
+  }
+
+  .info-box-content {
+    padding: 20px;
+  }
+
+  .program-status-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 830px) {
+    .class-info-container {
+      float: left;
+    }
+  }
+
+}
+
+.admin-table-container {
+  float: right;
+  padding-left: 20px;
+  width: 75%;
+}
+
+.admin-program-container {
+  @extend .teacher-classroom-container;
 }
 
 .admin-spinner {
@@ -34,23 +151,20 @@
 
 .classroom-status-filter {
   display: inline-block;
-  margin-left: 15px;
 }
 
 .classroom-status-select {
   @include appearance(none);
-  background-color: transparent;
+  background-color: white;
   background-image: image-url("icons/menulist.svg");
   background-repeat: no-repeat;
   background-position: right;
   background-size: 30px;
-  border: none;
-  border-bottom: 2px solid $gray-light;
-  border-radius: 0;
-  font-size: $f-size-xl;
+  border: 1px solid $gray-dark-24;
+  border-radius: 3px;
   margin-right: 15px;
   outline: none;
-  padding-bottom: 8px;
+  padding: 10px 15px;
   padding-right: 30px;
   transition: $fast;
 

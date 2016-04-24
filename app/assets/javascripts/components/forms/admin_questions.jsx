@@ -29,11 +29,11 @@ class AdminFormQuestions extends DefaultFormQuestions {
         }
 
         if (Question.isNew(question)) {
-            const prevId = this.state.questionList.previousSavedQuestionFromIndex(index).id;
-            APIRequester.post(APIConstants.questions.collection, {
-                question: question,
-                insert_after: prevId,
-            }, success);
+              const prevId = this.state.questionList.previousSavedQuestionIdFromIndex(index);
+              APIRequester.post(APIConstants.questions.collection, {
+                  question: question,
+                  insert_after: prevId,
+              }, success);
         } else {
             APIRequester.put(APIConstants.questions.member(question.id), question, success);
         }

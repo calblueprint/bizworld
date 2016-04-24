@@ -92,59 +92,61 @@ class ClassroomsTable extends React.Component {
 
         return (
             <div>
-                <div className="admin-filter-container">
-                    <form className="filter-form-container">
-                        <h1>Filter Settings
-                            <label ref="successLabel" className="update-success-label">
-                                <span className="fa fa-check"></span>Updated!</label>
-                        </h1>
-                        <ClassroomsFilter onFilterChange    = {this._handleFilterChange}
-                                          onDateRangeChange = {this._handleDateRangeChange} />
-                    </form>
-                </div>
-                <div className="admin-table-header">
-                    <h1 className="admin-table-title">Filtered Classrooms:
-                        <span> { this.state.classrooms.length } found</span>
-                    </h1>
-                    <div className="dropdown">
-                        <button className="button button-small download-dropdown-button"
-                                id="download-label" data-toggle="dropdown">
-                            <span className="fa fa-download"/>
-                            Downloads
-                            <span className="caret"></span>
-                        </button>
-                        <ul className="dropdown-menu" aria-labelledby="download-label">
-                            <li className="dropdown-link" >
-                                <a href={this._generateClassroomCSVLink()}>
-                                    <span className="fa fa-file-text fa-fw"/>
-                                    Download Assessment Responses
-                                </a>
-                            </li>
-                            <li className="dropdown-link">
-                                <a href={this._generateTeacherCSVLink()}>
-                                    <span className="fa fa-university fa-fw"/>
-                                    Download Classroom Summaries
-                                </a>
-                            </li>
-                        </ul>
+                <ProgramInfo program = {this.props.program} />
+                <div className="admin-table-container">
+                    <div className="admin-filter-container">
+                        <form className="filter-form-container">
+                            <h1>Filter Settings
+                                <label ref="successLabel" className="update-success-label">
+                                    <span className="fa fa-check"></span>Updated!</label>
+                            </h1>
+                            <ClassroomsFilter onFilterChange    = {this._handleFilterChange}
+                                              onDateRangeChange = {this._handleDateRangeChange} />
+                        </form>
                     </div>
-                </div>
-                <div>
-                  <ProgramInfo program = {this.props.program} />
-                  <table className="table admin-table">
-                      <thead id="table-head">
-                          <tr>
-                              <th>Classroom Name</th>
-                              <th>Teacher Name</th>
-                              <th>Teacher Email</th>
-                              <th>Date Range</th>
-                          </tr>
-                      </thead>
-                      { classrooms }
-                  </table>
-                </div>
-                <div className="admin-spinner">
-                    { spinner }
+                    <div className="admin-table-header">
+                        <h1 className="admin-table-title">Filtered Classrooms:
+                            <span> { this.state.classrooms.length } found</span>
+                        </h1>
+                        <div className="dropdown">
+                            <button className="button button-small download-dropdown-button"
+                                    id="download-label" data-toggle="dropdown">
+                                <span className="fa fa-download"/>
+                                Downloads
+                                <span className="caret"></span>
+                            </button>
+                            <ul className="dropdown-menu" aria-labelledby="download-label">
+                                <li className="dropdown-link" >
+                                    <a href={this._generateClassroomCSVLink()}>
+                                        <span className="fa fa-file-text fa-fw"/>
+                                        Download Assessment Responses
+                                    </a>
+                                </li>
+                                <li className="dropdown-link">
+                                    <a href={this._generateTeacherCSVLink()}>
+                                        <span className="fa fa-university fa-fw"/>
+                                        Download Classroom Summaries
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                      <table className="table admin-table">
+                          <thead id="table-head">
+                              <tr>
+                                  <th>Classroom Name</th>
+                                  <th>Teacher Name</th>
+                                  <th>Teacher Email</th>
+                                  <th>Date Range</th>
+                              </tr>
+                          </thead>
+                          { classrooms }
+                      </table>
+                    </div>
+                    <div className="admin-spinner">
+                        { spinner }
+                    </div>
                 </div>
             </div>
         );

@@ -28,7 +28,7 @@ $color-list: $red $orange $blue;
   }
 }
 // Classroom view
-.classroom-card a {
+.card a {
   text-decoration: none;
   color: $gray-dark-84;
 }
@@ -56,13 +56,13 @@ $color-list: $red $orange $blue;
 }
 
 .inactive-class {
-  .classroom-card {
+  .card {
     opacity: 0.5;
   }
 }
 
 //classroom
-.classroom-card-col {
+.card-col {
   display: inline-block;
   padding: 15px;
   vertical-align: middle;
@@ -79,7 +79,7 @@ $color-list: $red $orange $blue;
   }
 }
 
-.classroom-card {
+.card {
   background: white;
   border: 1px solid $gray-light;
   border-right: 0;
@@ -108,7 +108,15 @@ $color-list: $red $orange $blue;
       color: $gray-dark-84;
       font-size: $f-size-md;
       margin: 0;
+
+      .count {
+        font-weight: bold;
+      }
     }
+  }
+
+  .admin-program-name {
+    width: 100%;
   }
 
   .count-container {
@@ -184,7 +192,7 @@ $color-list: $red $orange $blue;
 }
 
 @media (max-width: 960px) and (min-width: 650px) {
-  .classroom-card-col {
+  .card-col {
     width: 50%;
 
     &:nth-of-type(even) {
@@ -201,7 +209,7 @@ $color-list: $red $orange $blue;
   .teacher-classroom-container {
     padding: 20px;
   }
-  .classroom-card-col {
+  .card-col {
     padding: 7px 0;
     width: 100%;
   }

@@ -72,8 +72,8 @@ class ClassroomContainer extends React.Component {
     render() {
         const classType = `classroom-${this.props.classroom.program.id}`
         return (
-            <div className="classroom-card-col">
-                <div className={`classroom-card ${classType}`}>
+            <div className="card-col">
+                <div className={`card ${classType}`}>
                     <a href={`/classrooms/${this.props.classroom.id}`}>
                         <div className="name-container">
                             <h1 className="title">{ this.props.classroom.name }</h1>

@@ -165,7 +165,8 @@ $icon-list: "\f0b1" "\f008" "\f201";
 
   .admin-question {
     border-top: 1px solid transparent;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid $gray-light;
+    cursor: pointer;
     position: relative;
     transition: $fast cubic-bezier(.64,.01,.4,.98);
     padding: 30px 40px;
@@ -175,15 +176,9 @@ $icon-list: "\f0b1" "\f008" "\f201";
       border-top-color: $gray-dark-24;
       border-bottom-color: $gray-dark-24;
       box-shadow: 0px 1px 5px $gray-dark-12;
-      padding-top: 40px;
-      padding-bottom: 40px;
 
       .delete-question-button {
-        position: relative;
         float: right;
-        top: 0;
-        right: 0;
-        padding: 0;
         margin-top: 4px;
         display: inline-block;
       }
@@ -214,19 +209,18 @@ $icon-list: "\f0b1" "\f008" "\f201";
 
       > select {
         @include appearance(none);
+        background-color: white;
         background-image: image-url("icons/menulist.svg");
         background-repeat: no-repeat;
-        background-position-y: -2px;
+        background-position-y: 0px;
         background-position-x: 100%;
         background-size: 25px;
-        border: none;
-        border-bottom: 2px solid $gray-light;
-        border-radius: 0;
+        border: 1px solid $gray-dark-24;
+        border-radius: 3px;
         cursor: pointer;
         outline: none;
-        padding: 0;
-        padding-bottom: 2px;
-        padding-right: 24px;
+        margin-right: 10px;
+        padding: 3px 24px 3px 8px;
         transition: $fast;
 
         optgroup {
@@ -260,6 +254,7 @@ $icon-list: "\f0b1" "\f008" "\f201";
   .editing-true {
     @extend .admin-question:hover;
     box-shadow: none;
+    cursor: default;
 
     &:before {
       background: $blue-84;
@@ -305,6 +300,11 @@ $icon-list: "\f0b1" "\f008" "\f201";
   }
 }
 
+.global-new-question-button {
+  padding: 30px 40px 0;
+  text-align: center;
+}
+
 .edit-label {
   color: $gray-dark-60;
   cursor: default;
@@ -325,13 +325,16 @@ $icon-list: "\f0b1" "\f008" "\f201";
   animation: fadein 500ms;
   position: absolute;
   padding: 10px;
-  top: 10px;
+  top: 23px;
   right: 10px;
   display: none;  // will be toggled in Javascript
+
+  &:hover:before {
+    content: '\f1f8';
+  }
 }
 
 @keyframes fadein {
   0%   { opacity: 0; }
   100% { opacity: 1; }
 }
-

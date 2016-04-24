@@ -11,10 +11,10 @@ class ProgramCreationModal extends DefaultForm {
     //TODO: Add color picker and icon selection for program styling.
     render() {
         return (
-            <div className="classroom-card-col">
+            <div className="card-col">
               <div type="button" className="add-course">
                   <div data-toggle="modal" data-target="#newProgramModal" >
-                      <div onClick={this._focusInputField} className="classroom-card add-card">
+                      <div onClick={this._focusInputField} className="card add-card">
                           <span className="fa fa-plus"></span>
                           Create a new program
                       </div>

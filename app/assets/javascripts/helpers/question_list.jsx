@@ -1,5 +1,5 @@
 class QuestionList {
-    
+
     constructor(questions) {
         this.questions = questions || [];
     }
@@ -32,10 +32,10 @@ class QuestionList {
 
     map = (mapFunc) => this.questions.map(mapFunc);
 
-    previousSavedQuestionFromIndex = (index) => {
+    previousSavedQuestionIdFromIndex = (index) => {
         for (let i = index - 1; i >= 0; i--) {
             if (Question.isSaved(this.questions[i])) {
-                return this.questions[i];
+                return this.questions[i].id;
             }
         }
         return null;
