@@ -14,6 +14,23 @@ class QuestionList {
         return new QuestionList(newQuestions);
     }
 
+    move = (oldIndex, newIndex, question) => {
+        question.number = newIndex + 1;
+        let newQuestions = React.addons.update(this.questions, {
+            $splice: [[oldIndex, 1], [newIndex, 0, question]]
+        });
+        if (newIndex > oldIndex) {
+            for (let i = oldIndex; i < newIndex; i++) {
+                newQuestions[i].number -= 1;
+            }
+        } else if (newIndex < oldIndex) {
+            for (let i = newIndex + 1; i <= oldIndex; i++) {
+                newQuestions[i].number += 1;
+            }
+        }
+        return new QuestionList(newQuestions);
+    }
+
     replaceAt = (index, newQuestion) => {
         return new QuestionList(React.addons.update(this.questions, {
             $splice: [[index, 1, newQuestion]],

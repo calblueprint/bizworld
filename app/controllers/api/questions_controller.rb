@@ -11,6 +11,15 @@ module Api
       end
     end
 
+    def move
+      question = Question.find(params[:id])
+      if question.insert_at(params[:new_number].to_i)
+        render_json_message(:ok, data: { question: question }, message: "Questions reordered!")
+      else
+        render_json_message(:forbidden, errors: ["Question update failed."])
+      end
+    end
+
     def create
       question = Question.create(create_params[:question].merge!(number: new_question_number))
       question.options.reject!(&:empty?)

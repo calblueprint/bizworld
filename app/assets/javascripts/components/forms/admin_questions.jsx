@@ -15,6 +15,21 @@ class AdminFormQuestions extends DefaultFormQuestions {
         });
     }
 
+    _moveQuestion = (prev_index, new_index, question) => {
+        const success = () => {
+            const newQuestionList = this.state.questionList.move(prev_index, new_index, question);
+            this.setState({
+                questionList: newQuestionList,
+            });
+        }
+
+        params = {
+            id: question.id,
+            new_number: new_index + 1
+        };
+        APIRequester.post(APIConstants.questions.move, params, success);
+    }
+
     _saveQuestion = (index, question) => {
         var savingQuestion = Object.assign({}, question);
 
@@ -80,6 +95,7 @@ class AdminFormQuestions extends DefaultFormQuestions {
             <AdminQuestion
                 question               = {question}
                 key                    = {question.id}
+                data-id                = {question.id}
                 index                  = {index}
                 editableOnRender       = {question.editableOnRender}
                 updatingFromSave       = {question.updatingFromSave}
@@ -187,6 +203,7 @@ class AdminMCQuestion extends DefaultAdminQuestion {
 
         return (
             <div onMouseEnter={this._onMouseEnter} onMouseLeave={this._onMouseLeave}>
+                <span className="form-questions-handle">: Click to drag :</span>
                 <fieldset className={`question admin-question mc-question ${this._editClass()}`}
                           onClick={this._startEditing}>
                     { this._renderQuestionHeader() }
@@ -232,6 +249,7 @@ class AdminInputQuestion extends DefaultAdminQuestion {
     render() {
         return (
             <div onMouseEnter={this._onMouseEnter} onMouseLeave={this._onMouseLeave}>
+                <span className="form-questions-handle">: Click to drag :</span>
                 <fieldset className={`question admin-question input-question
                                       input-container ${this._editClass()}`}
                           onClick={this._startEditing}>

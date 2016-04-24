@@ -66,6 +66,7 @@ class ApiConstants {
     get questions() {
         return {
             member     : (id) => `/api/questions/${id}`,
+            move       : `/api/questions/move`,
             collection : `/api/questions`,
         }
     }

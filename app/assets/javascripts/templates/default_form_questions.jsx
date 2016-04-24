@@ -49,7 +49,20 @@ class DefaultFormQuestions extends React.Component {
 
         return (
             <div className="form-questions-container">
-                { questions }
+                <ReactSortable
+                    options={{
+                        handle: '.form-questions-handle',
+                        onSort: (evt) => {
+                            question = this.state.questionList.questions[evt.oldIndex];
+                            this._moveQuestion(evt.oldIndex, evt.newIndex, question);
+                        },
+                    }}
+                    onChange={(order, sortable) => {
+                        // Need stub for React to properly update UI.
+                    }}
+                >
+                    {questions}
+                </ReactSortable>
                 { newQuestionButton }
             </div>
         );

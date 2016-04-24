@@ -45,6 +45,8 @@ Rails.application.routes.draw do
     post '/passwords/request_reset', to: 'passwords#request_reset'
     post '/passwords/reset', to: 'passwords#reset'
 
+    post '/questions/move', to: 'questions#move'
+
     resources :classroom_additional_questions, only: [:create, :update, :destroy]
     resources :passwords, only: [:update]
     resources :questions, only: [:update, :create, :destroy]

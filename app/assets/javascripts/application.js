@@ -16,4 +16,6 @@
 //= require react_ujs
 //= require toastr
 //= require components
+//= require Sortable
+//= require react-sortable
 //= require_tree .
