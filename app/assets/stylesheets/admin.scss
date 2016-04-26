@@ -7,6 +7,9 @@ $icon-list: "\f0b1" "\f008" "\f201";
   }
 }
 
+.modal-header {
+  transition: 200ms;
+}
 .admin-view-container {
 
   .infobox-col {
@@ -114,6 +117,41 @@ $icon-list: "\f0b1" "\f008" "\f201";
     }
   }
 
+}
+
+// program creation
+
+.picker-container {
+  position: relative;
+}
+
+.preview-container {
+  border: 1px solid $gray-light;
+  padding: 10px;
+}
+
+.program-dropdown {
+  background: white;
+  border: 1px solid $gray-light;
+  box-shadow: 0 0 5px $gray-dark-24;
+  display: none;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  width: 200px;
+  z-index: 2;
+
+  &.dropdown-true {
+    display: flex;
+  }
+}
+
+.preview-square {
+  height: 20px;
+  margin: 5px;
+  width: 19%;
 }
 
 .admin-spinner {

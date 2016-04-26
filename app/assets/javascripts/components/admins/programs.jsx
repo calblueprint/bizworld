@@ -43,10 +43,10 @@ class ProgramContainer extends React.Component {
                         <div className="name-container admin-program-name">
                             <h1 className="title">{ this.props.program.name }</h1>
                             <h2 className="subtitle">
-                              <span className="count">{ this.props.program.num_classrooms  }</span> active classes
+                              <span className="count">{ this.props.program.num_classrooms }</span> active classes
                             </h2>
                         </div>
-                        <div className="card-color-bar"></div>
+                        <div className="card-color-bar" style={{background: this.props.program.color}}></div>
                     </div>
                 </a>
             </div>

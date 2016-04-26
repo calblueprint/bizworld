@@ -4,6 +4,8 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string
+#  color      :string
+#  icon       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  pre_id     :integer

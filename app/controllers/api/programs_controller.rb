@@ -30,7 +30,7 @@ module Api
     end
 
     def create_params
-      params.permit(:name)
+      params.permit(:name, :color, :icon)
     end
   end
 end

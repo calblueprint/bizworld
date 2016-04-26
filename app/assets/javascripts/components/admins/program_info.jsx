@@ -36,7 +36,8 @@ class ProgramInfo extends DefaultForm {
         return (
             <div className="infobox-col">
                 <div className="infobox-container">
-                    <div className={`infobox-title ${programType}`}>
+                    <div className={`infobox-title ${programType}`}
+                        style={{background: this.props.program.color}}>
                         <h1 className={`classroom-program`}>
                             { this.state.program.name }
                         </h1>
