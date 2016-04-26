@@ -47,7 +47,7 @@ class TeacherModal extends React.Component {
         }
 
         return (
-            <div>
+            <div className="card-group-container">
                 { classrooms }
                 { createCourse }
             </div>
@@ -73,18 +73,19 @@ class ClassroomContainer extends React.Component {
         const classType = `classroom-${this.props.classroom.program.id}`
         return (
             <div className="card-col">
-                <div className={`card ${classType}`}>
-                    <a href={`/classrooms/${this.props.classroom.id}`}>
+                <a href={`/classrooms/${this.props.classroom.id}`}>
+                    <div className={`card ${classType}`}>
                         <div className="name-container">
                             <h1 className="title">{ this.props.classroom.name }</h1>
-                            <h2 className="program">{ this.props.classroom.program.name }</h2>
+                            <h2 className="subtitle">{ this.props.classroom.program.name }</h2>
                         </div>
                         <div className="count-container">
                             <h3 className="count">{ this.props.classroom.students.length }</h3>
-                            <h2 className="student-label">students</h2>
+                            <h2 className="count-label">students</h2>
                         </div>
-                    </a>
-                </div>
+                        <div className="card-color-bar"></div>
+                    </div>
+                </a>
             </div>
         );
     }

@@ -1,0 +1,93 @@
+.table-infobox-layout {
+  @extend .content-container;
+  background: transparent;
+  border: none;
+  margin: 0 auto;
+  margin-top: 25px;
+  max-width: 1200px;
+  position: relative;
+  @include clearAfter;
+
+  .infobox-col {
+    float: left;
+    padding-right: 20px;
+    width: 30%;
+  }
+
+  .table-col {
+    float: right;
+    padding-left: 20px;
+    width: 70%;
+  }
+
+  .infobox-container {
+    @extend .content-container;
+    color: $gray-dark;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+  }
+
+  .infobox-title {
+    @include clearAfter;
+    padding: 20px 20px 10px 20px;
+
+    h1 {
+      font-size: $f-size-xl;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .fa {
+      margin-right: 7px;
+    }
+  }
+
+  .infobox-content {
+    padding: 20px;
+  }
+
+  .info-grid {
+    display: flex;
+    flex-flow: row wrap;
+
+    .grid-label {
+      font-size: $f-size-sm;
+      font-weight: 600;
+      margin: 0;
+      margin-bottom: 5px;
+    }
+  }
+
+  .class-info-item {
+    display: inline-block;
+    margin-bottom: 17px;
+    overflow-wrap: break-word;
+    width: 50%;
+
+    &:nth-child(even) {
+      padding-left: 10px;
+    }
+
+    &:nth-child(odd) {
+      padding-right: 10px;
+    }
+  }
+
+  .info-data {
+    &.number {
+      font-size: $f-size-xl;
+    }
+  }
+
+  .edit-button-container {
+    margin-top: 10px;
+
+    input {
+      @extend .button-small;
+      margin: 0;
+      margin-right: 10px;
+    }
+  }
+}

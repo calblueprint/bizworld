@@ -1,27 +1,27 @@
 $color-list: $red $orange $blue;
 $icon-list: "\f0b1" "\f008" "\f201";
 
-.admin-view-container {
-  @extend .content-container;
-  background: transparent;
-  border: none;
-  margin: 0 auto;
-  margin-top: 40px;
-  max-width: 1200px;
-  min-width: 1050px;
-  padding: 0 20px;
+.admin-program-container {
+  .name-container {
+    width: 100%;
+  }
+}
 
-  .program-info-container {
-    margin-bottom: 20px;
-    padding-right: 0;
+.admin-view-container {
+
+  .infobox-col {
     width: 25%;
+  }
+
+  .table-col {
+    width: 75%;
   }
 
   .program-info-box {
     padding: 0;
   }
 
-  .class-title-container {
+  .infobox-title {
     background: $gray-dark;
     color: white;
     margin-bottom: 0;
@@ -114,16 +114,6 @@ $icon-list: "\f0b1" "\f008" "\f201";
     }
   }
 
-}
-
-.admin-table-container {
-  float: right;
-  padding-left: 20px;
-  width: 75%;
-}
-
-.admin-program-container {
-  @extend .teacher-classroom-container;
 }
 
 .admin-spinner {

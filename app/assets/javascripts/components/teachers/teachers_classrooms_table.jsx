@@ -23,15 +23,15 @@ class TeacherClassrooms extends DefaultForm {
                     <ProgramFilter onChange = {this._handleChange}
                                    showAll  = {true} />
                 </h3>
-                <div className="classes-container active-class">
-                    <h1 className="classes-container-title">Active Classes</h1>
+                <div>
+                    <h1 className="card-container-title">Active Classes</h1>
                     <TeacherModal teacher_id = {this.props.teacher_id}
                                   program_id = {this.state.program_id}
                                   type       = {ClassroomType.ACTIVE} />
                 </div>
 
-                <div className="classes-container inactive-class">
-                    <h1 className="classes-container-title">Inactive Classes</h1>
+                <div className="card-group-inactive">
+                    <h1 className="card-container-title">Inactive Classes</h1>
                     <TeacherModal teacher_id = {this.props.teacher_id}
                                   program_id = {this.state.program_id}
                                   type       = {ClassroomType.INACTIVE} />

@@ -68,7 +68,7 @@ class StudentsTable extends React.Component {
         });
 
         return (
-            <div className="student-info-container">
+            <div className="table-col">
                 <div className="student-table-action-bar">
                     <a className="action-item button button-small download-button"
                             href={this._generateCSVLink()}>

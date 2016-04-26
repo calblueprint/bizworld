@@ -72,54 +72,58 @@ class ClassInfo extends DefaultForm {
 
         const classType = `classroom-${this.state.classroom.program.id}`;
         return (
-            <div className="class-info-container">
+            <div className="infobox-col">
                 <div className="class-title-container">
                     <h1 className={`classroom-program ${classType}`}>
                         { this.state.classroom.program.name }
                     </h1>
                     <h1 className="classroom-name">{ this.state.classroom.name }</h1>
                 </div>
-                <div className="class-info-box">
-                    <h1><span className="fa fa-info-circle"></span>Class Info</h1>
-                    { additionalInfoModal }
-                    <div className="info-grid">
-                        <div className="class-info-item">
-                            <h2 className="grid-label">{ this.state.classroom.program.name } Class ID</h2>
-                            <div className="info-data number">
-                                { this.props.classroom.id }
-                            </div>
-                        </div>
-                        <div className="class-info-item">
-                            <h2 className="grid-label">Students</h2>
-                            <div className="info-data number">
-                                { this.state.classroom.students.length }
-                            </div>
-                        </div>
-                        <div className="class-info-item">
-                            <h2 className="grid-label">Pre-Assessment</h2>
-                            <div className="info-data">
-                                <a href={this.state.classroom.pre_link} target="_blank">
-                                    { this._formatLink(this.state.classroom.pre_link) }
-                                </a>
-                            </div>
-                        </div>
-                        <div className="class-info-item" id="onboarding-assessment-link">
-                            <h2 className="grid-label">Post-Assessment</h2>
-                            <div className="info-data">
-                                <a href={this.state.classroom.post_link} target="_blank">
-                                    { this._formatLink(this.state.classroom.post_link) }
-                                </a>
-                            </div>
-                        </div>
+                <div className="infobox-container">
+                    <div className="infobox-title class-title">
+                        <h1><span className="fa fa-info-circle"></span>Class Info</h1>
+                        { additionalInfoModal }
                     </div>
-                    { this._showInput("Classroom Name", "name", this.state.classroom.name) }
-                    { this._showDateRange("Date Range", this.state.classroom.start_date, this.state.classroom.end_date) }
+                    <div className="infobox-content">
+                        <div className="info-grid">
+                            <div className="class-info-item">
+                                <h2 className="grid-label">{ this.state.classroom.program.name } Class ID</h2>
+                                <div className="info-data number">
+                                    { this.props.classroom.id }
+                                </div>
+                            </div>
+                            <div className="class-info-item">
+                                <h2 className="grid-label">Students</h2>
+                                <div className="info-data number">
+                                    { this.state.classroom.students.length }
+                                </div>
+                            </div>
+                            <div className="class-info-item">
+                                <h2 className="grid-label">Pre-Assessment</h2>
+                                <div className="info-data">
+                                    <a href={this.state.classroom.pre_link} target="_blank">
+                                        { this._formatLink(this.state.classroom.pre_link) }
+                                    </a>
+                                </div>
+                            </div>
+                            <div className="class-info-item" id="onboarding-assessment-link">
+                                <h2 className="grid-label">Post-Assessment</h2>
+                                <div className="info-data">
+                                    <a href={this.state.classroom.post_link} target="_blank">
+                                        { this._formatLink(this.state.classroom.post_link) }
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        { this._showInput("Classroom Name", "name", this.state.classroom.name) }
+                        { this._showDateRange("Date Range", this.state.classroom.start_date, this.state.classroom.end_date) }
 
-                    <FormEditToggle editable = { this.state.editable }
-                                    update   = { this._toggleEdit }
-                                    save     = { this._attemptSave } />
+                        <FormEditToggle editable = { this.state.editable }
+                                        update   = { this._toggleEdit }
+                                        save     = { this._attemptSave } />
 
-                    { deleteButton }
+                        { deleteButton }
+                    </div>
                 </div>
             </div>
         );

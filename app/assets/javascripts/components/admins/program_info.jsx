@@ -34,14 +34,14 @@ class ProgramInfo extends DefaultForm {
 
         const programType = `program-${this.state.program.id}`;
         return (
-            <div className="class-info-container program-info-container">
-                <div className="class-info-box program-info-box">
-                    <div className={`class-title-container ${programType}`}>
+            <div className="infobox-col">
+                <div className="infobox-container">
+                    <div className={`infobox-title ${programType}`}>
                         <h1 className={`classroom-program`}>
                             { this.state.program.name }
                         </h1>
                     </div>
-                    <div className="info-box-content">
+                    <div className="infobox-content">
                         <div className="program-status-container">
                             <h2 className="grid-label">Program Status</h2>
                             <div className="info-data number">

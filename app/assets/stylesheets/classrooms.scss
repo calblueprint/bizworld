@@ -1,29 +1,6 @@
 $color-list: $red $orange $blue;
 $icon-list: "\f0b1" "\f008" "\f201";
 
-.classroom-view-container {
-  @extend .content-container;
-  background: transparent;
-  border: none;
-  margin: 0 auto;
-  margin-top: 25px;
-  max-width: 1200px;
-  position: relative;
-  @include clearAfter;
-}
-
-.class-info-container {
-  float: left;
-  padding-right: 20px;
-  width: 30%;
-}
-
-.student-info-container {
-  float: right;
-  padding-left: 20px;
-  width: 70%;
-}
-
 .class-title-container {
   margin-bottom: 25px;
 }
@@ -52,72 +29,16 @@ $icon-list: "\f0b1" "\f008" "\f201";
   }
 }
 
-.class-info-box {
-  @extend .content-container;
-  color: $gray-dark;
-  float: left;
-  margin: 0;
-  padding: 30px;
-  position: relative;
-  width: 100%;
-
+.class-title {
   h1 {
-    font-size: $f-size-xl;
-    font-weight: bold;
-    margin: 0;
-    margin-bottom: 35px;
-  }
-
-  .fa {
-    margin-right: 7px;
+    float: left;
   }
 
   .additional-info-item {
-    position: absolute;
-    right: 30px;
-    top: 5px;
-  }
+    float: right;
 
-  .info-grid {
-    display: flex;
-    flex-flow: row wrap;
-
-    .grid-label {
-      font-size: $f-size-sm;
-      font-weight: 600;
+    button {
       margin: 0;
-      margin-bottom: 5px;
-    }
-  }
-
-  .class-info-item {
-    display: inline-block;
-    margin-bottom: 17px;
-    overflow-wrap: break-word;
-    width: 50%;
-
-    &:nth-child(even) {
-      padding-left: 10px;
-    }
-
-    &:nth-child(odd) {
-      padding-right: 10px;
-    }
-  }
-
-  .info-data {
-    &.number {
-      font-size: $f-size-xl;
-    }
-  }
-
-  .edit-button-container {
-    margin-top: 10px;
-
-    input {
-      @extend .button-small;
-      margin: 0;
-      margin-right: 10px;
     }
   }
 }

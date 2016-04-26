@@ -93,7 +93,7 @@ class ClassroomsTable extends React.Component {
         return (
             <div>
                 <ProgramInfo program = {this.props.program} />
-                <div className="admin-table-container">
+                <div className="table-col">
                     <div className="admin-filter-container">
                         <form className="filter-form-container">
                             <h1>Filter Settings
