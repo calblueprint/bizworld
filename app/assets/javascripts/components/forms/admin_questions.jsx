@@ -61,6 +61,19 @@ class AdminFormQuestions extends DefaultFormQuestions {
         });
     }
 
+    _insertQuestionAtEnd = () => {
+        const lastNum = this.state.questionList.questions.length;
+        const newQuestionStub = Question.createStub({
+            form_id: this.props.form_id,
+            category: QuestionType.MC,
+            number: lastNum + 1,
+        });
+        const newQuestionList = this.state.questionList.insertAt(lastNum, newQuestionStub);
+        this.setState({
+            questionList: newQuestionList,
+        });
+    }
+
     _mapQuestions = (question, index) => {
         const AdminQuestion = QuestionType.reactComponentFor(question.category);
         return (

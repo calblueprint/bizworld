@@ -24,19 +24,6 @@ class DefaultFormQuestions extends React.Component {
         APIRequester.getJSON(APIConstants.forms.member(this.props.form_id), success);
     }
 
-    _insertQuestionAtEnd = () => {
-        const lastNum = this.state.questionList.questions.length;
-        const newQuestionStub = Question.createStub({
-            form_id: this.props.form_id,
-            category: QuestionType.MC,
-            number: lastNum + 1,
-        });
-        const newQuestionList = this.state.questionList.insertAt(lastNum, newQuestionStub);
-        this.setState({
-            questionList: newQuestionList,
-        });
-    }
-
     render() {
         let questions;
         if (this.state.isLoading) {
@@ -46,14 +33,24 @@ class DefaultFormQuestions extends React.Component {
         } else {
             questions = this.state.questionList.map(this._mapQuestions);
         }
+
+        let newQuestionButton;
+        if (this instanceof AdminFormQuestions) {
+            // HACK(aleks, 04/27/16): breaks abstraction, but #yolo
+            newQuestionButton = (
+                <div className="global-new-question-button">
+                    <button
+                        className="submit-button button-small"
+                        onClick={this._insertQuestionAtEnd}
+                    >New Question</button>
+                </div>
+            );
+        }
+
         return (
             <div className="form-questions-container">
                 { questions }
-                <div className="global-new-question-button">
-
-                     <button className="submit-button button-small"
-                         onClick={this._insertQuestionAtEnd}>New Question</button>
-                </div>
+                { newQuestionButton }
             </div>
         );
     }
