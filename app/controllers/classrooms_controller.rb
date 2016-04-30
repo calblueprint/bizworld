@@ -4,5 +4,6 @@ class ClassroomsController < ApplicationController
 
   def show
     @classroom = Classroom.find(params[:id])
+    gon.onboarding_image = ActionController::Base.helpers.image_path("onboarding.png")
   end
 end

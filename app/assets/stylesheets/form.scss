@@ -7,6 +7,13 @@ $icon-list: "\f0b1" "\f008" "\f201";
   padding: 0;
 }
 
+.form-submit-message {
+  font-size: $f-size-xl;
+  font-weight: bold;
+  padding: 0 30px;
+  text-align: center;
+}
+
 .title-container {
   background: $blue;
   color: white;

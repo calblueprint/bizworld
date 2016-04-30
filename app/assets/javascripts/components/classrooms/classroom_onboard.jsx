@@ -103,7 +103,7 @@ class ClassroomOnboard extends React.Component {
                             </div>
                             <div className="modal-body">
                                 <div className="onboarding-pic-container">
-                                    <img src="/assets/onboarding.png"/>
+                                    <img src={gon.onboarding_image} />
                                 </div>
                                 <h1>Thanks for joining us!</h1>
                                 <p>You'll be using this page to manage all your students. To take a quick tour of all the features, click "Begin Tour" below. We're glad you've joined the Bizworld family!</p>
