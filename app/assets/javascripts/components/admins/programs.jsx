@@ -1,33 +1,58 @@
-/**
- * @prop active_programs     - list of active programs
- * @prop inactive_programs   - list of inactive programs
- */
 class Programs extends DefaultForm {
-  render() {
-      const container_maker = (program) => ( <ProgramContainer program={program} key={program.id}/> );
+    constructor(props) {
+        super(props);
+        this.state = { active_programs : [], inactive_programs: [], isLoading : true };
+    }
 
-      return (
-          <div>
-              <div className="card-group-container">
-                  <h1 className="card-container-title">Active Programs</h1>
-                    { this.props.active_programs.map(container_maker) }
-                    <ProgramCreationModal />
-              </div>
+    componentDidMount() {
+        this._fetchPrograms();
+    }
 
-              <div className="card-group-container card-group-inactive">
-                  <h1 className="card-container-title">Inactive Programs</h1>
-                    { this.props.inactive_programs.map(container_maker) }
-              </div>
-          </div>
-      );
-  }
+    _success = (data) => {
+        const is_active = (program) => program.is_active;
+        const is_inactive = (program) => !program.is_active;
+        const active_programs = data.filter(is_active);
+        const inactive_programs = data.filter(is_inactive);
+        this.setState({
+            active_programs: active_programs,
+            inactive_programs: inactive_programs,
+            isLoading: false
+        });
+    }
+
+    _fetchPrograms = () => {
+        APIRequester.getJSON(APIConstants.programs.collection, this._success);
+    }
+
+    render() {
+        const container_maker = (program) => ( <ProgramContainer program={program} key={program.id}/> );
+
+        let active_programs, inactive_programs, create_program;
+
+        if (this.state.isLoading) {
+            active_programs = ( <div className="spinner-container"></div> );
+        } else {
+            active_programs = this.state.active_programs.map(container_maker);
+            inactive_programs = this.state.inactive_programs.map(container_maker);
+            create_program = (<ProgramCreationModal callback={this._fetchPrograms}/>);
+        }
+
+        return (
+            <div>
+                <div className="card-group-container">
+                    <h1 className="card-container-title">Active Programs</h1>
+                      { active_programs }
+                      { create_program }
+                </div>
+
+                <div className="card-group-container card-group-inactive">
+                    <h1 className="card-container-title">Inactive Programs</h1>
+                      { inactive_programs }
+                </div>
+            </div>
+        );
+    }
 }
-
-Programs.PropTypes = {
-    active_programs: React.PropTypes.array,
-    inactive_programs: React.PropTypes.array
-};
-
 
 /**
 * @prop program - the info about this program

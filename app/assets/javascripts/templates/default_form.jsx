@@ -36,7 +36,7 @@ class DefaultForm extends React.Component {
         return $.extend({}, this.state, extraFields);
     }
 
-    _attemptAction(endpoint, data, success = () => {}) {
+    _attemptAction(endpoint, data, success = (msg) => {}) {
         APIRequester.post(endpoint, data, success);
     }
 }

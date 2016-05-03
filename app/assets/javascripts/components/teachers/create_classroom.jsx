@@ -14,7 +14,7 @@ class ClassroomDropdown extends React.Component {
 
     _fetchPrograms() {
         const success = (data) => { this.setState({ programs : data }) }
-        APIRequester.getJSON(APIConstants.programs.collection, success);
+        APIRequester.getJSON(APIConstants.programs.collection, success, {active: true});
     }
 
     render() {
@@ -59,12 +59,16 @@ class ClassroomCreationModal extends DefaultForm {
         this._attemptAction(APIConstants.classrooms.collection, this._formFields());
     }
 
+    componentDidMount() {
+        $('#newClassroomModal').on('shown.bs.modal', (e) => this._focusInputField());
+    }
+
     render() {
         return (
             <div className="card-col">
               <div type="button" className="add-course">
                   <div data-toggle="modal" data-target="#newClassroomModal" >
-                      <div onClick={this._focusInputField} className="card add-card">
+                      <div className="card add-card">
                           <span className="fa fa-plus"></span>
                           Create a new course
                       </div>

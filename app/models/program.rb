@@ -3,7 +3,7 @@
 # Table name: programs
 #
 #  id         :integer          not null, primary key
-#  name       :string
+#  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  pre_id     :integer
@@ -20,6 +20,9 @@ class Program < ActiveRecord::Base
 
   scope :active, -> { where(is_active: true) }
   scope :inactive, -> { where(is_active: false) }
+
+  validates_uniqueness_of :name
+  validates_presence_of :name
 
   def make_forms
     self.pre = Form.create(category: 'pre')

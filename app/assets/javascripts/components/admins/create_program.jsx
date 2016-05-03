@@ -1,11 +1,18 @@
-
+/**
+* @prop callback - callback for when program is successfully created
+*/
 class ProgramCreationModal extends DefaultForm {
     _handleProgramCreation = (e) => {
         const success = (msg) => {
-            //TODO(nish, 4/21): AJAX this
-            window.location.href = '/admins/programs';
+            $('#newProgramModal').modal('toggle');
+            this.props.callback();
         };
         this._attemptAction(APIConstants.programs.collection, this._formFields(), success);
+    }
+
+    componentDidMount() {
+        $('#newProgramModal').on('hidden.bs.modal', (e) => $('#programName').val(""));
+        $('#newProgramModal').on('shown.bs.modal', (e) => this._focusInputField());
     }
 
     //TODO: Add color picker and icon selection for program styling.
@@ -14,7 +21,7 @@ class ProgramCreationModal extends DefaultForm {
             <div className="card-col">
               <div type="button" className="add-course">
                   <div data-toggle="modal" data-target="#newProgramModal" >
-                      <div onClick={this._focusInputField} className="card add-card">
+                      <div className="card add-card">
                           <span className="fa fa-plus"></span>
                           Create a new program
                       </div>
@@ -33,7 +40,7 @@ class ProgramCreationModal extends DefaultForm {
                           <div className="modal-body">
                               <fieldset className="input-container">
                                   <label>Program Name</label>
-                                  <input type="text" className="form-control" ref="focus" name="name"
+                                  <input type="text" className="form-control" id="programName" ref="focus" name="name"
                                       onChange={this._handleChange} />
                               </fieldset>
                           </div>
@@ -53,4 +60,4 @@ class ProgramCreationModal extends DefaultForm {
     }
 }
 
-ProgramCreationModal.proptypes = { success: React.PropTypes.func.isRequired };
+ProgramCreationModal.proptypes = { callback: React.PropTypes.func.isRequired };

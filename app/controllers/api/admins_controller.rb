@@ -1,6 +1,6 @@
 module Api
   class AdminsController < Api::BaseController
-    before_filter :authenticate_admin!
+    before_action :authenticate_admin!
 
     def classrooms
       classrooms = filter_classrooms(filter_params.symbolize_keys)
