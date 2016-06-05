@@ -5,7 +5,7 @@ module Api
     def classrooms
       teacher = Teacher.find(params[:teacher_id])
       classrooms = filter_classrooms(params[:type], params[:program_id])
-      render json: classrooms, each_serializer: ClassroomSerializer, root: false
+      render json: classrooms, each_serializer: ClassroomListItemSerializer, root: false
     end
 
     def show

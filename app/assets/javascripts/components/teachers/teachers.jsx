@@ -80,7 +80,7 @@ class ClassroomContainer extends React.Component {
                             <h2 className="subtitle">{ this.props.classroom.program.name }</h2>
                         </div>
                         <div className="count-container">
-                            <h3 className="count">{ this.props.classroom.students.length }</h3>
+                            <h3 className="count">{ this.props.classroom.num_students }</h3>
                             <h2 className="count-label">students</h2>
                         </div>
                         <div className="card-color-bar"></div>
