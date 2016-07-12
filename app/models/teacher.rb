@@ -34,12 +34,20 @@ class Teacher < ActiveRecord::Base
   validates :last_name, :first_name, :school, presence: true
 
   def self.classroom_csv_header
-    ["Teacher Name", "Teacher Email", "Teacher ID"]
+    ["Teacher Name",
+     "Teacher Email",
+     "School",
+     "State",
+     "Grade Levels",
+     "Teacher ID"]
   end
 
   def classroom_csv_row
     ["#{first_name} #{last_name}",
      email,
+     school,
+     state,
+     grades.join(","),
      id]
   end
 
