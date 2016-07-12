@@ -48,11 +48,12 @@ class Teacher < ActiveRecord::Base
      "Teacher Email",
      "School",
      "City",
-     "State"]
+     "State",
+     "Grade Levels"]
   end
 
   def teacher_csv_row
-    [first_name + " " + last_name, email, school, city, state]
+    [first_name + " " + last_name, email, school, city, state, grades.join(",")]
   end
 
   def onboarding?

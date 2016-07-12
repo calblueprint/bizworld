@@ -56,27 +56,27 @@ class Classroom < ActiveRecord::Base
 
   def self.teacher_csv_header
     ["Classroom Name",
+     "Classroom ID",
      "Start Date",
      "End Date",
      "Number of Students",
      "Average Pre",
      "Average Post",
-     "Number Pre",
-     "Number Post"]
+     "Completed Pre",
+     "Completed Post"]
   end
 
   def teacher_csv_row
     [name,
+     id,
      start_date,
      end_date,
      students.length,
-     average_pre,
-     average_post,
-     num_pre,
-     num_post]
+     average_score(:pre),
+     average_score(:post),
+     completed_assessments(:pre).count,
+     completed_assessments(:post).count]
   end
-
-  private
 
   def create_links
     self.pre_link = UrlActions.shorten_url(id, :pre)
@@ -88,23 +88,13 @@ class Classroom < ActiveRecord::Base
     where("program_id = ?", program_id)
   end
 
-  def average_pre
-    count = students.count { |s| !s.pre_score.empty? }
-    total = students.map { |s| s.pre_score.to_i }.reduce(:+)
-    count > 0 ? total / count : 0
+  def average_score(type)
+    completed = completed_assessments(type)
+    total = completed.map { |s| s.send("#{type}_score") }.reduce(:+)
+    completed.count > 0 ? total / completed.count : 0
   end
 
-  def num_pre
-    students.count { |s| !s.pre_score.empty? }
-  end
-
-  def average_post
-    count = students.count { |s| !s.post_score.empty? }
-    total = students.map { |s| s.post_score.to_i }.reduce(:+)
-    count > 0 ? total / count : 0
-  end
-
-  def num_post
-    students.count { |s| !s.post_score.empty? }
+  def completed_assessments(type)
+    students.select { |s| s.send("#{type}_score").present? }
   end
 end
