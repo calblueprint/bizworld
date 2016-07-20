@@ -1,5 +1,9 @@
 .card-container.admin-program-container
-  = react_component "Programs", {             \
-      active_programs: @active_programs,      \
-      inactive_programs: @inactive_programs,  \
+  h1.card-container-title Active Programs
+  = react_component "Programs", { \
+    type: "active"                \
+  }
+  h1.card-container-title Inactive Programs
+  = react_component "Programs", { \
+    type: "inactive"              \
   }

@@ -22,7 +22,6 @@ Rails.application.routes.draw do
     get 'finished', to: 'forms#finished'
   end
 
-  get 'admins/classrooms', to: 'admins#classrooms'
   get 'admins/programs', to: 'admins#programs'
   get 'classrooms/edit_questions', to: 'classrooms#edit_questions'
 

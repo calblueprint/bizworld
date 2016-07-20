@@ -10,7 +10,7 @@ def make_teachers
       school: "UC Berkeley",
       city: "Berkeley",
       state: "CA",
-      grades: ["3rd", "5th", "8th", "other"]
+      grades: %w(3rd 5th 8th other)
     )
     teacher.id = n
     teacher.save
@@ -18,7 +18,7 @@ def make_teachers
 end
 
 def make_programs
-  programs = ["BizWorld", "BizMovie", "BizWiz"]
+  programs = %w(BizWorld BizMovie BizWiz)
   programs.each do |name|
     program = Program.create(name: name)
     program.save
@@ -31,7 +31,7 @@ def make_classrooms
     classroom = Classroom.create(
       name: "Classroom#{n}",
       start_date: six_months_ago.advance(months: n),
-      end_date: six_months_ago.advance(months: n+2)
+      end_date: six_months_ago.advance(months: n + 2)
     )
     classroom.id = n
     classroom.teacher = Teacher.find(n % 5 + 1)

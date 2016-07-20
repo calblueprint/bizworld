@@ -4,11 +4,7 @@ module Api
     before_action :authenticate_admin!, only: [:create, :update]
 
     def index
-      if params[:active]
-        render json: Program.active, each_serializer: ProgramSerializer, root: false
-      else
-        render json: Program.all, each_serializer: ProgramSerializer, root: false
-      end
+      render json: Program.send(params[:type]), each_serializer: ProgramSerializer, root: false
     end
 
     def update

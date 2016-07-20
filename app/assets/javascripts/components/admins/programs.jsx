@@ -1,54 +1,57 @@
-class Programs extends DefaultForm {
+/**
+ * @prop type - the type of program to fetch (active or inactive)
+ */
+class Programs extends React.Component {
+
     constructor(props) {
         super(props);
-        this.state = { active_programs : [], inactive_programs: [], isLoading : true };
+        this.state = {
+            programs : [],
+            isLoading : true
+        };
     }
 
     componentDidMount() {
-        this._fetchPrograms();
+        this._fetchPrograms(this.props);
     }
 
     _success = (data) => {
-        const is_active = (program) => program.is_active;
-        const is_inactive = (program) => !program.is_active;
-        const active_programs = data.filter(is_active);
-        const inactive_programs = data.filter(is_inactive);
-        this.setState({
-            active_programs: active_programs,
-            inactive_programs: inactive_programs,
-            isLoading: false
-        });
+        this.setState({ programs : data, isLoading: false });
     }
 
-    _fetchPrograms = () => {
-        APIRequester.getJSON(APIConstants.programs.collection, this._success);
+    _fetchPrograms = (params) => {
+        APIRequester.getJSON(APIConstants.programs.collection, this._success,
+            params);
+    }
+
+    _renderSpinner = () => {
+        if (this.state.isLoading && this.props.type === "active") {
+            return (
+                <div className="spinner-container"></div>
+            );
+        }
+    }
+
+    _renderCreateProgram = () => {
+        if (!this.state.isLoading && this.props.type === "active") {
+            return (
+                <ProgramCreationModal callback={this._fetchPrograms} />
+            );
+        }
     }
 
     render() {
-        const container_maker = (program) => ( <ProgramContainer program={program} key={program.id}/> );
-
-        let active_programs, inactive_programs, create_program;
-
-        if (this.state.isLoading) {
-            active_programs = ( <div className="spinner-container"></div> );
-        } else {
-            active_programs = this.state.active_programs.map(container_maker);
-            inactive_programs = this.state.inactive_programs.map(container_maker);
-            create_program = (<ProgramCreationModal callback={this._fetchPrograms}/>);
-        }
+        const programs = this.state.programs.map((program) => {
+            return (
+                <ProgramContainer program={program} key={program.id} />
+            );
+        });
 
         return (
-            <div>
-                <div className="card-group-container">
-                    <h1 className="card-container-title">Active Programs</h1>
-                      { active_programs }
-                      { create_program }
-                </div>
-
-                <div className="card-group-container card-group-inactive">
-                    <h1 className="card-container-title">Inactive Programs</h1>
-                      { inactive_programs }
-                </div>
+            <div className={`card-group-container card-group-${this.props.type}`}>
+                { this._renderSpinner() }
+                { programs }
+                { this._renderCreateProgram() }
             </div>
         );
     }
@@ -78,3 +81,5 @@ class ProgramContainer extends React.Component {
         );
     }
 }
+
+Programs.propTypes = { type : React.PropTypes.string.isRequired };

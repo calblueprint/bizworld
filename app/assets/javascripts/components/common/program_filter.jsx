@@ -9,12 +9,12 @@ class ProgramFilter extends React.Component {
     }
 
     componentDidMount() {
-        this._fetchPrograms();
+        this._fetchPrograms({ type : "all" });
     }
 
-    _fetchPrograms() {
+    _fetchPrograms(params) {
         const success = (data) => { this.setState({ programs : data }) }
-        APIRequester.getJSON(APIConstants.programs.collection, success);
+        APIRequester.getJSON(APIConstants.programs.collection, success, params);
     }
 
     render() {
