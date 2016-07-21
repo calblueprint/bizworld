@@ -1,4 +1,4 @@
-class MinimalClassroomSerializer < ActiveModel::Serializer
+class ClassroomListSerializer < ActiveModel::Serializer
   attributes :id, :start_date, :end_date, :name, :num_students, :program
   has_one :teacher
 

@@ -4,7 +4,7 @@ module Api
 
     def classrooms
       classrooms = filter_classrooms(params[:type], params[:program_id])
-      render json: classrooms, each_serializer: MinimalClassroomSerializer, root: false
+      render json: classrooms, each_serializer: ClassroomListSerializer, root: false
     end
 
     def show

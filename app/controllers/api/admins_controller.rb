@@ -30,7 +30,7 @@ module Api
     end
 
     def filter_params
-      params.permit(:status, :program_id, :teacher, :range)
+      params.permit(:status, :program_id, :teacher, range: [:start, :end])
     end
 
     def send_and_cleanup_file(file, filename)
