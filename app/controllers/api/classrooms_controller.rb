@@ -56,9 +56,11 @@ module Api
     def update_responses
       params[:responses].each do |question_id, ans|
         Response.find_or_create_by(responder_id: params[:classroom_id], question_id: question_id,
-                                   responder_type: Classroom.model_name.human).update(answer: ans)
+                                   responder_type: Classroom.model_name.human).update!(answer: ans)
       end
       render_json_message(:ok, message: "Questions updated successfully!")
+    rescue
+      render_json_message(:forbidden, errors: ["Certain questions could not be saved."])
     end
 
     private
