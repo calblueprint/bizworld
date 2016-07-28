@@ -51,7 +51,7 @@ class AdditionalInfo extends React.Component {
 
                             <div className="modal-footer">
                                 <button type="button" className="button"
-                                    data-dismiss="modal">Cancel</button>
+                                    data-dismiss="modal">Close</button>
                                 <button type="button" name="update-info"
                                         value="Update Info" className="submit-button" onClick={this._attemptSave}>
                                     Update

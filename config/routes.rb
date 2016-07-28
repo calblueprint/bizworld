@@ -23,7 +23,6 @@ Rails.application.routes.draw do
   end
 
   get 'admins/programs', to: 'admins#programs'
-  get 'classrooms/edit_questions', to: 'classrooms#edit_questions'
 
   resources :teachers, only: [:show] do
     get 'classrooms', to: 'teachers#classrooms'
