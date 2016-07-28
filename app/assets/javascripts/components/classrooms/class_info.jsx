@@ -1,7 +1,7 @@
 /**
- * @prop classroom    - classroom info to display
- * @prop success      - function handler for successful ClassInfo box update
- * @prop isAdmin      - whether logged in user is admin
+ * @prop classroom - classroom info to display
+ * @prop success   - function handler for successful ClassInfo box update
+ * @prop isAdmin   - whether logged in user is admin
  */
 class ClassInfo extends DefaultForm {
 
@@ -11,12 +11,6 @@ class ClassInfo extends DefaultForm {
             classroom: this.props.classroom,
             editable: false
         };
-    }
-
-    getDefaultProps() {
-        return {
-            classroom: { students: [], program: {} },
-        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -59,15 +53,20 @@ class ClassInfo extends DefaultForm {
     render() {
         let deleteButton;
         if (this.props.isAdmin) {
-          deleteButton = <DeleteClassroomModal classroom_id = { this.state.classroom.id } />
+            deleteButton = (
+                <DeleteClassroomModal classroom_id = { this.state.classroom.id } />
+            );
         }
 
         // Doesn't pass in props until classroom has been loaded.
         let additionalInfoModal;
         if (this.state.classroom.id) {
-            additionalInfoModal = <AdditionalInfoModal additional_info = { this.state.classroom.additional_info }
-                                                       classroom_id    = { this.state.classroom.id }
-                                                       success         = { this.props.success } />
+            additionalInfoModal = (
+                <AdditionalInfo classroom_id = { this.state.classroom.id }
+                                responses    = { this.state.classroom.responses }
+                                form_id      = { this.state.classroom.form_id }
+                                success      = { this.props.success } />
+            );
         }
 
         const classType = `classroom-${this.state.classroom.program.id}`;
@@ -135,3 +134,11 @@ ClassInfo.propTypes = {
     success   : React.PropTypes.func.isRequired,
     isAdmin   : React.PropTypes.bool.isRequired
 };
+
+ClassInfo.defaultProps = {
+    classroom : {
+        students : [],
+        program : { },
+        form_id : 1
+    }
+}

@@ -13,8 +13,8 @@ class ApiConstants {
             member     : (id) => `/api/classrooms/${id}`,
             upload     : (id) => `/api/classrooms/${id}/upload`,
             download   : (id) => `/api/classrooms/${id}/download`,
+            responses  : (id) => `/api/classrooms/${id}/responses`,
             collection : `/api/classrooms/`,
-            questions  : `/api/classrooms/additional_questions`,
         }
     }
 
@@ -67,13 +67,6 @@ class ApiConstants {
         return {
             member     : (id) => `/api/questions/${id}`,
             collection : `/api/questions`,
-        }
-    }
-
-    get classroom_additional_questions() {
-        return {
-            member     : (id) => `/api/classroom_additional_questions/${id}`,
-            collection : `/api/classroom_additional_questions`,
         }
     }
 }

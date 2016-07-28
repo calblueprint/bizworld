@@ -2,19 +2,21 @@
 #
 # Table name: programs
 #
-#  id         :integer          not null, primary key
-#  name       :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  pre_id     :integer
-#  post_id    :integer
-#  is_active  :boolean          default(TRUE), not null
+#  id            :integer          not null, primary key
+#  name          :string           not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  pre_id        :integer
+#  post_id       :integer
+#  is_active     :boolean          default(TRUE), not null
+#  additional_id :integer
 #
 
 class Program < ActiveRecord::Base
   has_many :classrooms
   belongs_to :pre, class_name: "Form"
   belongs_to :post, class_name: "Form"
+  belongs_to :additional, class_name: "Form"
 
   before_create :make_forms
 

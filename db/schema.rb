@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160424000638) do
+ActiveRecord::Schema.define(version: 20160728030234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,16 +34,9 @@ ActiveRecord::Schema.define(version: 20160424000638) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
-  create_table "classroom_additional_questions", force: :cascade do |t|
-    t.string   "title"
-    t.string   "hint"
+  create_table "classrooms", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "classrooms", force: :cascade do |t|
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
     t.integer  "teacher_id"
     t.string   "name"
     t.integer  "program_id"
@@ -51,7 +44,6 @@ ActiveRecord::Schema.define(version: 20160424000638) do
     t.date     "end_date"
     t.string   "pre_link"
     t.string   "post_link"
-    t.string   "additional_info"
   end
 
   add_index "classrooms", ["end_date"], name: "index_classrooms_on_end_date", using: :btree
@@ -66,12 +58,13 @@ ActiveRecord::Schema.define(version: 20160424000638) do
   end
 
   create_table "programs", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",                         null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "pre_id"
     t.integer  "post_id"
-    t.boolean  "is_active",  default: true, null: false
+    t.boolean  "is_active",     default: true, null: false
+    t.integer  "additional_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -83,21 +76,23 @@ ActiveRecord::Schema.define(version: 20160424000638) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "number"
+    t.string   "hint"
   end
 
   add_index "questions", ["form_id"], name: "index_questions_on_form_id", using: :btree
 
   create_table "responses", force: :cascade do |t|
     t.integer  "question_id"
-    t.integer  "student_id"
     t.string   "answer"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "category"
+    t.integer  "responder_id"
+    t.string   "responder_type"
   end
 
   add_index "responses", ["question_id"], name: "index_responses_on_question_id", using: :btree
-  add_index "responses", ["student_id"], name: "index_responses_on_student_id", using: :btree
+  add_index "responses", ["responder_type", "responder_id"], name: "index_responses_on_responder_type_and_responder_id", using: :btree
 
   create_table "students", force: :cascade do |t|
     t.string   "first_name"

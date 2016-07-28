@@ -38,13 +38,11 @@ Rails.application.routes.draw do
     get '/admins/classrooms', to: 'admins#classrooms'
     get '/admins/download/classrooms', to: 'admins#download_classrooms'
     get '/admins/download/teachers', to: 'admins#download_teachers'
-    get '/classrooms/additional_questions', to: 'classrooms#additional_questions'
 
     post '/forms/submit', to: 'forms#submit'
     post '/passwords/request_reset', to: 'passwords#request_reset'
     post '/passwords/reset', to: 'passwords#reset'
 
-    resources :classroom_additional_questions, only: [:create, :update, :destroy]
     resources :passwords, only: [:update]
     resources :questions, only: [:update, :create, :destroy]
     resources :students, only: [:create, :destroy]
@@ -56,6 +54,7 @@ Rails.application.routes.draw do
 
     resources :classrooms, only: [:create, :show, :update, :destroy] do
       get 'download', to: 'classrooms#download'
+      put 'responses', to: 'classrooms#update_responses'
       post 'upload', to: 'classrooms#upload'
     end
 

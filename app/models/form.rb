@@ -13,6 +13,6 @@ class Form < ActiveRecord::Base
   has_many :questions, -> { order(number: :asc) }
 
   def program
-    Program.where("pre_id = ? OR post_id = ?", id, id).first
+    Program.where("additional_id = ? OR pre_id = ? OR post_id = ?", id, id, id).first
   end
 end
