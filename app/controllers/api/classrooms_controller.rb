@@ -53,9 +53,12 @@ module Api
       end
     end
 
-    def additional_questions
-      additional_questions = ClassroomAdditionalQuestion.order("id ASC")
-      render json: additional_questions, each_serializer: ClassroomAdditionalQuestionSerializer, root: false
+    def update_responses
+      params[:responses].each do |question_id, ans|
+        Response.find_or_create_by(responder_id: params[:classroom_id], question_id: question_id,
+                                   responder_type: Classroom.model_name.human).update(answer: ans)
+      end
+      render_json_message(:ok, message: "Questions updated successfully!")
     end
 
     private
@@ -73,7 +76,7 @@ module Api
     end
 
     def update_params
-      params.permit(:name, :start_date, :end_date, :additional_info)
+      params.permit(:name, :start_date, :end_date)
     end
   end
 end

@@ -7,7 +7,7 @@ namespace :form do
   desc "Generates form based on configuration file"
   task :generate_default, [] => :environment do
     [1, 2, 3].each do |p_id|
-      %w(pre post).each do |category|
+      %w(pre post additional).each do |category|
         generate_form p_id, category
       end
     end

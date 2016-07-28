@@ -9,14 +9,14 @@ module TeacherCSVGenerator
 
   def self.generate_csv(classrooms, program, path)
     CSV.open(path, 'w') do |csv|
-      csv << Teacher.teacher_csv_header + Program.teacher_csv_header + Classroom.teacher_csv_header
+      csv << Teacher.teacher_csv_header + Program.teacher_csv_header + Classroom.teacher_csv_header + program.csv_header(:additional)
       generate_rows(csv, classrooms, program)
     end
   end
 
   def self.generate_rows(csv, classrooms, program)
     classrooms.each do |classroom|
-      csv << classroom.teacher.teacher_csv_row + program.teacher_csv_row + classroom.teacher_csv_row
+      csv << classroom.teacher.teacher_csv_row + program.teacher_csv_row + classroom.teacher_csv_row + classroom.additional_questions_row
     end
   end
 end
