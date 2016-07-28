@@ -6,12 +6,6 @@ nav.navbar.navbar-inverse
       ul.nav.navbar-nav.navbar-right
         - if current_admin
             li.dropdown
-              a.dropdown-toggle role="button" data-toggle="dropdown" href="#"
-                | Edit Forms
-                span.caret
-              ul.dropdown-menu role="menu"
-                li.dropdown-header Classroom Questions
-                li.dropdown-link = link_to "Additional Questions", classrooms_edit_questions_path
               li = link_to "Programs", admins_programs_path
         - if current_teacher
             li = link_to "My Classrooms", teacher_classrooms_path(current_teacher)

@@ -7,13 +7,9 @@ class StudentsTable extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { students : this.props.students };
-    }
-
-    getDefaultProps() {
-        return {
-            students: []
-        }
+        this.state = {
+            students : this.props.students || []
+        };
     }
 
     componentWillReceiveProps(nextProps) {
@@ -156,4 +152,4 @@ class Student extends React.Component {
 Student.propTypes = {
     student: React.PropTypes.object.isRequired,
     success: React.PropTypes.func.isRequired
- };
+};

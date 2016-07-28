@@ -16,7 +16,8 @@ module FormActions
     correct = 0.0
     responses.each do |q_id, answer|
       correct += 1 if Question.find(q_id).answer.eql?(answer.to_i)
-      Response.create!(student_id: sid, question_id: q_id, answer: answer, category: category)
+      Response.create!(responder_id: sid, responder_type: Student.model_name.human,
+                       question_id: q_id, answer: answer, category: category)
     end
     correct
   end

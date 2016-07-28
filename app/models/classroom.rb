@@ -2,25 +2,28 @@
 #
 # Table name: classrooms
 #
-#  id              :integer          not null, primary key
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  teacher_id      :integer
-#  name            :string
-#  program_id      :integer
-#  start_date      :date
-#  end_date        :date
-#  pre_link        :string
-#  post_link       :string
-#  additional_info :string
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  teacher_id :integer
+#  name       :string
+#  program_id :integer
+#  start_date :date
+#  end_date   :date
+#  pre_link   :string
+#  post_link  :string
 #
 
 class Classroom < ActiveRecord::Base
   include PgSearch
 
   has_many :students, dependent: :delete_all
+
+  has_many :responses, as: :responder
+
   belongs_to :program
   belongs_to :teacher
+
   validates :name, presence: true
 
   after_create :create_links
@@ -76,6 +79,16 @@ class Classroom < ActiveRecord::Base
      average_score(:post),
      completed_assessments(:pre).count,
      completed_assessments(:post).count]
+  end
+
+  def additional_questions_row
+    responses = []
+    program.additional.questions.pluck(:id).each do |question_id|
+      response = Response.find_by(question_id: question_id, responder_id: id,
+                                  responder_type: Classroom.model_name.human)
+      responses << (response.nil? ? "" : response.answer)
+    end
+    responses
   end
 
   def create_links
