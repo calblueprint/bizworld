@@ -23,7 +23,7 @@ class LoginModal extends DefaultForm {
         return (
             <div>
                 <div className="login-title">
-                    <h1>Bizworld Educator Portal</h1>
+                    <h1>Educator Portal</h1>
                 </div>
                 <form>
                     <fieldset className="input-container">
