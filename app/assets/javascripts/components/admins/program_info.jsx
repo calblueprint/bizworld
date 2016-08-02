@@ -65,6 +65,11 @@ class ProgramInfo extends DefaultForm {
                                     Post-Assessment
                                 </a>
                             </div>
+                            <div className="info-data">
+                                <a href={this._getFormLink(this.state.program.additional_id)} target="_blank">
+                                    Classroom Questions
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
