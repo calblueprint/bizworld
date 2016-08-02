@@ -4,7 +4,7 @@ module Api
 
     def classrooms
       classrooms = filter_classrooms(filter_params.symbolize_keys)
-      render json: classrooms, each_serializer: ClassroomSerializer, root: false
+      render json: classrooms, each_serializer: ClassroomListSerializer, root: false
     end
 
     def download_classrooms

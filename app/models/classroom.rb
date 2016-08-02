@@ -84,9 +84,8 @@ class Classroom < ActiveRecord::Base
   def additional_questions_row
     responses = []
     program.additional.questions.pluck(:id).each do |question_id|
-      response = Response.find_by(question_id: question_id, responder_id: id,
-                                  responder_type: Classroom.model_name.human)
-      responses << (response.nil? ? "" : response.answer)
+      responses << Response.find_by(question_id: question_id, responder_id: id,
+                                    responder_type: Classroom.model_name.human).try(:answer)
     end
     responses
   end
