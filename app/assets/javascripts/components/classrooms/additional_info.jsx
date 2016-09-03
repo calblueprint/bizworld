@@ -68,7 +68,7 @@ class AdditionalInfo extends React.Component {
             <div className="action-item additional-info-item">
                 <button data-toggle="modal" data-target="#additionalInfoModal"
                     className="button button-small additional-info-item-button">
-                    <div>More info</div>
+                    <div>Registration Info</div>
                 </button>
                 <div className="modal fade" id="additionalInfoModal" tabIndex={-1}
                         role="dialog" ref="modal">
@@ -76,7 +76,7 @@ class AdditionalInfo extends React.Component {
                         <div className="modal-content">
                             <div className="modal-header">
                                 <h4 className="modal-title">
-                                    More Info
+                                    Registration Info
                                 </h4>
                             </div>
                             <div className="modal-body">
