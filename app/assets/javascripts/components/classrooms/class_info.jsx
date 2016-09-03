@@ -51,12 +51,9 @@ class ClassInfo extends DefaultForm {
     }
 
     render() {
-        let deleteButton;
-        if (this.props.isAdmin) {
-            deleteButton = (
-                <DeleteClassroomModal classroom_id = { this.state.classroom.id } />
-            );
-        }
+        const deleteButton = (
+            <DeleteClassroomModal classroom_id = { this.state.classroom.id } />
+        );
 
         // Doesn't pass in props until classroom has been loaded.
         let additionalInfoModal;
