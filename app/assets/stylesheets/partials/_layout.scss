@@ -376,10 +376,11 @@ ul.dropdown-menu li.dropdown-link a {
   }
 
   .tour-close.btn-primary {
-    @extend .submit-button.button-small;
-    background: $teal;
+    @extend .submit-button;
+    @extend .button-small;
     float: right;
     font-weight: 600;
+    margin: 0 auto;
   }
 
   .tour-container {

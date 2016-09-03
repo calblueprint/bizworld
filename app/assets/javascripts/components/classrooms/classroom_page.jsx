@@ -37,12 +37,13 @@ class ClassroomPage extends React.Component {
       classpage = (
         <div>
           { onboard }
-          <ClassInfo classroom  = {this.state.classroom}
-                 success    = {this._fetchClassroom}
-                 isAdmin    = {this.props.isAdmin} />
-          <StudentsTable students   = {this.state.classroom.students}
-                   classroom_id = {this.props.classroom_id}
-                   success    = {this._fetchClassroom} />
+          <ClassInfo classroom    = {this.state.classroom}
+            success      = {this._fetchClassroom}
+            isAdmin      = {this.props.isAdmin}
+            didOnboard   = {this.props.onboarding} />
+          <StudentsTable students     = {this.state.classroom.students}
+            classroom_id = {this.props.classroom_id}
+            success      = {this._fetchClassroom} />
         </div>
       );
     }

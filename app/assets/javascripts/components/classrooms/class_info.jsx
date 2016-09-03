@@ -1,7 +1,8 @@
 /**
- * @prop classroom - classroom info to display
- * @prop success   - function handler for successful ClassInfo box update
- * @prop isAdmin   - whether logged in user is admin
+ * @prop classroom  - classroom info to display
+ * @prop success    - function handler for successful ClassInfo box update
+ * @prop isAdmin    - whether logged in user is admin
+ * @prop didOnboard - whether user completed onboarding
  */
 class ClassInfo extends DefaultForm {
 
@@ -65,7 +66,9 @@ class ClassInfo extends DefaultForm {
                 <AdditionalInfo classroom_id = { this.state.classroom.id }
                                 responses    = { this.state.classroom.responses }
                                 form_id      = { this.state.classroom.form_id }
-                                success      = { this.props.success } />
+                                success      = { this.props.success }
+                                didOnboard   = { this.props.didOnboard }
+                                isAdmin      = { this.props.isAdmin } />
             );
         }
 

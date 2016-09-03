@@ -3,6 +3,8 @@
  * @prop responses    - current responses for this classroom
  * @prop form_id      - id associated with the additional questions form
  * @prop success      - function called when classroom info is updated
+ * @prop didOnboard   - whether the user completed onboarding
+ * @prop isAdmin      - whether the user is an admin
  */
 class AdditionalInfo extends React.Component {
 
@@ -22,9 +24,43 @@ class AdditionalInfo extends React.Component {
     }
 
     _attemptSave = (e) => {
-        const success = (msg) => { this.props.success(); };
+        const success = (msg) => {
+            this.props.success();
+            $("#additionalInfoModal").modal("hide");
+        };
         APIRequester.put(APIConstants.classrooms.responses(
             this.props.classroom_id), this.state, success);
+    }
+
+    _renderQuestionsPopover = () => {
+        const notice = new Tourist.Tour({
+            steps: [{
+                content: "<p><span class=\"fa fa-exclamation-circle\"></span> \
+                            <span>Make sure to fill out these short questions. \
+                             It's super important for the Bizworld administrators!</span></p>",
+                highlightTarget: true,
+                okButton: true,
+                target: $(".additional-info-item-button"),
+                my: "left center",
+                at: "right center",
+            }],
+            tipOptions: {
+               showEffect: "slidein"
+            },
+        });
+
+        notice.start();
+    }
+
+    componentDidMount = () => {
+        let numResponses = this.props.responses.length;
+        const success = (data) => {
+            if (!this.props.didOnboard && !this.props.isAdmin && numResponses < data.questions.length) {
+                this._renderQuestionsPopover();
+            }
+        }
+
+        APIRequester.getJSON(APIConstants.forms.member(this.props.form_id), success);
     }
 
     render() {
