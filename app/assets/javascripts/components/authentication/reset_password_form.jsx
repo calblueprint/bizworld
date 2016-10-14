@@ -6,21 +6,20 @@ class ResetPasswordModal extends DefaultForm {
     }
 
     _attemptPasswordReset = (e) => {
+        const success = () => this.setState({ showForm : false });
         this._attemptAction(APIConstants.passwords.request_reset,
             { email : this.refs.email.getDOMNode().value },
-            () => this.setState({ showForm : false })
+            success,
         );
     }
 
     _handleKeydown = (e) => {
-        //Keycode 13 is ENTER
         if (e.which == 13) {
             this._attemptPasswordReset();
         }
     }
 
     render() {
-
         if (this.state.showForm) {
             return (
                 <div>

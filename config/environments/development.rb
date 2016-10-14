@@ -38,15 +38,17 @@ Rails.application.configure do
 
   # Default Devise Mailer
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.perform_deliveries = true
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { address: ENV["BIZWORLD_MAIL_SERVER"],
-                                         port: ENV["BIZWORLD_MAIL_PORT"],
-                                         domain: ENV["BIZWORLD_MAIL_DOMAIN"],
-                                         authentication: "plain",
-                                         enable_starttls_auto: true,
-                                         user_name: ENV["BIZWORLD_MAIL_ADDR"],
-                                         password: ENV["BIZWORLD_MAIL_PASS"] }
+  config.action_mailer.smtp_settings = {
+    authentication: :plain,
+    address: ENV["MAILGUN_SMTP_SERVER"],
+    port: ENV["MAILGUN_SMTP_PORT"],
+    domain: ENV["MAILGUN_DOMAIN"],
+    user_name: ENV["MAILGUN_SMTP_LOGIN"],
+    password: ENV["MAILGUN_SMTP_PASSWORD"]
+  }
 
   # React setup
   config.react.variant = :development

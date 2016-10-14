@@ -24,11 +24,14 @@ module Api
     def request_reset
       email = request_reset_params[:email]
       user = Admin.find_by_email(email) || Teacher.find_by_email(email)
-      if !user.nil? && user.send_reset_password_instructions
-        render_json_message(:ok)
-        return
+      if user.present?
+        render_json_message(:ok, message: "Password reset email sent!")
+        # Send mail after rendering message since it blocks UI, better solution would be
+        # to send email through async job.
+        user.send_reset_password_instructions
+      else
+        render_json_message(:internal_server_error, errors: ["An unknown error occurred."])
       end
-      render_json_message(:internal_server_error, errors: ["An unknown error occurred."])
     end
 
     def reset
